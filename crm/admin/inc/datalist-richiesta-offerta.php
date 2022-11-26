@@ -33,8 +33,8 @@
 
                         <?php
                         $querySql =
-                            "SELECT * FROM ro_richiesta_offerta INNER JOIN cl_clienti ON ro_le_id = cl_id ".
-                            "INNER JOIN cc_codici_cer on cc_id = ro_cc_id WHERE ro_id > 0 AND cl_id = '$get_cl_id' ORDER BY ro_id ";
+                            "SELECT * FROM ro_richiesta_offerta INNER JOIN ut_utenti ON ro_le_id = ut_id ".
+                            "INNER JOIN cc_codici_cer on cc_id = ro_cc_id WHERE ro_id > 0 AND ut_id = '$get_ut_id' ORDER BY ro_id ";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
 

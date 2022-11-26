@@ -3,9 +3,9 @@
 $or_codice = $_GET["or_codice"];
 
 $querySql =
-    "SELECT or_cl_codice, or_pagamento, or_spedizione, or_coupon, or_coupon_tipo, or_coupon_valore FROM or_ordini WHERE or_codice = '$or_codice' LIMIT 0,1 ";
+    "SELECT or_ut_codice, or_pagamento, or_spedizione, or_coupon, or_coupon_tipo, or_coupon_valore FROM or_ordini WHERE or_codice = '$or_codice' LIMIT 0,1 ";
 $result = $dbConn->query($querySql);
-list($or_cl_codice, $or_pagamento, $or_spedizione, $or_coupon, $or_coupon_tipo, $or_coupon_valore) = $result->fetch_array();
+list($or_ut_codice, $or_pagamento, $or_spedizione, $or_coupon, $or_coupon_tipo, $or_coupon_valore) = $result->fetch_array();
 $result->close();
 
 $querySql =
@@ -23,7 +23,7 @@ while ($row_data = $result->fetch_assoc()) {
     $or_id = $row_data['or_id'];
     $pr_id = $row_data['pr_id'];
     $pr_codice = $row_data['pr_codice'];
-    $or_cl_codice = $row_data['or_cl_codice'];
+    $or_ut_codice = $row_data['or_ut_codice'];
     $or_pr_codice = $row_data['or_pr_codice'];
     $or_pr_quantita = $row_data['or_pr_quantita'];
     //$or_pagamento = $row_data['or_pagamento'];
@@ -47,8 +47,8 @@ while ($row_data = $result->fetch_assoc()) {
     $or_totale = $or_totale + ($pr_prezzo * $or_pr_quantita);
     $pr_totale = formatPrice($pr_prezzo * $or_pr_quantita);
 
-    /*$cl_email = getEmailClienteByCodice($or_cl_codice, $dbConn);
-    $cl_nominativo = getNominativoClienteByCodice($or_cl_codice, $dbConn);*/
+    /*$ut_email = getEmailClienteByCodice($or_ut_codice, $dbConn);
+    $ut_nominativo = getNominativoClienteByCodice($or_ut_codice, $dbConn);*/
 
     /*if(strlen($or_coupon) > 0)
         $or_sconto_coupon = $or_coupon_tipo == "importo"
@@ -94,7 +94,7 @@ if ($or_pagamento == 'Paypal') {
     //$return_link = "$rootBasePath_http/confirmPayPal.php?or_codice=$or_codice";
     $cancel_link = "$rootBasePath_http/dettaglio-ordine?or_codice=$or_codice&insert=false";
 
-    $code_64 = base64_encode("$or_codice|$or_cl_codice|$rootBasePath_http/confirmPayPal.php?or_codice=$or_codice");
+    $code_64 = base64_encode("$or_codice|$or_ut_codice|$rootBasePath_http/confirmPayPal.php?or_codice=$or_codice");
     $return_link = "$rootBasePath_http/fast-login/$code_64";
 
     $link_pagamento = "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=$emailPaypal&item_name=Order_Code&item_number=$or_codice&amount=$importo_totale_ordine_paypal&invoice=$or_codice&currency_code=EUR&return=$return_link&cancel_return=$cancel_link";
@@ -102,20 +102,20 @@ if ($or_pagamento == 'Paypal') {
 
 } else if ($or_pagamento == 'Stripe') {
 
-    $link_pagamento = generateStripeMailOrder($or_codice, $or_totale, $or_cl_codice);
+    $link_pagamento = generateStripeMailOrder($or_codice, $or_totale, $or_ut_codice);
     $link_pagamento = base64_encode($link_pagamento);
 
 } else $link_pagamento = "";
 
-$cl_email = getEmailClienteByCodice($or_cl_codice, $dbConn);
-$cl_nominativo = getNominativoClienteByCodice($or_cl_codice, $dbConn);
+$ut_email = getEmailClienteByCodice($or_ut_codice, $dbConn);
+$ut_nominativo = getNominativoClienteByCodice($or_ut_codice, $dbConn);
 
 $email_titolo = "Paga il tuo ordine!";
 
 $email_testo =
     "
             <p>
-                Gentile $cl_nominativo. Ti ricordiamo che il tuo ordine non risulta ancora pagato secondo le modalità di pagamento scelte. <br>
+                Gentile $ut_nominativo. Ti ricordiamo che il tuo ordine non risulta ancora pagato secondo le modalità di pagamento scelte. <br>
                 Procedi a completare l'ordine e se hai problemi con il metodo di pagamento scelto contattaci. <br><br>
                 
                 <a href='$rootBasePath_http/login'>Clicca qui</a> per accedere alla tua area riservata o segui le istruzioni in basso per completare l'ordine.<br><br>
@@ -124,8 +124,8 @@ $email_testo =
 
             <p><strong>Di seguito i dettagli del tuo ordine:</strong></p>
             <p>Codice ordine: <strong>$or_codice del ".date('d/m/Y - H:i', substr($or_codice,9))."</strong></p>
-            <p>Email: <strong>".getNominativoClienteByCodice($or_cl_codice, $dbConn)."&nbsp;(".$or_cl_codice.")</strong></p>
-            <p>Indirizzo di spedizione: <strong>".getIndirizzoClienteByCodice($or_cl_codice, $dbConn)."</strong></p>
+            <p>Email: <strong>".getNominativoClienteByCodice($or_ut_codice, $dbConn)."&nbsp;(".$or_ut_codice.")</strong></p>
+            <p>Indirizzo di spedizione: <strong>".getIndirizzoClienteByCodice($or_ut_codice, $dbConn)."</strong></p>
             <p>Tipo di spedizione: <strong>Spedizione con corriere</strong></p>
             <p>Metodo di pagamento: <strong>$or_pagamento</strong></p>
 
@@ -250,7 +250,7 @@ include "../../inc/mail.php";
 include("../class/class.phpmailer.php");
 $mittente = "noreply@moncaffe.it";
 $nomemittente = "Moncaffe.it";
-$destinatario = $cl_email;
+$destinatario = $ut_email;
 $dataFullNow = strftime("%A %d %B %Y", time());
 
 $mail = new PHPMailer;
@@ -270,16 +270,16 @@ $mail->IsHTML(true);
 //intestazioni e corpo dell'email
 $mail->From   = $mittente;
 $mail->FromName = $nomemittente;
-$mail->AddAddress($cl_email);
+$mail->AddAddress($ut_email);
 $mail->AddBCC($rootBaseEmail);
 $mail->AddBCC("notifica@lucasweb.it");
 $mail->AddBCC("francesco.tammaro@lucasweb.it");
 $mail->Subject = "Moncaffe.it - Paga il tuo ordine - ".date("d/m/Y", time());
 
 $time = time();
-$tracker = "<img src='$rootBasePath_http/crm/tracker-ordini.php?cod=$time&email=$cl_email' width='1' height='1'>";
+$tracker = "<img src='$rootBasePath_http/crm/tracker-ordini.php?cod=$time&email=$ut_email' width='1' height='1'>";
 
-$mail->Body = convertLinkOrdini($messaggio, $rootBasePath_http, $time, $cl_email).$tracker;
+$mail->Body = convertLinkOrdini($messaggio, $rootBasePath_http, $time, $ut_email).$tracker;
 
 //$mail->Body = $messaggio;
 $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
@@ -298,7 +298,7 @@ if($mail->Send()) {
 
 $querySql_ol =
     "INSERT INTO ol_ordini_log(ol_cr_id, ol_or_codice, ol_timestamp, ol_stato, ol_email, ol_stato_invio, ol_stato_lettura, ol_click) ".
-    "VALUES (0, '$or_codice', '$time', 1, '$cl_email', '$ol_stato_invio', 0, 0) ";
+    "VALUES (0, '$or_codice', '$time', 1, '$ut_email', '$ol_stato_invio', 0, 0) ";
 $result_ol = $dbConn->query($querySql_ol);
 
 //echo "<script>window.location=document.referrer;</script>";

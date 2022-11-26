@@ -25,29 +25,29 @@
                         <tbody>
 
                         <?php
-                        $querySql = "SELECT * FROM cl_clienti WHERE cl_id > 0 ORDER BY cl_id DESC LIMIT 0, 5";
+                        $querySql = "SELECT * FROM ut_utenti WHERE ut_id > 0 ORDER BY ut_id DESC LIMIT 0, 5";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
 
                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                            $cl_id = $row_data['cl_id'];
+                            $ut_id = $row_data['ut_id'];
 
                             echo "<tr>";
-                            echo "<td>$cl_id</td>";
-                            echo "<td>".$row_data['cl_nome']."</td>";
-                            echo "<td>".$row_data['cl_cognome']."</td>";
-                            echo "<td>".$row_data['cl_email']."</td>";
+                            echo "<td>$ut_id</td>";
+                            echo "<td>".$row_data['ut_nome']."</td>";
+                            echo "<td>".$row_data['ut_cognome']."</td>";
+                            echo "<td>".$row_data['ut_email']."</td>";
 
                             //Stato
                             echo "<td align='center'>";
 
-                            if ($row_data['cl_stato'] == 0) {
+                            if ($row_data['ut_stato'] == 0) {
 
                                 ?>
                                 <div class="checkbox checbox-switch switch-success">
                                     <label>
-                                        <input type="checkbox" class="stato" title="clienti-stato-do.php?cl_id=<?php echo $cl_id; ?>"><span></span>
+                                        <input type="checkbox" class="stato" title="clienti-stato-do.php?ut_id=<?php echo $ut_id; ?>"><span></span>
                                     </label>
                                 </div>
                                 <?php
@@ -57,7 +57,7 @@
                                 ?>
                                 <div class="checkbox checbox-switch switch-success">
                                     <label>
-                                        <input type="checkbox" class="stato" title="clienti-stato-do.php?cl_id=<?php echo $cl_id; ?>" checked><span></span>
+                                        <input type="checkbox" class="stato" title="clienti-stato-do.php?ut_id=<?php echo $ut_id; ?>" checked><span></span>
                                     </label>
                                 </div>
                                 <?php
@@ -68,8 +68,8 @@
 
                             //Gestione
                             echo "<td align='center'>";
-                            echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?cl_id=$cl_id' title='Modifica anagrafica'>modifica</a>&nbsp;";
-                            echo "<button class='btn btn-danger btn-sm elimina' data-href='clienti-del-do.php?cl_id=$cl_id'>elimina</button>";
+                            echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?ut_id=$ut_id' title='Modifica anagrafica'>modifica</a>&nbsp;";
+                            echo "<button class='btn btn-danger btn-sm elimina' data-href='clienti-del-do.php?ut_id=$ut_id'>elimina</button>";
                             echo "</td>";
                             echo "</tr>";
 

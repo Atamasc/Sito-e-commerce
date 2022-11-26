@@ -29,7 +29,7 @@ $get_or_codice = isset($_GET['or_codice']) ? $dbConn->real_escape_string(stripsl
                     <div class="table-responsive">
 
                         <?php
-                        $querySql = "SELECT cl_clienti.* FROM or_ordini INNER JOIN cl_clienti ON cl_codice = or_cl_codice WHERE or_codice = '$get_or_codice' LIMIT 0, 1";
+                        $querySql = "SELECT ut_utenti.* FROM or_ordini INNER JOIN ut_utenti ON ut_codice = or_ut_codice WHERE or_codice = '$get_or_codice' LIMIT 0, 1";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
                         $row_data = $result->fetch_assoc();
@@ -41,9 +41,9 @@ $get_or_codice = isset($_GET['or_codice']) ? $dbConn->real_escape_string(stripsl
                             <div class="col-md-6">
 
                                 <?php
-                                echo "<b>".$row_data['cl_nome']." ".$row_data['cl_cognome']."</b><br>";
-                                echo $row_data["cl_indirizzo"]." - ".$row_data["cl_citta"]." (".$row_data["cl_provincia"].") CAP: ".$row_data["cl_cap"]." <br>";
-                                echo "Tel. ".$row_data["cl_tel"]." | Cell. ".$row_data["cl_cell"]." | Fax. ".$row_data["cl_fax"];
+                                echo "<b>".$row_data['ut_nome']." ".$row_data['ut_cognome']."</b><br>";
+                                echo $row_data["ut_indirizzo"]." - ".$row_data["ut_citta"]." (".$row_data["ut_provincia"].") CAP: ".$row_data["ut_cap"]." <br>";
+                                echo "Tel. ".$row_data["ut_telefono"]." | Cell. ".$row_data["ut_cell"]." | Fax. ".$row_data["ut_fax"];
                                 ?>
 
                             </div>
@@ -51,8 +51,8 @@ $get_or_codice = isset($_GET['or_codice']) ? $dbConn->real_escape_string(stripsl
                             <div class="col-md-6">
 
                                 <?php
-                                echo "<br>P.IVA: ".$row_data["cl_partita_iva"]." | Cod. Fiscale: ".$row_data["cl_codice_fiscale"]." <br>";
-                                echo "E-mail: <a href='mailto:".$row_data["cl_email"]."'>".$row_data["cl_email"]."</a> <br>";
+                                echo "<br>P.IVA: ".$row_data["ut_partita_iva"]." | Cod. Fiscale: ".$row_data["ut_codice_fiscale"]." <br>";
+                                echo "E-mail: <a href='mailto:".$row_data["ut_email"]."'>".$row_data["ut_email"]."</a> <br>";
                                 ?>
 
                             </div>

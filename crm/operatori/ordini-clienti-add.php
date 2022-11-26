@@ -11,7 +11,7 @@
         <style>
             .content-wrapper {
 
-                margin-left: 0!important;
+                margin-left: 0 !important;
 
             }
         </style>
@@ -22,12 +22,12 @@
 
     <?php
     //$get_cc_ct_id = isset($_GET['cc_ct_id']) ? (int)$_GET['cc_ct_id'] : 0;
-    $get_cl_ragione_sociale = isset($_GET['cl_ragione_sociale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_ragione_sociale']))) : "";
-    $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_email']))) : "";
-    $get_cl_provincia = isset($_GET['cl_provincia']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_provincia']))) : "";
-    $get_cl_comune = isset($_GET['cl_comune']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_comune']))) : "";
-    $get_cl_cod_fiscale = isset($_GET['cl_cod_fiscale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_cod_fiscale']))) : "";
-    $get_cl_partita_iva = isset($_GET['cl_partita_iva']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_partita_iva']))) : "";
+    $get_ut_ragione_sociale = isset($_GET['ut_ragione_sociale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_ragione_sociale']))) : "";
+    $get_ut_email = isset($_GET['ut_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_email']))) : "";
+    $get_ut_provincia = isset($_GET['ut_provincia']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_provincia']))) : "";
+    $get_ut_citta = isset($_GET['ut_citta']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_citta']))) : "";
+    $get_ut_cod_fiscale = isset($_GET['ut_cod_fiscale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_cod_fiscale']))) : "";
+    $get_ut_partita_iva = isset($_GET['ut_partita_iva']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_partita_iva']))) : "";
     ?>
 
     <div class="wrapper">
@@ -74,45 +74,45 @@
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_ragione_sociale">Ragione sociale</label>
-                                                <input type="text" name="cl_ragione_sociale" class="form-control" value="<?php echo $get_cl_ragione_sociale; ?>">
+                                                <label for="ut_ragione_sociale">Ragione sociale</label>
+                                                <input type="text" name="ut_ragione_sociale" class="form-control" value="<?php echo $get_ut_ragione_sociale; ?>">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_email">Email</label>
-                                                <input name="cl_email" id="cl_email" class="form-control" type="text" autocomplete="off"
-                                                       value="<?php echo $get_cl_email; ?>">
+                                                <label for="ut_email">Email</label>
+                                                <input name="ut_email" id="ut_email" class="form-control" type="text" autocomplete="off"
+                                                        value="<?php echo $get_ut_email; ?>">
                                             </div>
 
                                             <!--
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_cod_fiscale">Codice fiscale</label>
-                                                <input type="text" class="form-control" id="cl_cod_fiscale" name="cl_cod_fiscale" placeholder="Codice fiscale"
-                                                       value="<?php echo $get_cl_cod_fiscale; ?>">
+                                                <label for="ut_cod_fiscale">Codice fiscale</label>
+                                                <input type="text" class="form-control" id="ut_cod_fiscale" name="ut_cod_fiscale" placeholder="Codice fiscale"
+                                                       value="<?php echo $get_ut_cod_fiscale; ?>">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_partita_iva">Partita IVA</label>
-                                                <input type="text" class="form-control" id="cl_partita_iva" name="cl_partita_iva" placeholder="Partita IVA"
-                                                       value="<?php echo $get_cl_partita_iva; ?>">
+                                                <label for="ut_partita_iva">Partita IVA</label>
+                                                <input type="text" class="form-control" id="ut_partita_iva" name="ut_partita_iva" placeholder="Partita IVA"
+                                                       value="<?php echo $get_ut_partita_iva; ?>">
                                             </div>
                                             -->
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="provincia">Provincia</label>
-                                                <select class="form-control" id="provincia" name="cl_provincia" onchange="getCitta();">
+                                                <select class="form-control" id="provincia" name="ut_provincia" onchange="getCitta();">
                                                     <option value="">Filtra per provincia</option>
                                                     <option value=""></option>
-                                                    <?php selectProvince($get_cl_provincia, "", $dbConn); ?>
+                                                    <?php selectProvince($get_ut_provincia, "", $dbConn); ?>
                                                 </select>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="citta">Comune</label>
-                                                <select class="form-control" id="citta" name="cl_comune">
+                                                <select class="form-control" id="citta" name="ut_citta">
                                                     <option value="">Filtra per comune</option>
                                                     <option value=""></option>
-                                                    <?php selectComuni($get_cl_comune, $get_cl_provincia, $dbConn); ?>
+                                                    <?php selectComuni($get_ut_citta, $get_ut_provincia, $dbConn); ?>
                                                 </select>
                                             </div>
 
@@ -146,13 +146,13 @@
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(cl_id) FROM cl_clienti WHERE cl_id > 0 ";
-                                            if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                            if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
-                                            if(strlen($get_cl_provincia) > 0) $querySql .= " AND cl_provincia = '$get_cl_provincia' ";
-                                            if(strlen($get_cl_comune) > 0) $querySql .= " AND cl_comune = '$get_cl_comune' ";
-                                            if(strlen($get_cl_cod_fiscale) > 0) $querySql .= " AND cl_cod_fiscale LIKE '%$get_cl_cod_fiscale%' ";
-                                            if(strlen($get_cl_partita_iva) > 0) $querySql .= " AND cl_partita_iva LIKE '%$get_cl_partita_iva%' ";
+                                            $querySql = "SELECT COUNT(ut_id) FROM ut_utenti WHERE ut_id > 0 ";
+                                            if (strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                            if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
+                                            if (strlen($get_ut_provincia) > 0) $querySql .= " AND ut_provincia = '$get_ut_provincia' ";
+                                            if (strlen($get_ut_citta) > 0) $querySql .= " AND ut_citta = '$get_ut_citta' ";
+                                            if (strlen($get_ut_cod_fiscale) > 0) $querySql .= " AND ut_cod_fiscale LIKE '%$get_ut_cod_fiscale%' ";
+                                            if (strlen($get_ut_partita_iva) > 0) $querySql .= " AND ut_partita_iva LIKE '%$get_ut_partita_iva%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -167,35 +167,35 @@
                                             // primo parametro di LIMIT
                                             $primo = ($current_page - 1) * $per_page;
 
-                                            $querySql = "SELECT * FROM cl_clienti WHERE cl_id > 0 ";
-                                            if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                            if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
-                                            if(strlen($get_cl_provincia) > 0) $querySql .= " AND cl_provincia = '$get_cl_provincia' ";
-                                            if(strlen($get_cl_comune) > 0) $querySql .= " AND cl_comune = '$get_cl_comune' ";
-                                            if(strlen($get_cl_cod_fiscale) > 0) $querySql .= " AND cl_cod_fiscale LIKE '%$get_cl_cod_fiscale%' ";
-                                            if(strlen($get_cl_partita_iva) > 0) $querySql .= " AND cl_partita_iva LIKE '%$get_cl_partita_iva%' ";
-                                            $querySql .= " ORDER BY cl_ragione_sociale LIMIT $primo, $per_page";
+                                            $querySql = "SELECT * FROM ut_utenti WHERE ut_id > 0 ";
+                                            if (strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                            if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
+                                            if (strlen($get_ut_provincia) > 0) $querySql .= " AND ut_provincia = '$get_ut_provincia' ";
+                                            if (strlen($get_ut_citta) > 0) $querySql .= " AND ut_citta = '$get_ut_citta' ";
+                                            if (strlen($get_ut_cod_fiscale) > 0) $querySql .= " AND ut_cod_fiscale LIKE '%$get_ut_cod_fiscale%' ";
+                                            if (strlen($get_ut_partita_iva) > 0) $querySql .= " AND ut_partita_iva LIKE '%$get_ut_partita_iva%' ";
+                                            $querySql .= " ORDER BY ut_ragione_sociale LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                                $cl_id = $row_data['cl_id'];
-                                                $cl_codice = $row_data['cl_codice'];
+                                                $ut_id = $row_data['ut_id'];
+                                                $ut_codice = $row_data['ut_codice'];
 
                                                 echo "<tr>";
-                                                echo "<td>".$row_data['cl_ragione_sociale']."</td>";
-                                                echo "<td>".$row_data['cl_telefono']."</td>";
+                                                echo "<td>" . $row_data['ut_ragione_sociale'] . "</td>";
+                                                echo "<td>" . $row_data['ut_telefono'] . "</td>";
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                echo "<a class='btn btn-orange btn-sm' href='ordini-prodotti-add.php?cl_codice=$cl_codice&or_timestamp=".time()."&or_tipo=distribuzione' title='Ordini'><i class='fas fa-arrow-alt-right'></i></a>";
+                                                echo "<a class='btn btn-orange btn-sm' href='ordini-prodotti-add.php?ut_codice=$ut_codice&or_timestamp=" . time() . "&or_tipo=distribuzione' title='Ordini'><i class='fas fa-arrow-alt-right'></i></a>";
                                                 echo "</td>";
                                                 echo "</tr>";
 
                                                 echo "<tr>";
-                                                echo "<td colspan='99'>".
-                                                    "<p class='font-bold'>Indirizzo</p>".$row_data['cl_indirizzo'].", ".$row_data['cl_comune']." (".$row_data['cl_provincia'].")</td>";
+                                                echo "<td colspan='99'>" .
+                                                    "<p class='font-bold'>Indirizzo</p>" . $row_data['ut_indirizzo'] . ", " . $row_data['ut_citta'] . " (" . $row_data['ut_provincia'] . ")</td>";
                                                 echo "</tr>";
 
                                             }
@@ -210,11 +210,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";

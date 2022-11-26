@@ -92,7 +92,7 @@
                                         <?php
                                         $querySql =
                                             "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini ".
-                                            "INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_op_id = '$session_id' AND or_stato_conferma > 0 AND or_stato = 0 ".
+                                            "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_op_id = '$session_id' AND or_stato_conferma > 0 AND or_stato = 0 ".
                                             "GROUP BY or_codice ORDER BY or_codice DESC ";
                                         $result = $dbConn->query($querySql);
                                         $rows = $dbConn->affected_rows;
@@ -103,7 +103,7 @@
                                             $or_codice = $row_data['or_codice'];
                                             
                                             echo "<tr>";
-                                            echo "<td colspan='99'><b>Cliente</b><br>".$row_data['cl_ragione_sociale']."</td>";
+                                            echo "<td colspan='99'><b>Cliente</b><br>".$row_data['ut_ragione_sociale']."</td>";
                                             echo "</tr>";
 
                                             echo "<tr>";

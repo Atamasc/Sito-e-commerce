@@ -1,10 +1,10 @@
 <?php include 'inc/autoloader.php'; ?>
 
 <?php
-$cl_colore = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_colore'])));
-$cl_rgb = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_rgb'])));
+$ut_colore = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_colore'])));
+$ut_rgb = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_rgb'])));
 
-$querySql = "INSERT INTO cl_colori(cl_colore, cl_rgb) VALUE ('$cl_colore', '$cl_rgb')";
+$querySql = "INSERT INTO ut_colori(ut_colore, ut_rgb) VALUE ('$ut_colore', '$ut_rgb')";
 $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 

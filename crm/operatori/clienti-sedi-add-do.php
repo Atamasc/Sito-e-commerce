@@ -1,6 +1,6 @@
 <?php include "inc/autoloader.php"; ?>
 <?php
-$sd_cl_id = (int)$_POST["sd_cl_id"];
+$sd_ut_id = (int)$_POST["sd_ut_id"];
 $sd_sede = $dbConn->real_escape_string(stripslashes(trim($_POST["sd_sede"])));
 $sd_indirizzo = $dbConn->real_escape_string(stripslashes(trim($_POST["sd_indirizzo"])));
 $sd_cap = $dbConn->real_escape_string(stripslashes(trim($_POST["sd_cap"])));
@@ -13,12 +13,12 @@ $sd_formulari = $dbConn->real_escape_string(stripslashes(trim($_POST["sd_formula
 
 $querySql =
     "INSERT INTO sd_sedi (".
-    "sd_cl_id, sd_sede, sd_indirizzo, sd_cap, sd_citta, sd_provincia, sd_telefono, sd_fax, sd_email, sd_formulari, sd_stato".
+    "sd_ut_id, sd_sede, sd_indirizzo, sd_cap, sd_citta, sd_provincia, sd_telefono, sd_fax, sd_email, sd_formulari, sd_stato".
     ") VALUES (".
-    "'$sd_cl_id', '$sd_sede', '$sd_indirizzo', '$sd_cap', '$sd_citta', '$sd_provincia', '$sd_telefono', '$sd_fax', '$sd_email', '$sd_formulari', '1')";
+    "'$sd_ut_id', '$sd_sede', '$sd_indirizzo', '$sd_cap', '$sd_citta', '$sd_provincia', '$sd_telefono', '$sd_fax', '$sd_email', '$sd_formulari', '1')";
 $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 
-if($rows > 0) header("Location: clienti-sedi.php?cl_id=$sd_cl_id&insert=true");
-else header("Location: clienti-sedi.php?cl_id=$sd_cl_id&insert=false");
+if($rows > 0) header("Location: clienti-sedi.php?ut_id=$sd_ut_id&insert=true");
+else header("Location: clienti-sedi.php?ut_id=$sd_ut_id&insert=false");
 ?>

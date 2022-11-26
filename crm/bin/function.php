@@ -1,5 +1,6 @@
 <?php
-function generateStripeFastOrder($or_codice, $or_totale, $or_rapido = 0) {
+function generateStripeFastOrder($or_codice, $or_totale, $or_rapido = 0)
+{
 
     global $rootBasePath_http;
 
@@ -50,7 +51,8 @@ function generateStripeFastOrder($or_codice, $or_totale, $or_rapido = 0) {
 
 }
 
-function generateStripeMailOrder($or_codice, $or_totale, $cl_codice) {
+function generateStripeMailOrder($or_codice, $or_totale, $ut_codice)
+{
 
     global $rootBasePath_http;
 
@@ -58,7 +60,7 @@ function generateStripeMailOrder($or_codice, $or_totale, $cl_codice) {
 
     $or_totale = number_format($or_totale, 2, "", "");
 
-    $code_64 = base64_encode("$or_codice|$cl_codice|$rootBasePath_http/confirmStripe.php?or_codice=$or_codice");
+    $code_64 = base64_encode("$or_codice|$ut_codice|$rootBasePath_http/confirmStripe.php?or_codice=$or_codice");
     $return_link = "$rootBasePath_http/fast-login/$code_64";
 
     /* Chiave test
@@ -103,10 +105,12 @@ function generateStripeMailOrder($or_codice, $or_totale, $cl_codice) {
     return $json->url;
 
 }
+
 /* ==== ==== */
 
 
-function selectMerceologia($pr_codice_merceologia_param) {
+function selectMerceologia($pr_codice_merceologia_param)
+{
 
     global $dbConn;
 
@@ -124,10 +128,11 @@ function selectMerceologia($pr_codice_merceologia_param) {
     }
 
     $result->close();
-    
+
 }
 
-function selectFamiglie($pr_fm_codice_param) {
+function selectFamiglie($pr_fm_codice_param)
+{
 
     global $dbConn;
 
@@ -148,7 +153,8 @@ function selectFamiglie($pr_fm_codice_param) {
 
 }
 
-function selectMarchio($pr_mr_id) {
+function selectMarchio($pr_mr_id)
+{
 
     global $dbConn;
 
@@ -169,7 +175,8 @@ function selectMarchio($pr_mr_id) {
 
 }
 
-function selectCodiceMarchio($mr_codice_param) {
+function selectCodiceMarchio($mr_codice_param)
+{
 
     global $dbConn;
 
@@ -190,7 +197,8 @@ function selectCodiceMarchio($mr_codice_param) {
 
 }
 
-function selectLinea($pr_codice_linea_param) {
+function selectLinea($pr_codice_linea_param)
+{
 
     global $dbConn;
 
@@ -211,7 +219,8 @@ function selectLinea($pr_codice_linea_param) {
 
 }
 
-function getImgCapofila($pr_capofila) {
+function getImgCapofila($pr_capofila)
+{
 
     global $dbConn;
 
@@ -227,7 +236,8 @@ function getImgCapofila($pr_capofila) {
 
 }
 
-function selectSistema($pr_si_id) {
+function selectSistema($pr_si_id)
+{
 
     global $dbConn;
 
@@ -248,7 +258,8 @@ function selectSistema($pr_si_id) {
 
 }
 
-function selectCategorie($get_ct_id) {
+function selectCategorie($get_ct_id)
+{
 
     global $dbConn;
     $querySql = "SELECT * FROM ct_categorie ";
@@ -268,7 +279,8 @@ function selectCategorie($get_ct_id) {
 
 }
 
-function selectCategorieProdotti($ct_id_param, mysqli $dbConn) {
+function selectCategorieProdotti($ct_id_param, mysqli $dbConn)
+{
 
     $querySql = "SELECT * FROM ct_categorie WHERE ct_id > 0 ORDER BY ct_categoria ";
     $result = $dbConn->query($querySql);
@@ -287,10 +299,11 @@ function selectCategorieProdotti($ct_id_param, mysqli $dbConn) {
     $result->close();
 }
 
-function selectSottocategorieProdotti($st_id_param, $dbConn, $ct_id = '') {
+function selectSottocategorieProdotti($st_id_param, $dbConn, $ct_id = '')
+{
 
     $querySql = "SELECT * FROM st_sottocategorie WHERE st_id > 0 ";
-    if(strlen($ct_id) > 0) $querySql .= "AND st_ct_id = '$ct_id' ";
+    if (strlen($ct_id) > 0) $querySql .= "AND st_ct_id = '$ct_id' ";
     $querySql .= "  ORDER BY st_sottocategoria";
     $result = $dbConn->query($querySql);
 
@@ -309,20 +322,24 @@ function selectSottocategorieProdotti($st_id_param, $dbConn, $ct_id = '') {
 }
 
 //Funzione count utilizzo coupon
-function get_numero_utilizzi_by_code($uc_coupon_param, $dbConn) {
-    $queryCountSql_coupon = "SELECT COUNT(DISTINCT uc_ordine) FROM uc_utilizzo_coupon WHERE uc_coupon = '".$uc_coupon_param."' ";
+function get_numero_utilizzi_by_code($uc_coupon_param, $dbConn)
+{
+    $queryCountSql_coupon = "SELECT COUNT(DISTINCT uc_ordine) FROM uc_utilizzo_coupon WHERE uc_coupon = '" . $uc_coupon_param . "' ";
     $result = $dbConn->query($queryCountSql_coupon);
     $row = $result->fetch_row();
 
     $row_cnt_utilizzi = $row[0];
 
     return $row_cnt_utilizzi;
-};
+}
+
+;
 
 //Funzione popolamento select regioni
-function get_importo_utilizzi_by_code($uc_coupon_param,$dbConn) {
+function get_importo_utilizzi_by_code($uc_coupon_param, $dbConn)
+{
 
-    $querySql = "SELECT * FROM uc_utilizzo_coupon WHERE uc_coupon = '".$uc_coupon_param."' ";
+    $querySql = "SELECT * FROM uc_utilizzo_coupon WHERE uc_coupon = '" . $uc_coupon_param . "' ";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
@@ -331,7 +348,7 @@ function get_importo_utilizzi_by_code($uc_coupon_param,$dbConn) {
 
         $uc_ordine = $rows['uc_ordine'];
 
-        $querySql_importo = "SELECT * FROM or_ordini WHERE or_codice = '".$uc_ordine."' AND or_stato_pagamento > 0 ";
+        $querySql_importo = "SELECT * FROM or_ordini WHERE or_codice = '" . $uc_ordine . "' AND or_stato_pagamento > 0 ";
         $result_importo = $dbConn->query($querySql_importo);
         $rows_importo = $dbConn->affected_rows;
 
@@ -349,9 +366,12 @@ function get_importo_utilizzi_by_code($uc_coupon_param,$dbConn) {
 
     return formatPrice($totale_importo);
 
-};
+}
 
-function countProdottiCategoria($ct_id) {
+;
+
+function countProdottiCategoria($ct_id)
+{
 
     global $dbConn;
 
@@ -364,7 +384,8 @@ function countProdottiCategoria($ct_id) {
 
 }
 
-function countProdottiSottocategoria($st_id) {
+function countProdottiSottocategoria($st_id)
+{
 
     global $dbConn;
 
@@ -377,7 +398,8 @@ function countProdottiSottocategoria($st_id) {
 
 }
 
-function countSottocategorieCategoria($ct_id) {
+function countSottocategorieCategoria($ct_id)
+{
 
     global $dbConn;
 
@@ -390,7 +412,8 @@ function countSottocategorieCategoria($ct_id) {
 
 }
 
-function getCategoria($ct_id, $dbConn) {
+function getCategoria($ct_id, $dbConn)
+{
 
     $querySql = "SELECT ct_categoria FROM ct_categorie WHERE ct_id = '$ct_id' ";
     $result = $dbConn->query($querySql);
@@ -398,12 +421,13 @@ function getCategoria($ct_id, $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['ct_categoria'];
 
 }
 
-function getSottocategoria($st_id, $dbConn) {
+function getSottocategoria($st_id, $dbConn)
+{
 
     $querySql = "SELECT st_sottocategoria FROM st_sottocategorie WHERE st_id = '$st_id' ";
     $result = $dbConn->query($querySql);
@@ -411,12 +435,13 @@ function getSottocategoria($st_id, $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['st_sottocategoria'];
 
 }
 
-function getEsistenzaVarianti($pr_id, mysqli $dbConn) {
+function getEsistenzaVarianti($pr_id, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_capofila = '$pr_id' AND pr_id != '$pr_id' ";
     $result = $dbConn->query($querySql);
@@ -427,51 +452,54 @@ function getEsistenzaVarianti($pr_id, mysqli $dbConn) {
 
 }
 
-function selectColori($cl_id_param, mysqli $dbConn) {
+function selectColori($ut_id_param, mysqli $dbConn)
+{
 
-    $querySql = "SELECT * FROM cl_colori WHERE cl_id > 0 ORDER BY cl_colore ";
+    $querySql = "SELECT * FROM ut_colori WHERE ut_id > 0 ORDER BY ut_colore ";
     $result = $dbConn->query($querySql);
 
     while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-        $cl_id = $row_data['cl_id'];
-        $cl_colore = $row_data['cl_colore'];
+        $ut_id = $row_data['ut_id'];
+        $ut_colore = $row_data['ut_colore'];
 
-        $stato = $cl_id_param == $cl_id ? "selected" : "";
+        $stato = $ut_id_param == $ut_id ? "selected" : "";
 
-        echo "<option value='$cl_id' $stato>$cl_colore</option>";
+        echo "<option value='$ut_id' $stato>$ut_colore</option>";
 
     }
 
     $result->close();
 }
 
-function getColoreById($cl_id, mysqli $dbConn) {
+function getColoreById($ut_id, mysqli $dbConn)
+{
 
-    $querySql = "SELECT cl_colore, cl_rgb FROM cl_colori WHERE cl_id = '$cl_id' ";
+    $querySql = "SELECT ut_colore, ut_rgb FROM ut_colori WHERE ut_id = '$ut_id' ";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
-    list($cl_colore, $cl_rgb) = $result->fetch_array();
+    list($ut_colore, $ut_rgb) = $result->fetch_array();
     $result->close();
 
-    if($rows == 0) return "//";
-    else return "<div style='background-color: $cl_rgb; width: 10px; height: 10px; display: inline-block;'></div> $cl_colore";
+    if ($rows == 0) return "//";
+    else return "<div style='background-color: $ut_rgb; width: 10px; height: 10px; display: inline-block;'></div> $ut_colore";
 
 }
 
-function selectCliente($rc_cl_codice, $dbConn) {
+function selectCliente($rc_ut_codice, $dbConn)
+{
 
-    $querySql = "SELECT * FROM cl_clienti WHERE cl_stato>0  ";
+    $querySql = "SELECT * FROM ut_utenti WHERE ut_stato>0  ";
     $result = $dbConn->query($querySql);
 
     while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-        $cl_codice = $row_data['cl_codice'];
-        $cl_nome = $row_data['cl_nome'];
-        $cl_cognome = $row_data['cl_cognome'];
+        $ut_codice = $row_data['ut_codice'];
+        $ut_nome = $row_data['ut_nome'];
+        $ut_cognome = $row_data['ut_cognome'];
 
-        $stato = $rc_cl_codice == $cl_codice ? "selected" : "";
-        echo "<option value='$cl_codice' $stato>$cl_nome $cl_cognome</option>";
+        $stato = $rc_ut_codice == $ut_codice ? "selected" : "";
+        echo "<option value='$ut_codice' $stato>$ut_nome $ut_cognome</option>";
 
     }
 
@@ -479,7 +507,8 @@ function selectCliente($rc_cl_codice, $dbConn) {
 }
 
 
-function selectProdotto($rc_pr_codice, $dbConn) {
+function selectProdotto($rc_pr_codice, $dbConn)
+{
 
     $querySql = "SELECT * FROM pr_prodotti WHERE pr_stato>0  ";
     $result = $dbConn->query($querySql);
@@ -497,7 +526,8 @@ function selectProdotto($rc_pr_codice, $dbConn) {
     $result->close();
 }
 
-function getCodiceProdottoById($pr_id, mysqli $dbConn) {
+function getCodiceProdottoById($pr_id, mysqli $dbConn)
+{
 
     $querySql = "SELECT pr_codice FROM pr_prodotti WHERE pr_id = '$pr_id' ";
     $result = $dbConn->query($querySql);
@@ -508,7 +538,8 @@ function getCodiceProdottoById($pr_id, mysqli $dbConn) {
 
 }
 
-function selectFornitori($get_fr_id) {
+function selectFornitori($get_fr_id)
+{
 
     global $dbConn;
     $querySql = "SELECT * FROM fr_fornitori ";
@@ -528,7 +559,8 @@ function selectFornitori($get_fr_id) {
 
 }
 
-function selectClientiCategorie($get_ct_id) {
+function selectClientiCategorie($get_ct_id)
+{
 
     global $dbConn;
     $querySql = "SELECT * FROM ct_categoria ";
@@ -548,10 +580,11 @@ function selectClientiCategorie($get_ct_id) {
 
 }
 
-function countClientiAssociati($cv_id){
+function countClientiAssociati($cv_id)
+{
 
     global $dbConn;
-    $querySql = "SELECT COUNT(cl_id) FROM cl_clienti INNSER JOIN ca_convenzioni_clienti ON ca_cl_id = cl_id WHERE ca_cv_id = '$cv_id' ";
+    $querySql = "SELECT COUNT(ut_id) FROM ut_utenti INNSER JOIN ca_convenzioni_clienti ON ca_ut_id = ut_id WHERE ca_cv_id = '$cv_id' ";
     $result = $dbConn->query($querySql);
     $count = $result->fetch_array()[0];
     $result->close();
@@ -560,7 +593,8 @@ function countClientiAssociati($cv_id){
 
 }
 
-function get_access_credential($param_username, $param_password, $dbConn) {
+function get_access_credential($param_username, $param_password, $dbConn)
+{
 
     $querySql_amministratore = "SELECT * FROM am_amministratore WHERE am_username = '$param_username' AND am_password = '$param_password'";
     $result_amministratore = $dbConn->query($querySql_amministratore);
@@ -571,7 +605,7 @@ function get_access_credential($param_username, $param_password, $dbConn) {
         $username = $rows_amministratore['am_username'];
         $password = $rows_amministratore['am_password'];
 
-        $credenziali = "administrator|".$username ."|".$password;
+        $credenziali = "administrator|" . $username . "|" . $password;
 
     };
 
@@ -579,9 +613,12 @@ function get_access_credential($param_username, $param_password, $dbConn) {
 
     $checkCredential = $credenziali;
     return $checkCredential;
-};
+}
 
-function get_access_credential_op($param_username, $param_password, $dbConn) {
+;
+
+function get_access_credential_op($param_username, $param_password, $dbConn)
+{
 
     $querySql = "SELECT * FROM op_operatori WHERE op_codice = '$param_username' AND op_password = '$param_password'";
     $result = $dbConn->query($querySql);
@@ -592,7 +629,7 @@ function get_access_credential_op($param_username, $param_password, $dbConn) {
         $username = $rows['op_codice'];
         $password = $rows['op_password'];
 
-        $credenziali = "operatore|".$username ."|".$password;
+        $credenziali = "operatore|" . $username . "|" . $password;
 
     };
 
@@ -603,18 +640,19 @@ function get_access_credential_op($param_username, $param_password, $dbConn) {
 
 }
 
-function get_access_credential_cl($param_username, $param_password, $dbConn) {
+function get_access_credential_cl($param_username, $param_password, $dbConn)
+{
 
-    $querySql = "SELECT * FROM cl_clienti WHERE cl_email = '$param_username' AND cl_password = '$param_password'";
+    $querySql = "SELECT * FROM ut_utenti WHERE ut_email = '$param_username' AND ut_password = '$param_password'";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
     while (($rows = $result->fetch_assoc()) !== NULL) {
 
-        $username = $rows['cl_email'];
-        $password = $rows['cl_password'];
+        $username = $rows['ut_email'];
+        $password = $rows['ut_password'];
 
-        $credenziali = "cliente|".$username ."|".$password;
+        $credenziali = "cliente|" . $username . "|" . $password;
 
     };
 
@@ -626,7 +664,8 @@ function get_access_credential_cl($param_username, $param_password, $dbConn) {
 }
 
 //Funzione popolamento select regioni
-function getNazioniSelect($id_nazione_param,$dbConn) {
+function getNazioniSelect($id_nazione_param, $dbConn)
+{
 
     $querySql = "SELECT * FROM si_stati ORDER BY si_nazione";
     $result = $dbConn->query($querySql);
@@ -640,15 +679,18 @@ function getNazioniSelect($id_nazione_param,$dbConn) {
 
         $status = ($id_nazione_param == $si_duelettere) ? "selected" : "";
 
-        echo $select_nazione = "<option value='$si_duelettere' ".$status.">$si_nazione - $si_inglese ($si_duelettere)</option>";
+        echo $select_nazione = "<option value='$si_duelettere' " . $status . ">$si_nazione - $si_inglese ($si_duelettere)</option>";
     };
 
-};
+}
 
-function selectProvince($cm_province_param, $cm_regioni_param, $dbConn) {
+;
+
+function selectProvince($cm_province_param, $cm_regioni_param, $dbConn)
+{
 
     $querySql = "SELECT DISTINCT(cm_provincia) FROM cm_comuni WHERE cm_id > 0 ";
-    if(strlen($cm_regioni_param) > 0) $querySql .= " AND cm_regione = '$cm_regioni_param' ";
+    if (strlen($cm_regioni_param) > 0) $querySql .= " AND cm_regione = '$cm_regioni_param' ";
     $querySql .= " ORDER BY cm_provincia ";
     $result = $dbConn->query($querySql);
 
@@ -662,10 +704,11 @@ function selectProvince($cm_province_param, $cm_regioni_param, $dbConn) {
 
 }
 
-function selectComuni($cm_comune_param, $cm_provincia_param, $dbConn) {
+function selectComuni($cm_comune_param, $cm_provincia_param, $dbConn)
+{
 
     $querySql = "SELECT DISTINCT(cm_comune) FROM cm_comuni WHERE cm_id > 0 ";
-    if(strlen($cm_provincia_param) > 0) $querySql .= " AND cm_provincia = '$cm_provincia_param' ";
+    if (strlen($cm_provincia_param) > 0) $querySql .= " AND cm_provincia = '$cm_provincia_param' ";
     $querySql .= " ORDER BY cm_comune ";
     $result = $dbConn->query($querySql);
 
@@ -673,13 +716,14 @@ function selectComuni($cm_comune_param, $cm_provincia_param, $dbConn) {
 
         $cm_comune = $rows['cm_comune'];
         $status = ($cm_comune_param == $cm_comune) ? "selected" : "";
-        echo "<option value='".stripslashes($cm_comune)."' $status>$cm_comune</option>";
+        echo "<option value='" . stripslashes($cm_comune) . "' $status>$cm_comune</option>";
 
     };
 
 }
 
-function countEmailLista($ns_id, $dbConn) {
+function countEmailLista($ns_id, $dbConn)
+{
 
     $querySql = "SELECT COUNT(ne_id) AS count_email FROM ne_newsletter_email WHERE ne_ns_id = '$ns_id' AND ne_id > 0";
     $result = $dbConn->query($querySql);
@@ -687,10 +731,11 @@ function countEmailLista($ns_id, $dbConn) {
     $result->close();
 
     return $row_data['count_email'];
-    
+
 }
 
-function countListe(mysqli $dbConn) {
+function countListe(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(ns_id) AS ns_count FROM ns_newsletter_liste ";
     $result = $dbConn->query($querySql);
@@ -701,7 +746,8 @@ function countListe(mysqli $dbConn) {
 
 }
 
-function countInviiNewsletter(mysqli $dbConn) {
+function countInviiNewsletter(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(no_id) FROM no_newsletter_log GROUP BY no_timestamp ";
     $result = $dbConn->query($querySql);
@@ -712,9 +758,10 @@ function countInviiNewsletter(mysqli $dbConn) {
 
 }
 
-function countTotaleOrdini(mysqli $dbConn) {
+function countTotaleOrdini(mysqli $dbConn)
+{
 
-    $querySql = "SELECT or_id, or_pr_prezzo, or_pr_quantita, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0  ";
+    $querySql = "SELECT or_id, or_pr_prezzo, or_pr_quantita, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0  ";
     $result = $dbConn->query($querySql);
     while (($row_data = $result->fetch_assoc()) !== NULL) {
 
@@ -740,9 +787,10 @@ function countTotaleOrdini(mysqli $dbConn) {
 
 }
 
-function countTotaleOrdiniPagati(mysqli $dbConn) {
+function countTotaleOrdiniPagati(mysqli $dbConn)
+{
 
-    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita), or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 1 ";
+    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita), or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 1 ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -761,9 +809,10 @@ function countTotaleOrdiniPagati(mysqli $dbConn) {
     return $totale;
 }
 
-function countTotaleOrdiniSospesi(mysqli $dbConn) {
+function countTotaleOrdiniSospesi(mysqli $dbConn)
+{
 
-    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita), or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 0 ";
+    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita), or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 0 ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -782,9 +831,10 @@ function countTotaleOrdiniSospesi(mysqli $dbConn) {
     return $totale;
 }
 
-function countTotaleOrdiniNonSpediti(mysqli $dbConn) {
+function countTotaleOrdiniNonSpediti(mysqli $dbConn)
+{
 
-    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita), or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_spedizione = 0 ";
+    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita), or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_spedizione = 0 ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -803,25 +853,26 @@ function countTotaleOrdiniNonSpediti(mysqli $dbConn) {
     return $totale;
 }
 
-function getTotaleScontoByTipoOrdine($tipo) {
+function getTotaleScontoByTipoOrdine($tipo)
+{
     global $dbConn;
 
     switch ($tipo) {
 
         case "Pagati":
-            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_stato_pagamento = 1 AND or_eliminato = 0 GROUP BY or_codice ";
+            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_stato_pagamento = 1 AND or_eliminato = 0 GROUP BY or_codice ";
             break;
 
         case "Sospesi":
-            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_stato_pagamento = 0 AND or_eliminato = 0 GROUP BY or_codice ";
+            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_stato_pagamento = 0 AND or_eliminato = 0 GROUP BY or_codice ";
             break;
 
         case "NonSpediti":
-            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_stato_spedizione = 0 AND or_eliminato = 0 GROUP BY or_codice ";
+            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_stato_spedizione = 0 AND or_eliminato = 0 GROUP BY or_codice ";
             break;
 
         default:
-            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 GROUP BY or_codice ";
+            $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 GROUP BY or_codice ";
             break;
     }
 
@@ -833,7 +884,7 @@ function getTotaleScontoByTipoOrdine($tipo) {
         $or_coupon_valore = $row_data['or_coupon_valore'];
         $or_coupon = $row_data['or_coupon'];
 
-        if(strlen($or_coupon)>0) {
+        if (strlen($or_coupon) > 0) {
             $sconto += $or_coupon_tipo == "importo" ? (float)$or_coupon_valore : ($totale / 100) * $or_coupon_valore;
         } else {
             $sconto += 0;
@@ -845,12 +896,13 @@ function getTotaleScontoByTipoOrdine($tipo) {
     return $sconto;
 }
 
-function getScontoByData($or_timestamp_da, $or_timestamp_a) {
+function getScontoByData($or_timestamp_da, $or_timestamp_a)
+{
     global $dbConn;
 
-    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 ";
-    if(strlen($or_timestamp_da) > 0) $querySql .= " AND or_timestamp >= '$or_timestamp_da' ";
-    if(strlen($or_timestamp_a) > 0) $querySql .= " AND or_timestamp <= '$or_timestamp_a' ";
+    $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) as totale, or_coupon_tipo, or_coupon_valore, or_coupon FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 ";
+    if (strlen($or_timestamp_da) > 0) $querySql .= " AND or_timestamp >= '$or_timestamp_da' ";
+    if (strlen($or_timestamp_a) > 0) $querySql .= " AND or_timestamp <= '$or_timestamp_a' ";
     $querySql .= " GROUP BY or_codice ";
 
     $result = $dbConn->query($querySql);
@@ -861,7 +913,7 @@ function getScontoByData($or_timestamp_da, $or_timestamp_a) {
         $or_coupon_valore = $row_data['or_coupon_valore'];
         $or_coupon = $row_data['or_coupon'];
 
-        if(strlen($or_coupon)>0) {
+        if (strlen($or_coupon) > 0) {
             $sconto += $or_coupon_tipo == "importo" ? (float)$or_coupon_valore : ($totale / 100) * $or_coupon_valore;
         } else {
             $sconto += 0;
@@ -874,15 +926,16 @@ function getScontoByData($or_timestamp_da, $or_timestamp_a) {
 
 }
 
-function getTotAcquistiByData($or_timestamp_da, $or_timestamp_a) {
+function getTotAcquistiByData($or_timestamp_da, $or_timestamp_a)
+{
     global $dbConn;
 
-    $querySql = "SELECT pr_prezzo_acquisto FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice INNER JOIN pr_prodotti ON or_pr_codice = pr_codice WHERE or_id > 0 AND or_eliminato = 0 ";
-    if(strlen($or_timestamp_da) > 0) $querySql .= " AND or_timestamp >= '$or_timestamp_da' ";
-    if(strlen($or_timestamp_a) > 0) $querySql .= " AND or_timestamp <= '$or_timestamp_a' ";
+    $querySql = "SELECT pr_prezzo_acquisto FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice INNER JOIN pr_prodotti ON or_pr_codice = pr_codice WHERE or_id > 0 AND or_eliminato = 0 ";
+    if (strlen($or_timestamp_da) > 0) $querySql .= " AND or_timestamp >= '$or_timestamp_da' ";
+    if (strlen($or_timestamp_a) > 0) $querySql .= " AND or_timestamp <= '$or_timestamp_a' ";
     $querySql .= " GROUP BY or_codice ";
 
-    $totale=0;
+    $totale = 0;
     $result = $dbConn->query($querySql);
     while (($row_data = $result->fetch_assoc()) !== NULL) {
 
@@ -896,15 +949,16 @@ function getTotAcquistiByData($or_timestamp_da, $or_timestamp_a) {
 
 }
 
-function getTotAcquisti($or_codice) {
+function getTotAcquisti($or_codice)
+{
     global $dbConn;
 
     $querySql =
-        "SELECT SUM(pr_prezzo_acquisto * or_pr_quantita) AS or_totale_importo_acquisto FROM pr_prodotti ".
+        "SELECT SUM(pr_prezzo_acquisto * or_pr_quantita) AS or_totale_importo_acquisto FROM pr_prodotti " .
         "INNER JOIN or_ordini ON or_pr_codice = pr_codice WHERE or_eliminato = 0 AND or_codice = '$or_codice' ";
     $querySql .= " GROUP BY or_codice ";
 
-    $totale=0;
+    $totale = 0;
     $result = $dbConn->query($querySql);
     while (($row_data = $result->fetch_assoc()) !== NULL) {
 
@@ -918,7 +972,8 @@ function getTotAcquisti($or_codice) {
 
 }
 
-function countArtNoImporto($or_codice) {
+function countArtNoImporto($or_codice)
+{
     global $dbConn;
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti INNER JOIN or_ordini ON or_pr_codice = pr_codice
@@ -931,7 +986,8 @@ function countArtNoImporto($or_codice) {
 
 }
 
-function countProdottiSenzaPrezzoAcquisto(mysqli $dbConn) {
+function countProdottiSenzaPrezzoAcquisto(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_prezzo_acquisto = '' OR pr_prezzo_acquisto = 0 ";
     $result = $dbConn->query($querySql);
@@ -942,7 +998,8 @@ function countProdottiSenzaPrezzoAcquisto(mysqli $dbConn) {
 
 }
 
-function countPostBlog(mysqli $dbConn) {
+function countPostBlog(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(bl_id) FROM bl_blog ";
     $result = $dbConn->query($querySql);
@@ -953,9 +1010,10 @@ function countPostBlog(mysqli $dbConn) {
 
 }
 
-function countClienti(mysqli $dbConn) {
+function countClienti(mysqli $dbConn)
+{
 
-    $querySql = "SELECT COUNT(cl_id) FROM cl_clienti ";
+    $querySql = "SELECT COUNT(ut_id) FROM ut_utenti ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -964,7 +1022,8 @@ function countClienti(mysqli $dbConn) {
 
 }
 
-function countAttivita() {
+function countAttivita()
+{
 
     global $dbConn;
 
@@ -977,11 +1036,12 @@ function countAttivita() {
 
 }
 
-function countOrdini() {
+function countOrdini()
+{
 
     global $dbConn;
 
-    $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 ";
+    $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 ";
     $result = $dbConn->query($querySql);
     $row = $result->fetch_row();
     $result->close();
@@ -990,11 +1050,12 @@ function countOrdini() {
 
 }
 
-function countOrdiniEvasi() {
+function countOrdiniEvasi()
+{
 
     global $dbConn;
 
-    $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_stato = 1 AND or_eliminato = 0";
+    $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_stato = 1 AND or_eliminato = 0";
     $result = $dbConn->query($querySql);
     $row = $result->fetch_row();
     $result->close();
@@ -1003,11 +1064,12 @@ function countOrdiniEvasi() {
 
 }
 
-function countOrdiniSospesi() {
+function countOrdiniSospesi()
+{
 
     global $dbConn;
 
-    $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_stato_pagamento = 0 AND or_eliminato = 0";
+    $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_stato_pagamento = 0 AND or_eliminato = 0";
     $result = $dbConn->query($querySql);
     $row = $result->fetch_row();
     $result->close();
@@ -1016,7 +1078,8 @@ function countOrdiniSospesi() {
 
 }
 
-function countOrdiniEvasiOggi($op_id) {
+function countOrdiniEvasiOggi($op_id)
+{
 
     global $dbConn;
 
@@ -1032,7 +1095,8 @@ function countOrdiniEvasiOggi($op_id) {
 
 }
 
-function countProdotti(mysqli $dbConn) {
+function countProdotti(mysqli $dbConn)
+{
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
@@ -1041,7 +1105,8 @@ function countProdotti(mysqli $dbConn) {
     return $row_data[0];
 }
 
-function countProdottiMerceologia($pr_codice_merceologia, mysqli $dbConn) {
+function countProdottiMerceologia($pr_codice_merceologia, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_codice_merceologia = '$pr_codice_merceologia' ";
     $result = $dbConn->query($querySql);
@@ -1052,7 +1117,8 @@ function countProdottiMerceologia($pr_codice_merceologia, mysqli $dbConn) {
 
 }
 
-function countProdottiFamiglia($pr_fm_codice, mysqli $dbConn) {
+function countProdottiFamiglia($pr_fm_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_fm_codice = '$pr_fm_codice' ";
     $result = $dbConn->query($querySql);
@@ -1063,7 +1129,8 @@ function countProdottiFamiglia($pr_fm_codice, mysqli $dbConn) {
 
 }
 
-function countProdottiMarchio($pr_mr_id, mysqli $dbConn) {
+function countProdottiMarchio($pr_mr_id, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_mr_id = '$pr_mr_id' ";
     $result = $dbConn->query($querySql);
@@ -1074,7 +1141,8 @@ function countProdottiMarchio($pr_mr_id, mysqli $dbConn) {
 
 }
 
-function countProdottiSistema($pr_si_id) {
+function countProdottiSistema($pr_si_id)
+{
 
     global $dbConn;
 
@@ -1087,7 +1155,8 @@ function countProdottiSistema($pr_si_id) {
 
 }
 
-function countProdottiLinea($pr_codice_linea, mysqli $dbConn) {
+function countProdottiLinea($pr_codice_linea, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_codice_linea = '$pr_codice_linea' ";
     $result = $dbConn->query($querySql);
@@ -1098,7 +1167,8 @@ function countProdottiLinea($pr_codice_linea, mysqli $dbConn) {
 
 }
 
-function countLineeMarchio($pr_codice_marchio, mysqli $dbConn) {
+function countLineeMarchio($pr_codice_marchio, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(DISTINCT pr_codice_linea) FROM pr_prodotti WHERE pr_codice_marchio = '$pr_codice_marchio' ";
     $result = $dbConn->query($querySql);
@@ -1109,9 +1179,10 @@ function countLineeMarchio($pr_codice_marchio, mysqli $dbConn) {
 
 }
 
-function selectListeEmail($ns_id_param, $dbConn, $check = 0) {
+function selectListeEmail($ns_id_param, $dbConn, $check = 0)
+{
 
-    if($check == 1) {
+    if ($check == 1) {
 
         include_once "../class/class.controllo-mail.php";
         $checkmail = new ControlloMail($dbConn);
@@ -1129,15 +1200,15 @@ function selectListeEmail($ns_id_param, $dbConn, $check = 0) {
         $stato = $ns_id_param == $ns_id ? "selected" : "";
 
 
-        if($check == 1) {
+        if ($check == 1) {
 
             $count = countEmailLista($ns_id, $dbConn);
 
-            if(!$checkmail->CheckMailEx($count)) $stato = "disabled";
+            if (!$checkmail->CheckMailEx($count)) $stato = "disabled";
 
         }
 
-        if($stato == 'disabled') echo "<option style='background-color: lightgrey;' value='$ns_id' $stato>$ns_lista (supera il limite)</option>";
+        if ($stato == 'disabled') echo "<option style='background-color: lightgrey;' value='$ns_id' $stato>$ns_lista (supera il limite)</option>";
         else echo "<option value='$ns_id' $stato>$ns_lista</option>";
 
     }
@@ -1145,7 +1216,8 @@ function selectListeEmail($ns_id_param, $dbConn, $check = 0) {
     $result->close();
 }
 
-function getProdottoById($pr_id, mysqli $dbConn) {
+function getProdottoById($pr_id, mysqli $dbConn)
+{
 
     $querySql = "SELECT * FROM pr_prodotti WHERE pr_id = '$pr_id' ";
     $result = $dbConn->query($querySql);
@@ -1153,12 +1225,13 @@ function getProdottoById($pr_id, mysqli $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['pr_descrizione'];
 
 }
 
-function getTitoloBlog($bl_id, $dbConn) {
+function getTitoloBlog($bl_id, $dbConn)
+{
 
     $querySql = "SELECT bl_titolo FROM bl_blog WHERE bl_id IN ('$bl_id') ";
     $result = $dbConn->query($querySql);
@@ -1166,16 +1239,17 @@ function getTitoloBlog($bl_id, $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['bl_titolo'];
 
 }
 
 // === FUNZIONI VARIE FRANCESCO ===
 
-function purifyString($string) {
+function purifyString($string)
+{
 
-    if(strlen($string) == 0) return "";
+    if (strlen($string) == 0) return "";
 
     $string = str_replace("' ", "'", $string);
     $string = preg_replace('#\ \ +#', ' ', $string);
@@ -1184,7 +1258,8 @@ function purifyString($string) {
     return $string;
 }
 
-function download_remote_file($file_url, $save_to) {
+function download_remote_file($file_url, $save_to)
+{
 
     $content = file_get_contents($file_url);
     file_put_contents($save_to, $content);
@@ -1194,7 +1269,8 @@ function download_remote_file($file_url, $save_to) {
 
 }
 
-function truncate($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true) {
+function truncate($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true)
+{
 
     if ($considerHtml) {
 
@@ -1262,7 +1338,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
             $content_length = strlen(preg_replace('/&[0-9a-z]{2,8};|&#[0-9]{1,7};|&#x[0-9a-f]{1,6};/i', ' ', $line_matchings[2]));
 
-            if ($total_length+$content_length > $length) {
+            if ($total_length + $content_length > $length) {
 
                 // the number of characters which are left
 
@@ -1278,7 +1354,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
                     foreach ($entities[0] as $entity) {
 
-                        if ($entity[1]+1-$entities_length <= $left) {
+                        if ($entity[1] + 1 - $entities_length <= $left) {
 
                             $left--;
 
@@ -1296,7 +1372,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
                 }
 
-                $truncate .= substr($line_matchings[2], 0, $left+$entities_length);
+                $truncate .= substr($line_matchings[2], 0, $left + $entities_length);
 
                 // maximum lenght is reached, so get off the loop
 
@@ -1312,7 +1388,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
             // if the maximum length is reached, get off the loop
 
-            if($total_length >= $length) {
+            if ($total_length >= $length) {
 
                 break;
 
@@ -1356,7 +1432,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
     $truncate .= $ending;
 
-    if($considerHtml) {
+    if ($considerHtml) {
 
         // close all unclosed html-tags
 
@@ -1379,23 +1455,28 @@ function is_base64_encoded($data)
     } else {
         return 0;
     }
-};
+}
 
-function isValidUrl($url){
+;
 
-    if(!$url || !is_string($url)) return false;
+function isValidUrl($url)
+{
 
-    if(!preg_match('/^http(s)?:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $url)) return false;
+    if (!$url || !is_string($url)) return false;
+
+    if (!preg_match('/^http(s)?:\/\/[a-z0-9-]+(\.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$/i', $url)) return false;
     else return true;
 }
 
-function formatPrice($number) {
+function formatPrice($number)
+{
 
     return number_format($number, 2, ",", ".");
 
 }
 
-function formatPriceForDB($number) {
+function formatPriceForDB($number)
+{
 
     $number = str_replace(".", "", $number);
     $number = str_replace(",", ".", $number);
@@ -1404,7 +1485,8 @@ function formatPriceForDB($number) {
 
 }
 
-function dateToTimestamp($date) {
+function dateToTimestamp($date)
+{
 
     list($day, $month, $year) = explode("/", $date);
     return mktime(0, 0, 0, $month, $day, $year);
@@ -1414,7 +1496,8 @@ function dateToTimestamp($date) {
 
 // ==== EMAIL ====
 
-function convertLink($string, $root_base_path, $codice_log, $ne_email) {
+function convertLink($string, $root_base_path, $codice_log, $ne_email)
+{
 
     $url = "$root_base_path/crm/clicker.php?cod=$codice_log&email=$ne_email&url=";
 
@@ -1424,10 +1507,10 @@ function convertLink($string, $root_base_path, $codice_log, $ne_email) {
 
     $links = $dom->getElementsByTagName('a');
 
-    foreach ($links as $link){
+    foreach ($links as $link) {
 
-        $string = str_replace(array('href="'.$link->getAttribute('href').'"', "href='".$link->getAttribute('href')."'"),
-            'href="'.$url.$link->getAttribute('href').'"', $string);
+        $string = str_replace(array('href="' . $link->getAttribute('href') . '"', "href='" . $link->getAttribute('href') . "'"),
+            'href="' . $url . $link->getAttribute('href') . '"', $string);
 
     }
 
@@ -1435,9 +1518,10 @@ function convertLink($string, $root_base_path, $codice_log, $ne_email) {
 
 }
 
-function generateURLRewrite($string) {
+function generateURLRewrite($string)
+{
 
-    if(strlen($string) == 0) return "-";
+    if (strlen($string) == 0) return "-";
     $string = iconv('ISO-8859-1', 'US-ASCII//TRANSLIT', $string);
     $string = str_replace("A(C)", "e", $string);
     $string = str_replace("'", "", $string);
@@ -1452,9 +1536,10 @@ function generateURLRewrite($string) {
     return $string;
 }
 
-function convertURLRewrite($string) {
+function convertURLRewrite($string)
+{
 
-    if(strlen($string) == 0) return 0;
+    if (strlen($string) == 0) return 0;
     $string = iconv('US-ASCII//TRANSLIT', 'ISO-8859-1', $string);
     $string = str_replace("-", " ", $string);
     $string = trim($string, ' ');
@@ -1464,11 +1549,12 @@ function convertURLRewrite($string) {
 
 
 //========= IMAGE ==============
-function checkImage($immagine, $upload_path, $array_size) {
+function checkImage($immagine, $upload_path, $array_size)
+{
 
     //$array_size = array("409x309", "848x641", "60x60", "105x79", "453x343");
 
-    foreach ($array_size AS &$size) {
+    foreach ($array_size as &$size) {
 
         list($width, $height) = explode("x", $size);
         resizeImage($immagine, $upload_path, $width, $height);
@@ -1480,7 +1566,8 @@ function checkImage($immagine, $upload_path, $array_size) {
 }
 
 
-function checkImageName($immagine, $upload_path, $array_size, $image_name) {
+function checkImageName($immagine, $upload_path, $array_size, $image_name)
+{
 
     list($width, $height) = explode("x", $array_size);
     return resizeImage($immagine, $upload_path, $width, $height, 33, false, 0, $image_name);
@@ -1489,7 +1576,7 @@ function checkImageName($immagine, $upload_path, $array_size, $image_name) {
 
 function resizeImage($immagine, $upload_path, $width, $height, $qualita = 100, $responsive = false, $ritaglia = 0, $image_name_new = "")
 {
-    if(!file_exists($immagine)) return 0;
+    if (!file_exists($immagine)) return 0;
 
     $imagick = new Imagick(realpath($immagine));
     $imagick->setImageCompressionQuality($qualita);
@@ -1527,16 +1614,17 @@ function resizeImage($immagine, $upload_path, $width, $height, $qualita = 100, $
 
     /*$img_path = explode("/", $immagine);
     $img_path = $img_path[count($img_path) - 2];*/
-    if(strlen($image_name_new) == 0) $image_name_new = $width."x".$height;
+    if (strlen($image_name_new) == 0) $image_name_new = $width . "x" . $height;
 
     return $imagick->writeImage("$upload_path/$image_name_new");
 }
 
-function optimizeImageProdotto($immagine, $upload_path, $immagine_name, $dimensione) {
+function optimizeImageProdotto($immagine, $upload_path, $immagine_name, $dimensione)
+{
 
-    if(file_exists("$upload_path/$immagine_name")) return "$upload_path/$immagine_name";
+    if (file_exists("$upload_path/$immagine_name")) return "$upload_path/$immagine_name";
 
-    if(!file_exists($upload_path)) {
+    if (!file_exists($upload_path)) {
 
         mkdir($upload_path, 0777);
         chmod($upload_path, 0777);
@@ -1547,13 +1635,14 @@ function optimizeImageProdotto($immagine, $upload_path, $immagine_name, $dimensi
     /*if(!file_exists("../../upload/bak/$remote_img"))*/
     $download = download_remote_file($immagine, "../../upload/bak/$remote_img");
 
-    if($download > 0) checkImageName("../../upload/bak/$remote_img", $upload_path, $dimensione, $immagine_name);
+    if ($download > 0) checkImageName("../../upload/bak/$remote_img", $upload_path, $dimensione, $immagine_name);
 
     return $download;
 
 }
 
-function checkTagArticolo($tg_id, $bl_id) {
+function checkTagArticolo($tg_id, $bl_id)
+{
 
     global $dbConn;
     $querySql = "SELECT COUNT(tb_id) FROM tb_tag_blog WHERE tb_tg_id = '$tg_id' AND tb_bl_id = '$bl_id' ";
@@ -1565,7 +1654,8 @@ function checkTagArticolo($tg_id, $bl_id) {
 
 }
 
-function selectTag($par1 ){
+function selectTag($par1)
+{
 
     global $dbConn;
 
@@ -1587,13 +1677,14 @@ function selectTag($par1 ){
 }
 
 // LUIGI
-function selectBlogCategorie($bc_param = '', $dbConn) {
+function selectBlogCategorie($bc_param = '', $dbConn)
+{
 
     $querySql = "SELECT * FROM bc_blog_categorie";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
-    if($rows > 0) {
+    if ($rows > 0) {
         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
             $bc_id = $row_data['bc_id'];
@@ -1606,25 +1697,26 @@ function selectBlogCategorie($bc_param = '', $dbConn) {
     }
 }
 
-function getTotaleSpedizioneByTipoOrdine($tipo) {
+function getTotaleSpedizioneByTipoOrdine($tipo)
+{
     global $dbConn;
 
     switch ($tipo) {
 
         case "Pagati":
-            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 1 GROUP BY or_codice ";
+            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 1 GROUP BY or_codice ";
             break;
 
         case "Sospesi":
-            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 0 GROUP BY or_codice ";
+            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 0 GROUP BY or_codice ";
             break;
 
         case "NonSpediti":
-            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_spedizione = 0 GROUP BY or_codice ";
+            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_spedizione = 0 GROUP BY or_codice ";
             break;
 
         default:
-            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 GROUP BY or_codice ";
+            $querySql = "SELECT or_spedizione FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 GROUP BY or_codice ";
             break;
     }
 
@@ -1639,25 +1731,26 @@ function getTotaleSpedizioneByTipoOrdine($tipo) {
     return $spedizione;
 }
 
-function getTotalePagamentoByTipoOrdine($ordine) {
+function getTotalePagamentoByTipoOrdine($ordine)
+{
     global $dbConn;
 
     switch ($ordine) {
 
         case "Pagati":
-            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 1  ";
+            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 1  ";
             break;
 
         case "Sospesi":
-            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 0  ";
+            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_pagamento = 0  ";
             break;
 
         case "NonSpediti":
-            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_spedizione = 0  ";
+            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 AND or_stato_spedizione = 0  ";
             break;
 
         default:
-            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0  ";
+            $querySql = "SELECT or_pagamento, or_pr_prezzo, or_pr_quantita FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0  ";
             break;
     }
 
@@ -1677,8 +1770,8 @@ function getTotalePagamentoByTipoOrdine($ordine) {
 }
 
 
-
-function getPrezzoPagamento($cr_pagamento, $cr_totale) {
+function getPrezzoPagamento($cr_pagamento, $cr_totale)
+{
     global $dbConn;
 
     $cr_pagamento_prezzo = 0;
@@ -1690,7 +1783,7 @@ function getPrezzoPagamento($cr_pagamento, $cr_totale) {
             $dp_valore = $result->fetch_array()[0];
             $result->close();
 
-            $cr_pagamento_prezzo = $dp_valore > 0 ?  $cr_totale * ($dp_valore / 100) : 0;
+            $cr_pagamento_prezzo = $dp_valore > 0 ? $cr_totale * ($dp_valore / 100) : 0;
             break;
 
         case "Stripe":
@@ -1700,7 +1793,7 @@ function getPrezzoPagamento($cr_pagamento, $cr_totale) {
             $dp_valore = $result->fetch_array()[0];
             $result->close();
 
-            $cr_pagamento_prezzo = strlen($dp_valore) > 0 ?  $cr_totale * ($dp_valore / 100) : 0;
+            $cr_pagamento_prezzo = strlen($dp_valore) > 0 ? $cr_totale * ($dp_valore / 100) : 0;
             break;
 
         case "Contrassegno":
@@ -1718,7 +1811,8 @@ function getPrezzoPagamento($cr_pagamento, $cr_totale) {
 
 }
 
-function getPrezzoSpedizione($spedizione, $totale) {
+function getPrezzoSpedizione($spedizione, $totale)
+{
 
     global $dbConn;
 
@@ -1729,7 +1823,7 @@ function getPrezzoSpedizione($spedizione, $totale) {
     else $prezzo = 0;*/
 
     $querySql =
-        "SELECT * FROM ci_corrieri ".
+        "SELECT * FROM ci_corrieri " .
         "WHERE ci_titolo = '$spedizione' ";
     $result = $dbConn->query($querySql);
     $rows = $result->num_rows;
@@ -1740,9 +1834,9 @@ function getPrezzoSpedizione($spedizione, $totale) {
         $ci_titolo = $row_data['ci_titolo'];
         $prezzo = 0;
 
-        if($ci_titolo == 'BRT' && $totale > 29.90){
+        if ($ci_titolo == 'BRT' && $totale > 29.90) {
             $prezzo = 0;
-        }else{
+        } else {
             $prezzo = $ci_costo_standard;
         }
 
@@ -1753,9 +1847,10 @@ function getPrezzoSpedizione($spedizione, $totale) {
 }
 
 
-function convertLinkOrdini($string, $root_base_path, $codice_log, $cl_email) {
+function convertLinkOrdini($string, $root_base_path, $codice_log, $ut_email)
+{
 
-    $url = "$root_base_path/crm/clicker-ordini.php?cod=$codice_log&email=$cl_email&url=";
+    $url = "$root_base_path/crm/clicker-ordini.php?cod=$codice_log&email=$ut_email&url=";
 
     $dom = new DOMDocument;
 
@@ -1763,10 +1858,10 @@ function convertLinkOrdini($string, $root_base_path, $codice_log, $cl_email) {
 
     $links = $dom->getElementsByTagName('a');
 
-    foreach ($links as $link){
+    foreach ($links as $link) {
 
-        $string = str_replace(array('href="'.$link->getAttribute('href').'"', "href='".$link->getAttribute('href')."'"),
-            'href="'.$url.$link->getAttribute('href').'"', $string);
+        $string = str_replace(array('href="' . $link->getAttribute('href') . '"', "href='" . $link->getAttribute('href') . "'"),
+            'href="' . $url . $link->getAttribute('href') . '"', $string);
 
     }
 
@@ -1774,7 +1869,8 @@ function convertLinkOrdini($string, $root_base_path, $codice_log, $cl_email) {
 
 }
 
-function getCouponByCodice($get_or_codice, mysqli $dbConn) {
+function getCouponByCodice($get_or_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT uc_coupon FROM uc_utilizzo_coupon WHERE uc_ordine = '$get_or_codice' ";
     $result = $dbConn->query($querySql);
@@ -1785,9 +1881,10 @@ function getCouponByCodice($get_or_codice, mysqli $dbConn) {
 
 }
 
-function getEmailClienteByCodice($cl_codice, mysqli $dbConn) {
+function getEmailClienteByCodice($ut_codice, mysqli $dbConn)
+{
 
-    $querySql = "SELECT cl_email FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_email FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1796,31 +1893,22 @@ function getEmailClienteByCodice($cl_codice, mysqli $dbConn) {
 
 }
 
-function getNominativoClienteByCodice($cl_codice, mysqli $dbConn) {
+function getNominativoClienteByCodice($ut_codice, mysqli $dbConn)
+{
 
-    $querySql = "SELECT cl_nome, cl_cognome FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_nome, ut_cognome FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
 
-    return $row_data[0]." ".$row_data[1];
+    return $row_data[0] . " " . $row_data[1];
 
 }
 
-function getNomeClienteByCodice($cl_codice, mysqli $dbConn) {
+function getNomeClienteByCodice($ut_codice, mysqli $dbConn)
+{
 
-    $querySql = "SELECT cl_nome FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
-    $result = $dbConn->query($querySql);
-    $row_data = $result->fetch_array();
-    $result->close();
-
-    return $row_data[0];
-
-}
-
-function getTimestampClienteByCodice($cl_codice, mysqli $dbConn) {
-
-    $querySql = "SELECT cl_data FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_nome FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1829,9 +1917,10 @@ function getTimestampClienteByCodice($cl_codice, mysqli $dbConn) {
 
 }
 
-function getIDClienteByCodice($cl_codice, mysqli $dbConn) {
+function getTimestampClienteByCodice($ut_codice, mysqli $dbConn)
+{
 
-    $querySql = "SELECT cl_id FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_data FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1840,28 +1929,42 @@ function getIDClienteByCodice($cl_codice, mysqli $dbConn) {
 
 }
 
-function getIndirizzoClienteByCodice($cl_codice, mysqli $dbConn) {
+function getIDClienteByCodice($ut_codice, mysqli $dbConn)
+{
 
-    $querySql = "SELECT cl_indirizzo, cl_comune, cl_provincia, cl_cap FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_id FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
 
-    return $row_data[0]." ".$row_data[1]." (".$row_data[2].") CAP:".$row_data[3];
+    return $row_data[0];
 
 }
 
-function getTotaleOrdine($cl_codice) {
+function getIndirizzoClienteByCodice($ut_codice, mysqli $dbConn)
+{
+
+    $querySql = "SELECT ut_indirizzo, ut_citta, ut_provincia, ut_cap FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
+    $result = $dbConn->query($querySql);
+    $row_data = $result->fetch_array();
+    $result->close();
+
+    return $row_data[0] . " " . $row_data[1] . " (" . $row_data[2] . ") CAP:" . $row_data[3];
+
+}
+
+function getTotaleOrdine($ut_codice)
+{
 
     global $dbConn;
 
     $querySql =
-        "SELECT pr_prezzo, pr_prezzo_scontato FROM pr_prodotti ".
-        "INNER JOIN or_ordini ON or_pr_codice = pr_codice ".
-        "WHERE or_cl_codice = '$cl_codice' ";
+        "SELECT pr_prezzo, pr_prezzo_scontato FROM pr_prodotti " .
+        "INNER JOIN or_ordini ON or_pr_codice = pr_codice " .
+        "WHERE or_ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
 
-    $or_totale=0;
+    $or_totale = 0;
     while ($row_data = $result->fetch_assoc()) {
 
         $or_pr_quantita = $row_data['or_pr_quantita'];
@@ -1873,7 +1976,8 @@ function getTotaleOrdine($cl_codice) {
     return $or_totale;
 }
 
-function getMarchio($mr_id) {
+function getMarchio($mr_id)
+{
 
     global $dbConn;
 
@@ -1886,7 +1990,8 @@ function getMarchio($mr_id) {
 
 }
 
-function getSistema($si_id) {
+function getSistema($si_id)
+{
 
     global $dbConn;
 
@@ -1902,7 +2007,8 @@ function getSistema($si_id) {
 
 /////////////////////////////////////
 //INIZIO DATI PAGAMENTO
-function configGetDato($dp_nome) {
+function configGetDato($dp_nome)
+{
 
     global $dbConn;
 
@@ -1911,7 +2017,7 @@ function configGetDato($dp_nome) {
     $dp_valore = $result->fetch_array()[0];
     $result->close();
 
-    return $dp_valore;
+    return "s";
 
 }
 

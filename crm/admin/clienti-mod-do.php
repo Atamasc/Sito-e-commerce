@@ -1,43 +1,43 @@
 <?php include "inc/autoloader.php"; ?>
 <?php
-$cl_id = (int)$_POST['cl_id'];
+$ut_id = (int)$_POST['ut_id'];
 
-$cl_codice = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_codice'])));
-$cl_nome = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_nome'])));
-$cl_cognome = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_cognome'])));
-$cl_indirizzo = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_indirizzo'])));
-$cl_cap = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_cap'])));
-$cl_comune = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_comune'])));
-$cl_provincia = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_provincia'])));
-$cl_indirizzo_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_indirizzo_fatturazione'])));
-$cl_cap_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_cap_fatturazione'])));
-$cl_comune_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_comune_fatturazione'])));
-$cl_provincia_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_provincia_fatturazione'])));
-$cl_telefono = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_telefono'])));
-$cl_fax = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_fax'])));
-$cl_email = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_email'])));
-$cl_codice_fiscale = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_codice_fiscale'])));
-$cl_ragione_sociale = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_ragione_sociale'])));
-$cl_partita_iva = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_partita_iva'])));
-$cl_sdi = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_sdi'])));
-$cl_pec = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_pec'])));
-$cl_password = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_password'])));
-$cl_note = $dbConn->real_escape_string(stripslashes(trim($_POST['cl_note'])));
-$cl_data = time();
+$ut_codice = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_codice'])));
+$ut_nome = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_nome'])));
+$ut_cognome = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_cognome'])));
+$ut_indirizzo = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_indirizzo'])));
+$ut_cap = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_cap'])));
+$ut_citta = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_citta'])));
+$ut_provincia = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_provincia'])));
+$ut_indirizzo_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_indirizzo_fatturazione'])));
+$ut_cap_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_cap_fatturazione'])));
+$ut_citta_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_citta_fatturazione'])));
+$ut_provincia_fatturazione = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_provincia_fatturazione'])));
+$ut_telefono = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_telefono'])));
+$ut_fax = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_fax'])));
+$ut_email = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_email'])));
+$ut_codice_fiscale = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_codice_fiscale'])));
+$ut_ragione_sociale = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_ragione_sociale'])));
+$ut_partita_iva = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_partita_iva'])));
+$ut_sdi = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_sdi'])));
+$ut_pec = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_pec'])));
+$ut_password = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_password'])));
+$ut_note = $dbConn->real_escape_string(stripslashes(trim($_POST['ut_note'])));
+$ut_data = time();
 
 $querySql =
-    "UPDATE cl_clienti SET ".
-    "cl_codice = '$cl_codice', cl_nome = '$cl_nome', cl_cognome = '$cl_cognome', cl_indirizzo = '$cl_indirizzo', cl_cap = '$cl_cap', cl_comune = '$cl_comune', ".
-    "cl_indirizzo_fatturazione = '$cl_indirizzo_fatturazione', cl_cap_fatturazione = '$cl_cap_fatturazione', cl_comune_fatturazione = '$cl_comune_fatturazione', ".
-    "cl_provincia_fatturazione = '$cl_provincia_fatturazione', cl_codice_fiscale = '$cl_codice_fiscale', cl_ragione_sociale = '$cl_ragione_sociale', ".
-    "cl_partita_iva = '$cl_partita_iva', cl_sdi = '$cl_sdi', cl_pec = '$cl_pec', ".
-    "cl_provincia = '$cl_provincia', cl_telefono = '$cl_telefono', cl_fax = '$cl_fax', cl_email = '$cl_email', cl_password = '$cl_password', ".
-    "cl_note = '$cl_note' ".
-    "WHERE cl_id = '$cl_id' ";
+    "UPDATE ut_utenti SET " .
+    "ut_codice = '$ut_codice', ut_nome = '$ut_nome', ut_cognome = '$ut_cognome', ut_indirizzo = '$ut_indirizzo', ut_cap = '$ut_cap', ut_citta = '$ut_citta', " .
+    "ut_indirizzo_fatturazione = '$ut_indirizzo_fatturazione', ut_cap_fatturazione = '$ut_cap_fatturazione', ut_citta_fatturazione = '$ut_citta_fatturazione', " .
+    "ut_provincia_fatturazione = '$ut_provincia_fatturazione', ut_codice_fiscale = '$ut_codice_fiscale', ut_ragione_sociale = '$ut_ragione_sociale', " .
+    "ut_partita_iva = '$ut_partita_iva', ut_sdi = '$ut_sdi', ut_pec = '$ut_pec', " .
+    "ut_provincia = '$ut_provincia', ut_telefono = '$ut_telefono', ut_fax = '$ut_fax', ut_email = '$ut_email', ut_password = '$ut_password', " .
+    "ut_note = '$ut_note' " .
+    "WHERE ut_id = '$ut_id' ";
 $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 
-if($rows > 0) header("Location: clienti-mod.php?cl_id=$cl_id&update=true");
-else header("Location: clienti-mod.php?cl_id=$cl_id&update=false");
+if ($rows > 0) header("Location: clienti-mod.php?ut_id=$ut_id&update=true");
+else header("Location: clienti-mod.php?ut_id=$ut_id&update=false");
 
 ?>

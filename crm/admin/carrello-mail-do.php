@@ -1,11 +1,11 @@
 <?php include('inc/autoloader.php'); ?>
 <?php
-    $cl_codice = (int)$_GET["cl_codice"];
+    $ut_codice = (int)$_GET["ut_codice"];
     $cr_id = (int)$_GET["cr_id"];
     
-    $cl_email = getEmailClienteByCodice($cl_codice, $dbConn);
-    $cl_nominativo = getNominativoClienteByCodice($cl_codice, $dbConn);
-    $cl_id = getIDClienteByCodice($cl_codice, $dbConn);
+    $ut_email = getEmailClienteByCodice($ut_codice, $dbConn);
+    $ut_nominativo = getNominativoClienteByCodice($ut_codice, $dbConn);
+    $ut_id = getIDClienteByCodice($ut_codice, $dbConn);
     
     $querySql =
         "SELECT * FROM pr_prodotti ".
@@ -63,8 +63,8 @@
     $email_testo =
         "
                 <p>
-                    Ciao $cl_nominativo.<br>
-                    Hai lasciato dei prodotti in sospeso nel carrello. <a href='$rootBasePath_http/login-do?cl_codice=$cl_codice?cl_id=$cl_id'>Clicca qua</a> per completare il tuo acquisto.
+                    Ciao $ut_nominativo.<br>
+                    Hai lasciato dei prodotti in sospeso nel carrello. <a href='$rootBasePath_http/login-do?ut_codice=$ut_codice?ut_id=$ut_id'>Clicca qua</a> per completare il tuo acquisto.
                     <br><br>
                     Questa e-mail è automatica, pertanto non c'è bisogno di rispondere.
                 </p>
@@ -127,7 +127,7 @@
     include("../class/class.phpmailer.php");
     $mittente = "noreply@moncaffe.it";
     $nomemittente = "MonCaffè";
-    $destinatario = $cl_email;
+    $destinatario = $ut_email;
     $dataFullNow = strftime("%A %d %B %Y", time());
     
     $mail = new PHPMailer;
@@ -147,15 +147,15 @@
     //intestazioni e corpo dell'email
     $mail->From   = $mittente;
     $mail->FromName = $nomemittente;
-    $mail->AddAddress($cl_email);
+    $mail->AddAddress($ut_email);
     $mail->AddBCC($rootBaseEmail);
     $mail->AddBCC("notifica@lucasweb.it");
-    $mail->Subject = "MonCaffè.it - Completa il tuo ordine - ".date("d/m/Y", time());
+    $mail->Subject = "Smartex.it - Completa il tuo ordine - ".date("d/m/Y", time());
     
     $time = time();
-    $tracker = "<img src='$rootBasePath_http/crm/tracker-ordini.php?cod=$time&email=$cl_email' width='1' height='1'>";
+    $tracker = "<img src='$rootBasePath_http/crm/tracker-ordini.php?cod=$time&email=$ut_email' width='1' height='1'>";
     
-    $mail->Body = convertLinkOrdini($messaggio, $rootBasePath_http, $time, $cl_email).$tracker;
+    $mail->Body = convertLinkOrdini($messaggio, $rootBasePath_http, $time, $ut_email).$tracker;
     
     //$mail->Body = $messaggio;
     $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
@@ -174,7 +174,7 @@
     
     $querySql_ol =
         "INSERT INTO ol_ordini_log(ol_cr_id, ol_or_codice, ol_timestamp, ol_stato, ol_email, ol_stato_invio, ol_stato_lettura, ol_click) ".
-        "VALUES ('$cr_id', 0, '$time', 1, '$cl_email', '$ol_stato_invio', 0, 0) ";
+        "VALUES ('$cr_id', 0, '$time', 1, '$ut_email', '$ol_stato_invio', 0, 0) ";
     $result_ol = $dbConn->query($querySql_ol);
     
     //echo "<script>window.location=document.referrer;</script>";

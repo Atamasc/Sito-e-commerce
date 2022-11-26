@@ -172,12 +172,12 @@ if(strlen($get_cr_timestamp_a) > 0) {
                                         <?php
                                             $querySql = "SELECT COUNT(DISTINCT cr_timestamp) FROM cr_carrello ".
                                                         "INNER JOIN pr_prodotti ON pr_codice = cr_pr_codice ".
-                                                        "LEFT JOIN cl_clienti ON cl_codice = cr_cl_codice WHERE cr_id > 0 ";
-                                                        if(strlen($get_cr_codice) > 0) $querySql .= " AND cr_cl_codice LIKE '%$get_cr_codice%' ";
-                                                        if(strlen($get_cr_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cr_email%' ";
+                                                        "LEFT JOIN ut_utenti ON ut_codice = cr_ut_codice WHERE cr_id > 0 ";
+                                                        if(strlen($get_cr_codice) > 0) $querySql .= " AND cr_ut_codice LIKE '%$get_cr_codice%' ";
+                                                        if(strlen($get_cr_email) > 0) $querySql .= " AND ut_email LIKE '%$get_cr_email%' ";
                                                         if(strlen($get_cr_timestamp_da) > 0) $querySql .= " AND cr_timestamp >= '$get_cr_timestamp_da' ";
                                                         if(strlen($get_cr_timestamp_a) > 0) $querySql .= " AND cr_timestamp <= '$get_cr_timestamp_a' ";
-                                                        if($get_cr_ottimizzazione == 'clienti') $querySql .= " AND LENGTH(cl_codice) > 0 ";
+                                                        if($get_cr_ottimizzazione == 'clienti') $querySql .= " AND LENGTH(ut_codice) > 0 ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
     
@@ -195,13 +195,13 @@ if(strlen($get_cr_timestamp_a) > 0) {
                                             $querySql =
                                                 "SELECT * FROM cr_carrello ".
                                                 "INNER JOIN pr_prodotti ON pr_codice = cr_pr_codice ".
-                                                "LEFT JOIN cl_clienti ON cl_codice = cr_cl_codice WHERE cr_id > 0  ";
+                                                "LEFT JOIN ut_utenti ON ut_codice = cr_ut_codice WHERE cr_id > 0  ";
                                             
-                                                if(strlen($get_cr_codice) > 0) $querySql .= " AND cr_cl_codice LIKE '%$get_cr_codice%' ";
-                                                if(strlen($get_cr_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cr_email%' ";
+                                                if(strlen($get_cr_codice) > 0) $querySql .= " AND cr_ut_codice LIKE '%$get_cr_codice%' ";
+                                                if(strlen($get_cr_email) > 0) $querySql .= " AND ut_email LIKE '%$get_cr_email%' ";
                                                 if(strlen($get_cr_timestamp_da) > 0) $querySql .= " AND cr_timestamp >= '$get_cr_timestamp_da' ";
                                                 if(strlen($get_cr_timestamp_a) > 0) $querySql .= " AND cr_timestamp <= '$get_cr_timestamp_a' ";
-                                                if($get_cr_ottimizzazione == 'clienti') $querySql .= " AND LENGTH(cl_codice) > 0 ";
+                                                if($get_cr_ottimizzazione == 'clienti') $querySql .= " AND LENGTH(ut_codice) > 0 ";
                                             $querySql .= " GROUP BY cr_timestamp ORDER BY cr_timestamp DESC LIMIT $primo, $per_page ";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -212,8 +212,8 @@ if(strlen($get_cr_timestamp_a) > 0) {
     
                                                 $cr_id = $row_data['cr_id'];
                                                 $cr_timestamp = $row_data['cr_timestamp'];
-                                                $cl_id = $row_data['cl_id'];
-                                                $cl_codice = $row_data['cl_codice'];
+                                                $ut_id = $row_data['ut_id'];
+                                                $ut_codice = $row_data['ut_codice'];
                                                 $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? $row_data['pr_prezzo_scontato'] : $row_data['pr_prezzo'];
                                                 $cr_pr_quantita = $row_data['cr_pr_quantita'];
     
@@ -225,15 +225,15 @@ if(strlen($get_cr_timestamp_a) > 0) {
                                                 if ($mod_i == 0) $stripe_tr_bg = "#eee";
     
                                                 echo "<tr style='background-color: ".$stripe_tr_bg."'>";
-                                                echo "<td><a style='color: #0881a3; text-decoration: underline;' href='clienti-mod.php?cl_id=$cl_id'>".$row_data['cl_nome']." ".$row_data['cl_cognome']."</a> - ".$row_data['cl_email']." / ".$row_data['cr_cl_codice']."</td>";
+                                                echo "<td><a style='color: #0881a3; text-decoration: underline;' href='clienti-mod.php?ut_id=$ut_id'>".$row_data['ut_nome']." ".$row_data['ut_cognome']."</a> - ".$row_data['ut_email']." / ".$row_data['cr_ut_codice']."</td>";
                                                 echo "<td class='text-right'>&euro; ".formatPrice($cr_totale_importo)."</td>";
                                                 echo "<td class='text-left'>".date('d/m/Y - H:i', $cr_timestamp)."</td>";
     
                                                 //Gestione
                                                 echo "<td align='center'>";
                                                 echo "<button class='btn btn-info btn-sm modale' data-href='carrelli-view.php?cr_id=$cr_id' title='Dettaglio'>dettaglio</button>&nbsp;";
-                                                echo $cl_id > 0
-                                                    ? "<a class='btn btn-orange btn-sm btn-cart-mail' href='javascript:;' data-href='carrello-mail-do.php?cl_codice=$cl_codice&cr_id=$cr_id' title='Mail'>mail <i></i></a>&nbsp;"
+                                                echo $ut_id > 0
+                                                    ? "<a class='btn btn-orange btn-sm btn-cart-mail' href='javascript:;' data-href='carrello-mail-do.php?ut_codice=$ut_codice&cr_id=$cr_id' title='Mail'>mail <i></i></a>&nbsp;"
                                                     : "<a class='btn btn-orange btn-sm disabled' href='javascript:;' title='Mail'>mail</a>&nbsp;";
                                                 echo "<button class='btn btn-purple btn-sm detail-show'>log <i></i></button>&nbsp;";
                                                 echo "<button class='btn btn-danger btn-sm elimina' data-href='carrelli-del-do.php?cr_timestamp=$cr_timestamp' title='Elimina'><i class='fa fa-trash-alt'></i></button>";

@@ -208,7 +208,7 @@ $get_or_codice = isset($_GET['or_codice']) ? $dbConn->real_escape_string(stripsl
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
                                                 $or_id = $row_data['or_id'];
-                                                $cl_codice = $row_data['cl_codice'];
+                                                $ut_codice = $row_data['ut_codice'];
 
                                                 $or_importo_totale = $row_data['or_pr_quantita'] * $row_data['or_pr_prezzo'];
 
@@ -246,7 +246,7 @@ $get_or_codice = isset($_GET['or_codice']) ? $dbConn->real_escape_string(stripsl
 
                                             <td class="text-center">
                                                 <a class='btn btn-primary btn-sm popup-custom' data-pop-width='1200' data-pop-height='800' href='javascript:;'
-                                                   data-href='ordini-prodotti-add.php?cl_codice=<?php echo $cl_codice; ?>&or_timestamp=<?php echo $get_or_codice; ?>&op_id=<?php echo $or_op_id; ?>'>Aggiungi prodotto</a>
+                                                   data-href='ordini-prodotti-add.php?ut_codice=<?php echo $ut_codice; ?>&or_timestamp=<?php echo $get_or_codice; ?>&op_id=<?php echo $or_op_id; ?>'>Aggiungi prodotto</a>
                                             </td>
                                         </tr>
 

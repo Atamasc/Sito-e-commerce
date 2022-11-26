@@ -78,13 +78,13 @@
                                     <div class="form-row">
 
                                         <div class="col-md-3 mb-3">
-                                            <label for="cl_password">Password attuale</label>
+                                            <label for="ut_password">Password attuale</label>
                                             <input type="password" class="form-control" id="password_old" name="password_old"
                                                    required autocomplete="off">
                                         </div>
 
                                         <div class="col-md-3 mb-3">
-                                            <label for="cl_password">Nuova password</label>
+                                            <label for="ut_password">Nuova password</label>
                                             <input type="password" class="form-control" id="am_password" name="am_password"
                                                    required autocomplete="off">
                                         </div>

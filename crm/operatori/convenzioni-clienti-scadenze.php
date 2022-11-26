@@ -1,7 +1,7 @@
 <?php include "inc/autoloader.php"; ?>
 <?php
-$get_cl_ragione_sociale = isset($_GET['cl_ragione_sociale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_ragione_sociale']))) : "";
-$get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_email']))) : "";
+$get_ut_ragione_sociale = isset($_GET['ut_ragione_sociale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_ragione_sociale']))) : "";
+$get_ut_email = isset($_GET['ut_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_email']))) : "";
 $get_cv_titolo = isset($_GET['cv_titolo']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cv_titolo']))) : "";
 ?>
     <!DOCTYPE html>
@@ -104,14 +104,14 @@ $get_cv_titolo = isset($_GET['cv_titolo']) ? $dbConn->real_escape_string(stripsl
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_ragione_sociale">Ragione sociale</label>
-                                                <input type="text" name="cl_ragione_sociale" class="form-control" value="<?php echo $get_cl_ragione_sociale; ?>">
+                                                <label for="ut_ragione_sociale">Ragione sociale</label>
+                                                <input type="text" name="ut_ragione_sociale" class="form-control" value="<?php echo $get_ut_ragione_sociale; ?>">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_email">Email</label>
-                                                <input name="cl_email" id="cl_email" class="form-control" type="text" autocomplete="off"
-                                                       value="<?php echo $get_cl_email; ?>">
+                                                <label for="ut_email">Email</label>
+                                                <input name="ut_email" id="ut_email" class="form-control" type="text" autocomplete="off"
+                                                       value="<?php echo $get_ut_email; ?>">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
@@ -158,9 +158,9 @@ $get_cv_titolo = isset($_GET['cv_titolo']) ? $dbConn->real_escape_string(stripsl
                                             <?php
                                             $querySql =
                                                 "SELECT COUNT(ca_id) FROM ca_convenzioni_clienti INNER JOIN cv_convenzioni ON cv_id = ca_cv_id ".
-                                                "INNER JOIN cl_clienti ON cl_id = ca_cl_id  WHERE ca_cv_id > 0 ";
-                                            if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                            if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
+                                                "INNER JOIN ut_utenti ON ut_id = ca_ut_id  WHERE ca_cv_id > 0 ";
+                                            if(strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                            if(strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                             if(strlen($get_cv_titolo) > 0) $querySql .= " AND cv_titolo LIKE '%$get_cv_titolo%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
@@ -178,10 +178,10 @@ $get_cv_titolo = isset($_GET['cv_titolo']) ? $dbConn->real_escape_string(stripsl
 
                                             $querySql =
                                                 "SELECT * FROM ca_convenzioni_clienti INNER JOIN cv_convenzioni ON cv_id = ca_cv_id ".
-                                                "INNER JOIN cl_clienti ON cl_id = ca_cl_id ".
+                                                "INNER JOIN ut_utenti ON ut_id = ca_ut_id ".
                                                 "WHERE ca_cv_id > 0 ";
-                                            if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                            if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
+                                            if(strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                            if(strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                             if(strlen($get_cv_titolo) > 0) $querySql .= " AND cv_titolo LIKE '%$get_cv_titolo%' ";
                                             $querySql .= "ORDER BY ca_timestamp_scadenza LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
@@ -195,7 +195,7 @@ $get_cv_titolo = isset($_GET['cv_titolo']) ? $dbConn->real_escape_string(stripsl
 
                                                 echo "<tr>";
                                                 echo "<td>".$row_data['cv_titolo']."</td>";
-                                                echo "<td>".$row_data['cl_ragione_sociale']."</td>";
+                                                echo "<td>".$row_data['ut_ragione_sociale']."</td>";
                                                 echo "<td>".date("d/m/Y", $row_data['ca_timestamp_attivazione'])."</td>";
                                                 if($ca_timestamp_scadenza <= time()) echo "<td><span class='badge badge-big badge-danger'>".date("d/m/Y", $row_data['ca_timestamp_scadenza'])."</span></td>";
                                                 else if($ca_timestamp_scadenza <= strtotime("+7 days")) echo "<td><span class='badge badge-big badge-warning'>".date("d/m/Y", $row_data['ca_timestamp_scadenza'])."</span></td>";

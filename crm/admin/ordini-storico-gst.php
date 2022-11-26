@@ -113,7 +113,7 @@
                                         <tbody>
 
                                         <?php
-                                            //$querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) AS or_totale FROM or_ordini INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_id > 0 AND or_eliminato = 0 ";
+                                            //$querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) AS or_totale FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_id > 0 AND or_eliminato = 0 ";
                                             $querySql = "SELECT SUM(or_pr_prezzo * or_pr_quantita) AS or_totale FROM or_ordini WHERE or_id > 0 AND or_eliminato = 0 ";
                                             if(strlen($get_or_timestamp_da) > 0) $querySql .= " AND or_timestamp >= '$get_or_timestamp_da' ";
                                             if(strlen($get_or_timestamp_a) > 0) $querySql .= " AND or_timestamp <= '$get_or_timestamp_a' ";

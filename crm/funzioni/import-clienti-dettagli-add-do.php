@@ -42,12 +42,12 @@
                 $handle = fopen($clienti_csv, "r");
 
                 //Cancello i dati della tabella di riferimento
-                //$querySql = "DELETE FROM cl_clienti WHERE cl_id > 0 ";
+                //$querySql = "DELETE FROM ut_utenti WHERE ut_id > 0 ";
                 //$result = $dbConn->query($querySql);
                 //$rows = $dbConn->affected_rows;
 
                 //Reset indici contatore mysql
-                //$querySql = "ALTER TABLE cl_clienti AUTO_INCREMENT = 1";
+                //$querySql = "ALTER TABLE ut_utenti AUTO_INCREMENT = 1";
                 //$result = $dbConn->query($querySql);
                 //$rows = $dbConn->affected_rows;
 
@@ -74,59 +74,59 @@
                 while ($data = fgetcsv($handle, 10000, ",")) {
                     if ($i > 1) {
 
-                        //$cl_codice_create = $serialDate + $i;
+                        //$ut_codice_create = $serialDate + $i;
 
                         //$id_customer = $data[0];
                         $id_customer = ( isset($data[0]) ) ? $id_customer = $data[0] : $id_customer = '';
 
-                        //$cl_company = $data[1];
-                        $cl_company = ( isset($data[1]) ) ? $cl_company = $data[1] : $cl_company = '';
+                        //$ut_company = $data[1];
+                        $ut_company = ( isset($data[1]) ) ? $ut_company = $data[1] : $ut_company = '';
 
-                        //$cl_address_1 = $data[2];
-                        $cl_address_1 = ( isset($data[2]) ) ? $cl_address_1 = $data[2] : $cl_address_1 = '';
+                        //$ut_address_1 = $data[2];
+                        $ut_address_1 = ( isset($data[2]) ) ? $ut_address_1 = $data[2] : $ut_address_1 = '';
 
-                        //$cl_address_2 = $data[3];
-                        $cl_address_2 = ( isset($data[3]) ) ? $cl_address_2 = $data[3] : $cl_address_2 = '';
+                        //$ut_address_2 = $data[3];
+                        $ut_address_2 = ( isset($data[3]) ) ? $ut_address_2 = $data[3] : $ut_address_2 = '';
 
-                        //$cl_postcode = $data[4];
-                        $cl_postcode = ( isset($data[4]) ) ? $cl_postcode = $data[4] : $cl_postcode = '';
+                        //$ut_postcode = $data[4];
+                        $ut_postcode = ( isset($data[4]) ) ? $ut_postcode = $data[4] : $ut_postcode = '';
 
-                        //$cl_city = $data[5];
-                        $cl_city = ( isset($data[5]) ) ? $cl_city = $data[5] : $cl_city = '';
+                        //$ut_city = $data[5];
+                        $ut_city = ( isset($data[5]) ) ? $ut_city = $data[5] : $ut_city = '';
 
-                        //$cl_other = $data[6];
-                        $cl_other = ( isset($data[6]) ) ? $cl_other = $data[6] : $cl_other = '';
+                        //$ut_other = $data[6];
+                        $ut_other = ( isset($data[6]) ) ? $ut_other = $data[6] : $ut_other = '';
 
-                        //$cl_phone = $data[7];
-                        $cl_phone = ( isset($data[7]) ) ? $cl_phone = $data[7] : $cl_phone = '';
+                        //$ut_phone = $data[7];
+                        $ut_phone = ( isset($data[7]) ) ? $ut_phone = $data[7] : $ut_phone = '';
 
-                        //$cl_phone_mobile = $data[8];
-                        $cl_phone_mobile = ( isset($data[8]) ) ? $cl_phone_mobile = $data[8] : $cl_phone_mobile = '';
+                        //$ut_phone_mobile = $data[8];
+                        $ut_phone_mobile = ( isset($data[8]) ) ? $ut_phone_mobile = $data[8] : $ut_phone_mobile = '';
 
                         $id_customer = $data[0];
-                        $cl_company = $data[1];
-                        $cl_address_1 = $data[2];
-                        $cl_address_2 = $data[3];
-                        $cl_postcode = $data[4];
-                        $cl_city = $data[5];
-                        $cl_other = $data[6];
-                        $cl_phone = $data[7];
-                        $cl_phone_mobile = $data[8];
+                        $ut_company = $data[1];
+                        $ut_address_1 = $data[2];
+                        $ut_address_2 = $data[3];
+                        $ut_postcode = $data[4];
+                        $ut_city = $data[5];
+                        $ut_other = $data[6];
+                        $ut_phone = $data[7];
+                        $ut_phone_mobile = $data[8];
 
                         $id_customer = $dbConn->real_escape_string(trim(stripslashes($id_customer)));
-                        $cl_company = $dbConn->real_escape_string(trim(stripslashes($cl_company)));
-                        $cl_address_1 = $dbConn->real_escape_string(trim(stripslashes($cl_address_1)));
-                        $cl_address_2 = $dbConn->real_escape_string(trim(stripslashes($cl_address_2)));
-                        $cl_postcode = $dbConn->real_escape_string(trim(stripslashes($cl_postcode)));
-                        $cl_city = $dbConn->real_escape_string(trim(stripslashes($cl_city)));
-                        $cl_other = $dbConn->real_escape_string(trim(stripslashes($cl_other)));
-                        $cl_phone = $dbConn->real_escape_string(trim(stripslashes($cl_phone)));
-                        $cl_phone_mobile = $dbConn->real_escape_string(trim(stripslashes($cl_phone_mobile)));
+                        $ut_company = $dbConn->real_escape_string(trim(stripslashes($ut_company)));
+                        $ut_address_1 = $dbConn->real_escape_string(trim(stripslashes($ut_address_1)));
+                        $ut_address_2 = $dbConn->real_escape_string(trim(stripslashes($ut_address_2)));
+                        $ut_postcode = $dbConn->real_escape_string(trim(stripslashes($ut_postcode)));
+                        $ut_city = $dbConn->real_escape_string(trim(stripslashes($ut_city)));
+                        $ut_other = $dbConn->real_escape_string(trim(stripslashes($ut_other)));
+                        $ut_phone = $dbConn->real_escape_string(trim(stripslashes($ut_phone)));
+                        $ut_phone_mobile = $dbConn->real_escape_string(trim(stripslashes($ut_phone_mobile)));
 
                         $querySql =
-                            "UPDATE cl_clienti SET cl_ragione_sociale = '$cl_company', cl_indirizzo = '$cl_address_1', cl_indirizzo_2 = '$cl_address_2', ".
-                            "cl_cap = '$cl_postcode', cl_citta = '$cl_city', ".
-                            "cl_tel = '$cl_phone', cl_cell = '$cl_phone_mobile' WHERE cl_id_customer = $id_customer";
+                            "UPDATE ut_utenti SET ut_ragione_sociale = '$ut_company', ut_indirizzo = '$ut_address_1', ut_indirizzo_2 = '$ut_address_2', ".
+                            "ut_cap = '$ut_postcode', ut_citta = '$ut_city', ".
+                            "ut_telefono = '$ut_phone', ut_cell = '$ut_phone_mobile' WHERE ut_id_customer = $id_customer";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
 
@@ -136,16 +136,16 @@
                         };
 
                         //echo $querySql;
-                        //echo $cl_codice_create;
+                        //echo $ut_codice_create;
 
                         echo "<tr style='color: ".$color_tr."'>";
                         //echo "<td class='labelTd'>".$ID."</td>";
                         echo "<td class='labelTd'>".$id_customer."</td>";
-                        echo "<td class='labelTd'>".$cl_address_1."</td>";
-                        echo "<td class='labelTd'>".$cl_postcode."</td>";
-                        echo "<td class='labelTd'>".$cl_city."</td>";
-                        echo "<td class='labelTd'>".$cl_phone."</td>";
-                        echo "<td class='labelTd'>".$cl_phone_mobile."</td>";
+                        echo "<td class='labelTd'>".$ut_address_1."</td>";
+                        echo "<td class='labelTd'>".$ut_postcode."</td>";
+                        echo "<td class='labelTd'>".$ut_city."</td>";
+                        echo "<td class='labelTd'>".$ut_phone."</td>";
+                        echo "<td class='labelTd'>".$ut_phone_mobile."</td>";
                         echo "<td class='labelTd'>".$i."</td>";
                         echo "<td class='labelTd'>".$dbConn->affected_rows."</td>";
                         echo "<td class='labelTd'>".$dbConn->error."</td>";

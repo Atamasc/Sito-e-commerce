@@ -103,7 +103,7 @@
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(ol_id) FROM ol_ordini_log INNER JOIN cl_clienti ON cl_email = ol_email WHERE ol_cr_id > 0 ";
+                                            $querySql = "SELECT COUNT(ol_id) FROM ol_ordini_log INNER JOIN ut_utenti ON ut_email = ol_email WHERE ol_cr_id > 0 ";
 
                                             if(strlen(@$_GET['ol_timestamp_dal']) > 0) $querySql .= "AND ol_timestamp >= '".strtotime($_GET['ol_timestamp_dal'])."' ";
                                             if(strlen(@$_GET['ol_timestamp_al']) > 0) $querySql .= "AND ol_timestamp <= '".strtotime($_GET['ol_timestamp_al'])."' ";
@@ -124,7 +124,7 @@
                                             // primo parametro di LIMIT
                                             $primo = ($current_page - 1) * $per_page;
 
-                                            $querySql = "SELECT * FROM ol_ordini_log INNER JOIN cl_clienti ON cl_email = ol_email WHERE ol_cr_id > 0 ";
+                                            $querySql = "SELECT * FROM ol_ordini_log INNER JOIN ut_utenti ON ut_email = ol_email WHERE ol_cr_id > 0 ";
 
                                             if(strlen(@$_GET['ol_timestamp_dal']) > 0) $querySql .= "AND ol_timestamp >= '".strtotime($_GET['ol_timestamp_dal'])."' ";
                                             if(strlen(@$_GET['ol_timestamp_al']) > 0) $querySql .= "AND ol_timestamp <= '".strtotime($_GET['ol_timestamp_al'])."' ";
@@ -145,7 +145,7 @@
 
                                                 echo "<tr>";
                                                 echo "<td>".$ol_id."</td>";
-                                                echo "<td>".$row_data['cl_nome']." ".$row_data['cl_cognome']."</td>";
+                                                echo "<td>".$row_data['ut_nome']." ".$row_data['ut_cognome']."</td>";
                                                 echo "<td>".$row_data['ol_email']."</td>";
                                                 echo "<td>".$row_data['ol_stato_invio']."</td>";
                                                 if($row_data['ol_stato_lettura'] == 1) echo "<td style='color: green;'>Letta</td>";

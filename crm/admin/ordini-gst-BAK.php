@@ -17,8 +17,8 @@
     $get_or_stato = isset($_GET['or_stato']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['or_stato']))) : "";
 
     $get_or_codice = isset($_GET['or_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['or_codice']))) : "";
-    $get_cl_nome = isset($_GET['cl_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_nome']))) : "";
-    $get_cl_cognome = isset($_GET['cl_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_cognome']))) : "";
+    $get_ut_nome = isset($_GET['ut_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_nome']))) : "";
+    $get_ut_cognome = isset($_GET['ut_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_cognome']))) : "";
     ?>
 
     <div class="wrapper">
@@ -117,14 +117,14 @@
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_nome">Nome</label>
-                                                <input type="text" class="form-control" id="cl_nome" name="cl_nome" value="<?php echo $get_cl_nome; ?>">
+                                                <label for="ut_nome">Nome</label>
+                                                <input type="text" class="form-control" id="ut_nome" name="ut_nome" value="<?php echo $get_ut_nome; ?>">
                                                 <span class="tooltips">Nome Cliente Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nome Cliente Ordine" data-content="Inserisci qui il nome del cliente che ha richiesto l'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_cognome">Cognome</label>
-                                                <input type="text" class="form-control" id="cl_cognome" name="cl_cognome" value="<?php echo $get_cl_cognome; ?>">
+                                                <label for="ut_cognome">Cognome</label>
+                                                <input type="text" class="form-control" id="ut_cognome" name="ut_cognome" value="<?php echo $get_ut_cognome; ?>">
                                                 <span class="tooltips">Cognome Cliente Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Cognome Cliente Ordine" data-content="Inserisci qui il cognome del cliente che ha richiesto l'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
 
@@ -175,14 +175,14 @@
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN cl_clienti ON cl_codice = or_cl_codice WHERE or_archivio = 0 ";
+                                            $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN ut_utenti ON ut_codice = or_ut_codice WHERE or_archivio = 0 ";
                                             if(strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
                                             if(strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
                                             if(strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
                                             if(strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
                                             if(strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
-                                            if(strlen($get_cl_nome) > 0) $querySql .= " AND cl_nome LIKE '%$get_cl_nome%' ";
-                                            if(strlen($get_cl_cognome) > 0) $querySql .= " AND cl_cognome LIKE '%$get_cl_cognome%' ";
+                                            if(strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if(strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -199,14 +199,14 @@
 
                                             $querySql =
                                                 "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini ".
-                                                "INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_archivio = 0 ";
+                                                "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_archivio = 0 ";
                                             if(strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
                                             if(strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
                                             if(strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
                                             if(strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
                                             if(strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
-                                            if(strlen($get_cl_nome) > 0) $querySql .= " AND cl_nome LIKE '%$get_cl_nome%' ";
-                                            if(strlen($get_cl_cognome) > 0) $querySql .= " AND cl_cognome LIKE '%$get_cl_cognome%' ";
+                                            if(strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if(strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
                                             $querySql .= " GROUP BY or_codice ORDER BY or_codice DESC LIMIT $primo, $per_page ";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -229,9 +229,9 @@
 
                                                 echo "<tr>";
                                                 echo "<td>$or_codice del ".date('d/m/Y - H:i', $or_codice)."</td>";
-                                                //if($row_data['cl_business']) echo "<td class='text-center'>B</td>";
+                                                //if($row_data['ut_business']) echo "<td class='text-center'>B</td>";
                                                 //else echo "<td class='text-center'>S</td>";
-                                                echo "<td>".$row_data['cl_nome']." ".$row_data['cl_cognome']."</td>";
+                                                echo "<td>".$row_data['ut_nome']." ".$row_data['ut_cognome']."</td>";
                                                 echo "<td>".$row_data['or_pagamento']."</td>";
                                                 echo "<td>&euro; ".formatPrice($or_totale)."</td>";
 

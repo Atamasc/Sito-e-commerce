@@ -45,7 +45,7 @@ if ($checkCookie == $checkCredentialCookie) {
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-color: rgba(0,0,0,.2);">
                     <div class="login-fancy">
-                        <h3 class="text-white mb-20">MonCaff&egrave;.it</h3>
+                        <h3 class="text-white mb-20">Smartex.it</h3>
                         <p class="mb-20 text-white">Gestionale web</p>
 
                         <!--

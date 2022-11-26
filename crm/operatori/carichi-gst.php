@@ -173,7 +173,7 @@ $get_cr_codice = isset($_GET['cr_codice']) ? $dbConn->real_escape_string(stripsl
 
                                             //Gestione
                                             echo "<td align='center'>";
-                                            //echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?cl_id=$cl_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
+                                            //echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?ut_id=$ut_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
                                             echo "<a class='btn btn-purple btn-sm' href='allegati-gst.php?al_tab_id=$cr_id&al_tipo=Carico' title='allegati'>allegati</a>&nbsp;";
                                             echo "<a class='btn btn-orange btn-sm' href='lotti-add.php?cr_id=$cr_id' title='Lotti'>lotti</a>&nbsp;";
                                             echo "<a class='btn btn-success btn-sm' href='carichi-mod.php?cr_id=$cr_id' title='Modifica'>modifica</a>&nbsp;";

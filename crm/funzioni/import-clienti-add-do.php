@@ -49,12 +49,12 @@
                 $handle = fopen($clienti_csv, "r");
 
                 //Cancello i dati della tabella di riferimento
-                //$querySql = "DELETE FROM cl_clienti WHERE cl_id > 0 ";
+                //$querySql = "DELETE FROM ut_utenti WHERE ut_id > 0 ";
                 //$result = $dbConn->query($querySql);
                 //$rows = $dbConn->affected_rows;
 
                 //Reset indici contatore mysql
-                //$querySql = "ALTER TABLE cl_clienti AUTO_INCREMENT = 1";
+                //$querySql = "ALTER TABLE ut_utenti AUTO_INCREMENT = 1";
                 //$result = $dbConn->query($querySql);
                 //$rows = $dbConn->affected_rows;
 
@@ -81,59 +81,59 @@
                 while ($data = fgetcsv($handle, 10000, ",")) {
                     if ($i > 1) {
 
-                        $cl_codice_create = $serialDate + $i;
+                        $ut_codice_create = $serialDate + $i;
 
                         //$id_customer = $data[0];
                         $id_customer = ( isset($data[0]) ) ? $id_customer = $data[0] : $id_customer = '';
 
-                        //$cl_nome = $data[1];
-                        $cl_nome = ( isset($data[1]) ) ? $cl_nome = $data[1] : $cl_nome = '';
+                        //$ut_nome = $data[1];
+                        $ut_nome = ( isset($data[1]) ) ? $ut_nome = $data[1] : $ut_nome = '';
 
-                        //$cl_cognome = $data[2];
-                        $cl_cognome = ( isset($data[2]) ) ? $cl_cognome = $data[2] : $cl_cognome = '';
+                        //$ut_cognome = $data[2];
+                        $ut_cognome = ( isset($data[2]) ) ? $ut_cognome = $data[2] : $ut_cognome = '';
 
-                        //$cl_email = $data[3];
-                        $cl_email = ( isset($data[3]) ) ? $cl_email = $data[3] : $cl_email = '';
+                        //$ut_email = $data[3];
+                        $ut_email = ( isset($data[3]) ) ? $ut_email = $data[3] : $ut_email = '';
 
-                        //$cl_password = $data[4];
-                        $cl_password = ( isset($data[4]) ) ? $cl_password = $data[4] : $cl_password = '';
+                        //$ut_password = $data[4];
+                        $ut_password = ( isset($data[4]) ) ? $ut_password = $data[4] : $ut_password = '';
 
-                        //$cl_data_nascita = $data[5];
-                        $cl_data_nascita = ( isset($data[5]) ) ? $cl_data_nascita = $data[5] : $cl_data_nascita = '';
+                        //$ut_data_nascita = $data[5];
+                        $ut_data_nascita = ( isset($data[5]) ) ? $ut_data_nascita = $data[5] : $ut_data_nascita = '';
 
-                        //$cl_newsletter = $data[6];
-                        $cl_newsletter = ( isset($data[6]) ) ? $cl_newsletter = $data[6] : $cl_newsletter = '';
+                        //$ut_newsletter = $data[6];
+                        $ut_newsletter = ( isset($data[6]) ) ? $ut_newsletter = $data[6] : $ut_newsletter = '';
 
-                        //$cl_data = $data[7];
-                        $cl_data = ( isset($data[7]) ) ? $cl_data = $data[7] : $cl_data = '';
+                        //$ut_data = $data[7];
+                        $ut_data = ( isset($data[7]) ) ? $ut_data = $data[7] : $ut_data = '';
 
                         $id_customer = $data[0];
-                        $cl_nome = $data[1];
-                        $cl_cognome = $data[2];
-                        $cl_email = $data[3];
-                        $cl_password = $data[4];
-                        $cl_data_nascita = $data[5];
-                        $cl_newsletter = $data[6];
-                        $cl_data = $data[7];
+                        $ut_nome = $data[1];
+                        $ut_cognome = $data[2];
+                        $ut_email = $data[3];
+                        $ut_password = $data[4];
+                        $ut_data_nascita = $data[5];
+                        $ut_newsletter = $data[6];
+                        $ut_data = $data[7];
 
                         $id_customer = $dbConn->real_escape_string(trim(stripslashes($id_customer)));
-                        $cl_nome = $dbConn->real_escape_string(trim(stripslashes($cl_nome)));
-                        $cl_cognome = $dbConn->real_escape_string(trim(stripslashes($cl_cognome)));
-                        $cl_email = $dbConn->real_escape_string(trim(stripslashes($cl_email)));
-                        $cl_password = $dbConn->real_escape_string(trim(stripslashes($cl_password)));
-                        $cl_data_nascita = dateToTimestampImport($dbConn->real_escape_string(trim(stripslashes($cl_data_nascita))));
-                        $cl_newsletter = $dbConn->real_escape_string(trim(stripslashes($cl_newsletter)));
-                        $cl_data = dateToTimestampImport($dbConn->real_escape_string(trim(stripslashes($cl_data))));
+                        $ut_nome = $dbConn->real_escape_string(trim(stripslashes($ut_nome)));
+                        $ut_cognome = $dbConn->real_escape_string(trim(stripslashes($ut_cognome)));
+                        $ut_email = $dbConn->real_escape_string(trim(stripslashes($ut_email)));
+                        $ut_password = $dbConn->real_escape_string(trim(stripslashes($ut_password)));
+                        $ut_data_nascita = dateToTimestampImport($dbConn->real_escape_string(trim(stripslashes($ut_data_nascita))));
+                        $ut_newsletter = $dbConn->real_escape_string(trim(stripslashes($ut_newsletter)));
+                        $ut_data = dateToTimestampImport($dbConn->real_escape_string(trim(stripslashes($ut_data))));
 
-                            $querySql = "INSERT INTO cl_clienti (";
+                            $querySql = "INSERT INTO ut_utenti (";
 
-                            $querySql .= "cl_id_customer, cl_codice, cl_nome, cl_cognome, cl_email, cl_password, ";
-                            $querySql .= "cl_data_nascita, cl_newsletter, cl_data, cl_stato ";
+                            $querySql .= "ut_id_customer, ut_codice, ut_nome, ut_cognome, ut_email, ut_password, ";
+                            $querySql .= "ut_data_nascita, ut_newsletter, ut_data, ut_stato ";
 
                             $querySql .= ") VALUES (";
 
-                            $querySql .= "'".$id_customer."','".$cl_codice_create."','".$cl_nome."','".$cl_cognome."','".$cl_email."',";
-                            $querySql .= "'".$cl_password."','".$cl_data_nascita."','".$cl_newsletter."','".$cl_data."','1'";
+                            $querySql .= "'".$id_customer."','".$ut_codice_create."','".$ut_nome."','".$ut_cognome."','".$ut_email."',";
+                            $querySql .= "'".$ut_password."','".$ut_data_nascita."','".$ut_newsletter."','".$ut_data."','1'";
 
                             $querySql .= ")";
 
@@ -145,16 +145,16 @@
                         };
 
                         //echo $querySql;
-                        //echo $cl_codice_create;
+                        //echo $ut_codice_create;
 
                         echo "<tr style='color: ".$color_tr."'>";
                         //echo "<td class='labelTd'>".$ID."</td>";
-                        echo "<td class='labelTd'>".$cl_nome." ".$cl_cognome."</td>";
-                        echo "<td class='labelTd'>".$cl_email."</td>";
-                        echo "<td class='labelTd'>".$cl_password."</td>";
-                        echo "<td class='labelTd'>".$cl_data_nascita."</td>";
-                        echo "<td class='labelTd'>".$cl_newsletter."</td>";
-                        echo "<td class='labelTd'>".$cl_note."</td>";
+                        echo "<td class='labelTd'>".$ut_nome." ".$ut_cognome."</td>";
+                        echo "<td class='labelTd'>".$ut_email."</td>";
+                        echo "<td class='labelTd'>".$ut_password."</td>";
+                        echo "<td class='labelTd'>".$ut_data_nascita."</td>";
+                        echo "<td class='labelTd'>".$ut_newsletter."</td>";
+                        echo "<td class='labelTd'>".$ut_note."</td>";
                         echo "<td class='labelTd'>".$i."</td>";
                         echo "<td class='labelTd'>".$dbConn->affected_rows."</td>";
                         echo "<td class='labelTd'>".$dbConn->error."</td>";

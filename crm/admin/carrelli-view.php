@@ -11,7 +11,8 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
 ?>
 
 <div class="modal-header">
-    <div class="modal-title"><div class="mb-30">
+    <div class="modal-title">
+        <div class="mb-30">
             <h6>Dettaglio carrello #<?php echo $get_cr_id; ?></h6>
         </div>
     </div>
@@ -33,7 +34,7 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
                     <div class="table-responsive">
 
                         <?php
-                        $querySql = "SELECT * FROM cl_clienti INNER JOIN cr_carrello ON cl_codice = cr_cl_codice WHERE cr_id = $get_cr_id LIMIT 0, 1";
+                        $querySql = "SELECT * FROM ut_utenti INNER JOIN cr_carrello ON ut_codice = cr_ut_codice WHERE cr_id = $get_cr_id LIMIT 0, 1";
 
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
@@ -44,32 +45,30 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
 
                         <div class="row w-100">
 
-                            <?php if( (int)$row_data['cl_id'] > 0) { ?>
+                            <?php if ((int)$row_data['ut_id'] > 0) { ?>
 
-                            <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                <?php
-                                echo "<b>".$row_data['cl_nome']." ".$row_data['cl_cognome']."</b><br>";
-                                echo $row_data["cl_indirizzo"]." - ".$row_data["cl_comune"]." (".$row_data["cl_provincia"].") CAP: ".$row_data["cl_cap"]." <br>";
-                                echo "Tel. ".$row_data["cl_telefono"]." | Fax. ".$row_data["cl_fax"];
-                                ?>
+                                    <?php
+                                    echo "<b>" . $row_data['ut_nome'] . " " . $row_data['ut_cognome'] . "</b><br>";
+                                    echo $row_data["ut_indirizzo"] . " - " . $row_data["ut_citta"] . " (" . $row_data["ut_provincia"] . ") CAP: " . $row_data["ut_cap"] . " <br>";
+                                    echo "Tel. " . $row_data["ut_telefono"] . " | Fax. " . $row_data["ut_fax"];
+                                    ?>
 
-                            </div>
+                                </div>
 
-                            <div class="col-md-6">
+                                <div class="col-md-6">
 
-                                <?php
-                                echo "<br>P.IVA: ".$row_data["cl_partita_iva"]." | Cod. Fiscale: ".$row_data["cl_codice_fiscale"]." <br>";
-                                echo "E-mail: <a href='mailto:".$row_data["cl_email"]."'>".$row_data["cl_email"]."</a> <br>";
-                                ?>
+                                    <?php
+                                    echo "<br>P.IVA: " . $row_data["ut_partita_iva"] . " | Cod. Fiscale: " . $row_data["ut_codice_fiscale"] . " <br>";
+                                    echo "E-mail: <a href='mailto:" . $row_data["ut_email"] . "'>" . $row_data["ut_email"] . "</a> <br>";
+                                    ?>
 
-                            </div>
+                                </div>
 
-                            <?php }
+                            <?php } else { ?>
 
-                            else { ?>
-
-                            <div class="col-md-6"><br>Cliente non registrato<br></div>
+                                <div class="col-md-6"><br>Cliente non registrato<br></div>
 
                             <?php } ?>
 
@@ -118,10 +117,10 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
                                 $totale_ordine += $cr_importo_totale;
 
                                 echo "<tr>";
-                                echo "<td>".$row_data['pr_titolo']." / ".$row_data['pr_codice']."</td>";
-                                echo "<td class='text-center'>".$row_data['cr_pr_quantita']."</td>";
-                                echo "<td class='text-center'>".formatPrice($pr_prezzo)."</td>";
-                                echo "<td class='text-center'>&euro; ".formatPrice($cr_importo_totale)."</td>";
+                                echo "<td>" . $row_data['pr_titolo'] . " / " . $row_data['pr_codice'] . "</td>";
+                                echo "<td class='text-center'>" . $row_data['cr_pr_quantita'] . "</td>";
+                                echo "<td class='text-center'>" . formatPrice($pr_prezzo) . "</td>";
+                                echo "<td class='text-center'>&euro; " . formatPrice($cr_importo_totale) . "</td>";
 
                                 echo "</tr>";
 
@@ -181,23 +180,28 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
                             ?>
 
                             <tr>
-                                <td>Imponibile</td><td>&euro; <?php echo formatPrice($cr_imponibile); ?></td>
+                                <td>Imponibile</td>
+                                <td>&euro; <?php echo formatPrice($cr_imponibile); ?></td>
                             </tr>
 
                             <tr>
-                                <td>IVA (22%)</td><td>&euro; <?php echo formatPrice($cr_iva); ?></td>
+                                <td>IVA (22%)</td>
+                                <td>&euro; <?php echo formatPrice($cr_iva); ?></td>
                             </tr>
 
                             <tr>
-                                <td>Spese di pagamento (<?php echo $cr_pagamento; ?>)</td><td>&euro; <?php echo formatPrice($cr_pagamento_prezzo); ?></td>
+                                <td>Spese di pagamento (<?php echo $cr_pagamento; ?>)</td>
+                                <td>&euro; <?php echo formatPrice($cr_pagamento_prezzo); ?></td>
                             </tr>
 
                             <tr>
-                                <td>Spese di spedizione (<?php echo $cr_spedizione; ?>)</td><td>&euro; <?php echo formatPrice($cr_spedizione_prezzo); ?></td>
+                                <td>Spese di spedizione (<?php echo $cr_spedizione; ?>)</td>
+                                <td>&euro; <?php echo formatPrice($cr_spedizione_prezzo); ?></td>
                             </tr>
 
                             <tr>
-                                <td>Totale</td><td><strong>&euro; <?php echo formatPrice($cr_totale); ?></strong></td>
+                                <td>Totale</td>
+                                <td><strong>&euro; <?php echo formatPrice($cr_totale); ?></strong></td>
                             </tr>
 
                             </tbody>

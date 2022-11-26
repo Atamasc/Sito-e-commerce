@@ -5,7 +5,7 @@
 <?php
 $get_at_id = isset($_GET['at_id']) ? (int)$_GET['at_id'] : 0;
 
-$querySql = "SELECT * FROM at_attivita INNER JOIN cl_clienti ON cl_id = at_cl_id WHERE at_id = '$get_at_id' ";
+$querySql = "SELECT * FROM at_attivita INNER JOIN ut_utenti ON ut_id = at_ut_id WHERE at_id = '$get_at_id' ";
 $result = $dbConn->query($querySql);
 $row_data = $result->fetch_assoc();
 $result->close();
@@ -34,11 +34,11 @@ $result->close();
                     <div class="row">
 
                         <div class="col-md-6 mb-3">
-                            Cliente: <b><?php echo $row_data['cl_ragione_sociale']; ?></b>
+                            Cliente: <b><?php echo $row_data['ut_ragione_sociale']; ?></b>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            Email: <b><?php echo $row_data['cl_email']; ?></b>
+                            Email: <b><?php echo $row_data['ut_email']; ?></b>
                         </div>
 
                     </div>

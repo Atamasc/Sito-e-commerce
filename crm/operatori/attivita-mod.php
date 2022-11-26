@@ -2,7 +2,7 @@
 <?php
 $get_at_id = isset($_GET['at_id']) ? (int)$_GET['at_id'] : 0;
 
-$querySql = "SELECT * FROM at_attivita INNER JOIN cl_clienti ON cl_id = at_cl_id WHERE at_id = '$get_at_id' ";
+$querySql = "SELECT * FROM at_attivita INNER JOIN ut_utenti ON ut_id = at_ut_id WHERE at_id = '$get_at_id' ";
 $result = $dbConn->query($querySql);
 $row_data = $result->fetch_assoc();
 $result->close();

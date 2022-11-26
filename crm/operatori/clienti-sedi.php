@@ -1,9 +1,9 @@
 <?php include "inc/autoloader.php"; ?>
 <?php
-$get_cl_id = isset($_GET['cl_id']) ? (int)$_GET['cl_id'] : 0;
+$get_ut_id = isset($_GET['ut_id']) ? (int)$_GET['ut_id'] : 0;
 $get_sd_id = isset($_GET['sd_id']) ? (int)$_GET['sd_id'] : 0;
 
-$querySql = "SELECT * FROM sd_sedi INNER JOIN cl_clienti ON cl_id = sd_cl_id WHERE sd_id = '$get_sd_id' ";
+$querySql = "SELECT * FROM sd_sedi INNER JOIN ut_utenti ON ut_id = sd_ut_id WHERE sd_id = '$get_sd_id' ";
 $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 $row_data = $result->fetch_assoc();
@@ -72,7 +72,7 @@ $result->close();
                                     <?php include "../inc/alerts.php"; ?>
 
                                     <form method="post" action="<?php echo $get_sd_id > 0 ? "clienti-sedi-mod-do.php" : "clienti-sedi-add-do.php"; ?>">
-                                        <input type="hidden" name="sd_cl_id" value="<?php echo $get_cl_id; ?>">
+                                        <input type="hidden" name="sd_ut_id" value="<?php echo $get_ut_id; ?>">
                                         <input type="hidden" name="sd_id" value="<?php echo $get_sd_id; ?>">
 
                                         <div class="form-row">
@@ -172,7 +172,7 @@ $result->close();
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(sd_id) FROM sd_sedi WHERE sd_cl_id = '$get_cl_id' ";
+                                            $querySql = "SELECT COUNT(sd_id) FROM sd_sedi WHERE sd_ut_id = '$get_ut_id' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -188,7 +188,7 @@ $result->close();
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql =
-                                                "SELECT * FROM sd_sedi WHERE sd_cl_id = '$get_cl_id' ORDER BY sd_sede LIMIT $primo, $per_page";
+                                                "SELECT * FROM sd_sedi WHERE sd_ut_id = '$get_ut_id' ORDER BY sd_sede LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
@@ -203,8 +203,8 @@ $result->close();
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                echo "<a class='btn btn-success btn-sm' href='clienti-sedi.php?sd_id=$sd_id&cl_id=$get_cl_id' title='Modifica'>modifica</a>&nbsp;";
-                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='convenzioni-cer-del-do.php?sd_id=$sd_id&cl_id=$get_cl_id'>elimina</button>";
+                                                echo "<a class='btn btn-success btn-sm' href='clienti-sedi.php?sd_id=$sd_id&ut_id=$get_ut_id' title='Modifica'>modifica</a>&nbsp;";
+                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='convenzioni-cer-del-do.php?sd_id=$sd_id&ut_id=$get_ut_id'>elimina</button>";
                                                 echo "</td>";
                                                 echo "</tr>";
 

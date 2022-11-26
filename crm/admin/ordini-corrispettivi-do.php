@@ -23,7 +23,7 @@ Iva
 Totale ivato
 */
 
-$querySql = "SELECT *, CONCAT(cl_nome, ' ', cl_cognome) AS cl_nominativo, SUM(or_pr_prezzo * or_pr_quantita) As or_totale FROM or_ordini INNER JOIN cl_clienti ON cl_codice = or_cl_codice WHERE or_stato_corrispettivi > 0 GROUP BY or_codice ORDER BY or_codice ";
+$querySql = "SELECT *, CONCAT(ut_nome, ' ', ut_cognome) AS ut_nominativo, SUM(or_pr_prezzo * or_pr_quantita) As or_totale FROM or_ordini INNER JOIN ut_utenti ON ut_codice = or_ut_codice WHERE or_stato_corrispettivi > 0 GROUP BY or_codice ORDER BY or_codice ";
 $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 
@@ -46,7 +46,7 @@ while (($row_data = $result->fetch_assoc()) !== NULL) {
     $or_iva = number_format($or_totale - $or_imponibile, 2, ".", "");
 
     $list[] = array(
-        $row_data['cl_nominativo'],
+        $row_data['ut_nominativo'],
         $row_data['or_codice'],
         date("d/m/Y", $row_data['or_timestamp']),
         $row_data['or_pagamento'],

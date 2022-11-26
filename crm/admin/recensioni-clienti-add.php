@@ -11,9 +11,9 @@
 <body>
 
 <?php
-$get_cl_nome = isset($_GET['cl_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_nome']))) : "";
-$get_cl_cognome = isset($_GET['cl_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_cognome']))) : "";
-$get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_email']))) : "";
+$get_ut_nome = isset($_GET['ut_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_nome']))) : "";
+$get_ut_cognome = isset($_GET['ut_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_cognome']))) : "";
+$get_ut_email = isset($_GET['ut_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_email']))) : "";
 ?>
 
 <div class="wrapper">
@@ -52,19 +52,19 @@ $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslas
                                     <div class="form-row">
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="cl_nome">Nome</label>
-                                            <input type="text" name="cl_nome" class="form-control" value="<?php echo $get_cl_nome; ?>">
+                                            <label for="ut_nome">Nome</label>
+                                            <input type="text" name="ut_nome" class="form-control" value="<?php echo $get_ut_nome; ?>">
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="cl_cognome">Cognome</label>
-                                            <input type="text" name="cl_cognome" class="form-control" value="<?php echo $get_cl_cognome; ?>">
+                                            <label for="ut_cognome">Cognome</label>
+                                            <input type="text" name="ut_cognome" class="form-control" value="<?php echo $get_ut_cognome; ?>">
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="cl_email">Email</label>
-                                            <input name="cl_email" id="cl_email" class="form-control" type="text" autocomplete="off"
-                                                   value="<?php echo $get_cl_email; ?>">
+                                            <label for="ut_email">Email</label>
+                                            <input name="ut_email" id="ut_email" class="form-control" type="text" autocomplete="off"
+                                                   value="<?php echo $get_ut_email; ?>">
                                         </div>
 
                                     </div>
@@ -110,10 +110,10 @@ $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslas
                                         <tbody>
 
                                         <?php
-                                        $querySql = "SELECT COUNT(cl_id) FROM cl_clienti WHERE cl_id > 0 ";
-                                        if(strlen($get_cl_nome) > 0) $querySql .= " AND cl_nome LIKE '%$get_cl_nome%' ";
-                                        if(strlen($get_cl_cognome) > 0) $querySql .= " AND cl_cognome LIKE '%$get_cl_cognome%' ";
-                                        if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
+                                        $querySql = "SELECT COUNT(ut_id) FROM ut_utenti WHERE ut_id > 0 ";
+                                        if(strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                        if(strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                        if(strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                         $result = $dbConn->query($querySql);
                                         $row = $result->fetch_row();
 
@@ -128,30 +128,30 @@ $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslas
                                         // primo parametro di LIMIT
                                         $primo = ($current_page - 1) * $per_page;
 
-                                        $querySql = "SELECT * FROM cl_clienti WHERE cl_id > 0 ";
-                                        if(strlen($get_cl_nome) > 0) $querySql .= " AND cl_nome LIKE '%$get_cl_nome%' ";
-                                        if(strlen($get_cl_cognome) > 0) $querySql .= " AND cl_cognome LIKE '%$get_cl_cognome%' ";
-                                        if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
-                                        $querySql .= " ORDER BY cl_id LIMIT $primo, $per_page";
+                                        $querySql = "SELECT * FROM ut_utenti WHERE ut_id > 0 ";
+                                        if(strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                        if(strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                        if(strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
+                                        $querySql .= " ORDER BY ut_id LIMIT $primo, $per_page";
                                         $result = $dbConn->query($querySql);
                                         $rows = $dbConn->affected_rows;
 
                                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
 
-                                            $cl_codice = $row_data['cl_codice'];
-                                            $cl_id = $row_data['cl_id'];
-                                            $cl_nome = $row_data['cl_nome'];
-                                            $cl_cognome = $row_data['cl_cognome'];
+                                            $ut_codice = $row_data['ut_codice'];
+                                            $ut_id = $row_data['ut_id'];
+                                            $ut_nome = $row_data['ut_nome'];
+                                            $ut_cognome = $row_data['ut_cognome'];
 
                                             echo "<tr>";
-                                            echo "<td>$cl_nome</td>";
-                                            echo "<td>$cl_cognome</td>";
-                                            echo "<td>".$row_data['cl_email']."</td>";
+                                            echo "<td>$ut_nome</td>";
+                                            echo "<td>$ut_cognome</td>";
+                                            echo "<td>".$row_data['ut_email']."</td>";
 
                                             //Gestione
                                             echo "<td align='center'>";
-                                            echo "<a class='btn btn-primary btn-sm' href='javascript:pageAddCliente($cl_codice, \"$cl_nome\");' title='Conferimento'>associa</a>&nbsp;";
+                                            echo "<a class='btn btn-primary btn-sm' href='javascript:pageAddCliente($ut_codice, \"$ut_nome\");' title='Conferimento'>associa</a>&nbsp;";
                                             echo "</td>";
                                             echo "</tr>";
 
@@ -219,10 +219,10 @@ footer -->
 <?php include "inc/javascript.php"; ?>
 
 <script>
-    function pageAddCliente(cl_codice, cl_nome) {
+    function pageAddCliente(ut_codice, ut_nome) {
 
-        window.opener.$("#cl_codice").val(cl_codice);
-        window.opener.$("#cl_nome").val(cl_nome);
+        window.opener.$("#ut_codice").val(ut_codice);
+        window.opener.$("#ut_nome").val(ut_nome);
 
         window.close();
 

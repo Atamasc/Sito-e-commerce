@@ -1,6 +1,6 @@
 <?php include "inc/autoloader.php"; ?>
 <?php
-$or_cl_codice = $dbConn->real_escape_string(stripslashes(trim($_POST['or_cl_codice'])));
+$or_ut_codice = $dbConn->real_escape_string(stripslashes(trim($_POST['or_ut_codice'])));
 $or_gi_id = (int)$_POST['or_gi_id'];
 $or_op_id = (int)$_POST['or_op_id'];
 $or_quantita = (int)$_POST['or_quantita'];
@@ -22,9 +22,9 @@ if ($or_tipo == "distribuzione") {
 
     $querySql =
         "INSERT INTO or_ordini (".
-        "or_gi_id, or_op_id, or_codice, or_cl_codice, or_pr_prezzo, or_pr_quantita, or_stato_conferma, or_stato_spedizione, or_stato, or_timestamp" .
+        "or_gi_id, or_op_id, or_codice, or_ut_codice, or_pr_prezzo, or_pr_quantita, or_stato_conferma, or_stato_spedizione, or_stato, or_timestamp" .
         ") VALUES (".
-        "'$or_gi_id', '$or_op_id', '$or_timestamp', '$or_cl_codice', '$or_prezzo', '$or_quantita', 1, 2, 1, '$or_timestamp') ";
+        "'$or_gi_id', '$or_op_id', '$or_timestamp', '$or_ut_codice', '$or_prezzo', '$or_quantita', 1, 2, 1, '$or_timestamp') ";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
@@ -32,14 +32,14 @@ if ($or_tipo == "distribuzione") {
 
     $querySql =
         "INSERT INTO or_ordini (".
-        "or_gi_id, or_op_id, or_codice, or_cl_codice, or_pr_prezzo, or_pr_quantita, or_stato_conferma, or_timestamp" .
+        "or_gi_id, or_op_id, or_codice, or_ut_codice, or_pr_prezzo, or_pr_quantita, or_stato_conferma, or_timestamp" .
         ") VALUES (".
-        "'$or_gi_id', '$or_op_id', '$or_timestamp', '$or_cl_codice', '$or_prezzo', '$or_quantita', 1, '$or_timestamp') ";
+        "'$or_gi_id', '$or_op_id', '$or_timestamp', '$or_ut_codice', '$or_prezzo', '$or_quantita', 1, '$or_timestamp') ";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
 }
 
-if($rows > 0) header("Location: ordini-prodotti-add.php?cl_codice=$or_cl_codice&or_timestamp=$or_timestamp&or_tipo=$or_tipo&insert=true");
-else header("Location: ordini-prodotti-add.php?cl_codice=$or_cl_codice&or_timestamp=$or_timestamp&or_tipo=$or_tipo&insert=false");
+if($rows > 0) header("Location: ordini-prodotti-add.php?ut_codice=$or_ut_codice&or_timestamp=$or_timestamp&or_tipo=$or_tipo&insert=true");
+else header("Location: ordini-prodotti-add.php?ut_codice=$or_ut_codice&or_timestamp=$or_timestamp&or_tipo=$or_tipo&insert=false");
 ?>

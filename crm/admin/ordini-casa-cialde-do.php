@@ -22,8 +22,8 @@
     
     
     
-    $querySql = "SELECT *, CONCAT(cl_cognome, ' ', cl_nome) AS cl_nominativo FROM or_ordini
-                 INNER JOIN cl_clienti ON cl_codice = or_cl_codice
+    $querySql = "SELECT *, CONCAT(ut_cognome, ' ', ut_nome) AS ut_nominativo FROM or_ordini
+                 INNER JOIN ut_utenti ON ut_codice = or_ut_codice
                  INNER JOIN pr_prodotti ON or_pr_codice = pr_codice
                  WHERE or_stato_export > 0
                  ORDER BY or_codice";
@@ -33,9 +33,9 @@
     while (($row_data = $result->fetch_assoc()) !== NULL) {
     
         $list[] = array(
-            $row_data['cl_nominativo'],
-            $row_data['cl_indirizzo'].', '.$row_data['cl_comune'].' ('.$row_data['cl_provincia'].')',
-            $row_data['cl_cap'],
+            $row_data['ut_nominativo'],
+            $row_data['ut_indirizzo'].', '.$row_data['ut_citta'].' ('.$row_data['ut_provincia'].')',
+            $row_data['ut_cap'],
             'info@moncaffe.it', //email statica
             '0', //CELL statica impostata su 0
             $row_data['or_pagamento'],

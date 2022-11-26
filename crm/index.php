@@ -10,7 +10,7 @@ header('Content-Type: text/html; charset=ISO-8859-1');
     <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
     <meta name="author" content="potenzaglobalsolutions.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>MonCaff&egrave;.it / Software CRM</title>
+    <title>Smartex.it / Software CRM</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.png" />
@@ -52,7 +52,7 @@ header('Content-Type: text/html; charset=ISO-8859-1');
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-8 col-md-8 login-fancy-bg bg" >
                     <div class="login-fancy">
-                        <h3 class="text-white mb-20">Benvenuto nel CRM di MonCaff&egrave;.it</h3>
+                        <h3 class="text-white mb-20">Benvenuto nel CRM di Smartex.it</h3>
                         <p class="mb-20 text-white">Seleziona il tipo di accesso che desideri eseguire cliccando sul relativo link.</p>
 
                         <a style=" margin: 10px auto; width:250px; text-align: center; background-color: #dda047!important;" class="btn text-white" href="admin">Accesso Admin</a><br>

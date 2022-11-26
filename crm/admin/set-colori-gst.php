@@ -11,7 +11,7 @@
     <body>
 
     <?php
-    $get_cl_id = isset($_GET['cl_id']) ? (int)$_GET['cl_id'] : 0;
+    $get_ut_id = isset($_GET['ut_id']) ? (int)$_GET['ut_id'] : 0;
     ?>
 
     <div class="wrapper">
@@ -58,7 +58,7 @@
                                 <div class="card-body">
 
                                     <?php
-                                    if($get_cl_id > 0) include "inc/form-set-colori-mod.php";
+                                    if($get_ut_id > 0) include "inc/form-set-colori-mod.php";
                                     else include "inc/form-set-colori-add.php";
                                     ?>
 
@@ -99,7 +99,7 @@
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(cl_id) FROM cl_colori WHERE cl_id > 0 ";
+                                            $querySql = "SELECT COUNT(ut_id) FROM ut_colori WHERE ut_id > 0 ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -114,26 +114,26 @@
                                             // primo parametro di LIMIT
                                             $primo = ($current_page - 1) * $per_page;
 
-                                            $querySql = "SELECT * FROM cl_colori WHERE cl_id > 0 ";
-                                            $querySql .= " ORDER BY cl_colore LIMIT $primo, $per_page";
+                                            $querySql = "SELECT * FROM ut_colori WHERE ut_id > 0 ";
+                                            $querySql .= " ORDER BY ut_colore LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                                $cl_id = $row_data['cl_id'];
+                                                $ut_id = $row_data['ut_id'];
 
                                                 echo "<tr>";
-                                                echo "<td>$cl_id</td>";
-                                                echo "<td>".$row_data['cl_colore']."</td>";
+                                                echo "<td>$ut_id</td>";
+                                                echo "<td>".$row_data['ut_colore']."</td>";
 
                                                 //RGB
-                                                echo "<td><p style='background-color: ".$row_data['cl_rgb']."; width: 25px; height: 25px;'></p></td>";
+                                                echo "<td><p style='background-color: ".$row_data['ut_rgb']."; width: 25px; height: 25px;'></p></td>";
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                echo "<a class='btn btn-success btn-sm' href='set-colori-gst.php?cl_id=$cl_id' title='Modifica'>modifica</a>&nbsp;";
-                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='set-colori-del-do.php?cl_id=$cl_id'><i class='fas fa-trash-alt'></i></button>";
+                                                echo "<a class='btn btn-success btn-sm' href='set-colori-gst.php?ut_id=$ut_id' title='Modifica'>modifica</a>&nbsp;";
+                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='set-colori-del-do.php?ut_id=$ut_id'><i class='fas fa-trash-alt'></i></button>";
                                                 echo "</td>";
                                                 echo "</tr>";
 

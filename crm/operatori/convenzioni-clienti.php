@@ -9,7 +9,7 @@ $rows = $dbConn->affected_rows;
 $cv_titolo = $result->fetch_array()[0];
 $result->close();
 
-$querySql = "SELECT * FROM ca_convenzioni_clienti INNER JOIN cl_clienti ON cl_id = ca_cl_id WHERE ca_id = '$get_ca_id' ";
+$querySql = "SELECT * FROM ca_convenzioni_clienti INNER JOIN ut_utenti ON ut_id = ca_ut_id WHERE ca_id = '$get_ca_id' ";
 $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 $row_data = $result->fetch_assoc();
@@ -116,10 +116,10 @@ $result->close();
 
                                             <div class="col-md-6 mb-3">
 
-                                                <label for="cl_ragione_sociale">Cliente *</label>
+                                                <label for="ut_ragione_sociale">Cliente *</label>
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="cl_ragione_sociale" value="<?php echo @$row_data['cl_ragione_sociale']; ?>" required readonly>
-                                                    <input type="hidden" id="cl_id" name="ca_cl_id" value="<?php echo @$row_data['ca_cl_id']; ?>" required>
+                                                    <input type="text" class="form-control" id="ut_ragione_sociale" value="<?php echo @$row_data['ut_ragione_sociale']; ?>" required readonly>
+                                                    <input type="hidden" id="ut_id" name="ca_ut_id" value="<?php echo @$row_data['ca_ut_id']; ?>" required>
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary popup-custom" data-href="attivita-clienti-add.php" type="button">Associa</button>
                                                     </div>
@@ -199,7 +199,7 @@ $result->close();
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql =
-                                                "SELECT * FROM ca_convenzioni_clienti INNER JOIN cl_clienti ON cl_id = ca_cl_id ".
+                                                "SELECT * FROM ca_convenzioni_clienti INNER JOIN ut_utenti ON ut_id = ca_ut_id ".
                                                 "WHERE ca_cv_id = '$get_cv_id' ORDER BY ca_timestamp_scadenza LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -209,7 +209,7 @@ $result->close();
                                                 $ca_id = $row_data['ca_id'];
 
                                                 echo "<tr>";
-                                                echo "<td>".$row_data['cl_ragione_sociale']."</td>";
+                                                echo "<td>".$row_data['ut_ragione_sociale']."</td>";
                                                 echo "<td>".date("d/m/Y", $row_data['ca_timestamp_attivazione'])."</td>";
                                                 echo "<td>".date("d/m/Y", $row_data['ca_timestamp_scadenza'])."</td>";
 

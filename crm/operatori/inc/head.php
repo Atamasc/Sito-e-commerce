@@ -4,7 +4,7 @@
 <meta name="description" content="Webmin - Bootstrap 4 & Angular 5 Admin Dashboard Template" />
 <meta name="author" content="potenzaglobalsolutions.com" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<title>MonCaff&egrave;.it / Software CRM</title>
+<title>Smartex.it / Software CRM</title>
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="../images/favicon.png" />

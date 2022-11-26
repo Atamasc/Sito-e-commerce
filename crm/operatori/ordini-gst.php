@@ -18,7 +18,7 @@ $get_or_stato = isset($_GET['or_stato']) ? $dbConn->real_escape_string(stripslas
 $get_or_archivio = isset($_GET['or_archivio']) ? (int)$_GET['or_archivio'] : 0;
 
 $get_or_codice = isset($_GET['or_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['or_codice']))) : "";
-$get_cl_codice = isset($_GET['cl_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_codice']))) : "";
+$get_ut_codice = isset($_GET['ut_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_codice']))) : "";
 ?>
 
 <div class="wrapper">
@@ -113,11 +113,11 @@ $get_cl_codice = isset($_GET['cl_codice']) ? $dbConn->real_escape_string(stripsl
 
                                     </div>
 
-                                    <input type="hidden" name="cl_codice" value="<?php echo $get_cl_codice; ?>">
+                                    <input type="hidden" name="ut_codice" value="<?php echo $get_ut_codice; ?>">
                                     <button class="btn btn-primary" type="submit">Cerca</button>
-                                    <?php if (strlen($get_cl_codice) > 0)
+                                    <?php if (strlen($get_ut_codice) > 0)
                                         echo "<a class='btn btn-orange popup-custom' data-pop-width='1200' data-pop-height='800' href='javascript:;' ".
-                                        "data-href='ordini-prodotti-add.php?cl_codice=$get_cl_codice&or_timestamp=".time()."' title='Ordini'>Inserisci ordine</a>&nbsp;"; ?>
+                                        "data-href='ordini-prodotti-add.php?ut_codice=$get_ut_codice&or_timestamp=".time()."' title='Ordini'>Inserisci ordine</a>&nbsp;"; ?>
 
                                 </form>
 
@@ -160,14 +160,14 @@ $get_cl_codice = isset($_GET['cl_codice']) ? $dbConn->real_escape_string(stripsl
                                         <tbody>
                                         
                                         <?php
-                                        $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN cl_clienti ON cl_codice = or_cl_codice ".
+                                        $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN ut_utenti ON ut_codice = or_ut_codice ".
                                             "WHERE or_archivio = $get_or_archivio AND or_op_id = '$session_id' ";
                                         if(strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
                                         if(strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
                                         if(strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
                                         if(strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
                                         if(strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
-                                        if(strlen($get_cl_codice) > 0) $querySql .= " AND or_cl_codice LIKE '%$get_cl_codice%' ";
+                                        if(strlen($get_ut_codice) > 0) $querySql .= " AND or_ut_codice LIKE '%$get_ut_codice%' ";
                                         $result = $dbConn->query($querySql);
                                         $row = $result->fetch_row();
 
@@ -184,13 +184,13 @@ $get_cl_codice = isset($_GET['cl_codice']) ? $dbConn->real_escape_string(stripsl
 
                                         $querySql =
                                             "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini ".
-                                            "INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE or_archivio = $get_or_archivio AND or_op_id = '$session_id' ";
+                                            "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_archivio = $get_or_archivio AND or_op_id = '$session_id' ";
                                         if(strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
                                         if(strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
                                         if(strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
                                         if(strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
                                         if(strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
-                                        if(strlen($get_cl_codice) > 0) $querySql .= " AND or_cl_codice LIKE '%$get_cl_codice%' ";
+                                        if(strlen($get_ut_codice) > 0) $querySql .= " AND or_ut_codice LIKE '%$get_ut_codice%' ";
                                         $querySql .= " GROUP BY or_codice ORDER BY or_codice DESC LIMIT $primo, $per_page ";
                                         $result = $dbConn->query($querySql);
                                         $rows = $dbConn->affected_rows;
@@ -202,7 +202,7 @@ $get_cl_codice = isset($_GET['cl_codice']) ? $dbConn->real_escape_string(stripsl
 
                                             echo "<tr>";
                                             echo "<td>$or_codice del ".date('d/m/Y - H:i', $or_codice)."</td>";
-                                            echo "<td>".$row_data['cl_ragione_sociale']."</td>";
+                                            echo "<td>".$row_data['ut_ragione_sociale']."</td>";
                                             echo "<td class='text-center'>&euro; ".formatPrice($row_data['or_totale_importo'])."</td>";
 
                                             //Stato di evasione

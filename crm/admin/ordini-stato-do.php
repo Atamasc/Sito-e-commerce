@@ -17,13 +17,13 @@ $rows = $dbConn->affected_rows;
 
 if ($or_stato == 1) {
 
-    $querySql = "SELECT or_ordini.*, cl_email FROM or_ordini INNER JOIN cl_clienti ON cl_codice = or_cl_codice WHERE or_codice = '$or_codice' ";
+    $querySql = "SELECT or_ordini.*, ut_email FROM or_ordini INNER JOIN ut_utenti ON ut_codice = or_ut_codice WHERE or_codice = '$or_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_assoc();
 
-    $or_cl_codice = $row_data["or_cl_codice"];
+    $or_ut_codice = $row_data["or_ut_codice"];
     $or_tracking = $row_data["or_tracking"];
-    $cl_email = $row_data["cl_email"];
+    $ut_email = $row_data["ut_email"];
 
     $importo_totale_ordine = 0;
 
@@ -31,12 +31,12 @@ if ($or_stato == 1) {
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
-    $or_totale = getTotaleOrdine($or_cl_codice);
+    $or_totale = getTotaleOrdine($or_ut_codice);
 
     while (($row_data = $result->fetch_assoc()) !== NULL) {
 
         $or_id = $row_data['or_id'];
-        $or_cl_codice = $row_data['or_cl_codice'];
+        $or_ut_codice = $row_data['or_ut_codice'];
         $or_pr_codice = $row_data['or_pr_codice'];
         $or_pr_quantita = $row_data['or_pr_quantita'];
         $or_pagamento = $row_data['or_pagamento'];
@@ -80,7 +80,7 @@ if ($or_stato == 1) {
 
     $importo_totale_ordine = $importo_totale_ordine - $or_sconto + $or_tipo_spedizione_prezzo + $or_pagamento_prezzo;
 
-    $cl_email = getEmailClienteByCodice($or_cl_codice, $dbConn);
+    $ut_email = getEmailClienteByCodice($or_ut_codice, $dbConn);
 
     $email_titolo = "Il tuo ordine è stato evaso!";
 
@@ -111,8 +111,8 @@ if ($or_stato == 1) {
             <br>
           
             <p>Codice ordine: $or_codice del ".date('d/m/Y - H:i', substr($or_codice,9))."</p>
-            <p>Email: <strong>".getNominativoClienteByCodice($or_cl_codice, $dbConn)."&nbsp;(".$or_cl_codice.")</strong></p>
-            <p>Indirizzo di spedizione: <strong>".getIndirizzoClienteByCodice($or_cl_codice, $dbConn)."</strong></p>
+            <p>Email: <strong>".getNominativoClienteByCodice($or_ut_codice, $dbConn)."&nbsp;(".$or_ut_codice.")</strong></p>
+            <p>Indirizzo di spedizione: <strong>".getIndirizzoClienteByCodice($or_ut_codice, $dbConn)."</strong></p>
             <p>Tipo di spedizione: <strong>$or_tipo_spedizione</strong></p>
             <p>Metodo di pagamento: <strong>$or_pagamento</strong></p>
 
@@ -170,7 +170,7 @@ if ($or_stato == 1) {
     include("../class/class.phpmailer.php");
     $mittente = $SMTP['user'];
     $nomemittente = "Evasione ordine";
-    $destinatario = $cl_email;
+    $destinatario = $ut_email;
     $dataFullNow = strftime("%A %d %B %Y", time());
 
     $mail = new PHPMailer;
@@ -190,11 +190,11 @@ if ($or_stato == 1) {
     //intestazioni e corpo dell'email
     $mail->From   = $mittente;
     $mail->FromName = $nomemittente;
-    $mail->AddAddress($cl_email);
+    $mail->AddAddress($ut_email);
     $mail->AddBCC($rootBaseEmail);
     $mail->AddBCC("notifica@lucasweb.it");
     $mail->AddBCC("moncaffe.it+0e2538ac9a@invite.trustpilot.com");
-    $mail->Subject = "Moncaffè.it - Evasione ordine - ".date("d/m/Y", time());
+    $mail->Subject = "Smartex.it - Evasione ordine - ".date("d/m/Y", time());
 
     $mail->Body = $messaggio;
     $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';

@@ -21,7 +21,7 @@ if($pr_prezzo > 0) {
     $result->close();
 
     $or_sp_id = $row_data["or_sp_id"];
-    $or_cl_codice = $row_data["or_cl_codice"];
+    $or_ut_codice = $row_data["or_ut_codice"];
     $or_pagamento = $row_data["or_pagamento"];
     $or_spedizione = $row_data["or_spedizione"];
     $or_tipo_spedizione = $row_data["or_tipo_spedizione"];
@@ -50,10 +50,10 @@ if($pr_prezzo > 0) {
 
     $querySqlOrdini =
         "INSERT INTO or_ordini (".
-        "or_pr_codice, or_codice, or_cl_codice, or_pr_prezzo, or_pr_quantita, or_pagamento, or_spedizione, or_tipo_spedizione, or_note, or_note_admin, or_stato_conferma, or_stato_pagamento, ".
+        "or_pr_codice, or_codice, or_ut_codice, or_pr_prezzo, or_pr_quantita, or_pagamento, or_spedizione, or_tipo_spedizione, or_note, or_note_admin, or_stato_conferma, or_stato_pagamento, ".
         "or_coupon_tipo, or_coupon_valore, or_coupon, or_stato_spedizione, or_stato, or_stato_reso, or_archivio, or_tracking, or_sconto, or_fattura, or_regalo , or_rapido, or_eliminato, or_stato_export, or_timestamp".
         ") VALUES (".
-        " '$or_pr_codice', '$get_or_codice', '$or_cl_codice', '$pr_prezzo', 1, '$or_pagamento', '$or_spedizione', '$or_tipo_spedizione', '$or_note', '$or_note_admin', '$or_stato_conferma', '$or_stato_pagamento', ".
+        " '$or_pr_codice', '$get_or_codice', '$or_ut_codice', '$pr_prezzo', 1, '$or_pagamento', '$or_spedizione', '$or_tipo_spedizione', '$or_note', '$or_note_admin', '$or_stato_conferma', '$or_stato_pagamento', ".
         "'$or_coupon_tipo', '$or_coupon_valore', '$or_coupon', '$or_stato_spedizione', '$or_stato', '$or_stato_reso', '$or_archivio', '$or_tracking', '$or_sconto', '$or_fattura', '$or_regalo', '$or_rapido', '$or_eliminato', '$or_stato_export', '$or_timestamp'".
         ") ";
     $result = $dbConn->query($querySqlOrdini);

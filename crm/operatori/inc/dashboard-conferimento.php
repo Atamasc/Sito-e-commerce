@@ -26,7 +26,7 @@
                         <tbody>
 
                         <?php
-                        $querySql = "SELECT * FROM cn_conferimento INNER JOIN cl_clienti ON cl_id = cn_om_id WHERE cn_id > 0 ORDER BY cn_id LIMIT 0, 10";
+                        $querySql = "SELECT * FROM cn_conferimento INNER JOIN ut_utenti ON ut_id = cn_om_id WHERE cn_id > 0 ORDER BY cn_id LIMIT 0, 10";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
 
@@ -36,7 +36,7 @@
 
                             echo "<tr>";
                             echo "<td>$cn_id</td>";
-                            echo "<td>".$row_data['cl_ragione_sociale']."</td>";
+                            echo "<td>".$row_data['ut_ragione_sociale']."</td>";
                             echo "<td>".$row_data['cn_offerta']."</td>";
                             echo "<td>".$row_data['cn_tr_ragione_sociale']."</td>";
                             echo "<td>".$row_data['cn_pr_ragione_sociale']."</td>";

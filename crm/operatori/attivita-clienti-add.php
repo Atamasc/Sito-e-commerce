@@ -11,8 +11,8 @@
 <body>
 
 <?php
-$get_cl_ragione_sociale = isset($_GET['cl_ragione_sociale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_ragione_sociale']))) : "";
-$get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_email']))) : "";
+$get_ut_ragione_sociale = isset($_GET['ut_ragione_sociale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_ragione_sociale']))) : "";
+$get_ut_email = isset($_GET['ut_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_email']))) : "";
 ?>
 
 <div class="wrapper">
@@ -51,14 +51,14 @@ $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslas
                                     <div class="form-row">
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="cl_ragione_sociale">Ragione sociale</label>
-                                            <input type="text" name="cl_ragione_sociale" class="form-control" value="<?php echo $get_cl_ragione_sociale; ?>">
+                                            <label for="ut_ragione_sociale">Ragione sociale</label>
+                                            <input type="text" name="ut_ragione_sociale" class="form-control" value="<?php echo $get_ut_ragione_sociale; ?>">
                                         </div>
 
                                         <div class="col-md-6 mb-3">
-                                            <label for="cl_email">Email</label>
-                                            <input name="cl_email" id="cl_email" class="form-control" type="text" autocomplete="off"
-                                                   value="<?php echo $get_cl_email; ?>">
+                                            <label for="ut_email">Email</label>
+                                            <input name="ut_email" id="ut_email" class="form-control" type="text" autocomplete="off"
+                                                   value="<?php echo $get_ut_email; ?>">
                                         </div>
 
                                     </div>
@@ -103,9 +103,9 @@ $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslas
                                         <tbody>
 
                                         <?php
-                                        $querySql = "SELECT COUNT(cl_id) FROM cl_clienti WHERE cl_id > 0 ";
-                                        if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                        if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
+                                        $querySql = "SELECT COUNT(ut_id) FROM ut_utenti WHERE ut_id > 0 ";
+                                        if(strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                        if(strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                         $result = $dbConn->query($querySql);
                                         $row = $result->fetch_row();
 
@@ -120,25 +120,25 @@ $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslas
                                         // primo parametro di LIMIT
                                         $primo = ($current_page - 1) * $per_page;
 
-                                        $querySql = "SELECT * FROM cl_clienti WHERE cl_id > 0 ";
-                                        if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                        if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
-                                        $querySql .= " ORDER BY cl_id LIMIT $primo, $per_page";
+                                        $querySql = "SELECT * FROM ut_utenti WHERE ut_id > 0 ";
+                                        if(strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                        if(strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
+                                        $querySql .= " ORDER BY ut_id LIMIT $primo, $per_page";
                                         $result = $dbConn->query($querySql);
                                         $rows = $dbConn->affected_rows;
 
                                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                            $cl_id = $row_data['cl_id'];
-                                            $cl_ragione_sociale = $row_data['cl_ragione_sociale'];
+                                            $ut_id = $row_data['ut_id'];
+                                            $ut_ragione_sociale = $row_data['ut_ragione_sociale'];
 
                                             echo "<tr>";
-                                            echo "<td>$cl_ragione_sociale</td>";
-                                            echo "<td>".$row_data['cl_email']."</td>";
+                                            echo "<td>$ut_ragione_sociale</td>";
+                                            echo "<td>".$row_data['ut_email']."</td>";
 
                                             //Gestione
                                             echo "<td align='center'>";
-                                            echo "<a class='btn btn-primary btn-sm' href='javascript:pageAddCliente($cl_id, \"$cl_ragione_sociale\");' title='Conferimento'>associa</a>&nbsp;";
+                                            echo "<a class='btn btn-primary btn-sm' href='javascript:pageAddCliente($ut_id, \"$ut_ragione_sociale\");' title='Conferimento'>associa</a>&nbsp;";
                                             echo "</td>";
                                             echo "</tr>";
 
@@ -206,10 +206,10 @@ footer -->
 <?php include "inc/javascript.php"; ?>
 
 <script>
-    function pageAddCliente(cl_id, cl_ragione_sociale) {
+    function pageAddCliente(ut_id, ut_ragione_sociale) {
 
-        window.opener.$("#cl_id").val(cl_id);
-        window.opener.$("#cl_ragione_sociale").val(cl_ragione_sociale);
+        window.opener.$("#ut_id").val(ut_id);
+        window.opener.$("#ut_ragione_sociale").val(ut_ragione_sociale);
         window.close();
 
     }

@@ -26,7 +26,7 @@
                         <?php
                         $querySql =
                             "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini ".
-                            "INNER JOIN cl_clienti ON or_cl_codice = cl_codice WHERE ".strlen(or_codice)." > 0 ".
+                            "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE ".strlen(or_codice)." > 0 ".
                             "GROUP BY or_codice ORDER BY or_codice DESC LIMIT 0, 5 ";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
@@ -55,7 +55,7 @@
 
                             echo "<tr>";
                             echo "<td>$or_codice del ".date('d/m/Y - H:i', substr($or_codice,9))."</td>";
-                            echo "<td>".$row_data['cl_nome']." ".$row_data['cl_cognome']."</td>";
+                            echo "<td>".$row_data['ut_nome']." ".$row_data['ut_cognome']."</td>";
                             echo "<td class='text-center'>&euro; ".formatPrice($or_totale)."</td>";
 
                             //Stato di evasione

@@ -11,12 +11,11 @@
     <body>
 
     <?php
-    $get_cl_nome = isset($_GET['cl_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_nome']))) : "";
-    $get_cl_cognome = isset($_GET['cl_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_cognome']))) : "";
-    $get_cl_ragione_sociale = isset($_GET['cl_ragione_sociale']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_ragione_sociale']))) : "";
-    $get_cl_email = isset($_GET['cl_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_email']))) : "";
-    $get_cl_telefono = isset($_GET['cl_telefono']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_telefono']))) : "";
-    $get_cl_rapido = isset($_GET['cl_rapido']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cl_rapido']))) : "";
+    $get_ut_nome = isset($_GET['ut_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_nome']))) : "";
+    $get_ut_cognome = isset($_GET['ut_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_cognome']))) : "";
+    $get_ut_email = isset($_GET['ut_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_email']))) : "";
+    $get_ut_telefono = isset($_GET['ut_telefono']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_telefono']))) : "";
+    $get_ut_rapido = isset($_GET['ut_rapido']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_rapido']))) : "";
     ?>
 
     <div class="wrapper">
@@ -44,11 +43,12 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4 class="mb-0"> Gestione clienti <?php echo $get_cl_rapido; ?> </h4>
+                                <h4 class="mb-0"> Gestione clienti <?php echo $get_ut_rapido; ?> </h4>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Gestione clienti</li>
                                 </ol>
                             </div>
@@ -70,43 +70,41 @@
 
                                             <div class="col-md-2 mb-3">
                                                 <label>Nome</label>
-                                                <input type="text" name="cl_nome" class="form-control" value="<?php echo $get_cl_nome; ?>">
+                                                <input type="text" name="ut_nome" class="form-control" value="<?php echo $get_ut_nome; ?>">
                                                 <span class="tooltips">Nome Cliente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nome Cliente" data-content="Inserisci qui il nome del cliente che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-2 mb-3">
                                                 <label>Cognome</label>
-                                                <input type="text" name="cl_cognome" class="form-control" value="<?php echo $get_cl_cognome; ?>">
+                                                <input type="text" name="ut_cognome" class="form-control" value="<?php echo $get_ut_cognome; ?>">
                                                 <span class="tooltips">Cognome Cliente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Cognome Cliente" data-content="Inserisci qui il cognome del cliente che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-2 mb-3">
                                                 <label>Ragione sociale</label>
-                                                <input type="text" name="cl_ragione_sociale" class="form-control" value="<?php echo $get_cl_ragione_sociale; ?>">
+                                                <input type="text" name="ut_ragione_sociale" class="form-control" value="<?php echo $get_ut_ragione_sociale; ?>">
                                                 <span class="tooltips">Ragione Sociale Cliente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Ragione Sociale Cliente" data-content="Inserisci qui la ragione sociale del cliente che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-2 mb-3">
-                                                <label for="cl_telefono">Telefono</label>
-                                                <input name="cl_telefono" id="cl_telefono" class="form-control" type="text" autocomplete="off"
-                                                       value="<?php echo $get_cl_telefono; ?>">
-                                                <span class="tooltips">Telefono Cliente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Telefono Cliente" data-content="Inserisci qui il numero di telefono del cliente che stai cercando">[aiuto]</a></span>
+                                                <label for="ut_telefono">Telefono</label>
+                                                <input name="ut_telefono" id="ut_telefono" class="form-control" type="text" autocomplete="off"
+                                                        value="<?php echo $get_ut_telefono; ?>"> <span class="tooltips">Telefono Cliente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Telefono Cliente" data-content="Inserisci qui il numero di telefono del cliente che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-2 mb-3">
-                                                <label for="cl_email">Email</label>
-                                                <input name="cl_email" id="cl_email" class="form-control" type="text" autocomplete="off"
-                                                       value="<?php echo $get_cl_email; ?>">
-                                                <span class="tooltips">E-mail Cliente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="E-mail Cliente" data-content="Inserisci qui l'indirizzo e-mail del cliente che stai cercando">[aiuto]</a></span>
+                                                <label for="ut_email">Email</label>
+                                                <input name="ut_email" id="ut_email" class="form-control" type="text" autocomplete="off"
+                                                        value="<?php echo $get_ut_email; ?>"> <span class="tooltips">E-mail Cliente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="E-mail Cliente" data-content="Inserisci qui l'indirizzo e-mail del cliente che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-2 mb-3">
-                                                <label for="cl_rapido">Tipo</label>
-                                                <select class="form-control" id="cl_rapido" name="cl_rapido">
+                                                <label for="ut_rapido">Tipo</label>
+                                                <select class="form-control" id="ut_rapido" name="ut_rapido">
                                                     <option value="">Seleziona un tipo</option>
                                                     <option value=""></option>
-                                                    <option value="Standard" <?php if($get_cl_rapido == 'Standard') echo 'selected'; ?>>Standard</option>
-                                                    <option value="Rapido" <?php if($get_cl_rapido == 'Rapido') echo 'selected'; ?>>Rapido</option>
+                                                    <option value="Standard" <?php if ($get_ut_rapido == 'Standard') echo 'selected'; ?>>Standard</option>
+                                                    <option value="Rapido" <?php if ($get_ut_rapido == 'Rapido') echo 'selected'; ?>>Rapido</option>
                                                 </select>
                                             </div>
 
@@ -129,7 +127,7 @@
                                     <h5 class="card-title border-0 pb-0">Lista clienti</h5>
 
                                     <?php
-                                    if(@$_GET['delete'] == 'true') {
+                                    if (@$_GET['delete'] == 'true') {
 
                                         ?>
                                         <div class="alert alert-success" role="alert">
@@ -157,14 +155,14 @@
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(cl_id) FROM cl_clienti WHERE cl_id > 0 ";
-                                            if(strlen($get_cl_nome) > 0) $querySql .= " AND cl_nome LIKE '%$get_cl_nome%' ";
-                                            if(strlen($get_cl_cognome) > 0) $querySql .= " AND cl_cognome LIKE '%$get_cl_cognome%' ";
-                                            if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                            if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
-                                            if(strlen($get_cl_telefono) > 0) $querySql .= " AND cl_telefono LIKE '%$get_cl_telefono%' ";
-                                            if($get_cl_rapido == 'Rapido') $querySql .= " AND cl_rapido = '1' ";
-                                            if($get_cl_rapido == 'Standard') $querySql .= " AND cl_rapido = '0' ";
+                                            $querySql = "SELECT COUNT(ut_id) FROM ut_utenti WHERE ut_id > 0 ";
+                                            if (strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                            if (strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                            if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
+                                            if (strlen($get_ut_telefono) > 0) $querySql .= " AND ut_telefono LIKE '%$get_ut_telefono%' ";
+                                            if ($get_ut_rapido == 'Rapido') $querySql .= " AND ut_rapido = '1' ";
+                                            if ($get_ut_rapido == 'Standard') $querySql .= " AND ut_rapido = '0' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -179,32 +177,32 @@
                                             // primo parametro di LIMIT
                                             $primo = ($current_page - 1) * $per_page;
 
-                                            $querySql = "SELECT * FROM cl_clienti WHERE cl_id > 0 ";
-                                            if(strlen($get_cl_nome) > 0) $querySql .= " AND cl_nome LIKE '%$get_cl_nome%' ";
-                                            if(strlen($get_cl_cognome) > 0) $querySql .= " AND cl_cognome LIKE '%$get_cl_cognome%' ";
-                                            if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                            if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
-                                            if(strlen($get_cl_telefono) > 0) $querySql .= " AND cl_telefono LIKE '%$get_cl_telefono%' ";
-                                            if($get_cl_rapido == 'Rapido') $querySql .= " AND cl_rapido = '1' ";
-                                            if($get_cl_rapido == 'Standard') $querySql .= " AND cl_rapido = '0' ";
-                                            $querySql .= " ORDER BY cl_id LIMIT $primo, $per_page";
+                                            $querySql = "SELECT * FROM ut_utenti WHERE ut_id > 0 ";
+                                            if (strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                            if (strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                            if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
+                                            if (strlen($get_ut_telefono) > 0) $querySql .= " AND ut_telefono LIKE '%$get_ut_telefono%' ";
+                                            if ($get_ut_rapido == 'Rapido') $querySql .= " AND ut_rapido = '1' ";
+                                            if ($get_ut_rapido == 'Standard') $querySql .= " AND ut_rapido = '0' ";
+                                            $querySql .= " ORDER BY ut_id LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                                $cl_id = $row_data['cl_id'];
+                                                $ut_id = $row_data['ut_id'];
 
                                                 echo "<tr>";
-                                                echo "<td>$cl_id</td>";
-                                                echo "<td>".$row_data['cl_nome']."</td>";
-                                                echo "<td>".$row_data['cl_cognome']."</td>";
-                                                echo "<td>".$row_data['cl_email']."</td>";
+                                                echo "<td>$ut_id</td>";
+                                                echo "<td>" . $row_data['ut_nome'] . "</td>";
+                                                echo "<td>" . $row_data['ut_cognome'] . "</td>";
+                                                echo "<td>" . $row_data['ut_email'] . "</td>";
 
                                                 //Tipo
                                                 echo "<td align='center'>";
 
-                                                if ($row_data['cl_rapido'] == 0 ) {
+                                                if ($row_data['ut_rapido'] == 0) {
                                                     echo "<div class='btn btn-primary btn-sm'>Standard</div>";
                                                 } else {
                                                     echo "<div class='btn btn-dark btn-sm'>Rapido</div>";
@@ -212,12 +210,12 @@
                                                 echo "</td>";
 
                                                 //Stato
-                                                $checked = $row_data['cl_stato'] > 0 ? "checked" : "";
+                                                $checked = $row_data['ut_stato'] > 0 ? "checked" : "";
                                                 echo "<td align='center'>";
                                                 ?>
                                                 <div class="checkbox checbox-switch switch-success">
                                                     <label>
-                                                        <input type="checkbox" class="stato" title="clienti-stato-do.php?cl_id=<?php echo $cl_id; ?>" <?php echo $checked; ?>><span></span>
+                                                        <input type="checkbox" class="stato" title="clienti-stato-do.php?ut_id=<?php echo $ut_id; ?>" <?php echo $checked; ?>><span></span>
                                                     </label>
                                                 </div>
                                                 <?php
@@ -225,10 +223,10 @@
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                //echo "<a class='btn btn-purple btn-sm' href='clienti-sedi.php?cl_id=$cl_id' title='Sedi'>sedi</a>&nbsp;";
-                                                echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?cl_id=$cl_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
-                                                echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?cl_id=$cl_id' title='Modifica anagrafica'>modifica</a>&nbsp;";
-                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='clienti-del-do.php?cl_id=$cl_id'><i class='fas fa-trash-alt'></i></button>";
+                                                //echo "<a class='btn btn-purple btn-sm' href='clienti-sedi.php?ut_id=$ut_id' title='Sedi'>sedi</a>&nbsp;";
+                                                echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?ut_id=$ut_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
+                                                echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?ut_id=$ut_id' title='Modifica anagrafica'>modifica</a>&nbsp;";
+                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='clienti-del-do.php?ut_id=$ut_id'><i class='fas fa-trash-alt'></i></button>";
                                                 echo "</td>";
                                                 echo "</tr>";
 
@@ -245,11 +243,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";

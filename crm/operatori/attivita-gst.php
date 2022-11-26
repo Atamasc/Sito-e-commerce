@@ -73,7 +73,7 @@
                                         <tbody>
 
                                         <?php
-                                        $querySql = "SELECT COUNT(at_id) FROM at_attivita INNER JOIN cl_clienti ON cl_id = at_cl_id WHERE at_id > 0 ";
+                                        $querySql = "SELECT COUNT(at_id) FROM at_attivita INNER JOIN ut_utenti ON ut_id = at_ut_id WHERE at_id > 0 ";
                                         $result = $dbConn->query($querySql);
                                         $row = $result->fetch_row();
 
@@ -88,7 +88,7 @@
                                         // primo parametro di LIMIT
                                         $primo = ($current_page - 1) * $per_page;
 
-                                        $querySql = "SELECT * FROM at_attivita INNER JOIN cl_clienti ON cl_id = at_cl_id WHERE at_id > 0 ";
+                                        $querySql = "SELECT * FROM at_attivita INNER JOIN ut_utenti ON ut_id = at_ut_id WHERE at_id > 0 ";
                                         $querySql .= "ORDER BY at_data_attivita, at_ora_attivita LIMIT $primo, $per_page";
                                         $result = $dbConn->query($querySql);
                                         $rows = $dbConn->affected_rows;
@@ -99,7 +99,7 @@
                                             $at_data_ora = date("d/m/Y", $row_data['at_data_attivita'])." ".$row_data['at_ora_attivita'];
 
                                             echo "<tr>";
-                                            echo "<td>".$row_data['cl_ragione_sociale']."</td>";
+                                            echo "<td>".$row_data['ut_ragione_sociale']."</td>";
                                             echo "<td>".$row_data['at_tipologia']."</td>";
                                             echo "<td>".$row_data['at_luogo']."</td>";
                                             echo "<td>".$row_data['at_esito']."</td>";

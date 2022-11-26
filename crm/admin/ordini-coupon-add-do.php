@@ -3,7 +3,7 @@
 <?php
 $get_or_codice = isset($_POST["or_codice"]) ? $dbConn->real_escape_string($_POST["or_codice"]) : "";
 $or_coupon = isset($_POST["or_coupon"]) ? $dbConn->real_escape_string($_POST["or_coupon"]) : "";
-$or_cl_codice = isset($_POST["or_cl_codice"]) ? $dbConn->real_escape_string($_POST["or_cl_codice"]) : "";
+$or_ut_codice = isset($_POST["or_ut_codice"]) ? $dbConn->real_escape_string($_POST["or_ut_codice"]) : "";
 
 if (strlen($or_coupon) > 0) {
 
@@ -16,7 +16,7 @@ if (strlen($or_coupon) > 0) {
 
     if ($rows > 0) {
 
-        $queryCountSql = "SELECT COUNT(uc_id) FROM uc_utilizzo_coupon WHERE uc_id > 0 AND uc_coupon = '$or_coupon' AND uc_cl_codice = '$or_cl_codice' ";
+        $queryCountSql = "SELECT COUNT(uc_id) FROM uc_utilizzo_coupon WHERE uc_id > 0 AND uc_coupon = '$or_coupon' AND uc_ut_codice = '$or_ut_codice' ";
         $result_count = $dbConn->query($queryCountSql);
         $row = $result_count->fetch_row();
         $row_cnt = $row[0];
@@ -29,15 +29,15 @@ if (strlen($or_coupon) > 0) {
             $rows = $dbConn->affected_rows;
 
             $querySql_delete =
-                "DELETE FROM uc_utilizzo_coupon WHERE uc_ordine = '$get_or_codice' AND uc_cl_codice = '$or_cl_codice' ";
+                "DELETE FROM uc_utilizzo_coupon WHERE uc_ordine = '$get_or_codice' AND uc_ut_codice = '$or_ut_codice' ";
             $result_delete = $dbConn->query($querySql_delete);
             $rows_delete = $dbConn->affected_rows;
 
 
             $querySql_insert = "INSERT INTO uc_utilizzo_coupon (";
-            $querySql_insert .= "uc_cl_codice, uc_coupon, uc_ordine, uc_data ";
+            $querySql_insert .= "uc_ut_codice, uc_coupon, uc_ordine, uc_data ";
             $querySql_insert .= ") VALUES (";
-            $querySql_insert .= "'" . $or_cl_codice . "','" . $or_coupon . "','" . $get_or_codice . "','" . time() . "'";
+            $querySql_insert .= "'" . $or_ut_codice . "','" . $or_coupon . "','" . $get_or_codice . "','" . time() . "'";
             $querySql_insert .= ")";
             $result_insert = $dbConn->query($querySql_insert);
             $rows_insert = $dbConn->affected_rows;

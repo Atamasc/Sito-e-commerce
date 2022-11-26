@@ -1,9 +1,9 @@
 <?php include 'inc/autoloader.php'; ?>
 
 <?php
-$get_cl_id = (int)$_GET['cl_id'];
+$get_ut_id = (int)$_GET['ut_id'];
 
-$querySql = "DELETE FROM cl_colori WHERE cl_id = $get_cl_id";
+$querySql = "DELETE FROM ut_colori WHERE ut_id = $get_ut_id";
 $result = $dbConn->query($querySql);
 $rowscat = $dbConn->affected_rows;
 

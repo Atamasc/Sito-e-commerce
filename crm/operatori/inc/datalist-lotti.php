@@ -52,7 +52,7 @@
 
                         //Gestione
                         echo "<td align='center'>";
-                        //echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?cl_id=$cl_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
+                        //echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?ut_id=$ut_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
                         echo "<a class='btn btn-success btn-sm' href='lotti-mod.php?lt_id=$lt_id' title='Modifica'>modifica</a>&nbsp;";
                         //echo "<button class='btn btn-danger btn-sm elimina' data-href='lotti-del-do.php?lt_id=$lt_id'><i class='far fa-trash-alt'></i></button>";
                         echo "</td>";

@@ -23,6 +23,6 @@ $result = $dbConn->query($querySql);
 $dbConn->close();
 
 echo $result;
-//echo "<meta http-equiv='refresh' content='0;url=anagrafiche-mod.php?cl_id=".$cl_id."&stato=true' />";
+//echo "<meta http-equiv='refresh' content='0;url=anagrafiche-mod.php?ut_id=".$ut_id."&stato=true' />";
 
 ?>

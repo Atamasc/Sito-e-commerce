@@ -22,25 +22,25 @@
                     dataviewLoad();
                     function dataviewLoad() {
 
-                        global $dbConn, $get_cl_id;
+                        global $dbConn, $get_ut_id;
 
-                        $querySql = "SELECT * FROM cl_clienti WHERE cl_id = '$get_cl_id' ";
+                        $querySql = "SELECT * FROM ut_utenti WHERE ut_id = '$get_ut_id' ";
                         $result = $dbConn->query($querySql);
 
                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                            $cl_id = $row_data['cl_id'];
+                            $ut_id = $row_data['ut_id'];
 
                             echo "<tr>";
-                            echo "<td>".$row_data['cl_codice']."</td>";
-                            echo "<td>".$row_data['cl_ragione_sociale']."</td>";
-                            echo "<td>".$row_data['cl_partita_iva']."</td>";
-                            echo "<td>".$row_data['cl_cod_fiscale']."</td>";
+                            echo "<td>".$row_data['ut_codice']."</td>";
+                            echo "<td>".$row_data['ut_ragione_sociale']."</td>";
+                            echo "<td>".$row_data['ut_partita_iva']."</td>";
+                            echo "<td>".$row_data['ut_cod_fiscale']."</td>";
 
                             //Gestione
                             echo "<td align='center'>";
-                            echo "<a class='btn btn-purple btn-sm' href='clienti-sedi.php?cl_id=$cl_id' title='Sedi'>sedi</a>&nbsp;";
-                            echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?cl_id=$cl_id' title='Modifica'>modifica</a>&nbsp;";
+                            echo "<a class='btn btn-purple btn-sm' href='clienti-sedi.php?ut_id=$ut_id' title='Sedi'>sedi</a>&nbsp;";
+                            echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?ut_id=$ut_id' title='Modifica'>modifica</a>&nbsp;";
                             echo "</td>";
                             echo "</tr>";
 

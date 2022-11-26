@@ -12,7 +12,7 @@
 
     <?php
     $get_rc_voto = isset($_GET['rc_voto']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['rc_voto']))) : "";
-    $get_rc_cl_codice = isset($_GET['rc_cl_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['rc_cl_codice']))) : "";
+    $get_rc_ut_codice = isset($_GET['rc_ut_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['rc_ut_codice']))) : "";
     $get_rc_pr_codice = isset($_GET['rc_pr_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['rc_pr_codice']))) : "";
 
     ?>
@@ -67,11 +67,11 @@
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="rc_cl_codice">Cliente</label>
-                                                <select class="form-control" id="cl_codice" name="rc_cl_codice">
+                                                <label for="rc_ut_codice">Cliente</label>
+                                                <select class="form-control" id="ut_codice" name="rc_ut_codice">
                                                     <option value="">Seleziona un cliente</option>
                                                     <option value=""></option>
-                                                    <?php selectCliente($get_rc_cl_codice, $dbConn) ?>
+                                                    <?php selectCliente($get_rc_ut_codice, $dbConn) ?>
                                                 </select>
                                                 <span class="tooltips">Cliente Recensione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Cliente Recensione" data-content="Seleziona qui il nome del cliente che stai cercando">[aiuto]</a></span>
                                             </div>
@@ -140,8 +140,8 @@
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(rc_id) FROM rc_recensioni INNER JOIN cl_clienti ON cl_codice=rc_cl_codice INNER JOIN pr_prodotti ON pr_codice=rc_pr_codice  WHERE rc_id > 0 ";
-                                            if(strlen($get_rc_cl_codice) > 0) $querySql .= " AND rc_cl_codice LIKE '%$get_rc_cl_codice%' ";
+                                            $querySql = "SELECT COUNT(rc_id) FROM rc_recensioni INNER JOIN ut_utenti ON ut_codice=rc_ut_codice INNER JOIN pr_prodotti ON pr_codice=rc_pr_codice  WHERE rc_id > 0 ";
+                                            if(strlen($get_rc_ut_codice) > 0) $querySql .= " AND rc_ut_codice LIKE '%$get_rc_ut_codice%' ";
                                             if(strlen($get_rc_pr_codice) > 0) $querySql .= " AND rc_pr_codice LIKE '%$get_rc_pr_codice%' ";
                                             if(strlen($get_rc_voto) > 0) $querySql .= " AND rc_voto = '$get_rc_voto' ";
                                             $result = $dbConn->query($querySql);
@@ -159,8 +159,8 @@
                                             $primo = ($current_page - 1) * $per_page;
 
 
-                                            $querySql = "SELECT * FROM rc_recensioni INNER JOIN cl_clienti ON cl_codice=rc_cl_codice INNER JOIN pr_prodotti ON pr_codice=rc_pr_codice WHERE rc_id > 0 ";
-                                            if(strlen($get_rc_cl_codice) > 0) $querySql .= " AND rc_cl_codice LIKE '%$get_rc_cl_codice%' ";
+                                            $querySql = "SELECT * FROM rc_recensioni INNER JOIN ut_utenti ON ut_codice=rc_ut_codice INNER JOIN pr_prodotti ON pr_codice=rc_pr_codice WHERE rc_id > 0 ";
+                                            if(strlen($get_rc_ut_codice) > 0) $querySql .= " AND rc_ut_codice LIKE '%$get_rc_ut_codice%' ";
                                             if(strlen($get_rc_pr_codice) > 0) $querySql .= " AND rc_pr_codice LIKE '%$get_rc_pr_codice%' ";
                                             if(strlen($get_rc_voto) > 0) $querySql .= " AND rc_voto = '$get_rc_voto' ";
                                             $querySql .= " ORDER BY rc_id LIMIT $primo, $per_page";
@@ -170,12 +170,12 @@
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
                                                 $rc_id = $row_data['rc_id'];
-                                                $cl_id = $row_data['cl_id'];
+                                                $ut_id = $row_data['ut_id'];
                                                 $pr_id = $row_data['pr_id'];
 
                                                 echo "<tr>";
                                                 echo "<td>$rc_id</td>";
-                                                echo "<td>" . $row_data['cl_nome'] . "</td>";
+                                                echo "<td>" . $row_data['ut_nome'] . "</td>";
                                                 echo "<td>" . $row_data['pr_titolo'] . "</td>";
                                                 echo "<td>" . $row_data['rc_voto'] ."</td>";
                                                 echo "<td>" . date("d/m/Y", $row_data['rc_timestamp']) ."</td>";

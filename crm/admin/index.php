@@ -4,11 +4,11 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 <?php include("../inc/db-conn.php") ?>
 <?php include("../bin/function.php") ?>
 <?php
-$cookie_login = $_COOKIE['login'];
-$cookie_username = $_COOKIE['username'];
-$cookie_password = $_COOKIE['password'];
+$cookie_login = isset($_COOKIE['login']);
+$cookie_username = isset($_COOKIE['username']);
+$cookie_password = isset($_COOKIE['password']);
 
-$checkCookie = $cookie_login."|".$cookie_username."|".$cookie_password;
+$checkCookie = $cookie_login . "|" . $cookie_username . "|" . $cookie_password;
 
 $checkCredentialCookie = get_access_credential($cookie_username, $cookie_password, $dbConn);
 if ($checkCookie == $checkCredentialCookie) {
@@ -40,12 +40,12 @@ if ($checkCookie == $checkCredentialCookie) {
     <!--=================================
     login-->
 
-    <section class="height-100vh d-flex align-items-center page-section-ptb login" style="background-image: url(../images/background.jpg); background-size: cover; background-position: center;" >
+    <section class="height-100vh d-flex align-items-center page-section-ptb login" style="background-image: url(../images/background.jpg); background-size: cover; background-position: center;">
         <div class="container">
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-color: rgba(0,0,0,.2);">
                     <div class="login-fancy">
-                        <h3 class="text-white mb-20">MonCaff&egrave;.it</h3>
+                        <h3 class="text-white mb-20">Smartex.it</h3>
                         <p class="mb-20 text-white">Gestionale web</p>
 
                         <!--
@@ -83,7 +83,7 @@ if ($checkCookie == $checkCredentialCookie) {
                             </div>
                             <div class="section-field">
                                 <div class="remember-checkbox mb-30">
-                                    <input type="checkbox" class="form-control" name="remember" id="remember" />
+                                    <input type="checkbox" class="form-control" name="remember" id="remember"/>
                                     <label for="remember"> Ricordami</label>
                                     <!--<a href="password-recovery.html" class="float-right">Forgot Password?</a>-->
                                 </div>

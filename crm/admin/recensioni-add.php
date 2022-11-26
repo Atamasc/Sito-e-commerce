@@ -97,12 +97,12 @@
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="rc_cl_codice">Cliente *</label>
+                                                <label for="rc_ut_codice">Cliente *</label>
 
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="cl_nome" value="<?php  @$row_data['cl_nome']; ?>"  readonly required>
+                                                    <input type="text" class="form-control" id="ut_nome" value="<?php  @$row_data['ut_nome']; ?>"  readonly required>
 
-                                                    <input type="hidden" id="cl_codice" name="rc_cl_codice" value="<?php  @$row_data['rc_cl_codice']; ?>" >
+                                                    <input type="hidden" id="ut_codice" name="rc_ut_codice" value="<?php  @$row_data['rc_ut_codice']; ?>" >
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary popup-custom" data-href="recensioni-clienti-add.php" type="button">Associa</button>
                                                     </div>

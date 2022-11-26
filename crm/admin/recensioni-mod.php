@@ -12,7 +12,7 @@
 
 <?php
 $get_rc_id = isset($_GET['rc_id']) ? (int)$_GET['rc_id'] : 0;
-//$get_cl_id = isset($_GET['cl_id']) ? (int)$_GET['cl_id'] : 0;
+//$get_ut_id = isset($_GET['ut_id']) ? (int)$_GET['ut_id'] : 0;
 //$get_pr_id = isset($_GET['pr_id']) ? (int)$_GET['pr_id'] : 0;
 
 $querySql = "SELECT * FROM rc_recensioni WHERE rc_id = '$get_rc_id' ";
@@ -20,15 +20,15 @@ $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 $row_data = $result->fetch_assoc();
 
-$cl_codice=$row_data['rc_cl_codice'];
+$ut_codice=$row_data['rc_ut_codice'];
 $pr_codice=$row_data['rc_pr_codice'];
 
-$querySql2 = "SELECT cl_nome FROM cl_clienti  WHERE cl_codice = '$cl_codice'";
+$querySql2 = "SELECT ut_nome FROM ut_utenti  WHERE ut_codice = '$ut_codice'";
 $result2 = $dbConn->query($querySql2);
 $rows = $dbConn->affected_rows;
 $row_data2 = $result2->fetch_assoc();
 
-$nome=$row_data2['cl_nome'];
+$nome=$row_data2['ut_nome'];
 
 $querySql3 = "SELECT pr_titolo FROM pr_prodotti  WHERE pr_codice = '$pr_codice'";
 $result3 = $dbConn->query($querySql3);
@@ -95,11 +95,11 @@ $result3->close();
 
 
                                         <div class="col-md-3 mb-3">
-                                            <label for="rc_cl_codice">Cliente *</label>
+                                            <label for="rc_ut_codice">Cliente *</label>
                                             <div class="input-group mb-3">
-                                                <input type="text" class="form-control" id="cl_nome" value="<?php echo $nome; ?>"  readonly required>
+                                                <input type="text" class="form-control" id="ut_nome" value="<?php echo $nome; ?>"  readonly required>
 
-                                                <input type="hidden" id="cl_codice" name="rc_cl_codice" value="<?php echo @$row_data['rc_cl_codice']; ?>" >
+                                                <input type="hidden" id="ut_codice" name="rc_ut_codice" value="<?php echo @$row_data['rc_ut_codice']; ?>" >
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary popup-custom" data-href="recensioni-clienti-add.php" type="button">Associa</button>
                                                 </div>

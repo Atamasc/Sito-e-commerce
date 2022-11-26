@@ -151,10 +151,10 @@ $result->close();
                                                     <?php
                                                     $querySql =
                                                         "SELECT * FROM ca_convenzioni_clienti ".
-                                                        "INNER JOIN cl_clienti ON cl_id = ca_cl_id ".
+                                                        "INNER JOIN ut_utenti ON ut_id = ca_ut_id ".
                                                         "WHERE ca_cv_id = '$get_cv_id' ";
-                                                    if(strlen($get_cl_ragione_sociale) > 0) $querySql .= " AND cl_ragione_sociale LIKE '%$get_cl_ragione_sociale%' ";
-                                                    if(strlen($get_cl_email) > 0) $querySql .= " AND cl_email LIKE '%$get_cl_email%' ";
+                                                    if(strlen($get_ut_ragione_sociale) > 0) $querySql .= " AND ut_ragione_sociale LIKE '%$get_ut_ragione_sociale%' ";
+                                                    if(strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                                     if(strlen($get_cv_titolo) > 0) $querySql .= " AND cv_titolo LIKE '%$get_cv_titolo%' ";
                                                     $querySql .= "ORDER BY ca_timestamp_scadenza LIMIT 0, 10";
                                                     $result = $dbConn->query($querySql);
@@ -163,19 +163,19 @@ $result->close();
                                                     while (($row_data = $result->fetch_assoc()) !== NULL) {
 
                                                         $ca_id = $row_data['ca_id'];
-                                                        $cl_id = $row_data['cl_id'];
+                                                        $ut_id = $row_data['ut_id'];
                                                         $ca_timestamp_scadenza = $row_data['ca_timestamp_scadenza'];
 
                                                         echo "<tr>";
-                                                        echo "<td>".$row_data['cl_ragione_sociale']."</td>";
-                                                        echo "<td>".$row_data['cl_email']."</td>";
+                                                        echo "<td>".$row_data['ut_ragione_sociale']."</td>";
+                                                        echo "<td>".$row_data['ut_email']."</td>";
                                                         if($ca_timestamp_scadenza <= time()) echo "<td><span class='badge badge-big badge-danger'>".date("d/m/Y", $row_data['ca_timestamp_scadenza'])."</span></td>";
                                                         else if($ca_timestamp_scadenza <= strtotime("+7 days")) echo "<td><span class='badge badge-big badge-warning'>".date("d/m/Y", $row_data['ca_timestamp_scadenza'])."</span></td>";
                                                         else echo "<td><span class='badge badge-big badge-info'>".date("d/m/Y", $row_data['ca_timestamp_scadenza'])."</span></td>";
 
                                                         //Gestione
                                                         echo "<td align='center'>";
-                                                        echo "<a class='btn btn-pistacho btn-sm' href='clienti-scheda.php?cl_id=$cl_id' title='Scheda'>scheda</a>&nbsp;";
+                                                        echo "<a class='btn btn-pistacho btn-sm' href='clienti-scheda.php?ut_id=$ut_id' title='Scheda'>scheda</a>&nbsp;";
                                                         echo "</td>";
                                                         echo "</tr>";
 

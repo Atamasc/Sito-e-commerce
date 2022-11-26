@@ -261,13 +261,13 @@
                                     <ul class="list-unstyled">
 
                                         <?php
-                                        //pageGetAttivita($row_data['cl_id']);
-                                        function pageGetAttivita($cl_id) {
+                                        //pageGetAttivita($row_data['ut_id']);
+                                        function pageGetAttivita($ut_id) {
 
                                             global $dbConn;
 
                                             $querySql =
-                                                "SELECT * FROM at_attivita INNER JOIN cl_clienti ON cl_id = at_cl_id WHERE at_cl_id = '$cl_id' ".
+                                                "SELECT * FROM at_attivita INNER JOIN ut_utenti ON ut_id = at_ut_id WHERE at_ut_id = '$ut_id' ".
                                                 "ORDER BY at_data_attivita, at_ora_attivita ";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -344,7 +344,7 @@
                                     <button type="button" class="dropdown-toggle-split text-muted" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti-more"></i></button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="giacenze-gst.php?pr_tipologia=Rinfusa"><i class="text-success fa fa-list"></i> Vedi tutti</a>
-                                        <!--<a class="dropdown-item" href="omologa-add.php?cl_id=<?php echo $get_cl_id; ?>"><i class="text-success fa fa-plus"></i> Nuova omologa</a>-->
+                                        <!--<a class="dropdown-item" href="omologa-add.php?ut_id=<?php echo $get_ut_id; ?>"><i class="text-success fa fa-plus"></i> Nuova omologa</a>-->
                                     </div>
                                 </div>
 

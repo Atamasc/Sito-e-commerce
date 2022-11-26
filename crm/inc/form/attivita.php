@@ -20,10 +20,10 @@
 
     <div class="col-md-3 mb-3">
 
-        <label for="cl_ragione_sociale">Cliente *</label>
+        <label for="ut_ragione_sociale">Cliente *</label>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" id="cl_ragione_sociale" value="<?php echo @$row_data['cl_ragione_sociale']; ?>" required readonly>
-            <input type="hidden" id="cl_id" name="at_cl_id" value="<?php echo @$row_data['at_cl_id']; ?>" required>
+            <input type="text" class="form-control" id="ut_ragione_sociale" value="<?php echo @$row_data['ut_ragione_sociale']; ?>" required readonly>
+            <input type="hidden" id="ut_id" name="at_ut_id" value="<?php echo @$row_data['at_ut_id']; ?>" required>
             <div class="input-group-append">
                 <button class="btn btn-primary popup-custom" data-href="attivita-clienti-add.php" type="button">Associa</button>
             </div>

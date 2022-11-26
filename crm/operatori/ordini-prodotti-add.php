@@ -1,6 +1,6 @@
 <?php include "inc/autoloader.php"; ?>
 <?php
-$get_cl_codice = $dbConn->real_escape_string(stripslashes(trim($_GET['cl_codice'])));
+$get_ut_codice = $dbConn->real_escape_string(stripslashes(trim($_GET['ut_codice'])));
 $get_or_timestamp = (int)$_GET['or_timestamp'];
 $get_or_tipo = isset($_GET['or_tipo']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['or_tipo']))) : "";
 ?>
@@ -183,7 +183,7 @@ $get_or_tipo = isset($_GET['or_tipo']) ? $dbConn->real_escape_string(stripslashe
 
                                         </div>
 
-                                        <input type="hidden" name="or_cl_codice" value="<?php echo $get_cl_codice; ?>">
+                                        <input type="hidden" name="or_ut_codice" value="<?php echo $get_ut_codice; ?>">
                                         <input type="hidden" name="or_timestamp" value="<?php echo $get_or_timestamp; ?>">
                                         <input type="hidden" name="or_tipo" value="<?php echo $get_or_tipo; ?>">
                                         <input type="hidden" name="or_op_id" id="or_op_id" value="<?php echo $session_id; ?>">

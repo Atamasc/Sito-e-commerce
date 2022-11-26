@@ -41,8 +41,10 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="clienti-gst.php" class="default-color">Gestione clienti</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="clienti-gst.php" class="default-color">Gestione clienti</a></li>
                                     <li class="breadcrumb-item active">Aggiungi cliente</li>
                                 </ol>
                             </div>
@@ -57,7 +59,7 @@
                                     <form method="post" action="clienti-add-do.php">
 
                                         <?php
-                                        if(@$_GET['insert'] == 'true') {
+                                        if (@$_GET['insert'] == 'true') {
 
                                             ?>
                                             <div class="alert alert-success" role="alert">
@@ -65,7 +67,7 @@
                                             </div>
                                             <?php
 
-                                        } else if(@$_GET['insert'] == 'false') {
+                                        } else if (@$_GET['insert'] == 'false') {
 
                                             ?>
                                             <div class="alert alert-error" role="alert">
@@ -81,34 +83,34 @@
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_codice">Codice *</label>
-                                                <input type="text" class="form-control" id="cl_codice" name="cl_codice"
-                                                       value="<?php echo time(); ?>" required>
+                                                <label for="ut_codice">Codice *</label>
+                                                <input type="text" class="form-control" id="ut_codice" name="ut_codice"
+                                                        value="<?php echo time(); ?>" required>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_nome">Nome *</label>
-                                                <input type="text" class="form-control" id="cl_nome" name="cl_nome" required>
+                                                <label for="ut_nome">Nome *</label>
+                                                <input type="text" class="form-control" id="ut_nome" name="ut_nome" required>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_cognome">Cognome *</label>
-                                                <input type="text" class="form-control" id="cl_cognome" name="cl_cognome" required>
+                                                <label for="ut_cognome">Cognome *</label>
+                                                <input type="text" class="form-control" id="ut_cognome" name="ut_cognome" required>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_ragione_sociale">Ragione sociale *</label>
-                                                <input type="text" class="form-control" id="cl_ragione_sociale" name="cl_ragione_sociale" required>
+                                                <label for="ut_ragione_sociale">Ragione sociale *</label>
+                                                <input type="text" class="form-control" id="ut_ragione_sociale" name="ut_ragione_sociale" required>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_cod_fiscale">Codice fiscale</label>
-                                                <input type="text" class="form-control" id="cl_cod_fiscale" name="cl_cod_fiscale">
+                                                <label for="ut_cod_fiscale">Codice fiscale</label>
+                                                <input type="text" class="form-control" id="ut_cod_fiscale" name="ut_cod_fiscale">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_partita_iva">Partita IVA</label>
-                                                <input type="text" class="form-control" id="cl_partita_iva" name="cl_partita_iva">
+                                                <label for="ut_partita_iva">Partita IVA</label>
+                                                <input type="text" class="form-control" id="ut_partita_iva" name="ut_partita_iva">
                                             </div>
 
                                         </div>
@@ -116,28 +118,28 @@
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_sdi">SDI</label>
-                                                <input type="text" class="form-control" id="cl_sdi" name="cl_sdi">
+                                                <label for="ut_sdi">SDI</label>
+                                                <input type="text" class="form-control" id="ut_sdi" name="ut_sdi">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_telefono">Telefono</label>
-                                                <input type="text" class="form-control" id="cl_telefono" name="cl_telefono">
+                                                <label for="ut_telefono">Telefono</label>
+                                                <input type="text" class="form-control" id="ut_telefono" name="ut_telefono">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_cellulare">Cellulare</label>
-                                                <input type="text" class="form-control pattern_number" id="cl_cellulare" name="cl_cellulare">
+                                                <label for="ut_cellulare">Cellulare</label>
+                                                <input type="text" class="form-control pattern_number" id="ut_cellulare" name="ut_cellulare">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_email">Email *</label>
-                                                <input type="email" class="form-control" id="cl_email" name="cl_email" required>
+                                                <label for="ut_email">Email *</label>
+                                                <input type="email" class="form-control" id="ut_email" name="ut_email" required>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_pec">Email PEC</label>
-                                                <input type="email" class="form-control" id="cl_pec" name="cl_pec" >
+                                                <label for="ut_pec">Email PEC</label>
+                                                <input type="email" class="form-control" id="ut_pec" name="ut_pec">
                                             </div>
 
                                         </div>
@@ -146,7 +148,7 @@
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="provincia">Provincia</label>
-                                                <select class="form-control" id="provincia" name="cl_provincia" onchange="getCitta();">
+                                                <select class="form-control" id="provincia" name="ut_provincia" onchange="getCitta();">
                                                     <option value="">Seleziona una provincia</option>
                                                     <option value=""></option>
                                                     <?php selectProvince("", "", $dbConn); ?>
@@ -155,20 +157,20 @@
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="citta">Comune</label>
-                                                <select class="form-control" id="citta" name="cl_comune">
+                                                <select class="form-control" id="citta" name="ut_citta">
                                                     <option value="">Seleziona un comune</option>
                                                     <option value=""></option>
                                                 </select>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_indirizzo">Indirizzo</label>
-                                                <input type="text" class="form-control" id="cl_indirizzo" name="cl_indirizzo">
+                                                <label for="ut_indirizzo">Indirizzo</label>
+                                                <input type="text" class="form-control" id="ut_indirizzo" name="ut_indirizzo">
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_cap">CAP</label>
-                                                <input type="text" class="form-control" id="cl_cap" name="cl_cap" placeholder="CAP" autocomplete="off">
+                                                <label for="ut_cap">CAP</label>
+                                                <input type="text" class="form-control" id="ut_cap" name="ut_cap" placeholder="CAP" autocomplete="off">
                                             </div>
 
                                         </div>
@@ -178,13 +180,13 @@
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_email">Email *</label>
-                                                <input type="email" class="form-control" id="cl_email" name="cl_email" placeholder="Email *" required>
+                                                <label for="ut_email">Email *</label>
+                                                <input type="email" class="form-control" id="ut_email" name="ut_email" placeholder="Email *" required>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="cl_password">Password *</label>
-                                                <input type="text" class="form-control" id="cl_password" name="cl_password" placeholder="Password *" required>
+                                                <label for="ut_password">Password *</label>
+                                                <input type="text" class="form-control" id="ut_password" name="ut_password" placeholder="Password *" required>
                                             </div>
                                         </div>
                                         -->
@@ -206,8 +208,8 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6 mb-3">
-                                                <label for="cl_note">Note</label>
-                                                <textarea class="form-control" id="cl_note" name="cl_note" rows="3"></textarea>
+                                                <label for="ut_note">Note</label>
+                                                <textarea class="form-control" id="ut_note" name="ut_note" rows="3"></textarea>
                                             </div>
 
                                         </div>

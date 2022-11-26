@@ -24,7 +24,7 @@ $root_base_path = "https://sd01lucasweb.it/moncaffe.it";
 $root_site_path = "https://sd01lucasweb.it/moncaffe.it";
 $root_base_email = "info@lucasweb.it";
 
-$title_admin_header = "MonCaffè.it / Software CRM";
+$title_admin_header = "Smartex.it / Software CRM";
 
 //Location path di upload file cartella generica
 $upload_path_dir = "../upload";
