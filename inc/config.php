@@ -8,7 +8,6 @@ setlocale(LC_TIME, 'ita', 'it_IT');
 //setlocale(LC_TIME, 'it_IT@euro');
 
 //Path location root off-line
-//Path location root off-line
 $rootBasePath_http = "http://localhost/Tesi";
 $rootBasePath_https = "";
 $rootBaseEmail = "info@lucasweb.it";
@@ -26,7 +25,8 @@ $root_path = "http://localhost/Tesi";
 $root_base_path = "http://localhost/Tesi";
 $root_site_path = "http://localhost/Tesi";
 $root_base_email = "info@lucasweb.it";
-$title_admin_header = "Smartex.it / Software CRM";
+
+$title_admin_header = "Pepino Shop / Software CRM";
 
 //Location path di upload file cartella generica
 $upload_path_dir = "../upload";
@@ -45,34 +45,14 @@ $upload_view_dir_blog_categorie = "../../upload/blog_categorie";
 $upload_path_dir_sottocategorie = "../../upload/sottocategorie";
 $upload_view_dir_sottocategorie = "../../upload/sottocategorie";
 
-$upload_path_dir_prodotti = "../../upload/prodotti";
-$upload_view_dir_prodotti = "../../upload/prodotti";
-
-$upload_path_dir_prodotti_img = "../../upload/prodotti-immagini";
-$upload_view_dir_prodotti_img = "../../upload/prodotti-immagini";
-
-$upload_path_dir_varianti_img = "../../upload/varianti-immagini";
-$upload_view_dir_varianti_img = "../../upload/varianti-immagini";
-
-$upload_path_dir_marchi = "../../upload/marchi";
-$upload_view_dir_marchi = "../../upload/marchi";
-
-$upload_path_dir_sistemi = "../../upload/sistemi";
-$upload_view_dir_sistemi = "../../upload/sistemi";
-
-$upload_path_dir_linee = "../../upload/linee";
-$upload_view_dir_linee = "../../upload/linee";
-
-$upload_path_dir_slide = "../../upload/slide";
-$upload_view_dir_slide = "../../upload/slide";
-
-$upload_path_dir_box = "../../upload/box";
-$upload_view_dir_box = "../../upload/box";
+$upload_path_dir_prodotti = "../../ftp/immagini";
+$upload_view_dir_prodotti = "../../ftp/immagini";
 
 $upload_path_dir_blog = "../../upload/blog";
 $upload_view_dir_blog = "../../upload/blog";
 
 $upload_path_dir_allegati = "../../upload/allegati";
 $upload_view_dir_allegati = "../../upload/allegati";
+
 
 ?>

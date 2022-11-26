@@ -1,0 +1,121 @@
+#SOSTITUIRE IL DOMINIO
+
+DirectoryIndex index.php index.html
+
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^([^\.]+)$ $1.html [L]
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)$ $1.php [L]
+
+
+RewriteRule ^fast-login/([^\.]+)$ fast-login-do.php?code=$1 [L]
+
+RewriteRule ^unscribe/([^\.]+)$ newsletter-unscribe.php?email=$1 [L]
+
+RewriteRule ^blog/tag/([A-Za-z0-9-]+)-([0-9]+)$ blog-lista.php?tg_id=$2&page_type=2[L]
+RewriteRule ^blog/tag/([A-Za-z0-9-]+)-([0-9]+)/([0-9]+)$ blog-lista.php?tg_id=$2&page=$3&page_type=2 [L]
+RewriteRule ^blog/([A-Za-z0-9-]+)-([0-9]+)$ blog-lista.php?bc_id=$2&page_type=1 [L]
+RewriteRule ^blog/([A-Za-z0-9-]+)-([0-9]+)/([0-9]+)$ blog-lista.php?bc_id=$2&page=$3&page_type=1 [L]
+RewriteRule ^blog/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)-([0-9]+)$ blog-dettaglio.php?bl_id=$3 [L]
+RewriteRule ^blog/([0-9]+)$ blog-lista.php?page=$1 [L]
+RewriteRule ^blog$ blog-lista.php [L]
+
+RewriteRule ^([^\.]+)-pr([0-9-]+)$ dettaglio-prodotto.php?pr_id=$2 [L]
+#RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([^\.]+)$ prodotto-dettaglio.php?pr_codice=$6 [L]
+
+RewriteRule ^ricerca/([^\.]+)/([0-9]+)$ lista-prodotti.php?$1&page=$2&page_type=2 [L]
+RewriteRule ^ricerca/([^\.]+)$ lista-prodotti.php?$1&page_type=2 [L]
+RewriteRule ^ricerca$ lista-prodotti.php?page_type=2 [L]
+RewriteRule ^prodotti/([0-9]+)$ lista-prodotti.php?page=$1&page_type=1 [L]
+RewriteRule ^prodotti$ lista-prodotti.php?page_type=1 [L]
+
+RewriteRule ^([a-z0-9-]+)-mr([0-9-]+)$ lista-prodotti.php?pr_mr_id=$2&page_type=6 [L]
+RewriteRule ^([a-z0-9-]+)-mr([0-9-]+)/([0-9]+)$ lista-prodotti.php?pr_mr_id=$2&page=$3&page_type=6 [L]
+
+RewriteRule ^([a-z0-9-]+)-si([0-9-]+)$ lista-prodotti.php?pr_si_id=$2&page_type=5 [L]
+RewriteRule ^([a-z0-9-]+)-si([0-9-]+)/([0-9]+)$ lista-prodotti.php?pr_si_id=$2&page=$3&page_type=5 [L]
+
+RewriteRule ^([a-z0-9-]+)-ct([0-9-]+)$ lista-prodotti.php?pr_ct_id=$2&page_type=3 [L]
+RewriteRule ^([a-z0-9-]+)-ct([0-9-]+)/([0-9]+)$ lista-prodotti.php?pr_ct_id=$2&page=$3&page_type=3 [L]
+
+RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)-st([0-9-]+)$ lista-prodotti.php?pr_st_id=$3&page_type=4 [L]
+RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)-st([0-9-]+)/([0-9]+)$ lista-prodotti.php?pr_st_id=$3&page=$4&page_type=4 [L]
+
+RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)-st([0-9-]+)-mr([0-9-]+)$ lista-prodotti.php?pr_st_id=$3&pr_mr_id=$4&page_type=7 [L]
+RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)-st([0-9-]+)-mr([0-9-]+)/([0-9]+)$ lista-prodotti.php?pr_st_id=$3&pr_mr_id=$4&page=$5&page_type=7 [L]
+
+RewriteRule ^marchio-([a-z0-9-]+)/linea-([a-z0-9-]+)-([a-z0-9-]+)$ marchi-dettaglio.php?pr_codice_linea=$3&page_type=2 [L]
+RewriteRule ^marchio-([a-z0-9-]+)/linea-([a-z0-9-]+)-([a-z0-9-]+)/([0-9]+)$ marchi-dettaglio.php?pr_codice_linea=$3&page=$4&page_type=2 [L]
+RewriteRule ^marchio-([a-z0-9-]+)/linea-([a-z0-9-]+)/([^\.]+)-([a-z0-9-]+)-([0-9]+)$ marchi-dettaglio.php?pr_codice_linea=$4&pr_fm_codice=$5&page_type=4 [L]
+RewriteRule ^marchio-([a-z0-9-]+)/linea-([a-z0-9-]+)/([^\.]+)-([a-z0-9-]+)-([0-9]+)/([0-9]+)$ marchi-dettaglio.php?pr_codice_linea=$4&pr_fm_codice=$5&page=$6&page_type=4 [L]
+
+RewriteRule ^marchio-([a-z0-9-]+)-([a-z0-9-]+)/prodotti$ marchi-dettaglio.php?pr_codice_marchio=$2&page_type=1 [L]
+RewriteRule ^marchio-([a-z0-9-]+)-([a-z0-9-]+)$ marchi-dettaglio.php?pr_codice_marchio=$2&page_type=1 [L]
+RewriteRule ^marchio-([a-z0-9-]+)-([a-z0-9-]+)/([0-9]+)$ marchi-dettaglio.php?pr_codice_marchio=$2&page=$3&page_type=1 [L]
+RewriteRule ^marchio-([a-z0-9-]+)/([^\.]+)-([a-z0-9-]+)-([0-9]+)$ marchi-dettaglio.php?pr_codice_marchio=$3&pr_fm_codice=$4&page_type=3 [L]
+RewriteRule ^marchio-([a-z0-9-]+)/([^\.]+)-([a-z0-9-]+)-([0-9]+)/([0-9]+)$ marchi-dettaglio.php?pr_codice_marchio=$3&pr_fm_codice=$4&page=$5&page_type=3 [L]
+
+RewriteRule ^in-offerta$ lista-prodotti.php?pr_type=promo&page_type=4 [L]
+RewriteRule ^in-offerta/([0-9]+)$ lista-prodotti.php?pr_type=promo&page_type=4&page=$1 [L]
+RewriteRule ^novita$ lista-prodotti.php?pr_type=novita&page_type=4 [L]
+RewriteRule ^novita/([0-9]+)$ lista-prodotti.php?pr_type=novita&page_type=4&page=$1 [L]
+RewriteRule ^vetrina$ lista-prodotti.php?pr_type=vetrina&page_type=4 [L]
+RewriteRule ^vetrina/([0-9]+)$ lista-prodotti.php?pr_type=vetrina&page_type=4&page=$1 [L]
+
+#RewriteRule ^([a-z0-9-]+)-([^\.]+)$ lista-prodotti.php?pr_codice_merceologia=$2 [L]
+RewriteRule ^([^\.]+)-([0-9]+)$ lista-prodotti.php?pr_fm_codice=$2&page_type=3 [L]
+RewriteRule ^([^\.]+)-([0-9]+)/([0-9]+)$ lista-prodotti.php?pr_fm_codice=$2&page=$3&page_type=3 [L]
+
+#RewriteRule ^([^\.]+)/([a-z0-9-]+)/([a-z0-9-]+)-([0-9]+)$ lista-prodotti.php?lang=$1&st_id=$4&link_type=2 [L]
+#RewriteRule ^([^\.]+)/([a-z0-9-]+)-([0-9]+)$ lista-prodotti.php?lang=$1&ct_id=$3&link_type=1 [L]
+
+#REGOLE CACHING
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE application/javascript
+	AddOutputFilterByType DEFLATE application/rss+xml
+	AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+	AddOutputFilterByType DEFLATE application/x-font
+	AddOutputFilterByType DEFLATE application/x-font-opentype
+	AddOutputFilterByType DEFLATE application/x-font-otf
+	AddOutputFilterByType DEFLATE application/x-font-truetype
+	AddOutputFilterByType DEFLATE application/x-font-ttf
+	AddOutputFilterByType DEFLATE application/x-javascript
+	AddOutputFilterByType DEFLATE application/xhtml+xml
+	AddOutputFilterByType DEFLATE application/xml
+	AddOutputFilterByType DEFLATE font/opentype
+	AddOutputFilterByType DEFLATE font/otf
+	AddOutputFilterByType DEFLATE font/ttf
+	AddOutputFilterByType DEFLATE image/svg+xml
+	AddOutputFilterByType DEFLATE image/x-icon
+	AddOutputFilterByType DEFLATE text/css
+	AddOutputFilterByType DEFLATE text/html
+	AddOutputFilterByType DEFLATE text/javascript
+	AddOutputFilterByType DEFLATE text/plain
+	AddOutputFilterByType DEFLATE text/xml
+
+	BrowserMatch ^Mozilla/4 gzip-only-text/html
+	BrowserMatch ^Mozilla/4\.0[678] no-gzip
+	BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+	Header append Vary User-Agent
+</IfModule>
+
+## EXPIRES CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpg "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/gif "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/pdf "access plus 1 month"
+ExpiresByType text/x-javascript "access plus 1 month"
+ExpiresByType text/javascript "access plus 1 month"
+ExpiresByType application/x-shockwave-flash "access plus 1 month"
+ExpiresByType image/x-icon "access plus 1 year"
+ExpiresDefault "access plus 1 month"
+</IfModule>
+## EXPIRES CACHING ##
+
