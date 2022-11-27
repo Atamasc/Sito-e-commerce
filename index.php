@@ -21,7 +21,7 @@
 <!--====== PRELOADER PART ENDS ======-->
 <div id="main">
 
-    <?php include('inc/header.php'); ?>
+    <?php include('inc/header-index.php'); ?>
 
     <!-- Slider Arae Start -->
     <div class="slider-area">

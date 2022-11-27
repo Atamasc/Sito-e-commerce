@@ -49,10 +49,10 @@
 <!--====== PRELOADER PART ENDS ======-->
 <div id="main">
     <!-- Header Start -->
-    <?php include('inc/header.php'); ?>
+    <?php include('inc/header-2.php'); ?>
     <!-- Header End -->
     <!-- Breadcrumb Area start -->
-    <section class="breadcrumb-area" style="background: url(assets/images/breadcrumb-bg/background-breadcrumb.png); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+    <section class="breadcrumb-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -78,8 +78,7 @@
                         <h3>Accedi</h3>
                         <div class="your-order-wrap gray-bg-4">
                             <p>
-                                Se sei già registrato accedi alla tua area riservata. Se hai smarrito la password chiedi il recupero, ti arriverà una mail con in dati di accesso
-                                sulla casella utilizzata come account.
+                                Se sei già registrato accedi alla tua area riservata. Se hai smarrito la password chiedi il recupero, ti arriverà una mail con in dati di accesso sulla casella utilizzata come account.
                             </p>
                             <p>
                                 Se hai problemi scrivi una mail a info@moncaffe.it oppure contattaci sulla
@@ -93,58 +92,57 @@
                 <div class="col-lg-4">
                     <form action="login-do" method="post">
 
-                    <div class="billing-info-wrap">
-                        <h3>Login</h3>
+                        <div class="billing-info-wrap">
+                            <h3>Login</h3>
 
-                        <p>Inserisci le credenziali per accedere alla tua area clienti, potrai visionare i tuoi dati, i tuoi ordini e i dettagli delle spedizioni.</p><br>
-                        
-                        <?php if(@$_GET['login'] == "true") { ?>
+                            <p>Inserisci le credenziali per accedere alla tua area clienti, potrai visionare i tuoi dati, i tuoi ordini e i dettagli delle spedizioni.</p>
+                            <br>
 
-                            <div class="alert alert-success">
-                                <b>Hai effettuato l'accesso con successo!</b>
-                            </div>
+                            <?php if (@$_GET['login'] == "true") { ?>
 
-                        <?php }
+                                <div class="alert alert-success">
+                                    <b>Hai effettuato l'accesso con successo!</b>
+                                </div>
 
-                        else if(@$_GET['login'] == "false") { ?>
+                            <?php } else if (@$_GET['login'] == "false") { ?>
 
-                            <div class="alert alert-danger">
-                                <b>Attenzione!</b> Combinazione email / password errata o account non attivo.
-                            </div>
+                                <div class="alert alert-danger">
+                                    <b>Attenzione!</b> Combinazione email / password errata o account non attivo.
+                                </div>
 
-                        <?php } ?>
+                            <?php } ?>
 
-                        <?php
-                        if (@$_GET["conferma"] == "true") { ?>
-                            <p class="alert alert-success">Registrazione confermata, ora puoi accedere.</p><br />
-                        <?php } elseif (@$_GET["conferma"] == "false") { ?>
-                            <p class="alert alert-danger">Si &egrave; verificato un errore, riprova.</p><br>
-                        <?php };?>
+                            <?php
+                            if (@$_GET["conferma"] == "true") { ?>
+                                <p class="alert alert-success">Registrazione confermata, ora puoi accedere.</p><br/>
+                            <?php } elseif (@$_GET["conferma"] == "false") { ?>
+                                <p class="alert alert-danger">Si &egrave; verificato un errore, riprova.</p><br>
+                            <?php }; ?>
 
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="billing-info mb-20px">
-                                    <label>Email</label>
-                                    <input type="email" placeholder="Inserisci la tua email" name="cl_email" required>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="billing-info mb-20px">
+                                        <label>Email</label>
+                                        <input type="email" placeholder="Inserisci la tua email" name="cl_email" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="billing-info mb-20px">
+                                        <label>Password</label>
+                                        <input type="password" placeholder="Inserisci la password" name="cl_password" required>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-12 col-md-12">
-                                <div class="billing-info mb-20px">
-                                    <label>Password</label>
-                                    <input type="password" placeholder="Inserisci la password" name="cl_password" required>
-                                </div>
+                            <div class="checkout-account">
+                                <input class="checkout-toggle2" type="checkbox" id="remember">
+                                <label for="check">Ricordami</label>
                             </div>
+
+                            <button class="btn-form">Accedi</button>
+
                         </div>
-
-                        <div class="checkout-account">
-                            <input class="checkout-toggle2" type="checkbox" id="remember">
-                            <label for="check">Ricordami</label>
-                        </div>
-
-                        <button class="btn-form">Accedi</button>
-
-                    </div>
                     </form>
                 </div>
 
@@ -153,38 +151,39 @@
                 <div class="col-lg-4">
                     <form action="recupero-password-do" method="post">
 
-                    <div class="billing-info-wrap">
-                        <h3>Recupero password</h3>
+                        <div class="billing-info-wrap">
+                            <h3>Recupero password</h3>
 
-                        <p>Se hai perso la tua password, inserisci qui la mail con cui ti sei registrato, riceverai una mail con le istruzioni.</p><br>
+                            <p>Se hai perso la tua password, inserisci qui la mail con cui ti sei registrato, riceverai una mail con le istruzioni.</p>
+                            <br>
 
-                        <?php if(@$_GET['recover'] == "true") { ?>
+                            <?php if (@$_GET['recover'] == "true") { ?>
 
-                            <div class="alert alert-success" role="alert">
-                                Ti abbiamo inviato una mail con le credenziali di accesso.
-                            </div>
-
-                        <?php } else if(@$_GET['recover'] == "false") { ?>
-
-                            <div class="alert alert-danger" role="alert">
-                                <b>Attenzione!</b> L'email non risulta esistente o si è verificato un'errore.
-                            </div>
-
-                        <?php } ?>
-
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12">
-                                <div class="billing-info mb-20px">
-                                    <label>Email</label>
-                                    <input type="email" placeholder="Inserisci la tua email" name="cl_email" required value="<?php echo $_GET["email"]; ?>">
+                                <div class="alert alert-success" role="alert">
+                                    Ti abbiamo inviato una mail con le credenziali di accesso.
                                 </div>
+
+                            <?php } else if (@$_GET['recover'] == "false") { ?>
+
+                                <div class="alert alert-danger" role="alert">
+                                    <b>Attenzione!</b> L'email non risulta esistente o si è verificato un'errore.
+                                </div>
+
+                            <?php } ?>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="billing-info mb-20px">
+                                        <label>Email</label>
+                                        <input type="email" placeholder="Inserisci la tua email" name="cl_email" required value="<?php echo $_GET["email"]; ?>">
+                                    </div>
+                                </div>
+
                             </div>
+
+                            <button class="btn-form">Recupera password</button>
 
                         </div>
-
-                        <button class="btn-form">Recupera password</button>
-
-                    </div>
                     </form>
 
                 </div>
