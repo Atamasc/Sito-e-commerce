@@ -13,3 +13,7 @@
     right: 20px;
     padding: 20px;
 }
+
+.home-10 .header_account_area {
+    justify-content: flex-end !important;
+}

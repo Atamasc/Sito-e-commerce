@@ -15,7 +15,7 @@ function isMobile()
                 <!--Left Start-->
                 <div class="col-lg-4 col-md-4">
                     <div class="left-text">
-                        <?php if (!$session_cl_login) { ?>
+                        <?php if ($session_cl_login == 0) { ?>
                             <p>Benvenuto su Smartex</p>
                         <?php } else { ?>
 
@@ -30,11 +30,26 @@ function isMobile()
                             <ul>
                                 <!-- Settings Start -->
                                 <li class="dropdown after-n">
-                                    <a class="angle-icon" href="#">Settings</a>
+                                    <a class="angle-icon" href="javascript:;">Account</a>
                                     <ul class="dropdown-nav">
-                                        <li><a href="my-account.php">My Account</a></li>
-                                        <li><a href="checkout.php">Checkout</a></li>
-                                        <li><a href="login.php">Login</a></li>
+                                        <?php
+                                        if ($session_cl_login == 0) {
+
+                                            ?>
+                                            <li><a href="login">Accedi</a></li>
+                                            <li><a href="registrati">Registrati</a></li>
+                                            <?php
+
+                                        } else {
+
+                                            ?>
+                                            <li><a href="my-account">Dashboard</a></li>
+                                            <li><a href="carrello">Carrello</a></li>
+                                            <li><a href="logout">Logout</a></li>
+                                            <?php
+
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <!-- Settings End -->
@@ -89,9 +104,10 @@ function isMobile()
                                          </ul>
                                      </div>
                                  </div>-->
+                            <?php if ($session_cl_login > 0) { ?>
+                                <a href="wishlist.php" class="count-cart heart"></a>
+                            <?php } ?>
 
-                            <a href="compare.php" class="count-cart random"></a>
-                            <a href="wishlist.php" class="count-cart heart"></a>
                             <div class="mini-cart-warp">
                                 <a href="#" class="count-cart"><span>$20.00</span></a>
                                 <div class="mini-cart-content">
