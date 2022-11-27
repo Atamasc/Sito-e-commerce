@@ -131,4 +131,7 @@
 <!-- Main Activation JS -->
 <script src="assets/js/main.js"></script>
 
+<!--<script src="assets/js/custom.js"></script>
+<script src="assets/js/lw-cookie.js"></script>-->
+
 <div id="lw-alert" class="alert"><i class="fa fa-check"></i> &nbsp; Prodotto aggiunto!</div>

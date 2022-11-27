@@ -2,3 +2,14 @@
     padding: 18px 55px 18px 0px;
     font-size: large;
 }
+
+#lw-alert {
+    display: none;
+    background: rgba(53, 157, 35, 0.8);
+    border: #18911b;
+    color: #00540b;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+    padding: 20px;
+}
