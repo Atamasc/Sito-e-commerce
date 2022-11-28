@@ -10,7 +10,7 @@
         .btn-form {
 
             border: none;
-            background-color: #d34b4e;
+            background-color: #0090f0;
             color: #fff;
             font-size: 14px;
             font-weight: 700;
@@ -26,16 +26,9 @@
 
         }
 
-        .bold-green {
-
-            font-weight: bold;
-            color: #02bd02;
-            display: inline-block;
-
-        }
     </style>
 </head>
-<body>
+<body class="home-5 home-6 home-8 home-9 home-electronic">
 <!-- main layout start from here -->
 <!--====== PRELOADER PART START ======-->
 
@@ -52,7 +45,7 @@
     <?php include('inc/header-2.php'); ?>
     <!-- Header End -->
     <!-- Breadcrumb Area start -->
-    <section class="breadcrumb-area">
+    <section class="breadcrumb-area" style="background: url(assets/images/breadcrumb-bg/breadcrumb.jpg) no-repeat;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -79,10 +72,6 @@
                         <div class="your-order-wrap gray-bg-4">
                             <p>
                                 Se sei già registrato accedi alla tua area riservata. Se hai smarrito la password chiedi il recupero, ti arriverà una mail con in dati di accesso sulla casella utilizzata come account.
-                            </p>
-                            <p>
-                                Se hai problemi scrivi una mail a info@moncaffe.it oppure contattaci sulla
-                                <a href="https://chatting.page/6t3qciy9d43q0pswmqjhu12poxh4gosb" target="_blank" style="color: #44ad2b;"><span style="color: #44ad2b;">chat online</span></a>.
                             </p>
                             <p><img style="width: 230px; margin: 10px 0;" src="assets/images/assistenza.jpg"></p>
                         </div>
@@ -136,7 +125,7 @@
                             </div>
 
                             <div class="checkout-account">
-                                <input class="checkout-toggle2" type="checkbox" id="remember">
+                                <input class="checkout-toggle2" type="checkbox" id="check">
                                 <label for="check">Ricordami</label>
                             </div>
 
@@ -175,7 +164,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="billing-info mb-20px">
                                         <label>Email</label>
-                                        <input type="email" placeholder="Inserisci la tua email" name="cl_email" required value="<?php echo $_GET["email"]; ?>">
+                                        <input type="email" placeholder="Inserisci la tua email" name="cl_email" required value="<?php echo @$_GET["email"]; ?>">
                                     </div>
                                 </div>
 

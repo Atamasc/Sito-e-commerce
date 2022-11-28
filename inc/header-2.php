@@ -6,15 +6,20 @@ function isMobile()
 
 ?>
 
-<header class="main-header">
+<!-- Header Start -->
+<header class="main-header home-10 responsive">
     <!-- Header Top Start -->
     <div class="header-top-nav">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <!--Left Start-->
                 <div class="col-lg-4 col-md-4">
                     <div class="left-text">
-                        <p>Welcome you to Ecolife store!</p>
+                        <?php if ($session_cl_login == 0) { ?>
+                            <p>Benvenuto su Smartex</p>
+                        <?php } else { ?>
+
+                        <?php } ?>
                     </div>
                 </div>
                 <!--Left End-->
@@ -24,31 +29,31 @@ function isMobile()
                         <div class="dropdown-navs">
                             <ul>
                                 <!-- Settings Start -->
-                                <li class="dropdown after-n xs-after-n">
-                                    <a class="angle-icon" href="#">Settings</a>
+                                <li class="dropdown after-n">
+                                    <a class="angle-icon" href="javascript:;">Account</a>
                                     <ul class="dropdown-nav">
-                                        <li><a href="my-account.html">My Account</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="login.html">Login</a></li>
+                                        <?php
+                                        if ($session_cl_login == 0) {
+
+                                            ?>
+                                            <li><a href="login">Accedi</a></li>
+                                            <li><a href="registrati">Registrati</a></li>
+                                            <?php
+
+                                        } else {
+
+                                            ?>
+                                            <li><a href="my-account">Dashboard</a></li>
+                                            <li><a href="carrello">Carrello</a></li>
+                                            <li><a href="logout">Logout</a></li>
+                                            <?php
+
+                                        }
+                                        ?>
                                     </ul>
                                 </li>
                                 <!-- Settings End -->
-                                <!-- Currency Start -->
-                                <li class="top-10px first-child">
-                                    <select>
-                                        <option value="1">USD $</option>
-                                        <option value="2">EUR €</option>
-                                    </select>
-                                </li>
-                                <!-- Currency End -->
-                                <!-- Language Start -->
-                                <li class="top-10px mr-15px">
-                                    <select>
-                                        <option value="1">English</option>
-                                        <option value="2">France</option>
-                                    </select>
-                                </li>
-                                <!-- Language End -->
+
                             </ul>
                         </div>
                     </div>
@@ -59,167 +64,113 @@ function isMobile()
     </div>
     <!-- Header Top End -->
     <!-- Header Buttom Start -->
-    <div class="header-navigation sticky-nav">
-        <div class="container-fluid">
+    <div class="header-navigation d-none d-lg-block sticky-nav">
+        <div class="container">
             <div class="row">
                 <!-- Logo Start -->
                 <div class="col-md-2 col-sm-2">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/images/logo/logo-electronic-2.jpg" alt=""/></a>
+                        <a href="index.php"><img src="assets/images/logo/logo-electronic-2.jpg" alt=""/></a>
+                    </div>
+                </div>
+                <!-- Logo End -->
+                <div class="col-md-10 col-sm-10">
+                    <!--Header Bottom Account Start -->
+                    <div class="header_account_area">
+                        <!--Main Navigation Start -->
+                        <div class="main-navigation d-none d-lg-block">
+                            <ul>
+                                <li><a href="index.php">Home</a></li>
+                                <li><a href="prodotti-lista.php">Prodotti</a></li>
+                                <li><a href="blog.php">Blog</a></li>
+                            </ul>
+                        </div>
+                        <!--Main Navigation End -->
+                        <!--Cart info Start -->
+                        <div class="cart-info d-flex">
+
+                            <!--     <div class="header-right-nav">
+                                     <div class="dropdown-navs">
+                                         <ul>
+                                             <li class="dropdown after-n">
+                                                 <a class="angle-icon" href="#">Settings</a>
+                                                 <ul class="dropdown-nav">
+                                                     <li><a href="my-account.php">My Account</a></li>
+                                                     <li><a href="checkout.php">Checkout</a></li>
+                                                     <li><a href="login.php">Login</a></li>
+                                                 </ul>
+                                             </li>
+
+                                         </ul>
+                                     </div>
+                                 </div>-->
+                            <?php if ($session_cl_login > 0) { ?>
+                                <a href="wishlist.php" class="count-cart heart"></a>
+                            <?php } ?>
+
+                            <div class="mini-cart-warp">
+                                <a href="#" class="count-cart"><span>$20.00</span></a>
+                                <div class="mini-cart-content">
+                                    <ul>
+                                        <li class="single-shopping-cart">
+                                            <div class="shopping-cart-img">
+                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/1.jpg"/></a>
+                                                <span class="product-quantity">1x</span>
+                                            </div>
+                                            <div class="shopping-cart-title">
+                                                <h4><a href="single-product.php">Juicy Couture...</a></h4>
+                                                <span>$9.00</span>
+                                                <div class="shopping-cart-delete">
+                                                    <a href="#"><i class="ion-android-cancel"></i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="single-shopping-cart">
+                                            <div class="shopping-cart-img">
+                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/2.jpg"/></a>
+                                                <span class="product-quantity">1x</span>
+                                            </div>
+                                            <div class="shopping-cart-title">
+                                                <h4><a href="single-product.php">Water and Wind...</a></h4>
+                                                <span>$11.00</span>
+                                                <div class="shopping-cart-delete">
+                                                    <a href="#"><i class="ion-android-cancel"></i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="shopping-cart-total">
+                                        <h4>Subtotal : <span>$20.00</span></h4>
+                                        <h4>Shipping : <span>$7.00</span></h4>
+                                        <h4>Taxes : <span>$0.00</span></h4>
+                                        <h4 class="shop-total">Total : <span>$27.00</span></h4>
+                                    </div>
+                                    <div class="shopping-cart-btn text-center">
+                                        <a class="default-btn" href="checkout.php">checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Cart info End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Header Bottom Account End -->
+    <!-- Header Buttom Start -->
+    <div class="header-navigation blue-bg sticky-nav d-lg-none">
+        <div class="container position-relative">
+            <div class="row">
+                <!-- Logo Start -->
+                <div class="col-md-2 col-sm-2">
+                    <div class="logo">
+                        <a href="index.php"><img src="assets/images/logo/logo-electronic.jpg" alt=""/></a>
                     </div>
                 </div>
                 <!-- Logo End -->
                 <!-- Navigation Start -->
                 <div class="col-md-10 col-sm-10">
-                    <!--Main Navigation Start -->
-                    <div class="main-navigation d-none d-lg-block">
-                        <ul>
-                            <li class="menu-dropdown">
-                                <a href="#">Home <i class="ion-ios-arrow-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Home Organic <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="index.html">Organic 1</a></li>
-                                            <li><a href="index-2.html">Organic 2</a></li>
-                                            <li><a href="index-3.html">Organic 3</a></li>
-                                            <li><a href="index-4.html">Organic 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Home Cosmetic <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="index-5.html">Cosmetic 1</a></li>
-                                            <li><a href="index-6.html">Cosmetic 2</a></li>
-                                            <li><a href="index-7.html">Cosmetic 3</a></li>
-                                            <li><a href="index-8.html">Cosmetic 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Home Digital <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="index-9.html">Digital 1</a></li>
-                                            <li><a href="index-10.html">Digital 2</a></li>
-                                            <li><a href="index-11.html">Digital 3</a></li>
-                                            <li><a href="index-12.html">Digital 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Home Furniture <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="index-13.html">Furniture 1</a></li>
-                                            <li><a href="index-14.html">Furniture 2</a></li>
-                                            <li><a href="index-15.html">Furniture 3</a></li>
-                                            <li><a href="index-16.html">Furniture 4</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Home Medical <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="index-17.html">Medical 1</a></li>
-                                            <li><a href="index-18.html">Medical 2</a></li>
-                                            <li><a href="index-19.html">Medical 3</a></li>
-                                            <li><a href="index-20.html">Medical 4</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-dropdown">
-                                <a href="#">Shop <i class="ion-ios-arrow-down"></i></a>
-                                <ul class="mega-menu-wrap">
-                                    <li>
-                                        <ul>
-                                            <li class="mega-menu-title"><a href="#">Shop Grid</a></li>
-                                            <li><a href="shop-3-column.html">Shop Grid 3 Column</a></li>
-                                            <li><a href="shop-4-column.html">Shop Grid 4 Column</a></li>
-                                            <li><a href="shop-left-sidebar.html">Shop Grid Left Sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop Grid Right Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li class="mega-menu-title"><a href="#">Shop List</a></li>
-                                            <li><a href="shop-list.html">Shop List</a></li>
-                                            <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                            <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li class="mega-menu-title"><a href="#">Shop Single</a></li>
-                                            <li><a href="single-product.html">Shop Single</a></li>
-                                            <li><a href="single-product-variable.html">Shop Variable</a></li>
-                                            <li><a href="single-product-affiliate.html">Shop Affiliate</a></li>
-                                            <li><a href="single-product-group.html">Shop Group</a></li>
-                                            <li><a href="single-product-tabstyle-2.html">Shop Tab 2</a></li>
-                                            <li><a href="single-product-tabstyle-3.html">Shop Tab 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <ul>
-                                            <li class="mega-menu-title"><a href="#">Shop Single</a></li>
-                                            <li><a href="single-product-slider.html">Shop Slider</a></li>
-                                            <li><a href="single-product-gallery-left.html">Shop Gallery Left</a></li>
-                                            <li><a href="single-product-gallery-right.html">Shop Gallery Right</a></li>
-                                            <li><a href="single-product-sticky-left.html">Shop Sticky Left</a></li>
-                                            <li><a href="single-product-sticky-right.html">Shop Sticky Right</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="w-100">
-                                        <ul class="banner-megamenu-wrapper d-flex">
-                                            <li class="banner-wrapper mr-30px">
-                                                <a href="single-product.html"><img src="assets/images/banner-image/banner-menu-3.jpg" alt=""/></a>
-                                            </li>
-                                            <li class="banner-wrapper">
-                                                <a href="single-product.html"><img src="assets/images/banner-image/banner-menu-4.jpg" alt=""/></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-dropdown">
-                                <a href="#">Pages <i class="ion-ios-arrow-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li><a href="about.html">About Page</a></li>
-                                    <li><a href="cart.html">Cart Page</a></li>
-                                    <li><a href="checkout.html">Checkout Page</a></li>
-                                    <li><a href="compare.html">Compare Page</a></li>
-                                    <li><a href="login.html">Login & Regiter Page</a></li>
-                                    <li><a href="my-account.html">Account Page</a></li>
-                                    <li><a href="wishlist.html">Wishlist Page</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-dropdown">
-                                <a href="#">Blog <i class="ion-ios-arrow-down"></i></a>
-                                <ul class="sub-menu">
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Blog Grid <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
-                                            <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Blog List <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
-                                            <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-dropdown position-static">
-                                        <a href="#">Blog Single <i class="ion-ios-arrow-down"></i></a>
-                                        <ul class="sub-menu sub-menu-2">
-                                            <li><a href="blog-single-left-sidebar.html">Blog Single Left Sidebar</a>
-                                            </li>
-                                            <li><a href="blog-single-right-sidebar.html">Blog Single Right Sidebar</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="contact.html">Contact Us</a></li>
-                        </ul>
-                    </div>
                     <!--Main Navigation End -->
                     <!--Header Bottom Account Start -->
                     <div class="header_account_area">
@@ -356,20 +307,20 @@ function isMobile()
                         </div>
                         <!--Contact info End -->
                         <!--Cart info Start -->
-                        <div class="cart-info home-10 home-9 d-flex">
-                            <a href="compare.html" class="count-cart random"></a>
-                            <a href="wishlist.html" class="count-cart heart"></a>
+                        <div class="cart-info d-flex">
+                            <a href="compare.php" class="count-cart random d-xs-none"></a>
+                            <a href="wishlist.php" class="count-cart heart d-xs-none"></a>
                             <div class="mini-cart-warp">
                                 <a href="#" class="count-cart"><span>$20.00</span></a>
                                 <div class="mini-cart-content">
                                     <ul>
                                         <li class="single-shopping-cart">
                                             <div class="shopping-cart-img">
-                                                <a href="single-product.html"><img alt="" src="assets/images/product-image/mini-cart/1.jpg"/></a>
+                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/1.jpg"/></a>
                                                 <span class="product-quantity">1x</span>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="single-product.html">Juicy Couture...</a></h4>
+                                                <h4><a href="single-product.php">Juicy Couture...</a></h4>
                                                 <span>$9.00</span>
                                                 <div class="shopping-cart-delete">
                                                     <a href="#"><i class="ion-android-cancel"></i></a>
@@ -378,11 +329,11 @@ function isMobile()
                                         </li>
                                         <li class="single-shopping-cart">
                                             <div class="shopping-cart-img">
-                                                <a href="single-product.html"><img alt="" src="assets/images/product-image/mini-cart/2.jpg"/></a>
+                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/2.jpg"/></a>
                                                 <span class="product-quantity">1x</span>
                                             </div>
                                             <div class="shopping-cart-title">
-                                                <h4><a href="single-product.html">Water and Wind...</a></h4>
+                                                <h4><a href="single-product.php">Water and Wind...</a></h4>
                                                 <span>$11.00</span>
                                                 <div class="shopping-cart-delete">
                                                     <a href="#"><i class="ion-android-cancel"></i></a>
@@ -397,7 +348,7 @@ function isMobile()
                                         <h4 class="shop-total">Total : <span>$27.00</span></h4>
                                     </div>
                                     <div class="shopping-cart-btn text-center">
-                                        <a class="default-btn" href="checkout.html">checkout</a>
+                                        <a class="default-btn" href="checkout.php">checkout</a>
                                     </div>
                                 </div>
                             </div>
@@ -412,51 +363,51 @@ function isMobile()
                     <nav id="mobile-menu-active">
                         <ul class="menu-overflow">
                             <li>
-                                <a href="index.html">HOME</a>
+                                <a href="index.php">HOME</a>
                                 <ul>
                                     <li>
                                         <a href="#">Home Organic</a>
                                         <ul>
-                                            <li><a href="index.html">Organic 1</a></li>
-                                            <li><a href="index-2.html">Organic 2</a></li>
-                                            <li><a href="index-3.html">Organic 3</a></li>
-                                            <li><a href="index-4.html">Organic 4</a></li>
+                                            <li><a href="index.php">Organic 1</a></li>
+                                            <li><a href="index-2.php">Organic 2</a></li>
+                                            <li><a href="index-3.php">Organic 3</a></li>
+                                            <li><a href="index-4.php">Organic 4</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#">Home Cosmetic</a>
                                         <ul>
-                                            <li><a href="index-5.html">Cosmetic 1</a></li>
-                                            <li><a href="index-6.html">Cosmetic 2</a></li>
-                                            <li><a href="index-7.html">Cosmetic 3</a></li>
-                                            <li><a href="index-8.html">Cosmetic 4</a></li>
+                                            <li><a href="index-5.php">Cosmetic 1</a></li>
+                                            <li><a href="index-6.php">Cosmetic 2</a></li>
+                                            <li><a href="index-7.php">Cosmetic 3</a></li>
+                                            <li><a href="index-8.php">Cosmetic 4</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#">Home Digital</a>
                                         <ul>
-                                            <li><a href="index-9.html">Digital 1</a></li>
-                                            <li><a href="index-10.html">Digital 2</a></li>
-                                            <li><a href="index-11.html">Digital 3</a></li>
-                                            <li><a href="index-12.html">Digital 4</a></li>
+                                            <li><a href="index-9.php">Digital 1</a></li>
+                                            <li><a href="index-10.php">Digital 2</a></li>
+                                            <li><a href="index-11.php">Digital 3</a></li>
+                                            <li><a href="index-12.php">Digital 4</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#">Home Furniture</a>
                                         <ul>
-                                            <li><a href="index-13.html">Furniture 1</a></li>
-                                            <li><a href="index-14.html">Furniture 2</a></li>
-                                            <li><a href="index-15.html">Furniture 3</a></li>
-                                            <li><a href="index-16.html">Furniture 4</a></li>
+                                            <li><a href="index-13.php">Furniture 1</a></li>
+                                            <li><a href="index-14.php">Furniture 2</a></li>
+                                            <li><a href="index-15.php">Furniture 3</a></li>
+                                            <li><a href="index-16.php">Furniture 4</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#">Home Medical</a>
                                         <ul>
-                                            <li><a href="index-17.html">Medical 1</a></li>
-                                            <li><a href="index-18.html">Medical 2</a></li>
-                                            <li><a href="index-19.html">Medical 3</a></li>
-                                            <li><a href="index-20.html">Medical 4</a></li>
+                                            <li><a href="index-17.php">Medical 1</a></li>
+                                            <li><a href="index-18.php">Medical 2</a></li>
+                                            <li><a href="index-19.php">Medical 3</a></li>
+                                            <li><a href="index-20.php">Medical 4</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -467,39 +418,44 @@ function isMobile()
                                     <li>
                                         <a href="#">Shop Grid</a>
                                         <ul>
-                                            <li><a href="shop-3-column.html">Shop Grid 3 Column</a></li>
-                                            <li><a href="shop-4-column.html">Shop Grid 4 Column</a></li>
-                                            <li><a href="shop-left-sidebar.html">Shop Grid Left Sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop Grid Right Sidebar</a></li>
+                                            <li><a href="shop-3-column.php">Shop Grid 3 Column</a></li>
+                                            <li><a href="shop-4-column.php">Shop Grid 4 Column</a></li>
+                                            <li><a href="shop-left-sidebar.php">Shop Grid Left Sidebar</a></li>
+                                            <li><a href="shop-right-sidebar.php">Shop Grid Right Sidebar</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#">Shop List</a>
                                         <ul>
-                                            <li><a href="shop-list.html">Shop List</a></li>
-                                            <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                            <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
+                                            <li><a href="shop-list.php">Shop List</a></li>
+                                            <li><a href="shop-list-left-sidebar.php">Shop List Left Sidebar</a>
+                                            </li>
+                                            <li><a href="shop-list-right-sidebar.php">Shop List Right Sidebar</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#">Single Shop</a>
                                         <ul>
-                                            <li><a href="single-product.html">Shop Single</a></li>
-                                            <li><a href="single-product-variable.html">Shop Variable</a></li>
-                                            <li><a href="single-product-affiliate.html">Shop Affiliate</a></li>
-                                            <li><a href="single-product-group.html">Shop Group</a></li>
-                                            <li><a href="single-product-tabstyle-2.html">Shop Tab 2</a></li>
-                                            <li><a href="single-product-tabstyle-3.html">Shop Tab 3</a></li>
+                                            <li><a href="single-product.php">Shop Single</a></li>
+                                            <li><a href="single-product-variable.php">Shop Variable</a></li>
+                                            <li><a href="single-product-affiliate.php">Shop Affiliate</a></li>
+                                            <li><a href="single-product-group.php">Shop Group</a></li>
+                                            <li><a href="single-product-tabstyle-2.php">Shop Tab 2</a></li>
+                                            <li><a href="single-product-tabstyle-3.php">Shop Tab 3</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a href="#">Single Shop</a>
                                         <ul>
-                                            <li><a href="single-product-slider.html">Shop Slider</a></li>
-                                            <li><a href="single-product-gallery-left.html">Shop Gallery Left</a></li>
-                                            <li><a href="single-product-gallery-right.html">Shop Gallery Right</a></li>
-                                            <li><a href="single-product-sticky-left.html">Shop Sticky Left</a></li>
-                                            <li><a href="single-product-sticky-right.html">Shop Sticky Right</a></li>
+                                            <li><a href="single-product-slider.php">Shop Slider</a></li>
+                                            <li><a href="single-product-gallery-left.php">Shop Gallery Left</a>
+                                            </li>
+                                            <li><a href="single-product-gallery-right.php">Shop Gallery Right</a>
+                                            </li>
+                                            <li><a href="single-product-sticky-left.php">Shop Sticky Left</a></li>
+                                            <li><a href="single-product-sticky-right.php">Shop Sticky Right</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -507,27 +463,27 @@ function isMobile()
                             <li>
                                 <a href="#">Pages</a>
                                 <ul>
-                                    <li><a href="about.html">About Page</a></li>
-                                    <li><a href="cart.html">Cart Page</a></li>
-                                    <li><a href="checkout.html">Checkout Page</a></li>
-                                    <li><a href="compare.html">Compare Page</a></li>
-                                    <li><a href="login.html">Login & Regiter Page</a></li>
-                                    <li><a href="my-account.html">Account Page</a></li>
-                                    <li><a href="wishlist.html">Wishlist Page</a></li>
+                                    <li><a href="about.php">About Page</a></li>
+                                    <li><a href="cart.php">Cart Page</a></li>
+                                    <li><a href="checkout.php">Checkout Page</a></li>
+                                    <li><a href="compare.php">Compare Page</a></li>
+                                    <li><a href="login.php">Login & Regiter Page</a></li>
+                                    <li><a href="my-account.php">Account Page</a></li>
+                                    <li><a href="wishlist.php">Wishlist Page</a></li>
                                 </ul>
                             </li>
                             <li>
                                 <a href="#">Blog</a>
                                 <ul>
-                                    <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                    <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
-                                    <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                    <li><a href="blog-single-left-sidebar.html">Blog Single Left Sidebar</a></li>
-                                    <li><a href="blog-single-right-sidebar.html">Blog Single Right Sidebar</a></li>
+                                    <li><a href="blog-grid-left-sidebar.php">Blog Grid Left Sidebar</a></li>
+                                    <li><a href="blog-grid-right-sidebar.php">Blog Grid Right Sidebar</a></li>
+                                    <li><a href="blog-list-left-sidebar.php">Blog List Left Sidebar</a></li>
+                                    <li><a href="blog-list-right-sidebar.php">Blog List Right Sidebar</a></li>
+                                    <li><a href="blog-single-left-sidebar.php">Blog Single Left Sidebar</a></li>
+                                    <li><a href="blog-single-right-sidebar.php">Blog Single Right Sidebar</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="contact.php">Contact Us</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -536,4 +492,100 @@ function isMobile()
         </div>
     </div>
     <!--Header Bottom Account End -->
+    <!-- Beauty Category -->
+    <div class="container d-lg-none">
+        <!--=======  category menu  =======-->
+        <div class="hero-side-category">
+            <!-- Category Toggle Wrap -->
+            <div class="category-toggle-wrap">
+                <!-- Category Toggle -->
+                <button class="category-toggle"><i class="fa fa-bars"></i> All Categories</button>
+            </div>
+
+            <!-- Category Menu -->
+            <nav class="category-menu">
+                <ul>
+                    <li class="menu-item-has-children menu-item-has-children-1">
+                        <a href="#">Accessories & Parts<i class="ion-ios-arrow-down"></i></a>
+                        <!-- category submenu -->
+                        <ul class="category-mega-menu category-mega-menu-1">
+                            <li><a href="#">Cables & Adapters</a></li>
+                            <li><a href="#">Batteries</a></li>
+                            <li><a href="#">Chargers</a></li>
+                            <li><a href="#">Bags & Cases</a></li>
+                            <li><a href="#">Electronic Cigarettes</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children menu-item-has-children-2">
+                        <a href="#">Camera & Photo<i class="ion-ios-arrow-down"></i></a>
+                        <!-- category submenu -->
+                        <ul class="category-mega-menu category-mega-menu-2">
+                            <li><a href="#">Digital Cameras</a></li>
+                            <li><a href="#">Camcorders</a></li>
+                            <li><a href="#">Camera Drones</a></li>
+                            <li><a href="#">Action Cameras</a></li>
+                            <li><a href="#">Photo Studio Supplies</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children menu-item-has-children-3">
+                        <a href="#">Smart Electronics <i class="ion-ios-arrow-down"></i></a>
+                        <!-- category submenu -->
+                        <ul class="category-mega-menu category-mega-menu-3">
+                            <li><a href="#">Wearable Devices</a></li>
+                            <li><a href="#">Smart Home Appliances</a></li>
+                            <li><a href="#">Smart Remote Controls</a></li>
+                            <li><a href="#">Smart Watches</a></li>
+                            <li><a href="#">Smart Wristbands</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children menu-item-has-children-4">
+                        <a href="#">Audio & Video <i class="ion-ios-arrow-down"></i></a>
+                        <!-- category submenu -->
+                        <ul class="category-mega-menu category-mega-menu-4">
+                            <li><a href="#">Televisions</a></li>
+                            <li><a href="#">TV Receivers</a></li>
+                            <li><a href="#">Projectors</a></li>
+                            <li><a href="#">Audio Amplifier Boards</a></li>
+                            <li><a href="#">TV Sticks</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children menu-item-has-children-5">
+                        <a href="#">Portable Audio & Video <i class="ion-ios-arrow-down"></i></a>
+                        <!-- category submenu -->
+                        <ul class="category-mega-menu category-mega-menu-5">
+                            <li><a href="#">Headphones</a></li>
+                            <li><a href="#">Speakers</a></li>
+                            <li><a href="#">MP3 Players</a></li>
+                            <li><a href="#">VR/AR Devices</a></li>
+                            <li><a href="#">Microphones</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children menu-item-has-children-6">
+                        <a href="#">Video Game <i class="ion-ios-arrow-down"></i></a>
+                        <!-- category submenu -->
+                        <ul class="category-mega-menu category-mega-menu-6">
+                            <li><a href="#">Handheld Game Players</a></li>
+                            <li><a href="#">Game Controllers</a></li>
+                            <li><a href="#">Joysticks</a></li>
+                            <li><a href="#">Stickers</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Televisions</a></li>
+                    <li><a href="#">Digital Cameras</a></li>
+                    <li><a href="#">Headphones</a></li>
+                    <li><a href="#">Wearable Devices</a></li>
+                    <li><a href="#">Smart Watches</a></li>
+                    <li><a href="#">Game Controllers</a></li>
+                    <li><a href="#"> Smart Home Appliances</a></li>
+                    <li class="hidden"><a href="#">Projectors</a></li>
+                    <li>
+                        <a href="#" id="more-btn"><i class="ion-ios-plus-empty" aria-hidden="true"></i> More Categories</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--=======  End of category menu =======-->
+    </div>
+    <!-- Beauty Category -->
 </header>

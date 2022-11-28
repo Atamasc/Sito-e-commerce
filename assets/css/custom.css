@@ -17,3 +17,18 @@
 .home-10 .header_account_area {
     justify-content: flex-end !important;
 }
+
+.breadcrumb-area {
+    padding: 70px 0 !important;
+}
+
+.breadcrumb-content {
+    background-color: #000000ba;
+    display: inline-block;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.breadcrumb-hrading, .breadcrumb-links, .breadcrumb-links li a {
+    color: white !important;
+}
