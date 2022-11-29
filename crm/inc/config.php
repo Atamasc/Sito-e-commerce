@@ -26,7 +26,7 @@ $root_path = "http://localhost/Tesi";
 $root_base_path = "http://localhost/Tesi";
 $root_site_path = "http://localhost/Tesi";
 $root_base_email = "info@lucasweb.it";
-$title_admin_header = "Smartex.it / Software CRM";
+$title_admin_header = "Cybek.it / Software CRM";
 
 //Location path di upload file cartella generica
 $upload_path_dir = "../upload";

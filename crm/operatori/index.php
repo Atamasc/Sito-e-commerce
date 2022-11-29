@@ -40,12 +40,12 @@ if ($checkCookie == $checkCredentialCookie) {
     <!--=================================
     login-->
 
-    <section class="height-100vh d-flex align-items-center page-section-ptb login" style="background-image: url(../images/background.jpg);" >
+    <section class="height-100vh d-flex align-items-center page-section-ptb login" style="background-image: url(../images/background.jpg);">
         <div class="container">
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-color: rgba(0,0,0,.2);">
                     <div class="login-fancy">
-                        <h3 class="text-white mb-20">Smartex.it</h3>
+                        <h3 class="text-white mb-20">Cybek.it</h3>
                         <p class="mb-20 text-white">Gestionale web</p>
 
                         <!--
@@ -83,7 +83,7 @@ if ($checkCookie == $checkCredentialCookie) {
                             </div>
                             <div class="section-field">
                                 <div class="remember-checkbox mb-30">
-                                    <input type="checkbox" class="form-control" name="remember" id="remember" />
+                                    <input type="checkbox" class="form-control" name="remember" id="remember"/>
                                     <label for="remember"> Ricordami</label>
                                     <!--<a href="password-recovery.html" class="float-right">Forgot Password?</a>-->
                                 </div>

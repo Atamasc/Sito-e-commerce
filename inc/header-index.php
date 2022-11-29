@@ -16,7 +16,7 @@ function isMobile()
                 <div class="col-lg-4 col-md-4">
                     <div class="left-text">
                         <?php if ($session_cl_login == 0) { ?>
-                            <p>Benvenuto su Smartex</p>
+                            <p>Benvenuto su Cybek</p>
                         <?php } else { ?>
 
                         <?php } ?>

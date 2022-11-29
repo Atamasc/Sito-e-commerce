@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Smartex</title>
+    <title>Cybek</title>
     <meta name="description" content="Vendita di prodotti informatici"/>
     <?php include('inc/head.php'); ?>
 </head>

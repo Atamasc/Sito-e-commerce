@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Smartex</title>
+    <title>Cybek</title>
     <meta name="description" content=""/>
     <?php include('inc/head.php'); ?>
 
@@ -112,14 +112,14 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="billing-info mb-20px">
                                         <label>Email</label>
-                                        <input type="email" placeholder="Inserisci la tua email" name="cl_email" required>
+                                        <input type="email" placeholder="Inserisci la tua email" name="ut_email" required>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-12 col-md-12">
                                     <div class="billing-info mb-20px">
                                         <label>Password</label>
-                                        <input type="password" placeholder="Inserisci la password" name="cl_password" required>
+                                        <input type="password" placeholder="Inserisci la password" name="ut_password" required>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +164,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="billing-info mb-20px">
                                         <label>Email</label>
-                                        <input type="email" placeholder="Inserisci la tua email" name="cl_email" required value="<?php echo @$_GET["email"]; ?>">
+                                        <input type="email" placeholder="Inserisci la tua email" name="ut_email" required value="<?php echo @$_GET["email"]; ?>">
                                     </div>
                                 </div>
 

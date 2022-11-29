@@ -8,7 +8,7 @@ $cookie_login = isset($_COOKIE['login']);
 $cookie_username = isset($_COOKIE['username']);
 $cookie_password = isset($_COOKIE['password']);
 
-$checkCookie = $cookie_login . "|" . $cookie_username . "|" . $cookie_password;
+$checkCookie = $cookie_login."|".$cookie_username."|".$cookie_password;
 
 $checkCredentialCookie = get_access_credential($cookie_username, $cookie_password, $dbConn);
 if ($checkCookie == $checkCredentialCookie) {
@@ -45,7 +45,7 @@ if ($checkCookie == $checkCredentialCookie) {
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg" style="background-color: rgba(0,0,0,.2);">
                     <div class="login-fancy">
-                        <h3 class="text-white mb-20">Smartex.it</h3>
+                        <h3 class="text-white mb-20">Cybek.it</h3>
                         <p class="mb-20 text-white">Gestionale web</p>
 
                         <!--

@@ -121,7 +121,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-4">
-                    <p class="copy-text">Copyright &copy; <?php echo date("Y"); ?> Smartex</p>
+                    <p class="copy-text">Copyright &copy; <?php echo date("Y"); ?> Cybek</p>
                     <p>Tutti i diritti riservati.</p>
                 </div>
                 <div class="col-md-6 col-lg-8">

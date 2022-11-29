@@ -86,7 +86,7 @@ if ($or_stato == 1) {
 
     $or_tracking = strlen($or_tracking) > 0 ? "Clicca sul link di seguito per seguire la spedizione: <a href='$or_tracking'>$or_tracking</a>" : "";
 
-    if(strlen($or_sconto)>0){
+    if (strlen($or_sconto) > 0) {
         $sconto_email = "<tr>
                     <td  colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Sconto (&euro;)</td>
@@ -110,7 +110,7 @@ if ($or_stato == 1) {
             <br>
             <br>
           
-            <p>Codice ordine: $or_codice del ".date('d/m/Y - H:i', substr($or_codice,9))."</p>
+            <p>Codice ordine: $or_codice del ".date('d/m/Y - H:i', substr($or_codice, 9))."</p>
             <p>Email: <strong>".getNominativoClienteByCodice($or_ut_codice, $dbConn)."&nbsp;(".$or_ut_codice.")</strong></p>
             <p>Indirizzo di spedizione: <strong>".getIndirizzoClienteByCodice($or_ut_codice, $dbConn)."</strong></p>
             <p>Tipo di spedizione: <strong>$or_tipo_spedizione</strong></p>
@@ -176,25 +176,25 @@ if ($or_stato == 1) {
     $mail = new PHPMailer;
     // utilizza la classe SMTP invece del comando mail() di php
     $mail->IsSMTP();
-    $mail->SMTPAuth   = true;
+    $mail->SMTPAuth = true;
     $mail->SMTPKeepAlive = "true";
 
     // autenticazione server SMTP di invio mail
-    $mail->Host  = $SMTP['host'];
-    $mail->Username   = $SMTP['user'];      // utente server SMTP autenticato
-    $mail->Password   = $SMTP['pass'];    // password server SMTP autenticato
+    $mail->Host = $SMTP['host'];
+    $mail->Username = $SMTP['user'];      // utente server SMTP autenticato
+    $mail->Password = $SMTP['pass'];    // password server SMTP autenticato
 
     // abilito il messaggio in HTML
     $mail->IsHTML(true);
 
     //intestazioni e corpo dell'email
-    $mail->From   = $mittente;
+    $mail->From = $mittente;
     $mail->FromName = $nomemittente;
     $mail->AddAddress($ut_email);
     $mail->AddBCC($rootBaseEmail);
     $mail->AddBCC("notifica@lucasweb.it");
     $mail->AddBCC("moncaffe.it+0e2538ac9a@invite.trustpilot.com");
-    $mail->Subject = "Smartex.it - Evasione ordine - ".date("d/m/Y", time());
+    $mail->Subject = "Cybek.it - Evasione ordine - ".date("d/m/Y", time());
 
     $mail->Body = $messaggio;
     $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
@@ -202,7 +202,7 @@ if ($or_stato == 1) {
     //percorso all'allegato
     //$mail->AddAttachment('pdf/file.pdf');
 
-    if($mail->Send()) {
+    if ($mail->Send()) {
         $get_send = true;
     } else {
         $get_send = false;

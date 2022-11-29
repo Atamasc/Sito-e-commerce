@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <title>Smartex - Registrati subito ed acquista prodotti informatici al miglior prezzo.</title>
+    <title>Cybek - Registrati subito ed acquista prodotti informatici al miglior prezzo.</title>
     <meta name="description" content="Registrati subito per approfittare dei migliori prezzi del web per prodotti informatici "/>
     <?php include('inc/head.php'); ?>
 
@@ -104,67 +104,54 @@
 
                                 <div class="col-lg-3 col-md-6">
                                     <div class="billing-info mb-20px">
-                                        <label>Nome *</label> <input type="text" name="cl_nome" id="cl_nome" required>
+                                        <label>Nome *</label> <input type="text" name="ut_nome" id="ut_nome" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="billing-info mb-20px">
                                         <label>Cognome *</label>
-                                        <input type="text" name="cl_cognome" id="cl_cognome" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-md-6">
-                                    <div class="billing-info mb-20px">
-                                        <label>Codice fiscale *</label>
-                                        <input type="text" name="cl_codice_fiscale" id="cl_codice_fiscale" required>
+                                        <input type="text" name="ut_cognome" id="ut_cognome" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="billing-info mb-20px">
                                         <label>Telefono *</label>
-                                        <input type="text" name="cl_telefono" id="cl_telefono" required>
+                                        <input type="text" name="ut_telefono" id="ut_telefono" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="billing-info mb-20px">
                                         <label>Email *</label>
-                                        <input type="email" name="cl_email" id="cl_email" required>
+                                        <input type="email" name="ut_email" id="ut_email" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="billing-info mb-20px">
                                         <label>Password *</label>
-                                        <input type="password" name="cl_password" id="cl_password" required>
+                                        <input type="password" name="ut_password" id="ut_password" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-6">
                                     <div class="billing-info mb-20px">
                                         <label>Sigla della provincia (es: RM) *</label>
-                                        <input type="text" name="cl_provincia" id="cl_provincia" maxlength="2" required>
+                                        <input type="text" name="ut_provincia" id="ut_provincia" maxlength="2" required>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-3 col-md-6">
                                     <div class="billing-info mb-20px">
-                                        <label>Comune *</label>
-                                        <input type="text" name="cl_comune" id="cl_comune" required>
-                                        <!--
-                                        <select id="comune" name="cl_comune" >
-                                            <option value="">Seleziona una comune'</option>
-                                            <option value=""></option>
-                                        </select>
-                                        -->
+                                        <label>Citt&agrave; *</label>
+                                        <input type="text" name="ut_citta" id="ut_citta" required>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-6">
+                                    <div class="billing-info mb-20px">
+                                        <label>CAP *</label> <input type="text" name="ut_cap" id="ut_cap" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6">
                                     <div class="billing-info mb-20px">
                                         <label>Indirizzo *</label>
-                                        <input type="text" name="cl_indirizzo" id="cl_indirizzo" required>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-6">
-                                    <div class="billing-info mb-20px">
-                                        <label>CAP *</label> <input type="text" name="cl_cap" id="cl_cap" required>
+                                        <input type="text" name="ut_indirizzo" id="ut_indirizzo" required>
                                     </div>
                                 </div>
 
@@ -211,7 +198,8 @@
                                         $random['b'] = rand(1, 9);
                                         $codice_nume = $random['a'] + $random['b'];
                                         ?>
-                                        <label>Compila il campo con la somma dei numeri di seguito per confermare di non essere un robot: <?php echo $random['a'] . " + " . $random['b']; ?>?</label>
+                                        <label>Conferma di non essere un robot:
+                                            <b><?php echo $random['a']." + ".$random['b']; ?></b>?</label>
                                         &nbsp;
                                         <input type="text" name="codice_num" id="codice_num" style="width: 50px; padding: 0 10px;" pattern="<?php echo $codice_nume; ?>" required autocomplete="off">
                                         <input type="hidden" name="codice_num_hidden" value="<?php echo $codice_nume; ?>">
