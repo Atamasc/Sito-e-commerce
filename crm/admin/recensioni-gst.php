@@ -46,7 +46,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Gestione recensioni</li>
                                 </ol>
                             </div>
@@ -73,7 +74,7 @@
                                                     <option value=""></option>
                                                     <?php selectCliente($get_rc_ut_codice, $dbConn) ?>
                                                 </select>
-                                                <span class="tooltips">Cliente Recensione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Cliente Recensione" data-content="Seleziona qui il nome del cliente che stai cercando">[aiuto]</a></span>
+                                                <span class="tooltips">Cliente Recensione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Cliente Recensione" data-content="Seleziona qui il nome dell'utente che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
@@ -112,7 +113,7 @@
                                     <h5 class="card-title border-0 pb-0">Lista recensioni</h5>
 
                                     <?php
-                                    if(@$_GET['delete'] == 'true') {
+                                    if (@$_GET['delete'] == 'true') {
 
                                         ?>
                                         <div class="alert alert-success" role="alert">
@@ -141,9 +142,9 @@
 
                                             <?php
                                             $querySql = "SELECT COUNT(rc_id) FROM rc_recensioni INNER JOIN ut_utenti ON ut_codice=rc_ut_codice INNER JOIN pr_prodotti ON pr_codice=rc_pr_codice  WHERE rc_id > 0 ";
-                                            if(strlen($get_rc_ut_codice) > 0) $querySql .= " AND rc_ut_codice LIKE '%$get_rc_ut_codice%' ";
-                                            if(strlen($get_rc_pr_codice) > 0) $querySql .= " AND rc_pr_codice LIKE '%$get_rc_pr_codice%' ";
-                                            if(strlen($get_rc_voto) > 0) $querySql .= " AND rc_voto = '$get_rc_voto' ";
+                                            if (strlen($get_rc_ut_codice) > 0) $querySql .= " AND rc_ut_codice LIKE '%$get_rc_ut_codice%' ";
+                                            if (strlen($get_rc_pr_codice) > 0) $querySql .= " AND rc_pr_codice LIKE '%$get_rc_pr_codice%' ";
+                                            if (strlen($get_rc_voto) > 0) $querySql .= " AND rc_voto = '$get_rc_voto' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -160,9 +161,9 @@
 
 
                                             $querySql = "SELECT * FROM rc_recensioni INNER JOIN ut_utenti ON ut_codice=rc_ut_codice INNER JOIN pr_prodotti ON pr_codice=rc_pr_codice WHERE rc_id > 0 ";
-                                            if(strlen($get_rc_ut_codice) > 0) $querySql .= " AND rc_ut_codice LIKE '%$get_rc_ut_codice%' ";
-                                            if(strlen($get_rc_pr_codice) > 0) $querySql .= " AND rc_pr_codice LIKE '%$get_rc_pr_codice%' ";
-                                            if(strlen($get_rc_voto) > 0) $querySql .= " AND rc_voto = '$get_rc_voto' ";
+                                            if (strlen($get_rc_ut_codice) > 0) $querySql .= " AND rc_ut_codice LIKE '%$get_rc_ut_codice%' ";
+                                            if (strlen($get_rc_pr_codice) > 0) $querySql .= " AND rc_pr_codice LIKE '%$get_rc_pr_codice%' ";
+                                            if (strlen($get_rc_voto) > 0) $querySql .= " AND rc_voto = '$get_rc_voto' ";
                                             $querySql .= " ORDER BY rc_id LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -177,32 +178,29 @@
                                                 echo "<td>$rc_id</td>";
                                                 echo "<td>" . $row_data['ut_nome'] . "</td>";
                                                 echo "<td>" . $row_data['pr_titolo'] . "</td>";
-                                                echo "<td>" . $row_data['rc_voto'] ."</td>";
-                                                echo "<td>" . date("d/m/Y", $row_data['rc_timestamp']) ."</td>";
+                                                echo "<td>" . $row_data['rc_voto'] . "</td>";
+                                                echo "<td>" . date("d/m/Y", $row_data['rc_timestamp']) . "</td>";
 
                                                 //Stato
                                                 echo "<td align='center'>";
                                                 if ($row_data['rc_stato'] == 0) {
 
                                                     ?>
-                <div class="checkbox checbox-switch switch-success">
-                    <label>
-                        <input type="checkbox" class="stato"
-                               title="recensioni-stato-do.php?rc_id=<?php echo $rc_id; ?>"><span></span>
-                    </label>
-                </div>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label> <input type="checkbox" class="stato"
+                                                                    title="recensioni-stato-do.php?rc_id=<?php echo $rc_id; ?>"><span></span>
+                                                        </label>
+                                                    </div>
                                                     <?php
 
                                                 } else {
 
                                                     ?>
-                <div class="checkbox checbox-switch switch-success">
-                    <label>
-                        <input type="checkbox" class="stato"
-                               title="recensioni-stato-do.php?rc_id=<?php echo $rc_id; ?>"
-                               checked><span></span>
-                    </label>
-                </div>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label> <input type="checkbox" class="stato"
+                                                                    title="recensioni-stato-do.php?rc_id=<?php echo $rc_id; ?>"
+                                                                    checked><span></span> </label>
+                                                    </div>
                                                     <?php
                                                 }
 
@@ -229,11 +227,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";

@@ -11,7 +11,6 @@
     </head>
 
 
-
     <body>
 
     <div class="wrapper">
@@ -43,8 +42,10 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="recensioni-gst.php" class="default-color">Gestione recensioni</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="recensioni-gst.php" class="default-color">Gestione recensioni</a></li>
                                     <li class="breadcrumb-item active">Aggiungi recensione</li>
                                 </ol>
                             </div>
@@ -61,7 +62,7 @@
                                     <form method="post" action="recensioni-add-do.php" enctype="multipart/form-data">
 
                                         <?php
-                                        if(@$_GET['insert'] == 'true') {
+                                        if (@$_GET['insert'] == 'true') {
 
                                             ?>
                                             <div class="alert alert-success" role="alert">
@@ -69,7 +70,7 @@
                                             </div>
                                             <?php
 
-                                        } else if(@$_GET['insert'] == 'false') {
+                                        } else if (@$_GET['insert'] == 'false') {
 
                                             ?>
                                             <div class="alert alert-error" role="alert">
@@ -81,17 +82,15 @@
                                         ?>
 
 
+                                        <!-- <div class="form-row">
 
-                                       <!-- <div class="form-row">
+                                             <div class="col-md-3 mb-3">
+                                                 <label for="rc_titolo">Titolo *</label>
+                                                 <input type="text" class="form-control" id="rc_titolo" name="rc_titolo" placeholder="Titolo *" required>
+                                                 <span class="tooltips">Titolo Lavorazione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Titolo Lavorazione" data-content="Qui viene mostrato il titolo della recensione che vuoi aggiungere">[aiuto]</a></span>
+                                             </div>
 
-                                            <div class="col-md-3 mb-3">
-                                                <label for="rc_titolo">Titolo *</label>
-                                                <input type="text" class="form-control" id="rc_titolo" name="rc_titolo" placeholder="Titolo *" required>
-                                                <span class="tooltips">Titolo Lavorazione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Titolo Lavorazione" data-content="Qui viene mostrato il titolo della recensione che vuoi aggiungere">[aiuto]</a></span>
-                                            </div>
-
-                                        </div>-->
-
+                                         </div>-->
 
 
                                         <div class="form-row">
@@ -100,14 +99,14 @@
                                                 <label for="rc_ut_codice">Cliente *</label>
 
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="ut_nome" value="<?php  @$row_data['ut_nome']; ?>"  readonly required>
+                                                    <input type="text" class="form-control" id="ut_nome" value="<?php @$row_data['ut_nome']; ?>" readonly required>
 
-                                                    <input type="hidden" id="ut_codice" name="rc_ut_codice" value="<?php  @$row_data['rc_ut_codice']; ?>" >
+                                                    <input type="hidden" id="ut_codice" name="rc_ut_codice" value="<?php @$row_data['rc_ut_codice']; ?>">
                                                     <div class="input-group-append">
-                                                        <button class="btn btn-primary popup-custom" data-href="recensioni-clienti-add.php" type="button">Associa</button>
+                                                        <button class="btn btn-primary popup-custom" data-href="recensioni-utenti-add.php" type="button">Associa</button>
                                                     </div>
                                                 </div>
-                                                <span class="tooltips">Cliente Recensione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Cliente Recensione" data-content="Associa qui il nome del cliente a cui è riferita la recensione">[aiuto]</a></span>
+                                                <span class="tooltips">Cliente Recensione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Cliente Recensione" data-content="Associa qui il nome dell'utente a cui è riferita la recensione">[aiuto]</a></span>
                                             </div>
 
 
@@ -115,9 +114,9 @@
                                                 <label for="rc_pr_id">Prodotto *</label>
 
                                                 <div class="input-group mb-3">
-                                                    <input type="text" class="form-control" id="pr_titolo" value="<?php  @$row_data['pr_titolo']; ?>"  readonly required>
+                                                    <input type="text" class="form-control" id="pr_titolo" value="<?php @$row_data['pr_titolo']; ?>" readonly required>
 
-                                                    <input type="hidden" id="pr_id" name="rc_pr_id" value="<?php  @$row_data['rc_pr_id']; ?>" >
+                                                    <input type="hidden" id="pr_id" name="rc_pr_id" value="<?php @$row_data['rc_pr_id']; ?>">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-primary popup-custom" data-href="recensioni-prodotti-add.php" type="button">Associa</button>
                                                     </div>
@@ -139,7 +138,7 @@
                                                 <span class="tooltips">Voto Recensione <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Voto Recensione" data-content="Seleziona il voto della recensione">[aiuto]</a></span>
                                             </div>
 
-                                            </div>
+                                        </div>
 
 
                                         <div class="form-row">

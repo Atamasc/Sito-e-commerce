@@ -20,7 +20,8 @@
 
                     <?php
                     dataviewLoad();
-                    function dataviewLoad() {
+                    function dataviewLoad()
+                    {
 
                         global $dbConn, $get_ut_id;
 
@@ -32,15 +33,15 @@
                             $ut_id = $row_data['ut_id'];
 
                             echo "<tr>";
-                            echo "<td>".$row_data['ut_codice']."</td>";
-                            echo "<td>".$row_data['ut_ragione_sociale']."</td>";
-                            echo "<td>".$row_data['ut_partita_iva']."</td>";
-                            echo "<td>".$row_data['ut_cod_fiscale']."</td>";
+                            echo "<td>" . $row_data['ut_codice'] . "</td>";
+                            echo "<td>" . $row_data['ut_ragione_sociale'] . "</td>";
+                            echo "<td>" . $row_data['ut_partita_iva'] . "</td>";
+                            echo "<td>" . $row_data['ut_cod_fiscale'] . "</td>";
 
                             //Gestione
                             echo "<td align='center'>";
-                            echo "<a class='btn btn-purple btn-sm' href='clienti-sedi.php?ut_id=$ut_id' title='Sedi'>sedi</a>&nbsp;";
-                            echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?ut_id=$ut_id' title='Modifica'>modifica</a>&nbsp;";
+                            echo "<a class='btn btn-purple btn-sm' href='utenti-sedi.php?ut_id=$ut_id' title='Sedi'>sedi</a>&nbsp;";
+                            echo "<a class='btn btn-success btn-sm' href='utenti-mod.php?ut_id=$ut_id' title='Modifica'>modifica</a>&nbsp;";
                             echo "</td>";
                             echo "</tr>";
 
@@ -49,6 +50,7 @@
                         $result->close();
 
                     }
+
                     ?>
 
                     </tbody>

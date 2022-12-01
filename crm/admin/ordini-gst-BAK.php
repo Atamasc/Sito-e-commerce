@@ -50,7 +50,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Gestione ordini</li>
                                 </ol>
                             </div>
@@ -74,8 +75,8 @@
                                                 <label for="or_stato_conferma">Conferma</label>
                                                 <select class="form-control" id="or_stato_conferma" name="or_stato_conferma">
                                                     <option value="">Seleziona uno stato</option>
-                                                    <option value="1" <?php if($get_or_stato_conferma == '1') echo "selected"; ?>>Confermato</option>
-                                                    <option value="0" <?php if($get_or_stato_conferma == '0') echo "selected"; ?>>Non confermato</option>
+                                                    <option value="1" <?php if ($get_or_stato_conferma == '1') echo "selected"; ?>>Confermato</option>
+                                                    <option value="0" <?php if ($get_or_stato_conferma == '0') echo "selected"; ?>>Non confermato</option>
                                                 </select>
                                                 <span class="tooltips">Stato Conferma Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Stato Conferma Ordine" data-content="Inserisci qui lo stato di conferma dell'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
@@ -84,8 +85,8 @@
                                                 <label for="or_stato_pagamento">Pagamento</label>
                                                 <select class="form-control" id="or_stato_pagamento" name="or_stato_pagamento">
                                                     <option value="">Seleziona uno stato</option>
-                                                    <option value="1" <?php if($get_or_stato_pagamento == '1') echo "selected"; ?>>Pagato</option>
-                                                    <option value="0" <?php if($get_or_stato_pagamento == '0') echo "selected"; ?>>Non pagato</option>
+                                                    <option value="1" <?php if ($get_or_stato_pagamento == '1') echo "selected"; ?>>Pagato</option>
+                                                    <option value="0" <?php if ($get_or_stato_pagamento == '0') echo "selected"; ?>>Non pagato</option>
                                                 </select>
                                                 <span class="tooltips">Stato Pagamento Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Stato Pagamento Ordine" data-content="Inserisci qui lo stato di pagamento dell'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
@@ -94,8 +95,8 @@
                                                 <label for="or_stato_spedizione">Spedizione</label>
                                                 <select class="form-control" id="or_stato_spedizione" name="or_stato_spedizione">
                                                     <option value="">Seleziona uno stato</option>
-                                                    <option value="1" <?php if($get_or_stato_spedizione == '1') echo "selected"; ?>>Spedito</option>
-                                                    <option value="0" <?php if($get_or_stato_spedizione == '0') echo "selected"; ?>>Non spedito</option>
+                                                    <option value="1" <?php if ($get_or_stato_spedizione == '1') echo "selected"; ?>>Spedito</option>
+                                                    <option value="0" <?php if ($get_or_stato_spedizione == '0') echo "selected"; ?>>Non spedito</option>
                                                 </select>
                                                 <span class="tooltips">Stato Spedizione Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Stato Spedizione Ordine" data-content="Inserisci qui lo stato di spedizione dell'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
@@ -104,8 +105,8 @@
                                                 <label for="or_stato">Evasione</label>
                                                 <select class="form-control" id="or_stato" name="or_stato">
                                                     <option value="">Seleziona uno stato</option>
-                                                    <option value="1" <?php if($get_or_stato == '1') echo "selected"; ?>>Evaso</option>
-                                                    <option value="0" <?php if($get_or_stato == '0') echo "selected"; ?>>Non evaso</option>
+                                                    <option value="1" <?php if ($get_or_stato == '1') echo "selected"; ?>>Evaso</option>
+                                                    <option value="0" <?php if ($get_or_stato == '0') echo "selected"; ?>>Non evaso</option>
                                                 </select>
                                                 <span class="tooltips">Stato Evasione Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Stato Evasione Ordine" data-content="Inserisci qui lo stato di evasione dell'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
@@ -119,13 +120,13 @@
                                             <div class="col-md-3 mb-3">
                                                 <label for="ut_nome">Nome</label>
                                                 <input type="text" class="form-control" id="ut_nome" name="ut_nome" value="<?php echo $get_ut_nome; ?>">
-                                                <span class="tooltips">Nome Cliente Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nome Cliente Ordine" data-content="Inserisci qui il nome del cliente che ha richiesto l'ordine che stai cercando">[aiuto]</a></span>
+                                                <span class="tooltips">Nome Utente Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nome Utente Ordine" data-content="Inserisci qui il nome dell'utente che ha richiesto l'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="ut_cognome">Cognome</label>
                                                 <input type="text" class="form-control" id="ut_cognome" name="ut_cognome" value="<?php echo $get_ut_cognome; ?>">
-                                                <span class="tooltips">Cognome Cliente Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Cognome Cliente Ordine" data-content="Inserisci qui il cognome del cliente che ha richiesto l'ordine che stai cercando">[aiuto]</a></span>
+                                                <span class="tooltips">Cognome Utente Ordine <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Cognome Utente Ordine" data-content="Inserisci qui il cognome dell'utente che ha richiesto l'ordine che stai cercando">[aiuto]</a></span>
                                             </div>
 
                                         </div>
@@ -146,7 +147,7 @@
                                     <h5 class="card-title border-0 pb-0">Lista ordini</h5>
 
                                     <?php
-                                    if(@$_GET['delete'] == 'true') {
+                                    if (@$_GET['delete'] == 'true') {
 
                                         ?>
                                         <div class="alert alert-success" role="alert">
@@ -176,13 +177,13 @@
 
                                             <?php
                                             $querySql = "SELECT COUNT(DISTINCT or_codice) FROM or_ordini INNER JOIN ut_utenti ON ut_codice = or_ut_codice WHERE or_archivio = 0 ";
-                                            if(strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
-                                            if(strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
-                                            if(strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
-                                            if(strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
-                                            if(strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
-                                            if(strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
-                                            if(strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                            if (strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
+                                            if (strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
+                                            if (strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
+                                            if (strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
+                                            if (strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
+                                            if (strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -198,15 +199,15 @@
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql =
-                                                "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini ".
+                                                "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini " .
                                                 "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_archivio = 0 ";
-                                            if(strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
-                                            if(strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
-                                            if(strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
-                                            if(strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
-                                            if(strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
-                                            if(strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
-                                            if(strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                            if (strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
+                                            if (strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
+                                            if (strlen($get_or_stato_spedizione) > 0) $querySql .= " AND or_stato_spedizione = '$get_or_stato_spedizione' ";
+                                            if (strlen($get_or_stato) > 0) $querySql .= " AND or_stato = '$get_or_stato' ";
+                                            if (strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
+                                            if (strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
                                             $querySql .= " GROUP BY or_codice ORDER BY or_codice DESC LIMIT $primo, $per_page ";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -228,12 +229,12 @@
                                                 $or_totale = $or_totale_importo - $or_sconto + $or_pagamento_prezzo + $or_spedizione_prezzo;
 
                                                 echo "<tr>";
-                                                echo "<td>$or_codice del ".date('d/m/Y - H:i', $or_codice)."</td>";
+                                                echo "<td>$or_codice del " . date('d/m/Y - H:i', $or_codice) . "</td>";
                                                 //if($row_data['ut_business']) echo "<td class='text-center'>B</td>";
                                                 //else echo "<td class='text-center'>S</td>";
-                                                echo "<td>".$row_data['ut_nome']." ".$row_data['ut_cognome']."</td>";
-                                                echo "<td>".$row_data['or_pagamento']."</td>";
-                                                echo "<td>&euro; ".formatPrice($or_totale)."</td>";
+                                                echo "<td>" . $row_data['ut_nome'] . " " . $row_data['ut_cognome'] . "</td>";
+                                                echo "<td>" . $row_data['or_pagamento'] . "</td>";
+                                                echo "<td>&euro; " . formatPrice($or_totale) . "</td>";
 
                                                 //Stato di evasione
                                                 echo "<td align='center'>";
@@ -241,7 +242,7 @@
                                                 if ($row_data['or_stato_conferma'] == '0')
                                                     echo "<a href='ordini-stato-conferma-do.php?or_codice=$or_codice' title='Attiva'><button class='btn btn-sm btn-danger'>Non confermato</button></a>&nbsp;";
                                                 else
-                                                    echo "<button class='btn btn-sm btn-success alert-2' data-text=\"Continuando annullerai l'ordine\" ".
+                                                    echo "<button class='btn btn-sm btn-success alert-2' data-text=\"Continuando annullerai l'ordine\" " .
                                                         "data-href='ordini-stato-conferma-do.php?or_codice=$or_codice' title='Attiva'>Confermato</button>&nbsp;";
 
                                                 if ($row_data['or_stato_pagamento'] == '0')
@@ -250,28 +251,28 @@
                                                     echo "<a href='ordini-stato-pagamento-do.php?or_codice=$or_codice' title='Attiva'><button class='btn btn-sm btn-success'>Pagato</button></a>&nbsp;";
 
                                                 if ($row_data['or_stato_spedizione'] == '0')
-                                                    echo "<button class='btn btn-sm btn-danger alert-2' data-text='Continuando invierai una mail di conferma spedizione al cliente' ".
+                                                    echo "<button class='btn btn-sm btn-danger alert-2' data-text='Continuando invierai una mail di conferma spedizione al cliente' " .
                                                         "data-href='ordini-stato-spedizione-do.php?or_codice=$or_codice' title='Attiva'>Non spedito</button>&nbsp;";
                                                 else
                                                     echo "<a class='btn btn-sm btn-success alert-2' style='color: #ffffff;' data-href='ordini-stato-spedizione-do.php?or_codice=$or_codice' title='Attiva'>Spedito</a>&nbsp;";
 
                                                 if ($row_data['or_stato'] == '0')
-                                                    echo "<button class='btn btn-sm btn-danger alert-2' data-text='Continuando invierai una mail di conferma evasione al cliente' ".
+                                                    echo "<button class='btn btn-sm btn-danger alert-2' data-text='Continuando invierai una mail di conferma evasione al cliente' " .
                                                         "data-href='ordini-stato-do.php?or_codice=$or_codice' title='Attiva'>Non evaso</button>&nbsp;";
                                                 else
-                                                    echo "<a class='btn btn-sm btn-success alert-2' style='color: #ffffff;' data-href='ordini-stato-do.php?or_codice=$or_codice' title='Attiva'>Evaso</a>&nbsp;"; if ($row_data['or_stato'] == '0')
+                                                    echo "<a class='btn btn-sm btn-success alert-2' style='color: #ffffff;' data-href='ordini-stato-do.php?or_codice=$or_codice' title='Attiva'>Evaso</a>&nbsp;";
+                                                if ($row_data['or_stato'] == '0')
 
 
-
-                                                if ($row_data['or_fattura'] == '1') echo "<button class='btn btn-sm btn-info' title='Fattura richiesta'>Fattura</button>&nbsp;";
+                                                    if ($row_data['or_fattura'] == '1') echo "<button class='btn btn-sm btn-info' title='Fattura richiesta'>Fattura</button>&nbsp;";
 
                                                 echo "</td>";
 
                                                 echo "<td class='text-center'>";
-                                                    if ($row_data['or_stato_reso'] == '0')
-                                                        echo "<a href='ordini-stato-reso-do.php?or_codice=$or_codice' title='Non reso'><button class='btn btn-sm btn-danger'>Non reso</button></a>&nbsp;";
-                                                    else
-                                                        echo "<a href='ordini-stato-reso-do.php?or_codice=$or_codice' title='Reso'><button class='btn btn-sm btn-success'>Reso</button></a>&nbsp; ";
+                                                if ($row_data['or_stato_reso'] == '0')
+                                                    echo "<a href='ordini-stato-reso-do.php?or_codice=$or_codice' title='Non reso'><button class='btn btn-sm btn-danger'>Non reso</button></a>&nbsp;";
+                                                else
+                                                    echo "<a href='ordini-stato-reso-do.php?or_codice=$or_codice' title='Reso'><button class='btn btn-sm btn-success'>Reso</button></a>&nbsp; ";
                                                 echo "</td>";
 
                                                 //Gestione
@@ -295,11 +296,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";

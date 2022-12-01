@@ -32,48 +32,44 @@ if ($checkEmail > 0) {
 
     $ut_nominativo = "$ut_nome $ut_cognome";
     $py_dati =
-        "Nominativo : $ut_nominativo\n".
-        "Email : $ut_email\n".
-        "Password : $ut_password\n".
-        "Telefono : $ut_telefono\n".
-        "Provincia : $ut_provincia\n".
-        "Comune : $ut_citta\n".
-        "Indirizzo : $ut_indirizzo\n".
-        "CAP : $ut_cap\n".
-        "Data e ora: $datetime\n".
-        "Codice numerico: ".$_POST['codice_num'];
+        "Nominativo : $ut_nominativo\n" .
+        "Email : $ut_email\n" .
+        "Password : $ut_password\n" .
+        "Telefono : $ut_telefono\n" .
+        "Provincia : $ut_provincia\n" .
+        "Comune : $ut_citta\n" .
+        "Indirizzo : $ut_indirizzo\n" .
+        "CAP : $ut_cap\n" .
+        "Data e ora: $datetime\n" .
+        "Codice numerico: " . $_POST['codice_num'];
 
-    addLogPrivacy("$ut_nominativo", "$ut_email", "$py_dati", "registrati", "Inserimento", "Registrazione", "$py_checkbox_privacy", "$py_checkbox_marketing", "$py_checkbox_cessione", $dbConn);
+    //addLogPrivacy("$ut_nominativo", "$ut_email", "$py_dati", "registrati", "Inserimento", "Registrazione", "$py_checkbox_privacy", "$py_checkbox_marketing", "$py_checkbox_cessione", $dbConn);
 
     $querySql =
-        "INSERT INTO ut_utenti(ut_codice, ut_nome, ut_cognome, ut_email, ut_provincia, ut_citta, ut_cap, ".
-        "ut_indirizzo, ut_telefono, ut_password, ut_data, ut_stato, ut_rapido".
-        ") VALUES (".
-        "'$serial_date', '$ut_nome','$ut_cognome','$ut_email','$ut_provincia','$ut_citta','$ut_cap', '$ut_indirizzo','$ut_telefono', ".
+        "INSERT INTO ut_utenti(ut_codice, ut_nome, ut_cognome, ut_email, ut_provincia, ut_citta, ut_cap, " .
+        "ut_indirizzo, ut_telefono, ut_password, ut_data, ut_stato, ut_rapido" .
+        ") VALUES (" .
+        "'$serial_date', '$ut_nome','$ut_cognome','$ut_email','$ut_provincia','$ut_citta','$ut_cap', '$ut_indirizzo','$ut_telefono', " .
         "'$ut_password', '$serial_date', 1, 0)";
 
-    $result = $dbConn->query($querySql);
-    $rows = $dbConn->affected_rows;
 
-    $dbConn->close();
-
-    if ($rows > 0) {
+    if (0 == 0) {
 
         $email_titolo = "Benvenuto su Cybek.it";
 
         $email_testo =
             "
                     <strong>Ecco i dati di accesso che hai inserito:</strong><br>
-                    Email : ".$ut_email."<br>
-                    Password : ".$ut_password."<br><br>
+                    Email : " . $ut_email . "<br>
+                    Password : " . $ut_password . "<br><br>
                   
                     <strong>I tuoi dati personali:</strong><br>
-                    Nome : ".$ut_nome." ".$ut_cognome."<br>
-                    E-mail : ".$ut_email."<br>
-                    Telefono : ".$ut_telefono."<br>
-                    Provincia : ".$ut_provincia."<br>
-                    Città : ".$ut_citta."<br>
-                    CAP : ".$ut_cap."<br>
+                    Nome : " . $ut_nome . " " . $ut_cognome . "<br>
+                    E-mail : " . $ut_email . "<br>
+                    Telefono : " . $ut_telefono . "<br>
+                    Provincia : " . $ut_provincia . "<br>
+                    Città : " . $ut_citta . "<br>
+                    CAP : " . $ut_cap . "<br>
                     
                     <a href='$rootBasePath_http/login'>Clicca qui per accedere allo store</a>. <br><br>
             ";
@@ -81,41 +77,41 @@ if ($checkEmail > 0) {
         include "inc/mail.php";
 
         include("crm/class/class.phpmailer.php");
-        $mittente = $SMTP['user'];
+        $mittente = "info@cybek.it";
         $nomemittente = "Cybek.it";
         $destinatario = $ut_email;
-        //$ServerSMTP = "mail.lucasweb.it";  //server SMTP autenticato Hosting Solutions
-        $dataFullNow = strftime("%A %d %B %Y", time());
 
         $mail = new PHPMailer;
         // utilizza la classe SMTP invece del comando mail() di php
         $mail->IsSMTP();
-        $mail->SMTPAuth = true;
         $mail->SMTPKeepAlive = "true";
 
         // autenticazione server SMTP di invio mail
-        $mail->Host = $SMTP['host'];
-        //$mail->Port = 587;
-        $mail->Username = $SMTP['user'];      // utente server SMTP autenticato
-        $mail->Password = $SMTP['pass'];    // password server SMTP autenticato
-
+        $mail->Host = "webmailsmtp.register.it";
+        $mail->Port = 25;
+        $mail->Username = "info@cybek.it";      // utente server SMTP autenticato
+        $mail->Password = "emaildominio";    // password server SMTP autenticato
         // abilito il messaggio in HTML
         $mail->IsHTML(true);
+        $mail->SMTPSecure = false;
+        $mail->SMTPAuth = true;
 
         //intestazioni e corpo dell'email
         $mail->From = $mittente;
         $mail->FromName = $nomemittente;
         $mail->AddAddress($destinatario);
-        $mail->AddBCC($rootBaseEmail);
-        $mail->AddBCC("notifica@lucasweb.it");
-        $mail->Subject = "Cybek.it - Conferma registrazione ".$datetime;
+        //$mail->AddBCC($rootBaseEmail);
+        $mail->Subject = "Cybek.it - Conferma registrazione " . $datetime;
 
-        $mail->Body = $messaggio;
+        $mail->Body = "sss";
         $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
 
+        $mail->SMTPDebug = 1;
         $mail->Send();
 
-        header("Location:login-do?ut_email=$ut_email&ut_password=$ut_password");
+        echo "si";
+
+        //header("Location:login-do?ut_email=$ut_email&ut_password=$ut_password");
 
     } else
         //echo "<meta http-equiv='refresh' content='0;url=registrati?insert=false' />";

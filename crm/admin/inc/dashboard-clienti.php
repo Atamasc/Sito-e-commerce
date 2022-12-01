@@ -35,9 +35,9 @@
 
                             echo "<tr>";
                             echo "<td>$ut_id</td>";
-                            echo "<td>".$row_data['ut_nome']."</td>";
-                            echo "<td>".$row_data['ut_cognome']."</td>";
-                            echo "<td>".$row_data['ut_email']."</td>";
+                            echo "<td>" . $row_data['ut_nome'] . "</td>";
+                            echo "<td>" . $row_data['ut_cognome'] . "</td>";
+                            echo "<td>" . $row_data['ut_email'] . "</td>";
 
                             //Tipo
                             /*echo "<td align='center'>";
@@ -56,7 +56,7 @@
                             ?>
                             <div class="checkbox checbox-switch switch-success">
                                 <label>
-                                    <input type="checkbox" class="stato" title="clienti-stato-do.php?ut_id=<?php echo $ut_id; ?>" <?php echo $checked; ?>><span></span>
+                                    <input type="checkbox" class="stato" title="utenti-stato-do.php?ut_id=<?php echo $ut_id; ?>" <?php echo $checked; ?>><span></span>
                                 </label>
                             </div>
                             <?php
@@ -64,9 +64,9 @@
 
                             //Gestione
                             echo "<td align='center'>";
-                            echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?ut_id=$ut_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
-                            echo "<a class='btn btn-success btn-sm' href='clienti-mod.php?ut_id=$ut_id' title='Modifica anagrafica'>modifica</a>&nbsp;";
-                            echo "<button class='btn btn-danger btn-sm elimina' data-href='clienti-del-do.php?ut_id=$ut_id'><i class='fas fa-trash-alt'></i></button>";
+                            echo "<button class='btn btn-primary btn-sm modale' data-href='utenti-scheda-modale.php?ut_id=$ut_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
+                            echo "<a class='btn btn-success btn-sm' href='utenti-mod.php?ut_id=$ut_id' title='Modifica anagrafica'>modifica</a>&nbsp;";
+                            echo "<button class='btn btn-danger btn-sm elimina' data-href='utenti-del-do.php?ut_id=$ut_id'><i class='fas fa-trash-alt'></i></button>";
                             echo "</td>";
                             echo "</tr>";
 

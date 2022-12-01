@@ -146,7 +146,7 @@
 
                                     <div style="display: flex; justify-content: space-between;">
                                         <h5 class="card-title border-0 pb-0">Dati cliente</h5>
-                                        <button style="height: 30px;" class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?ut_id=<?php echo $ut_id; ?>' title='Visualizza scheda'>Visualizza tutti i dati</button>
+                                        <button style="height: 30px;" class='btn btn-primary btn-sm modale' data-href='utenti-scheda-modale.php?ut_id=<?php echo $ut_id; ?>' title='Visualizza scheda'>Visualizza tutti i dati</button>
                                     </div>
 
                                     <div class="row">

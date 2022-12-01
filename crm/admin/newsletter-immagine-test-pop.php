@@ -12,7 +12,7 @@ $nl_id = $row_data_nl["nl_id"];
 $nl_titolo = $row_data_nl["nl_titolo"];
 
 $nl_testo = $row_data_nl["nl_testo"];
-$nl_testo = str_replace("\r\n" , "<br>" , $nl_testo);
+$nl_testo = str_replace("\r\n", "<br>", $nl_testo);
 
 $nl_immagine = $row_data_nl["nl_immagine"];
 $nl_allegato = $row_data_nl["nl_allegato"];
@@ -47,24 +47,24 @@ $dataFullNow = strftime("%A %d %B %Y", time());
 $mail = new PHPMailer;
 // utilizza la classe SMTP invece del comando mail() di php
 $mail->IsSMTP();
-$mail->SMTPAuth   = true;
+$mail->SMTPAuth = true;
 $mail->SMTPKeepAlive = "true";
 $mail->Mailer = "smtp";
 
-$mail->Host  = $SMTP['host'];
+$mail->Host = $SMTP['host'];
 $mail->Port = 25;  // SMTP Port
-$mail->Username   = $SMTP['user']; // utente server SMTP autenticato
-$mail->Password   = $SMTP['pass']; // password server SMTP autenticato
+$mail->Username = $SMTP['user']; // utente server SMTP autenticato
+$mail->Password = $SMTP['pass']; // password server SMTP autenticato
 
 // abilito il messaggio in HTML
 $mail->IsHTML(true);
 
 //intestazioni e corpo dell'email
-$mail->From   = $mittente;
+$mail->From = $mittente;
 $mail->FromName = $nomemittente;
 $mail->AddAddress($destinatario);
 //$mail->AddBCC("info@lucasweb.it");
-//$mail->AddBCC("email del cliente");
+//$mail->AddBCC("email dell'utente");
 $mail->Subject = $nl_oggetto;
 
 $mail->Body = convertLink($messaggio, $rootBasePath_http, 0, "");
@@ -75,7 +75,7 @@ $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HT
 
 $get_send = true;
 
-if($mail->Send()) {
+if ($mail->Send()) {
     $get_send = true;
     //echo "messaggio inviato correttamente";
 } else {
@@ -86,7 +86,8 @@ if($mail->Send()) {
 ?>
 
 <div class="modal-header">
-    <div class="modal-title"><div class="mb-30">
+    <div class="modal-title">
+        <div class="mb-30">
             <h6>Titolo newsletter: <?php echo $nl_titolo; ?></h6>
             <h2>INVIO TEST NEWSLETTER</h2>
         </div>
@@ -99,11 +100,12 @@ if($mail->Send()) {
 <div class="modal-body">
 
     <?php if ($get_send == true) { ?>
-            <p>Inoltro newsletter test eseguito</p>
-            <p>L'inoltro del test della newsletter e' stato eseguito, riceverai una email su <strong><?php echo $rootBaseEmail; ?></strong></p>
+        <p>Inoltro newsletter test eseguito</p>
+        <p>L'inoltro del test della newsletter e' stato eseguito, riceverai una email su
+            <strong><?php echo $rootBaseEmail; ?></strong></p>
     <?php } elseif ($get_send == false) { ?>
-            <p>Errore inoltro email</p>
-            <p>Se è verificato il seguente errore: <?php echo $get_error_info; ?>, riprova o contatta il supporto tecnico.</p>
+        <p>Errore inoltro email</p>
+        <p>Se è verificato il seguente errore: <?php echo $get_error_info; ?>, riprova o contatta il supporto tecnico.</p>
     <?php }; ?>
 
 </div>

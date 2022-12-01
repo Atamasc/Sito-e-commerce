@@ -199,9 +199,9 @@
                                         $codice_nume = $random['a'] + $random['b'];
                                         ?>
                                         <label>Conferma di non essere un robot:
-                                            <b><?php echo $random['a']." + ".$random['b']; ?></b>?</label>
+                                            <b><?php echo $random['a'] . " + " . $random['b']; ?></b>?</label>
                                         &nbsp;
-                                        <input type="text" name="codice_num" id="codice_num" style="width: 50px; padding: 0 10px;" pattern="<?php echo $codice_nume; ?>" required autocomplete="off">
+                                        <input type="text" name="codice_num" id="codice_num" style="width: 50px; padding: 0 10px;" required autocomplete="off">
                                         <input type="hidden" name="codice_num_hidden" value="<?php echo $codice_nume; ?>">
                                     </div>
                                 </div>

@@ -6,15 +6,29 @@
 
         <?php include "inc/head.php"; ?>
 
-        <script src="../ajax/regioni.js"></script>
-
     </head>
 
     <body>
 
     <?php
-    $get_op_nome = isset($_GET['op_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['op_nome']))) : "";
-    $get_op_codice = isset($_GET['op_codice']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['op_codice']))) : "";
+    $get_py_email = isset($_GET['py_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['py_email']))) : "";
+
+    $get_py_timestamp_da = isset($_GET['py_timestamp_da']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['py_timestamp_da']))) : "";
+    $get_py_timestamp_a = isset($_GET['py_timestamp_a']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['py_timestamp_a']))) : "";
+
+    if (strlen($get_py_timestamp_da) > 0) {
+
+        list($day, $month, $year) = explode("/", $get_py_timestamp_da);
+        $get_py_timestamp_da = mktime(0, 0, 0, $month, $day, $year);
+
+    }
+
+    if (strlen($get_py_timestamp_a) > 0) {
+
+        list($day, $month, $year) = explode("/", $get_py_timestamp_a);
+        $get_py_timestamp_a = mktime(23, 59, 59, $month, $day, $year);
+
+    }
     ?>
 
     <div class="wrapper">
@@ -42,13 +56,13 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4 class="mb-0"> Gestione operatori </h4>
+                                <h4 class="mb-0"> Gestione log Privacy</h4>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                                     <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Gestione operatori</li>
+                                    <li class="breadcrumb-item active">Gestione log privacy</li>
                                 </ol>
                             </div>
                         </div>
@@ -58,25 +72,34 @@
 
                         <div class="col-xl-12 mb-30">
 
-                            <div class="card card-statistics mb-10">
+                            <div class="card card-statistics mb-30">
                                 <div class="card-body">
 
                                     <form method="get" action="?" enctype="multipart/form-data">
 
-                                        <h5 class="card-title">Filtra operatori</h5>
+                                        <h5 class="card-title">Filtra log</h5>
 
                                         <div class="form-row">
-                                            <div class="col-md-3 mb-3">
-                                                <label for="op_nome">Nome</label>
-                                                <input type="text" name="op_nome" class="form-control" value="<?php echo $get_op_nome; ?>">
-                                                <span class="tooltips">Nome Operatore <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Nome Operatore" data-content="Inserisci qui il nome dell'operatore che stai cercando">[aiuto]</a></span>
-                                            </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="op_codice">Codice</label>
-                                                <input type="text" class="form-control" id="op_codice" name="op_codice" value="<?php echo $get_op_codice; ?>">
-                                                <span class="tooltips">Codice Operatore <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Codice Operatore" data-content="Inserisci qui il codice dell'operatore che stai cercando">[aiuto]</a></span>
+                                                <label for="py_email">Email</label>
+                                                <input name="py_email" id="py_email" class="form-control" type="text" autocomplete="off"
+                                                        value="<?php echo $get_py_email; ?>">
                                             </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label>Data</label>
+                                                <div class="input-group" data-date="">
+                                                    <input name="py_timestamp_da" class="form-control range-from" type="text"
+                                                            data-date-format="dd/mm/yyyy" autocomplete="off"
+                                                            value="<?php if (strlen($get_py_timestamp_da) > 0) echo date("d/m/Y", $get_py_timestamp_da); ?>">
+                                                    <span class="input-group-addon">A</span>
+                                                    <input name="py_timestamp_a" class="form-control range-to" type="text"
+                                                            data-date-format="dd/mm/yyyy" autocomplete="off"
+                                                            value="<?php if (strlen($get_py_timestamp_a) > 0) echo date("d/m/Y", $get_py_timestamp_a); ?>">
+                                                </div>
+                                            </div>
+
                                         </div>
 
                                         <button class="btn btn-primary" type="submit">Cerca</button>
@@ -92,45 +115,38 @@
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
 
-                                    <h5 class="card-title border-0 pb-0">Lista operatori</h5>
+                                    <h5 class="card-title border-0 pb-0">Lista log</h5>
 
-                                    <?php
-                                    if (@$_GET['delete'] == 'true') {
-
-                                        ?>
-                                        <div class="alert alert-success" role="alert">
-                                            Eliminazione avvenuta con successo.
-                                        </div>
-                                        <?php
-
-                                    }
-                                    ?>
 
                                     <div class="table-responsive">
 
                                         <table class="table table-1 table-bordered table-striped mb-0">
                                             <thead>
                                             <tr>
-                                                <th>Codice</th>
+                                                <th>ID</th>
                                                 <th>Nominativo</th>
-                                                <th>Telefono</th>
-                                                <th style="text-align: center;">Stato</th>
-                                                <th style="text-align: center; width: 200px;">Gestione</th>
+                                                <th>Email</th>
+                                                <th>Azione</th>
+                                                <th>Attività</th>
+                                                <th>Data e ora</th>
+                                                <th style="text-align: center;">Autorizzazioni</th>
+                                                <th style="text-align: center;">Gestione</th>
                                             </tr>
                                             </thead>
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(op_id) FROM op_operatori WHERE op_id > 0 ";
-                                            if (strlen($get_op_nome) > 0) $querySql .= " AND op_nome LIKE '%$get_op_nome%' ";
-                                            if (strlen($get_op_codice) > 0) $querySql .= " AND op_codice LIKE '%$get_op_codice%' ";
+                                            $querySql = "SELECT COUNT(py_id) FROM py_privacy WHERE py_id > 0 ";
+                                            if (strlen($get_py_email) > 0) $querySql .= " AND py_email LIKE '%$get_py_email%' ";
+                                            if (strlen($get_py_timestamp_da) > 0) $querySql .= " AND py_timestamp >= '$get_py_timestamp_da' ";
+                                            if (strlen($get_py_timestamp_a) > 0) $querySql .= " AND py_timestamp <= '$get_py_timestamp_a' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
                                             // numero totale del count
                                             $row_cnt = $row[0];
                                             // risultati per pagina(secondo parametro di LIMIT)
-                                            $per_page = 20;
+                                            $per_page = 30;
                                             // numero totale di pagine
                                             $tot_pages = ceil($row_cnt / $per_page);
                                             // pagina corrente
@@ -138,47 +154,62 @@
                                             // primo parametro di LIMIT
                                             $primo = ($current_page - 1) * $per_page;
 
-                                            $querySql = "SELECT * FROM op_operatori WHERE op_id > 0 ";
-                                            if (strlen($get_op_nome) > 0) $querySql .= " AND op_nome LIKE '%$get_op_nome%' ";
-                                            if (strlen($get_op_codice) > 0) $querySql .= " AND op_codice LIKE '%$get_op_codice%' ";
-                                            $querySql .= " ORDER BY op_cognome LIMIT $primo, $per_page";
+                                            $querySql = "SELECT * FROM py_privacy WHERE py_id > 0 ";
+                                            if (strlen($get_py_email) > 0) $querySql .= " AND py_email LIKE '%$get_py_email%' ";
+                                            if (strlen($get_py_timestamp_da) > 0) $querySql .= " AND py_timestamp >= '$get_py_timestamp_da' ";
+                                            if (strlen($get_py_timestamp_a) > 0) $querySql .= " AND py_timestamp <= '$get_py_timestamp_a' ";
+                                            $querySql .= " ORDER BY py_id DESC LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                                $op_id = $row_data['op_id'];
+                                                $py_id = $row_data['py_id'];
 
                                                 echo "<tr>";
-                                                echo "<td>" . $row_data['op_codice'] . "</td>";
-                                                echo "<td>" . $row_data['op_nome'] . " " . $row_data['op_cognome'] . "</td>";
-                                                echo "<td>" . $row_data['op_telefono'] . "</td>";
+                                                echo "<td>$py_id</td>";
+                                                echo "<td>" . $row_data['py_nominativo'] . "</td>";
+                                                echo "<td>" . $row_data['py_email'] . "</td>";
+                                                echo "<td>" . $row_data['py_azione'] . "</td>";
+                                                echo "<td>" . $row_data['py_attivita'] . "</td>";
+                                                echo "<td>" . date("d/m/Y  -  H:i", $row_data['py_timestamp']) . "</td>";
 
                                                 //Stato
-                                                $checked = $row_data['op_stato'] > 0 ? "checked" : "";
-                                                ?>
-                                                <td align='center'>
-                                                    <div class="checkbox checbox-switch switch-success">
-                                                        <label>
-                                                            <input type="checkbox" class="stato" title="operatori-stato-do.php?op_id=<?php echo $op_id; ?>" <?php echo $checked; ?>><span></span>
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <?php
+                                                echo "<td align='center'>";
+
+                                                // privacy
+                                                if ($row_data['py_checkbox_privacy'] == 0) {
+                                                    echo "<div class='btn btn-danger btn-sm'>Privacy</div>&nbsp;";
+                                                } else {
+                                                    echo "<div class='btn btn-success btn-sm'>Privacy</div>&nbsp;";
+                                                }
+
+                                                // marketing
+                                                if ($row_data['py_checkbox_marketing'] == 0) {
+                                                    echo "<div class='btn btn-danger btn-sm'>Marketing</div>&nbsp;";
+                                                } else {
+                                                    echo "<div class='btn btn-success btn-sm'>Marketing</div>&nbsp;";
+                                                }
+
+                                                // cessione
+                                                if ($row_data['py_checkbox_cessione'] == 0) {
+                                                    echo "<div class='btn btn-danger btn-sm'>Condizioni</div>&nbsp;";
+                                                } else {
+                                                    echo "<div class='btn btn-success btn-sm'>Condizioni</div>&nbsp;";
+                                                }
+
+                                                echo "</td>";
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                //echo "<button class='btn btn-primary btn-sm modale' data-href='utenti-scheda-modale.php?op_id=$op_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
-                                                echo "<a class='btn btn-success btn-sm' href='operatori-mod.php?op_id=$op_id' title='Modifica'>modifica</a>&nbsp;";
-                                                //echo "<button class='btn btn-danger btn-sm elimina' data-href='operatori-del-do.php?op_id=$op_id'><i class='fas fa-trash-alt'></i></button>";
+                                                echo "<a class='btn btn-primary btn-sm' href='utenti-privacy-dettaglio.php?py_id=$py_id' title='Dettaglio'>Dettaglio</a>&nbsp;";
                                                 echo "</td>";
                                                 echo "</tr>";
 
-                                                $i += 1;
                                             };
 
                                             if ($rows == 0) {
-                                                echo "<tr><td colspan='99' align='center'>Non ci sono operatori presenti</td></tr>";
+                                                echo "<tr><td colspan='99' align='center'>Non ci sono log presenti</td></tr>";
                                             }
 
                                             $result->close();
@@ -242,4 +273,5 @@
     </body>
 
     </html>
+
 <?php include "../inc/db-close.php"; ?>

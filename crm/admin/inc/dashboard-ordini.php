@@ -25,8 +25,8 @@
 
                         <?php
                         $querySql =
-                            "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini ".
-                            "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE ".strlen(or_codice)." > 0 ".
+                            "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini " .
+                            "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE " . strlen(or_codice) . " > 0 " .
                             "GROUP BY or_codice ORDER BY or_codice DESC LIMIT 0, 5 ";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
@@ -45,7 +45,7 @@
                             $or_pagamento_prezzo = getPrezzoPagamento($or_pagamento, $or_totale_importo);
                             $or_spedizione_prezzo = getPrezzoSpedizione($or_spedizione, $or_totale_importo);
 
-                            if(strlen($or_coupon)>0) {
+                            if (strlen($or_coupon) > 0) {
                                 $or_sconto_coupon = $or_coupon_tipo == "importo" ? (float)$or_coupon_valore : ($or_totale_importo / 100) * $or_coupon_valore;
                             } else {
                                 $or_sconto_coupon = 0;
@@ -54,9 +54,9 @@
                             $or_totale = $or_totale_importo - $or_sconto_coupon + $or_pagamento_prezzo + $or_spedizione_prezzo;
 
                             echo "<tr>";
-                            echo "<td>$or_codice del ".date('d/m/Y - H:i', substr($or_codice,9))."</td>";
-                            echo "<td>".$row_data['ut_nome']." ".$row_data['ut_cognome']."</td>";
-                            echo "<td class='text-center'>&euro; ".formatPrice($or_totale)."</td>";
+                            echo "<td>$or_codice del " . date('d/m/Y - H:i', substr($or_codice, 9)) . "</td>";
+                            echo "<td>" . $row_data['ut_nome'] . " " . $row_data['ut_cognome'] . "</td>";
+                            echo "<td class='text-center'>&euro; " . formatPrice($or_totale) . "</td>";
 
                             //Stato di evasione
                             /*
@@ -119,7 +119,7 @@
                 <!--<h4><a href="#"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="#"><i class="fa fa-instagram"></i></a></h4>-->
                 <h4><a class='btn btn-primary w-100' href='ordini-gst.php'>Ordini</a></h4>
                 <h4><a class='btn btn-orange w-100' href='prodotti-gst.php'>Catalogo</a></h4>
-                <h4><a class='btn btn-success w-100' href='clienti-gst.php'>Clienti</a></h4>
+                <h4><a class='btn btn-success w-100' href='utenti-gst.php'>Clienti</a></h4>
             </div>
         </div>
     </div>

@@ -44,7 +44,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Gestione spedizionieri</li>
                                 </ol>
                             </div>
@@ -73,7 +74,7 @@
 
                                         <button class="btn btn-primary" type="submit">Cerca</button>
                                         <a href="spedizionieri-add.php" class="btn btn-success">Aggiungi spedizioniere</a>
-                                        <a href="spedizionieri-clienti-do.php" class="btn btn-orange">Genera CSV clienti</a>
+                                        <a href="spedizionieri-utenti-do.php" class="btn btn-orange">Genera CSV clienti</a>
 
                                     </form>
 
@@ -89,7 +90,7 @@
                                     <h5 class="card-title border-0 pb-0">Lista spedizionieri</h5>
 
                                     <?php
-                                    if(@$_GET['delete'] == 'true') {
+                                    if (@$_GET['delete'] == 'true') {
 
                                         ?>
                                         <div class="alert alert-success" role="alert">
@@ -118,7 +119,7 @@
 
                                             <?php
                                             $querySql = "SELECT COUNT(ci_id) FROM ci_corrieri WHERE ci_id > 0 ";
-                                            if(strlen($get_ci_titolo) > 0) $querySql .= " AND ci_titolo LIKE '%$get_ci_titolo%' ";
+                                            if (strlen($get_ci_titolo) > 0) $querySql .= " AND ci_titolo LIKE '%$get_ci_titolo%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -134,47 +135,47 @@
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql = "SELECT * FROM ci_corrieri WHERE ci_id > 0 ";
-                                            if(strlen($get_ci_titolo) > 0) $querySql .= " AND ci_titolo LIKE '%$get_ci_titolo%' ";
+                                            if (strlen($get_ci_titolo) > 0) $querySql .= " AND ci_titolo LIKE '%$get_ci_titolo%' ";
                                             $querySql .= " ORDER BY ci_titolo LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                            $ci_id = $row_data['ci_id'];
-                                            $ci_titolo = $row_data['ci_titolo'];
-                                            $ci_costo_standard  = $row_data['ci_costo_standard'];
-                                            $ci_costo_espressa = $row_data['ci_costo_espressa'];
-                                            $ci_costo_estera = $row_data['ci_costo_estera'];
-    
-                                            //echo "<br>".$ci_costo_standard;
-                                            //echo "<br>".number_format($ci_costo_standard, 2, ",", ".");
+                                                $ci_id = $row_data['ci_id'];
+                                                $ci_titolo = $row_data['ci_titolo'];
+                                                $ci_costo_standard = $row_data['ci_costo_standard'];
+                                                $ci_costo_espressa = $row_data['ci_costo_espressa'];
+                                                $ci_costo_estera = $row_data['ci_costo_estera'];
 
-                                            echo "<tr>";
-                                            echo "<td>$ci_id</td>";
-                                            echo "<td>$ci_titolo</td>";
-                                            echo "<td>".formatPrice($ci_costo_standard)."&euro;</td>";
-                                            echo "<td>".formatPrice($ci_costo_espressa)."&euro;</td>";
-                                            echo "<td>".formatPrice($ci_costo_estera)."&euro;</td>";
+                                                //echo "<br>".$ci_costo_standard;
+                                                //echo "<br>".number_format($ci_costo_standard, 2, ",", ".");
+
+                                                echo "<tr>";
+                                                echo "<td>$ci_id</td>";
+                                                echo "<td>$ci_titolo</td>";
+                                                echo "<td>" . formatPrice($ci_costo_standard) . "&euro;</td>";
+                                                echo "<td>" . formatPrice($ci_costo_espressa) . "&euro;</td>";
+                                                echo "<td>" . formatPrice($ci_costo_estera) . "&euro;</td>";
 
 
-                                            //Stato
-                                            echo "<td align='center'>";
-                                            if ($row_data['ci_stato'] == 0) { ?>
-                                                <div class="checkbox checbox-switch switch-success">
-                                                    <label>
-                                                        <input type="checkbox" class="stato" title="spedizionieri-stato-do.php?ci_id=<?php echo $ci_id; ?>"><span></span>
-                                                    </label>
-                                                </div>
-                                            <?php } else { ?>
-                                                <div class="checkbox checbox-switch switch-success">
-                                                    <label>
-                                                        <input type="checkbox" class="stato" title="spedizionieri-stato-do.php?ci_id=<?php echo $ci_id; ?>" checked><span></span>
-                                                    </label>
-                                                </div>
-                                            <?php }
+                                                //Stato
+                                                echo "<td align='center'>";
+                                                if ($row_data['ci_stato'] == 0) { ?>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label>
+                                                            <input type="checkbox" class="stato" title="spedizionieri-stato-do.php?ci_id=<?php echo $ci_id; ?>"><span></span>
+                                                        </label>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label>
+                                                            <input type="checkbox" class="stato" title="spedizionieri-stato-do.php?ci_id=<?php echo $ci_id; ?>" checked><span></span>
+                                                        </label>
+                                                    </div>
+                                                <?php }
 
-                                            echo "</td>";
+                                                echo "</td>";
 
                                                 //Gestione
                                                 echo "<td align='center'>";
@@ -196,11 +197,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";

@@ -26,7 +26,7 @@
 
                         <?php
                         $querySql =
-                            "SELECT * FROM at_attivita INNER JOIN ut_utenti ON ut_id = at_ut_id WHERE at_id > 0 ".
+                            "SELECT * FROM at_attivita INNER JOIN ut_utenti ON ut_id = at_ut_id WHERE at_id > 0 " .
                             "ORDER BY at_data_attivita, at_ora_attivita LIMIT 0, 10";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
@@ -34,13 +34,13 @@
                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
                             $at_id = $row_data['at_id'];
-                            $at_data_ora = date("d/m/Y", $row_data['at_data_attivita'])." ".$row_data['at_ora_attivita'];
+                            $at_data_ora = date("d/m/Y", $row_data['at_data_attivita']) . " " . $row_data['at_ora_attivita'];
 
                             echo "<tr>";
-                            echo "<td>".$row_data['ut_ragione_sociale']."</td>";
-                            echo "<td>".$row_data['at_tipologia']."</td>";
-                            echo "<td>".$row_data['at_luogo']."</td>";
-                            echo "<td>".$row_data['at_esito']."</td>";
+                            echo "<td>" . $row_data['ut_ragione_sociale'] . "</td>";
+                            echo "<td>" . $row_data['at_tipologia'] . "</td>";
+                            echo "<td>" . $row_data['at_luogo'] . "</td>";
+                            echo "<td>" . $row_data['at_esito'] . "</td>";
                             echo "<td>$at_data_ora</td>";
 
                             //Gestione
@@ -59,11 +59,11 @@
 
                         $varget = "?";
                         foreach ($_GET as $k => $v)
-                            if($k != 'page') $varget .= "&$k=$v";
+                            if ($k != 'page') $varget .= "&$k=$v";
 
                         for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                            if($i < 1 || $i > $tot_pages) continue;
+                            if ($i < 1 || $i > $tot_pages) continue;
 
                             if ($i == $current_page)
                                 $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";
@@ -89,7 +89,7 @@
                 <!--<h4><a href="#"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="#"><i class="fa fa-instagram"></i></a></h4>-->
                 <h4><a class='btn btn-primary w-100' href='ordini-gst.php'>Ordini</a></h4>
                 <h4><a class='btn btn-orange w-100' href='prodotti-gst.php'>Catalogo</a></h4>
-                <h4><a class='btn btn-success w-100' href='clienti-gst.php'>Elenco clienti</a></h4>
+                <h4><a class='btn btn-success w-100' href='utenti-gst.php'>Elenco clienti</a></h4>
             </div>
         </div>
     </div>

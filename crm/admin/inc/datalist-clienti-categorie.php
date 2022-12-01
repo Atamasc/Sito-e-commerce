@@ -5,7 +5,7 @@
             <h5 class="card-title border-0 pb-0">Lista categorie</h5>
 
             <?php
-            if(@$_GET['delete'] == 'true') {
+            if (@$_GET['delete'] == 'true') {
 
                 ?>
                 <div class="alert alert-success" role="alert">
@@ -40,16 +40,15 @@
 
                         echo "<tr>";
                         echo "<td>$ct_id</td>";
-                        echo "<td>".$row_data['ct_titolo']."</td>";
+                        echo "<td>" . $row_data['ct_titolo'] . "</td>";
 
                         //Stato
                         $checked = $row_data['ct_stato'] > 0 ? "checked" : "";
                         ?>
                         <td align='center'>
                             <div class="checkbox checbox-switch switch-success">
-                                <label>
-                                    <input type="checkbox" class="stato"
-                                           title="clienti-categorie-stato-do.php?ct_id=<?php echo $ct_id; ?>" <?php echo $checked;?>><span></span>
+                                <label> <input type="checkbox" class="stato"
+                                            title="utenti-categorie-stato-do.php?ct_id=<?php echo $ct_id; ?>" <?php echo $checked; ?>><span></span>
                                 </label>
                             </div>
                         </td>
@@ -57,8 +56,8 @@
 
                         //Gestione
                         echo "<td align='center'>";
-                        echo "<a class='btn btn-success btn-sm' href='clienti-categorie-mod.php?ct_id=$ct_id' title='Modifica'>modifica</a>&nbsp;";
-                        echo "<button class='btn btn-danger btn-sm elimina' data-href='clienti-categorie-del-do.php?ct_id=$ct_id'>elimina</button>";
+                        echo "<a class='btn btn-success btn-sm' href='utenti-categorie-mod.php?ct_id=$ct_id' title='Modifica'>modifica</a>&nbsp;";
+                        echo "<button class='btn btn-danger btn-sm elimina' data-href='utenti-categorie-del-do.php?ct_id=$ct_id'>elimina</button>";
                         echo "</td>";
                         echo "</tr>";
 

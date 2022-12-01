@@ -21,8 +21,8 @@
 
                     <?php
                     $querySql =
-                        "SELECT * FROM lt_lotti INNER JOIN pr_prodotti ON pr_id = lt_pr_id ".
-                        "WHERE lt_cr_id = '$lt_cr_id' ".
+                        "SELECT * FROM lt_lotti INNER JOIN pr_prodotti ON pr_id = lt_pr_id " .
+                        "WHERE lt_cr_id = '$lt_cr_id' " .
                         "ORDER BY lt_timestamp ";
                     $result = $dbConn->query($querySql);
                     $rows = $dbConn->affected_rows;
@@ -32,19 +32,18 @@
                         $lt_id = $row_data['lt_id'];
 
                         echo "<tr>";
-                        echo "<td>".$row_data['lt_codice']."</td>";
-                        echo "<td>".$row_data['pr_descrizione']."</td>";
-                        echo "<td>".$row_data['lt_quantita']." ".$row_data['pr_um']."</td>";
-                        echo "<td>".date("d/m/Y", $row_data['lt_timestamp'])."</td>";
+                        echo "<td>" . $row_data['lt_codice'] . "</td>";
+                        echo "<td>" . $row_data['pr_descrizione'] . "</td>";
+                        echo "<td>" . $row_data['lt_quantita'] . " " . $row_data['pr_um'] . "</td>";
+                        echo "<td>" . date("d/m/Y", $row_data['lt_timestamp']) . "</td>";
 
                         //Stato
                         $checked = $row_data['lt_stato'] > 0 ? "checked" : "";
                         ?>
                         <td align='center'>
                             <div class="checkbox checbox-switch switch-success">
-                                <label>
-                                    <input type="checkbox" class="stato"
-                                           title="lotti-stato-do.php?lt_id=<?php echo $lt_id; ?>" <?php echo $checked;?>><span></span>
+                                <label> <input type="checkbox" class="stato"
+                                            title="lotti-stato-do.php?lt_id=<?php echo $lt_id; ?>" <?php echo $checked; ?>><span></span>
                                 </label>
                             </div>
                         </td>
@@ -52,7 +51,7 @@
 
                         //Gestione
                         echo "<td align='center'>";
-                        //echo "<button class='btn btn-primary btn-sm modale' data-href='clienti-scheda-modale.php?ut_id=$ut_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
+                        //echo "<button class='btn btn-primary btn-sm modale' data-href='utenti-scheda-modale.php?ut_id=$ut_id' title='Visualizza scheda'>scheda cliente</button>&nbsp;";
                         echo "<a class='btn btn-success btn-sm' href='lotti-mod.php?lt_id=$lt_id' title='Modifica'>modifica</a>&nbsp;";
                         //echo "<button class='btn btn-danger btn-sm elimina' data-href='lotti-del-do.php?lt_id=$lt_id'><i class='far fa-trash-alt'></i></button>";
                         echo "</td>";
