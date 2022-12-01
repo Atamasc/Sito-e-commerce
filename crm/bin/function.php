@@ -153,44 +153,44 @@ function selectFamiglie($pr_fm_codice_param)
 
 }
 
-function selectMarchio($pr_mr_id)
+function selectMarca($pr_mr_id)
 {
 
     global $dbConn;
 
-    $querySql = "SELECT mr_id, mr_marchio FROM mr_marchi WHERE mr_id > 0 ORDER BY mr_marchio";
+    $querySql = "SELECT mr_id, mr_marche FROM mr_marche WHERE mr_id > 0 ORDER BY mr_marche";
     $result = $dbConn->query($querySql);
 
     while (($rows = $result->fetch_assoc()) !== NULL) {
 
         $mr_id = $rows['mr_id'];
-        $mr_marchio = $rows['mr_marchio'];
+        $mr_marche = $rows['mr_marche'];
 
         $status = ($pr_mr_id == $mr_id) ? "selected" : "";
 
-        echo "<option value='$mr_id' $status>$mr_marchio</option>";
+        echo "<option value='$mr_id' $status>$mr_marche</option>";
     }
 
     $result->close();
 
 }
 
-function selectCodiceMarchio($mr_codice_param)
+function selectCodiceMarca($mr_codice_param)
 {
 
     global $dbConn;
 
-    $querySql = "SELECT mr_codice, mr_marchio FROM mr_marchi WHERE mr_id > 0 ORDER BY mr_marchio";
+    $querySql = "SELECT mr_codice, mr_marche FROM mr_marche WHERE mr_id > 0 ORDER BY mr_marche";
     $result = $dbConn->query($querySql);
 
     while (($rows = $result->fetch_assoc()) !== NULL) {
 
         $mr_codice = $rows['mr_codice'];
-        $mr_marchio = $rows['mr_marchio'];
+        $mr_marche = $rows['mr_marche'];
 
         $status = ($mr_codice_param == $mr_codice) ? "selected" : "";
 
-        echo "<option value='$mr_codice' $status>$mr_marchio</option>";
+        echo "<option value='$mr_codice' $status>$mr_marche</option>";
     }
 
     $result->close();
@@ -1129,7 +1129,7 @@ function countProdottiFamiglia($pr_fm_codice, mysqli $dbConn)
 
 }
 
-function countProdottiMarchio($pr_mr_id, mysqli $dbConn)
+function countProdottiMarca($pr_mr_id, mysqli $dbConn)
 {
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_mr_id = '$pr_mr_id' ";
@@ -1167,10 +1167,10 @@ function countProdottiLinea($pr_codice_linea, mysqli $dbConn)
 
 }
 
-function countLineeMarchio($pr_codice_marchio, mysqli $dbConn)
+function countLineeMarca($pr_codice_marche, mysqli $dbConn)
 {
 
-    $querySql = "SELECT COUNT(DISTINCT pr_codice_linea) FROM pr_prodotti WHERE pr_codice_marchio = '$pr_codice_marchio' ";
+    $querySql = "SELECT COUNT(DISTINCT pr_codice_linea) FROM pr_prodotti WHERE pr_codice_marche = '$pr_codice_marche' ";
     $result = $dbConn->query($querySql);
     $count = (int)$result->fetch_array()[0];
     $result->close();
@@ -1976,17 +1976,17 @@ function getTotaleOrdine($ut_codice)
     return $or_totale;
 }
 
-function getMarchio($mr_id)
+function getMarca($mr_id)
 {
 
     global $dbConn;
 
-    $querySql = "SELECT mr_marchio FROM mr_marchi WHERE mr_id = '$mr_id' ";
+    $querySql = "SELECT mr_marche FROM mr_marche WHERE mr_id = '$mr_id' ";
     $result = $dbConn->query($querySql);
-    $mr_marchio = $result->fetch_array()[0];
+    $mr_marche = $result->fetch_array()[0];
     $result->close();
 
-    return $mr_marchio;
+    return $mr_marche;
 
 }
 

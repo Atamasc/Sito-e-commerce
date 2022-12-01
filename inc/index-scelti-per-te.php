@@ -37,20 +37,20 @@
                 $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
                 $pr_link = generateProductLink($pr_id);
 
-                $mr_marchio = getMarchio($row_data['pr_mr_id']);
+                $mr_marche = getMarca($row_data['pr_mr_id']);
                 $si_sistema = getSistema($row_data['pr_si_id']);
-                $mr_link = generateMarchio2Link($row_data['pr_mr_id']);
+                $mr_link = generateMarca2Link($row_data['pr_mr_id']);
                 $si_link = generateSistemaLink($row_data['pr_si_id']);
 
-                $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("upload/prodotti/".$row_data['pr_immagine'])
-                    ? "upload/prodotti/".$row_data['pr_immagine']
+                $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("upload/prodotti/" . $row_data['pr_immagine'])
+                    ? "upload/prodotti/" . $row_data['pr_immagine']
                     : "assets/images/prodotto-dummy.jpg";
                 $pi_immagine = getImg2Prodotto($pr_id);
                 ?>
                 <article class="list-product">
                     <div class="img-block">
                         <a href="<?php echo $pr_link; ?>" class="thumbnail">
-                            <img class="first-img" data-src="<?php echo ($pr_immagine) ?>" alt="" style="max-height: 255px"/>
+                            <img class="first-img" data-src="<?php echo($pr_immagine) ?>" alt="" style="max-height: 255px"/>
                             <!--<img class="second-img" src="assets/images/product-image/organic/product-1.jpg" alt="" />-->
                         </a>
                         <div class="quick-view">
@@ -66,10 +66,12 @@
                     </ul>-->
                     <div class="product-decs">
                         <p class="inner-link">
-                            <a href="<?php echo $mr_link; ?>" title="<?php echo "Prodotti a marchio $mr_marchio"; ?>"><?php echo $mr_marchio; ?></a>
+                            <a href="<?php echo $mr_link; ?>" title="<?php echo "Prodotti a marca $mr_marche"; ?>"><?php echo $mr_marche; ?></a>
                             <?php echo strlen($si_sistema) > 0 ? " / <a href='$si_link' title='Prodotti per sistemi $si_sistema'>$si_sistema</a>" : ""; ?>
                         </p>
-                        <h3><a href="<?php echo $pr_link; ?>" class="product-link" style="font-size: 13px;"><?php echo $row_data['pr_titolo'] ?></a></h3>
+                        <h3>
+                            <a href="<?php echo $pr_link; ?>" class="product-link" style="font-size: 13px;"><?php echo $row_data['pr_titolo'] ?></a>
+                        </h3>
                         <div class="rating-product">
                             <?php $media_voto = mediaRecensioni($pr_codice, $dbConn) ?>
 
@@ -79,19 +81,19 @@
 
                             switch ($media_voto) {
                                 case '1':
-                                    echo $star.$star_dis.$star_dis.$star_dis.$star_dis;
+                                    echo $star . $star_dis . $star_dis . $star_dis . $star_dis;
                                     break;
                                 case '2':
-                                    echo $star.$star.$star_dis.$star_dis.$star_dis;
+                                    echo $star . $star . $star_dis . $star_dis . $star_dis;
                                     break;
                                 case '3':
-                                    echo $star.$star.$star.$star_dis.$star_dis;
+                                    echo $star . $star . $star . $star_dis . $star_dis;
                                     break;
                                 case '4':
-                                    echo $star.$star.$star.$star.$star_dis;
+                                    echo $star . $star . $star . $star . $star_dis;
                                     break;
                                 case '5':
-                                    echo $star.$star.$star.$star.$star;
+                                    echo $star . $star . $star . $star . $star;
                                     break;
                                 default:
                                     //echo $star.$star.$star.$star.$star_dis."";
@@ -102,17 +104,17 @@
                         </div>
                         <div class="pricing-meta">
                             <ul>
-                                <?php if ($row_data['pr_prezzo_scontato']>0){ ?>
-                                    <?php if ($row_data['pr_prezzo_scontato'] == $row_data['pr_prezzo']){ ?>
-                                        <li class="current-price"><?php echo ($row_data['pr_prezzo'])?></li>
-                                    <?php }else{ ?>
-                                <li class="old-price"><?php echo ($row_data['pr_prezzo'])?></li>
-                                <li class="current-price"><?php echo ($row_data['pr_prezzo_scontato'])?></li>
-                                <!--<li class="discount-price"><?php echo ($row_data['pr_sconto'])?></li>-->
+                                <?php if ($row_data['pr_prezzo_scontato'] > 0) { ?>
+                                    <?php if ($row_data['pr_prezzo_scontato'] == $row_data['pr_prezzo']) { ?>
+                                        <li class="current-price"><?php echo($row_data['pr_prezzo']) ?></li>
+                                    <?php } else { ?>
+                                        <li class="old-price"><?php echo($row_data['pr_prezzo']) ?></li>
+                                        <li class="current-price"><?php echo($row_data['pr_prezzo_scontato']) ?></li>
+                                        <!--<li class="discount-price"><?php echo($row_data['pr_sconto']) ?></li>-->
+                                    <?php } ?>
+                                <?php } else { ?>
+                                    <li class="current-price"><?php echo($row_data['pr_prezzo']) ?></li>
                                 <?php } ?>
-                                <?php }else{ ?>
-                                    <li class="current-price"><?php echo ($row_data['pr_prezzo'])?></li>
-                                <?php }?>
                             </ul>
                         </div>
                     </div>
@@ -135,10 +137,12 @@
                             </li>
 
 
-                            <?php if($session_cl_login > 0) { ?>
-                            <li>
-                                <div class="wishlist-btn wishlist-add" data-codice="<?php echo $pr_codice; ?>"><a href="javascript:;" title="Aggiungi ai preferiti"><i class="ion-android-favorite-outline"></i></a></div>
-                            </li>
+                            <?php if ($session_cl_login > 0) { ?>
+                                <li>
+                                    <div class="wishlist-btn wishlist-add" data-codice="<?php echo $pr_codice; ?>">
+                                        <a href="javascript:;" title="Aggiungi ai preferiti"><i class="ion-android-favorite-outline"></i></a>
+                                    </div>
+                                </li>
                             <?php } ?>
 
                             <!--<li>
@@ -148,13 +152,13 @@
                     </div>
                 </article>
 
-            <?php
-        }
+                <?php
+            }
 
-        if ($rows == 0) echo "<p>Non ci sono prodotti</p>";
+            if ($rows == 0) echo "<p>Non ci sono prodotti</p>";
 
-        $result->close();
-    ?>
+            $result->close();
+            ?>
         </div>
         <!-- Best Sells Carousel End -->
     </div>

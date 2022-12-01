@@ -53,5 +53,8 @@ $upload_view_dir_blog = "../../upload/blog";
 $upload_path_dir_allegati = "../../upload/allegati";
 $upload_view_dir_allegati = "../../upload/allegati";
 
+$upload_path_dir_marche = "../../upload/marche";
+$upload_view_dir_marche = "../../upload/marche";
+
 
 ?>

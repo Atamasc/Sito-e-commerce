@@ -97,7 +97,7 @@
                     <p> Lei garantisce che: </p>
                     <ul>
                         <li> È autorizzato a pubblicare commenti sul sito e ha tutte le licenze e i permessi necessari per tale azione;</li>
-                        <li> I commenti non violano nessun diritto di proprietà intellettuale, inclusi senza limitazione diritto d'autore, brevetti o marchi commerciali di terze parti;</li>
+                        <li> I commenti non violano nessun diritto di proprietà intellettuale, inclusi senza limitazione diritto d'autore, brevetti o marche commerciali di terze parti;</li>
                         <li> I commenti non contengono materiale diffamatorio, calunnioso, offensivo, indecente o altrimenti illegale, provocando una violazione della privacy;</li>
                         <li> I commenti non verranno usati per sollecitare o promuovere business, attività commerciali o illegali.</li>
                     </ul>

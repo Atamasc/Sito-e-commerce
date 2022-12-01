@@ -362,7 +362,7 @@
 
                                                     $pr_ct_id_categoria = getCategoria($pr_ct_id, $dbConn);
                                                     $pr_st_id_sottocategoria = getSottocategoria($pr_st_id, $dbConn);
-                                                    $pr_mr_id_marchio = getMarchio($pr_mr_id, $dbConn);
+                                                    $pr_mr_id_marche = getMarca($pr_mr_id, $dbConn);
                                                     $pr_si_id_sistema = getSistema($pr_si_id, $dbConn);
 
                                                     $totale_ordine += $or_importo_totale;

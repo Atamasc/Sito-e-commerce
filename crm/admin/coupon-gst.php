@@ -44,7 +44,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Gestione coupon</li>
                                 </ol>
                             </div>
@@ -88,7 +89,7 @@
                                     <h5 class="card-title border-0 pb-0">Lista coupon</h5>
 
                                     <?php
-                                    if(@$_GET['delete'] == 'true') {
+                                    if (@$_GET['delete'] == 'true') {
 
                                         ?>
                                         <div class="alert alert-success" role="alert">
@@ -106,7 +107,7 @@
                                             <tr>
                                                 <th width="40">ID</th>
                                                 <th>Coupon</th>
-                                                <th>Marchio</th>
+                                                <th>Marca</th>
                                                 <th>Valore</th>
                                                 <th>N. Utilizzi</th>
                                                 <th style="text-align: center;" width="200">Stato</th>
@@ -117,7 +118,7 @@
 
                                             <?php
                                             $querySql = "SELECT COUNT(co_id) FROM co_coupon WHERE co_id > 0 ";
-                                            if(strlen($get_co_coupon) > 0) $querySql .= " AND co_coupon LIKE '%$get_co_coupon%' ";
+                                            if (strlen($get_co_coupon) > 0) $querySql .= " AND co_coupon LIKE '%$get_co_coupon%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -133,44 +134,44 @@
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql = "SELECT * FROM co_coupon WHERE co_id > 0 ";
-                                            if(strlen($get_co_coupon) > 0) $querySql .= " AND co_coupon LIKE '%$get_co_coupon%' ";
+                                            if (strlen($get_co_coupon) > 0) $querySql .= " AND co_coupon LIKE '%$get_co_coupon%' ";
                                             $querySql .= " ORDER BY co_coupon LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                            $co_id = $row_data['co_id'];
-                                            $co_coupon = $row_data['co_coupon'];
+                                                $co_id = $row_data['co_id'];
+                                                $co_coupon = $row_data['co_coupon'];
 
-                                            echo "<tr>";
-                                            echo "<td>$co_id</td>";
-                                            echo "<td>" . $row_data['co_coupon'] . "</td>";
-                                            echo strlen($row_data['co_mr_codice']) > 0
-                                                ? "<td>" . getMarchio($row_data['co_mr_codice']) . "</td>"
-                                                : "<td>Valido su tutti i prodotti</td>";
-                                            echo $row_data['co_tipo'] == 'importo'
-                                                ? "<td>".formatPrice($row_data['co_valore'])."&euro;</td>"
-                                                : "<td>".$row_data['co_valore']."%</td>";
-                                            echo "<td>".get_numero_utilizzi_by_code($row_data['co_coupon'],$dbConn)."</td>";
+                                                echo "<tr>";
+                                                echo "<td>$co_id</td>";
+                                                echo "<td>" . $row_data['co_coupon'] . "</td>";
+                                                echo strlen($row_data['co_mr_codice']) > 0
+                                                    ? "<td>" . getMarca($row_data['co_mr_codice']) . "</td>"
+                                                    : "<td>Valido su tutti i prodotti</td>";
+                                                echo $row_data['co_tipo'] == 'importo'
+                                                    ? "<td>" . formatPrice($row_data['co_valore']) . "&euro;</td>"
+                                                    : "<td>" . $row_data['co_valore'] . "%</td>";
+                                                echo "<td>" . get_numero_utilizzi_by_code($row_data['co_coupon'], $dbConn) . "</td>";
 
-                                            //Stato
-                                            echo "<td align='center'>";
-                                            if ($row_data['co_stato'] == 0) { ?>
-                                                <div class="checkbox checbox-switch switch-success">
-                                                    <label>
-                                                        <input type="checkbox" class="stato" title="coupon-stato-do.php?co_id=<?php echo $co_id; ?>"><span></span>
-                                                    </label>
-                                                </div>
-                                            <?php } else { ?>
-                                                <div class="checkbox checbox-switch switch-success">
-                                                    <label>
-                                                        <input type="checkbox" class="stato" title="coupon-stato-do.php?co_id=<?php echo $co_id; ?>" checked><span></span>
-                                                    </label>
-                                                </div>
-                                            <?php }
+                                                //Stato
+                                                echo "<td align='center'>";
+                                                if ($row_data['co_stato'] == 0) { ?>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label>
+                                                            <input type="checkbox" class="stato" title="coupon-stato-do.php?co_id=<?php echo $co_id; ?>"><span></span>
+                                                        </label>
+                                                    </div>
+                                                <?php } else { ?>
+                                                    <div class="checkbox checbox-switch switch-success">
+                                                        <label>
+                                                            <input type="checkbox" class="stato" title="coupon-stato-do.php?co_id=<?php echo $co_id; ?>" checked><span></span>
+                                                        </label>
+                                                    </div>
+                                                <?php }
 
-                                            echo "</td>";
+                                                echo "</td>";
 
                                                 //Gestione
                                                 echo "<td align='center'>";
@@ -192,11 +193,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";

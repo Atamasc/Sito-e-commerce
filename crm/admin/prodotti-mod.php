@@ -50,7 +50,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="prodotti-gst.php" class="default-color">Gestione prodotti</a></li>
+                                    <li class="breadcrumb-item">
+                                        <a href="prodotti-gst.php" class="default-color">Gestione prodotti</a></li>
                                     <li class="breadcrumb-item active">Modifica prodotti</li>
                                 </ol>
                             </div>
@@ -65,7 +66,7 @@
                                     <form method="post" action="prodotti-mod-do.php" enctype="multipart/form-data">
 
                                         <?php
-                                        if(@$_GET['update'] == 'true') {
+                                        if (@$_GET['update'] == 'true') {
 
                                             ?>
                                             <div class="alert alert-success" role="alert">
@@ -73,7 +74,7 @@
                                             </div>
                                             <?php
 
-                                        } else if(@$_GET['update'] == 'false') {
+                                        } else if (@$_GET['update'] == 'false') {
 
                                             ?>
                                             <div class="alert alert-danger" role="alert">
@@ -85,17 +86,18 @@
                                         ?>
 
                                         <?php
-                                        if(@$_GET['insert'] == 'true') {
+                                        if (@$_GET['insert'] == 'true') {
 
                                             ?>
                                             <div class="alert alert-success" role="alert">
-                                                Il tuo prodotto è stato correttamente inserito, <a href="prodotti-copy-do.php?pr_id=<?php echo $get_pr_id; ?>" style="font-weight: bold;">clicca qui</a> per inserire una variante partendo da questo prodotto.
+                                                Il tuo prodotto è stato correttamente inserito,
+                                                <a href="prodotti-copy-do.php?pr_id=<?php echo $get_pr_id; ?>" style="font-weight: bold;">clicca qui</a> per inserire una variante partendo da questo prodotto.
                                             </div>
                                             <?php
 
                                         }
 
-                                        if(@$_GET['copy'] == 'true') {
+                                        if (@$_GET['copy'] == 'true') {
 
                                             ?>
                                             <div class="alert alert-success" role="alert">
@@ -142,33 +144,31 @@
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="pr_mr_id">Marchio *</label>
+                                                <label for="pr_mr_id">Marca *</label>
                                                 <select class="form-control" id="pr_mr_id" name="pr_mr_id" required>
-                                                    <option value="">Seleziona un marchio</option>
+                                                    <option value="">Seleziona una marca</option>
                                                     <option value=""></option>
-                                                    <?php selectMarchio($row_data['pr_mr_id']); ?>
+                                                    <?php selectMarca($row_data['pr_mr_id']); ?>
                                                 </select>
-                                                <span class="tooltips">Marchio Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Marchio Prodotto" data-content="Inserisci qui il marchio del prodotto che vuoi modificare">[aiuto]</a></span>
+                                                <span class="tooltips">Marca Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Marca Prodotto" data-content="Inserisci qui la marca del prodotto che vuoi modificare">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_codice_rif">Codice Riferimento </label>
-                                                <input type="text" class="form-control" id="pr_codice_rif" name="pr_codice_rif" value="<?php echo $row_data['pr_codice_rif']; ?>" >
+                                                <input type="text" class="form-control" id="pr_codice_rif" name="pr_codice_rif" value="<?php echo $row_data['pr_codice_rif']; ?>">
                                                 <span class="tooltips">Codice Riferimento Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-pr_codice_rif="focus" title="Categoria Prodotto" data-content="Inserisci qui il codice riferimento del prodotto che vuoi modificare. Il codice Riferimento è un codice formato di magazzino.">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_codice_ean">Codice EAN </label>
-                                                <input type="text" class="form-control" id="pr_codice_ean" name="pr_codice_ean" value="<?php echo $row_data['pr_codice_ean']; ?>" >
+                                                <input type="text" class="form-control" id="pr_codice_ean" name="pr_codice_ean" value="<?php echo $row_data['pr_codice_ean']; ?>">
                                                 <span class="tooltips">Codice EAN Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Categoria Prodotto" data-content="Inserisci qui il codice EAN del prodotto che vuoi modificare. Il codice EAN è un codice formato da 12 caratteri numerici, spesso accompagnato da un codice a barre, quel codice va inserito qui.">[aiuto]</a></span>
                                             </div>
 
                                             <div class="checkbox checbox-switch switch-success">
-                                                <label style="margin-top: 35px;">
-                                                    BestSeller
-                                                    <input type="checkbox" class="stato" name="best_seller" <?php if ($row_data['pr_best_seller']==1) echo "checked"; ?> >
-                                                    <span></span>
-                                                </label>
+                                                <label style="margin-top: 35px;"> BestSeller
+                                                    <input type="checkbox" class="stato" name="best_seller" <?php if ($row_data['pr_best_seller'] == 1) echo "checked"; ?> >
+                                                    <span></span> </label>
                                             </div>
 
                                         </div>
@@ -184,7 +184,7 @@
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_prezzo_scontato">Prezzo scontato &euro; (Es formato: 5,70 )</label>
-                                                <input type="text" class="form-control" id="pr_prezzo_scontato" name="pr_prezzo_scontato" value="<?php echo strlen(@$row_data['pr_prezzo_scontato']) > 0 ? formatPrice(@$row_data['pr_prezzo_scontato']) : ""; ?>" >
+                                                <input type="text" class="form-control" id="pr_prezzo_scontato" name="pr_prezzo_scontato" value="<?php echo strlen(@$row_data['pr_prezzo_scontato']) > 0 ? formatPrice(@$row_data['pr_prezzo_scontato']) : ""; ?>">
                                                 <span class="tooltips">Prezzo Prodotto Scontato <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Prezzo Prodotto Scontato" data-content="Inserisci qui il prezzo di vendita scontato del prodotto visibile online compreso di iva">[aiuto]</a></span>
                                             </div>
 
@@ -206,7 +206,7 @@
                                         <div class="row">
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_peso">Peso Kg (Es formato: 5.70 )</label>
-                                                <input type="text" class="form-control" id="pr_peso" name="pr_peso" placeholder="Solo numeri e punti (vedi formato)" value="<?php echo strlen(@$row_data['pr_peso']) > 0 ? formatPrice(@$row_data['pr_peso']) : ""; ?>" >
+                                                <input type="text" class="form-control" id="pr_peso" name="pr_peso" placeholder="Solo numeri e punti (vedi formato)" value="<?php echo strlen(@$row_data['pr_peso']) > 0 ? formatPrice(@$row_data['pr_peso']) : ""; ?>">
                                                 <span class="tooltips">Peso Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Peso Prodotto" data-content="Inserisci qui il peso del prodotto">[aiuto]</a></span>
                                             </div>
 
@@ -257,7 +257,7 @@
                                                     <?php if (strlen($row_data['pr_immagine']) > 0) { ?>
 
                                                         <label class="custom-file-label" for="pr_immagine"><?php echo $row_data['pr_immagine']; ?></label>
-                                                        <a class="modale-img" href="<?php echo "$upload_path_dir_prodotti/".$row_data['pr_immagine'] ?>">vedi immagine</a>&nbsp;|&nbsp;
+                                                        <a class="modale-img" href="<?php echo "$upload_path_dir_prodotti/" . $row_data['pr_immagine'] ?>">vedi immagine</a>&nbsp;|&nbsp;
                                                         <a class="elimina" href="javascript:;" data-href='prodotti-immagine-del-do.php?pr_id=<?php echo $get_pr_id; ?>'>elimina</a>
 
                                                     <?php } else { ?>
@@ -266,7 +266,10 @@
 
                                                     <?php } ?>
                                                 </div>
-                                                <p class="tooltips">Dimensioni consigliate: <b>1000 x 1000 px</b> - Se hai un'immagine di dimensioni diverse la puoi modificare utilizzando <a class="popup-a" href="https://www.iloveimg.com/it/ritagliare-immagine" target="_blank">questo strumento gratuito</a></p>
+                                                <p class="tooltips">Dimensioni consigliate:
+                                                    <b>1000 x 1000 px</b> - Se hai un'immagine di dimensioni diverse la puoi modificare utilizzando
+                                                    <a class="popup-a" href="https://www.iloveimg.com/it/ritagliare-immagine" target="_blank">questo strumento gratuito</a>
+                                                </p>
                                             </div>
 
                                             <div class="col-md-4 mb-3">
@@ -276,7 +279,7 @@
                                                     <?php if (strlen($row_data['pr_allegato']) > 0) { ?>
 
                                                         <label class="custom-file-label" for="pr_allegato"><?php echo $row_data['pr_allegato']; ?></label>
-                                                        <a class="modale-img" href="<?php echo "$upload_path_dir_prodotti/".$row_data['pr_allegato'] ?>">vedi allegato</a>&nbsp;|&nbsp;
+                                                        <a class="modale-img" href="<?php echo "$upload_path_dir_prodotti/" . $row_data['pr_allegato'] ?>">vedi allegato</a>&nbsp;|&nbsp;
                                                         <a class="elimina" href="javascript:;" data-href='prodotti-allegato-del-do.php?pr_id=<?php echo $get_pr_id; ?>'>elimina</a>
 
                                                     <?php } else { ?>
@@ -303,8 +306,8 @@
                                                 <select class="form-control" id="pr_stato" name="pr_stato" required>
                                                     <option value="">Seleziona visibilità</option>
                                                     <option value=""></option>
-                                                    <option value="1" <?php if($row_data['pr_stato'] == '1') echo "selected"; ?>>Online</option>
-                                                    <option value="0" <?php if($row_data['pr_stato'] == '0') echo "selected"; ?>>Offline</option>
+                                                    <option value="1" <?php if ($row_data['pr_stato'] == '1') echo "selected"; ?>>Online</option>
+                                                    <option value="0" <?php if ($row_data['pr_stato'] == '0') echo "selected"; ?>>Offline</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -337,8 +340,8 @@
 
     <script>
 
-        $.expr[":"].contains_ci = $.expr.createPseudo(function(arg) {
-            return function( elem ) {
+        $.expr[":"].contains_ci = $.expr.createPseudo(function (arg) {
+            return function (elem) {
                 return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
             };
         });

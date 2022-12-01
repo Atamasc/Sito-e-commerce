@@ -9,7 +9,7 @@
         <style>
             .content-wrapper {
 
-                margin-left: 0!important;
+                margin-left: 0 !important;
 
             }
         </style>
@@ -53,7 +53,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="mb-2"> Linea: <?php echo $row_data['pr_codice_linea']; ?> / <?php echo $row_data['pr_descrizione_linea']; ?> (Marchio: <?php echo $row_data['pr_descrizione_marchio']; ?>)</h4>
+                                <h4 class="mb-2"> Linea: <?php echo $row_data['pr_codice_linea']; ?> / <?php echo $row_data['pr_descrizione_linea']; ?> (Marca: <?php echo $row_data['pr_descrizione_marche']; ?>)</h4>
                             </div>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                                 <div class="card-body">
 
                                     <?php
-                                    $querySql_ln = "SELECT * FROM ln_linee WHERE ln_codice = '".$get_pr_codice_linea."' ";
+                                    $querySql_ln = "SELECT * FROM ln_linee WHERE ln_codice = '" . $get_pr_codice_linea . "' ";
                                     $result_ln = $dbConn->query($querySql_ln);
                                     $rows = $dbConn->affected_rows;
                                     $row_data_ln = $result_ln->fetch_assoc();
@@ -82,12 +82,12 @@
 
                                                 <div class="col-md-5 mb-3">
                                                     <label for="ln_descrizione">Descrizione</label>
-                                                    <textarea class="form-control" id="ln_descrizione" name="ln_descrizione" rows="5" ><?php echo $row_data_ln['ln_descrizione']; ?></textarea>
+                                                    <textarea class="form-control" id="ln_descrizione" name="ln_descrizione" rows="5"><?php echo $row_data_ln['ln_descrizione']; ?></textarea>
                                                 </div>
 
                                                 <div class="col-md-5 mb-3">
                                                     <label for="ps_video">Video (Es: https://www.youtube.com/embed/XN2afyco1vU)</label>
-                                                    <textarea class="form-control" id="ln_video" name="ln_video" rows="5" ><?php echo $row_data_ln['ln_video']; ?></textarea>
+                                                    <textarea class="form-control" id="ln_video" name="ln_video" rows="5"><?php echo $row_data_ln['ln_video']; ?></textarea>
                                                 </div>
                                             </div>
 
@@ -97,16 +97,16 @@
                                                     <div class="custom-file">
                                                         <input type="file" name="ln_banner" id="ln_banner" class="custom-file-input" data-max-width="870" data-max-height="500">
 
-                                                        <?php if(strlen($ln_banner) > 0) { ?>
+                                                        <?php if (strlen($ln_banner) > 0) { ?>
                                                             <label class="custom-file-label"><?php echo $ln_banner; ?></label>
                                                         <?php } else { ?>
                                                             <label class="custom-file-label">Scegli un file</label>
                                                         <?php } ?>
                                                     </div>
-                                                    <small class="text-muted">
-                                                        formato jpg, png - dimensioni 845 x 145 pixel - peso max 2 Mb
-                                                        <?php if(strlen($ln_banner) > 0) { ?>
-                                                            | <a class="text-success popover-img" href="<?php echo $ln_banner_path; ?>" target="_blank">vedi immagine</a>
+                                                    <small class="text-muted"> formato jpg, png - dimensioni 845 x 145 pixel - peso max 2 Mb
+                                                        <?php if (strlen($ln_banner) > 0) { ?>
+                                                            |
+                                                            <a class="text-success popover-img" href="<?php echo $ln_banner_path; ?>" target="_blank">vedi immagine</a>
                                                         <?php } ?>
                                                     </small>
                                                 </div>
@@ -125,12 +125,12 @@
 
                                                 <div class="col-md-5 mb-3">
                                                     <label for="ln_descrizione">Descrizione</label>
-                                                    <textarea class="form-control" id="ln_descrizione" name="ln_descrizione" rows="5" ></textarea>
+                                                    <textarea class="form-control" id="ln_descrizione" name="ln_descrizione" rows="5"></textarea>
                                                 </div>
 
                                                 <div class="col-md-5 mb-3">
                                                     <label for="ln_video">Video (Es: https://www.youtube.com/embed/XN2afyco1vU)</label>
-                                                    <textarea class="form-control" id="ln_video" name="ln_video" rows="5" ></textarea>
+                                                    <textarea class="form-control" id="ln_video" name="ln_video" rows="5"></textarea>
                                                 </div>
                                             </div>
 
@@ -139,7 +139,7 @@
                                                     <label>Banner</label>
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="ln_banner" name="ln_banner"
-                                                               data-max-width="870" data-max-height="500" >
+                                                                data-max-width="870" data-max-height="500">
                                                         <label class="custom-file-label" for="ln_banner">Seleziona immagine</label>
                                                     </div>
                                                     <span class="text-muted">formato jpg, png - dimensioni 845 x 145 pixel - peso max 2 Mb</span>
@@ -151,7 +151,7 @@
                                             <button class="btn btn-primary mt-2" type="submit">Inserisci</button>
 
                                         </form>
-                                    <?php }  ?>
+                                    <?php } ?>
                                 </div>
                             </div>
 
@@ -176,8 +176,8 @@
 
     <script>
 
-        $.expr[":"].contains_ci = $.expr.createPseudo(function(arg) {
-            return function( elem ) {
+        $.expr[":"].contains_ci = $.expr.createPseudo(function (arg) {
+            return function (elem) {
                 return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
             };
         });

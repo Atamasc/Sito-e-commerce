@@ -54,8 +54,8 @@ $upload_view_dir_prodotti_img = "../../upload/prodotti-immagini";
 $upload_path_dir_varianti_img = "../../upload/varianti-immagini";
 $upload_view_dir_varianti_img = "../../upload/varianti-immagini";
 
-$upload_path_dir_marchi = "../../upload/marchi";
-$upload_view_dir_marchi = "../../upload/marchi";
+$upload_path_dir_marche = "../../upload/marche";
+$upload_view_dir_marche = "../../upload/marche";
 
 $upload_path_dir_sistemi = "../../upload/sistemi";
 $upload_view_dir_sistemi = "../../upload/sistemi";

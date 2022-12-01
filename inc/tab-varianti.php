@@ -1,6 +1,7 @@
 <?php
 pageGetVarianti($row_data['pr_capofila']);
-function pageGetVarianti($pr_capofila) {
+function pageGetVarianti($pr_capofila)
+{
 
     global $dbConn, $get_pr_id;
 
@@ -30,7 +31,7 @@ function pageGetVarianti($pr_capofila) {
                     $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
                     $pr_link = generateProductLink($pr_id);
 
-                    $mr_marchio = getMarchio($row_data['pr_mr_id']);
+                    $mr_marche = getMarca($row_data['pr_mr_id']);
                     $si_sistema = getSistema($row_data['pr_si_id']);
                     ?>
 
@@ -46,7 +47,7 @@ function pageGetVarianti($pr_capofila) {
                                     <span class="old-price" style="font-size: 14px!important;">&euro;<?php echo formatPrice($row_data['pr_prezzo']); ?></span>
                                     <span class="current-price" style="font-size: 14px!important;">&euro;<?php echo formatPrice($row_data['pr_prezzo_scontato']); ?></span>
                                 <?php } ?>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <span class="current-price" style="font-size: 14px!important;">&euro;<?php echo formatPrice($row_data['pr_prezzo']); ?></span>
                             <?php } ?>
                             <!--<span class="amount">?165.00</span>-->
@@ -62,21 +63,20 @@ function pageGetVarianti($pr_capofila) {
 
                             <div class="pro-details-cart btn-hover">
 
-                    <?php if ($row_data['pr_giacenza'] > 5) { ?>
+                                <?php if ($row_data['pr_giacenza'] > 5) { ?>
 
-                        <?php if (strlen($row_data['pr_prezzo']) < 1 && strlen($row_data['pr_prezzo_scontato']) < 1) { ?>
-                            <span style="color: #FE0000; font-weight: bold;">Non disponibile</span>
-                        <?php } else { ?>
-                            <a href="javascript:;" class="button carrello-add" data-codice="<?php echo $pr_codice; ?>" style="padding: 0 20px; color: #fff; max-width: 60px;">
-                                <i class="fa fa-cart-plus"></i>
-                            </a>
-                        <?php }; ?>
+                                    <?php if (strlen($row_data['pr_prezzo']) < 1 && strlen($row_data['pr_prezzo_scontato']) < 1) { ?>
+                                        <span style="color: #FE0000; font-weight: bold;">Non disponibile</span>
+                                    <?php } else { ?>
+                                        <a href="javascript:;" class="button carrello-add" data-codice="<?php echo $pr_codice; ?>" style="padding: 0 20px; color: #fff; max-width: 60px;">
+                                            <i class="fa fa-cart-plus"></i> </a>
+                                    <?php }; ?>
 
-                    <?php } else if ($row_data['pr_giancenza'] > 1) { ?>
-                        <span style="color: #FF7D27; font-weight: bold;">In esaurimento</span>
-                    <?php } else { ?>
-                        <span style="color: #FE0000; font-weight: bold;">Non disponibile</span>
-                    <?php } ?>
+                                <?php } else if ($row_data['pr_giancenza'] > 1) { ?>
+                                    <span style="color: #FF7D27; font-weight: bold;">In esaurimento</span>
+                                <?php } else { ?>
+                                    <span style="color: #FE0000; font-weight: bold;">Non disponibile</span>
+                                <?php } ?>
 
                             </div>
                         </td>
@@ -98,4 +98,5 @@ function pageGetVarianti($pr_capofila) {
     }
 
 }
+
 ?>

@@ -40,7 +40,9 @@
 
                                         $st_link = generateSubCatLink($st_id);
                                         ?>
-                                        <li><a href="<?php echo $st_link; ?>"><?php echo "$st_sottocategoria <span>($pr_count)</span>"; ?></a></li>
+                                        <li>
+                                            <a href="<?php echo $st_link; ?>"><?php echo "$st_sottocategoria <span>($pr_count)</span>"; ?></a>
+                                        </li>
                                         <?php
 
                                     }
@@ -113,20 +115,20 @@
                         <?php
                         $subQuery = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_mr_id = mr_id AND pr_stato > 0 ";
 
-                        $querySql = "SELECT mr_id, mr_marchio, ($subQuery) AS mr_count FROM mr_marchi WHERE mr_stato > 0 ";
+                        $querySql = "SELECT mr_id, mr_marche, ($subQuery) AS mr_count FROM mr_marche WHERE mr_stato > 0 ";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
 
                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
                             $mr_id = $row_data['mr_id'];
-                            $mr_marchio = $row_data['mr_marchio'];
+                            $mr_marche = $row_data['mr_marche'];
                             $mr_count = $row_data['mr_count'];
 
-                            $mr_link = generateMarchio2Link($mr_id);
+                            $mr_link = generateMarca2Link($mr_id);
                             ?>
                             <li>
-                                <a href="<?php echo $mr_link; ?>"><?php echo "$mr_marchio <span>($mr_count)</span>"; ?></a>
+                                <a href="<?php echo $mr_link; ?>"><?php echo "$mr_marche <span>($mr_count)</span>"; ?></a>
                             </li>
                             <?php
 
@@ -269,20 +271,20 @@
                 </div>
                 -->
 
-            <!--
-            <div class="sidebar-widget tag mt-30">
-                <div class="main-heading">
-                    <h2>Tag</h2>
-                </div>
-                <div class="sidebar-widget-tag">
-                    <ul>
-                        <li><a href="#">Fresh Fruit</a></li>
-                        <li><a href="#"> Fresh Vegetables</a></li>
-                        <li><a href="#">Fresh Salad</a></li>
-                        <li><a href="#"> Butter & Eggs</a></li>
-                    </ul>
-                </div>
+        <!--
+        <div class="sidebar-widget tag mt-30">
+            <div class="main-heading">
+                <h2>Tag</h2>
             </div>
-            -->
+            <div class="sidebar-widget-tag">
+                <ul>
+                    <li><a href="#">Fresh Fruit</a></li>
+                    <li><a href="#"> Fresh Vegetables</a></li>
+                    <li><a href="#">Fresh Salad</a></li>
+                    <li><a href="#"> Butter & Eggs</a></li>
+                </ul>
+            </div>
         </div>
+        -->
     </div>
+</div>

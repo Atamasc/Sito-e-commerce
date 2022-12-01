@@ -1,6 +1,7 @@
 <?php
 pageGetVarianti($row_data['pr_capofila']);
-function pageGetVarianti($pr_capofila) {
+function pageGetVarianti($pr_capofila)
+{
 
     global $dbConn, $get_pr_id;
 
@@ -30,11 +31,11 @@ function pageGetVarianti($pr_capofila) {
                     $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
                     $pr_link = generateProductLink($pr_id);
 
-                    $mr_marchio = getMarchio($row_data['pr_mr_id']);
+                    $mr_marche = getMarca($row_data['pr_mr_id']);
                     $si_sistema = getSistema($row_data['pr_si_id']);
 
-                    $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("upload/prodotti/".$row_data['pr_immagine'])
-                        ? "upload/prodotti/".$row_data['pr_immagine']
+                    $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("upload/prodotti/" . $row_data['pr_immagine'])
+                        ? "upload/prodotti/" . $row_data['pr_immagine']
                         : "assets/images/prodotto-dummy.jpg";
                     ?>
 
@@ -51,7 +52,7 @@ function pageGetVarianti($pr_capofila) {
                                     <span class="old-price" style="font-size: 14px!important;">&euro;<?php echo formatPrice($row_data['pr_prezzo']); ?></span>
                                     <span class="current-price" style="font-size: 14px!important;">&euro;<?php echo formatPrice($row_data['pr_prezzo_scontato']); ?></span>
                                 <?php } ?>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <span class="current-price" style="font-size: 14px!important;">&euro;<?php echo formatPrice($row_data['pr_prezzo']); ?></span>
                             <?php } ?>
                             <!--<span class="amount">?165.00</span>-->
@@ -72,8 +73,7 @@ function pageGetVarianti($pr_capofila) {
                                         <span style="color: #FE0000; font-weight: bold;">Non disponibile</span>
                                     <?php } else { ?>
                                         <a href="javascript:;" class="button carrello-add" data-codice="<?php echo $pr_codice; ?>" style="padding: 0 20px; color: #fff; max-width: 60px;">
-                                            <i class="fa fa-cart-plus"></i>
-                                        </a>
+                                            <i class="fa fa-cart-plus"></i> </a>
                                     <?php }; ?>
 
                                 <?php } else if ($row_data['pr_giancenza'] > 1) { ?>
@@ -101,4 +101,5 @@ function pageGetVarianti($pr_capofila) {
     }
 
 }
+
 ?>

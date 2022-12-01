@@ -34,26 +34,14 @@
             </li>
 
             <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#marchi">
-                    <div class="pull-left"><i class="ti-medall"></i><span class="right-nav-text">Marchi</span></div>
+                <a href="javascript:void(0);" data-toggle="collapse" data-target="#marche">
+                    <div class="pull-left"><i class="ti-medall"></i><span class="right-nav-text">Marche</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
-                <ul id="marchi" class="collapse" data-parent="#sidebarnav">
-                    <li><a href="marchi-add.php">Nuovo marchio</a></li>
-                    <li><a href="marchi-gst.php">Gestione marchi</a></li>
-                </ul>
-            </li>
-
-            <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#sistemi">
-                    <div class="pull-left"><i class="ti-settings"></i><span class="right-nav-text">Sistemi</span></div>
-                    <div class="pull-right"><i class="ti-plus"></i></div>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="sistemi" class="collapse" data-parent="#sidebarnav">
-                    <li><a href="sistemi-add.php">Nuovo sistema</a></li>
-                    <li><a href="sistemi-gst.php">Gestione sistemi</a></li>
+                <ul id="marche" class="collapse" data-parent="#sidebarnav">
+                    <li><a href="marche-add.php">Nuovo marca</a></li>
+                    <li><a href="marche-gst.php">Gestione marche</a></li>
                 </ul>
             </li>
 

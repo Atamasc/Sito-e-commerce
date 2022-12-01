@@ -11,28 +11,23 @@
                     <tr>
                         <th width="90">Immagine</th>
                         <th>
-                            Codice <br>
-                            Titolo
+                            Codice <br> Titolo
                         </th>
 
                         <th width="200">
-                            Categoria <br>
-                            Sottocategoria
+                            Categoria <br> Sottocategoria
                         </th>
 
                         <th width="180">
-                            Prezzo <br>
-                            Prezzo scontato (%)
+                            Prezzo <br> Prezzo scontato (%)
                         </th>
 
                         <th width="130">
-                            Marchio <br>
-                            Sistema
+                            Marca <br> Sistema
                         </th>
 
                         <th width="130">
-                            Peso KG.<br>
-                            Giacenza Qta.
+                            Peso KG.<br> Giacenza Qta.
                         </th>
 
                         <th style="text-align: center; width: 200px;">Gestione</th>
@@ -42,7 +37,8 @@
 
                     <?php
                     dataviewGetProdotto($get_pr_id);
-                    function dataviewGetProdotto($pr_id) {
+                    function dataviewGetProdotto($pr_id)
+                    {
 
                         global $dbConn, $upload_path_dir_prodotti;
 
@@ -60,7 +56,7 @@
                             $pr_giacenza = $row_data['pr_giacenza'];
                             $pr_peso = $row_data['pr_peso'];
 
-                            $mr_marchio = getMarchio($row_data['pr_mr_id']);
+                            $mr_marche = getMarca($row_data['pr_mr_id']);
                             $si_sistema = getSistema($row_data['pr_si_id']);
 
                             $pr_prezzo = $row_data['pr_prezzo'];
@@ -70,39 +66,39 @@
                             $categoria = getCategoria($pr_ct_id, $dbConn); //TODO cambiare con logica pr_
                             $sottocategoria = getSottocategoria($pr_st_id, $dbConn); //TODO cambiare con logica pr_
 
-                            if ((strlen($row_data['pr_immagine']) > 0) && is_file("../../upload/prodotti/".$row_data['pr_immagine'])) {
+                            if ((strlen($row_data['pr_immagine']) > 0) && is_file("../../upload/prodotti/" . $row_data['pr_immagine'])) {
                                 $pr_immagine = $row_data['pr_immagine'];
-                                $pr_immagine_src = $upload_path_dir_prodotti."/".$pr_immagine;
+                                $pr_immagine_src = $upload_path_dir_prodotti . "/" . $pr_immagine;
                             } else {
                                 $pr_immagine_src = "../../assets/img/prodotto-dummy.jpg";
                             }
 
                             echo "<tr>";
-                            echo "<td><a class='modale-img' href='$pr_immagine_src'><img src=".$pr_immagine_src." width='80px'></a></td>";
+                            echo "<td><a class='modale-img' href='$pr_immagine_src'><img src=" . $pr_immagine_src . " width='80px'></a></td>";
 
                             echo "<td>";
-                            echo "<span style='font-style: italic'>".$pr_codice."</span><br>";
-                            echo "<span>".$pr_titolo."</span>";
+                            echo "<span style='font-style: italic'>" . $pr_codice . "</span><br>";
+                            echo "<span>" . $pr_titolo . "</span>";
                             echo "</td>";
 
                             echo "<td>";
-                            echo "<span style='font-style: italic'>".$categoria."</span><br>";
-                            echo "<span>".$sottocategoria."</span>";
+                            echo "<span style='font-style: italic'>" . $categoria . "</span><br>";
+                            echo "<span>" . $sottocategoria . "</span>";
                             echo "</td>";
 
                             echo "<td>";
-                            echo "<span style='font-style: italic'>&euro; ".$pr_prezzo."</span><br>";
-                            echo "<span>&euro; ".$pr_prezzo_scontato." (".$pr_sconto." %)</span>";
+                            echo "<span style='font-style: italic'>&euro; " . $pr_prezzo . "</span><br>";
+                            echo "<span>&euro; " . $pr_prezzo_scontato . " (" . $pr_sconto . " %)</span>";
                             echo "</td>";
 
                             echo "<td>";
-                            echo "<span style='font-style: italic'>$mr_marchio</span><br>";
+                            echo "<span style='font-style: italic'>$mr_marche</span><br>";
                             echo "<span style='font-style: italic'>$si_sistema</span>";
                             echo "</td>";
 
                             echo "<td>";
-                            echo "<span style='font-style: italic'>Kg. ".$pr_peso."</span><br>";
-                            echo "<span>Qt&agrave;:. ".$pr_giacenza."</span>";
+                            echo "<span style='font-style: italic'>Kg. " . $pr_peso . "</span><br>";
+                            echo "<span>Qt&agrave;:. " . $pr_giacenza . "</span>";
                             echo "</td>";
 
                             //Gestione
@@ -117,6 +113,7 @@
                         $result->close();
 
                     }
+
                     ?>
 
                     </tbody>

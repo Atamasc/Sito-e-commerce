@@ -43,7 +43,7 @@ NOTE: This file contains all scripts for the actual Template.
 ======================================*/
 //POTENZA var
 
-(function($){
+(function ($) {
     "use strict";
     var POTENZA = {};
 
@@ -85,8 +85,8 @@ NOTE: This file contains all scripts for the actual Template.
      *************************/
     POTENZA.counters = function () {
         var counter = jQuery(".counter");
-        if(counter.length > 0) {
-            loadScript(plugin_path + 'counter/jquery.countTo.js', function() {
+        if (counter.length > 0) {
+            loadScript(plugin_path + 'counter/jquery.countTo.js', function () {
                 $counter.each(function () {
                     var $elem = $(this);
                     $elem.appear(function () {
@@ -103,12 +103,12 @@ NOTE: This file contains all scripts for the actual Template.
     POTENZA.goToTop = function () {
         var $goToTop = $('#back-to-top');
         $goToTop.hide();
-        $window.scroll(function(){
-            if ($window.scrollTop()>100) $goToTop.fadeIn();
+        $window.scroll(function () {
+            if ($window.scrollTop() > 100) $goToTop.fadeIn();
             else $goToTop.fadeOut();
         });
         $goToTop.on("click", function () {
-            $('body,html').animate({scrollTop:0},1000);
+            $('body,html').animate({scrollTop: 0}, 1000);
             return false;
         });
     }
@@ -117,7 +117,7 @@ NOTE: This file contains all scripts for the actual Template.
      NiceScroll
      *************************/
     POTENZA.pniceScroll = function () {
-        loadScript(plugin_path + 'nicescroll/jquery.nicescroll.js', function() {
+        loadScript(plugin_path + 'nicescroll/jquery.nicescroll.js', function () {
             $(".scrollbar").niceScroll({
                 scrollspeed: 150,
                 mousescrollstep: 38,
@@ -154,21 +154,21 @@ NOTE: This file contains all scripts for the actual Template.
      mailchimp
      *************************/
     POTENZA.mailchimp = function () {
-        $(document).on('click','#mc-embedded-subscribe',function(event){
+        $(document).on('click', '#mc-embedded-subscribe', function (event) {
             event.preventDefault();
             var email_id = $('#mce-EMAIL').val();
             var val_email_id = validateEmail(email_id);
             if (email_id != "" && val_email_id === true) {
                 var failure_message = 'Whoops, looks like there was a problem. Please try again later.';
-                var memberid=email_id.toLowerCase();
+                var memberid = email_id.toLowerCase();
                 var url = memberid;
 
                 $.ajax({
                     type: 'POST',
                     url: 'php/mailchimp-action.php',
-                    data: {url:url},
+                    data: {url: url},
                     dataType: 'json',
-                    success: function(data){
+                    success: function (data) {
                         $('#msg').html(data);
                     },
                 });
@@ -178,6 +178,7 @@ NOTE: This file contains all scripts for the actual Template.
             }
             return false;
         });
+
         function validateEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email);
@@ -189,7 +190,7 @@ NOTE: This file contains all scripts for the actual Template.
      ****************************************************/
     POTENZA.pieChart = function () {
         if ($pieChart.exists()) {
-            loadScript(plugin_path + 'easy-pie-chart/easy-pie-chart.js', function() {
+            loadScript(plugin_path + 'easy-pie-chart/easy-pie-chart.js', function () {
                 $pieChart.each(function () {
                     var $elem = $(this),
                         pieChartSize = $elem.attr('data-size') || "160",
@@ -227,8 +228,8 @@ NOTE: This file contains all scripts for the actual Template.
      *************************/
     POTENZA.datatables = function () {
         if ($('#datatable').exists()) {
-            loadScript(plugin_path + 'bootstrap-datatables/jquery.dataTables.min.js', function() {
-                loadScript(plugin_path + 'bootstrap-datatables/dataTables.bootstrap4.min.js', function() {
+            loadScript(plugin_path + 'bootstrap-datatables/jquery.dataTables.min.js', function () {
+                loadScript(plugin_path + 'bootstrap-datatables/dataTables.bootstrap4.min.js', function () {
                     $('#datatable').DataTable();
                 });
             });
@@ -255,7 +256,7 @@ NOTE: This file contains all scripts for the actual Template.
      *************************/
     POTENZA.fancyselect = function () {
         if ($('.fancyselect').exists()) {
-            loadScript(plugin_path + 'jquery-nice-select/jquery-nice-select.js', function() {
+            loadScript(plugin_path + 'jquery-nice-select/jquery-nice-select.js', function () {
                 $('select.fancyselect:not(.ignore)').niceSelect();
             });
         }
@@ -269,17 +270,17 @@ NOTE: This file contains all scripts for the actual Template.
         $('.accordion').each(function (i, elem) {
             var $elem = $(this),
                 $acpanel = $elem.find(".acd-group > .acd-des"),
-                $acsnav =  $elem.find(".acd-group > .acd-heading");
+                $acsnav = $elem.find(".acd-group > .acd-heading");
             $acpanel.hide().first().slideDown("easeOutExpo");
             $acsnav.first().parent().addClass("acd-active");
             $acsnav.on('click', function () {
-                if(!$(this).parent().hasClass("acd-active")){
+                if (!$(this).parent().hasClass("acd-active")) {
                     var $this = $(this).next(".acd-des");
                     $acsnav.parent().removeClass("acd-active");
                     $(this).parent().addClass("acd-active");
                     $acpanel.not($this).slideUp("easeInExpo");
                     $(this).next().slideDown("easeOutExpo");
-                }else{
+                } else {
                     $(this).parent().removeClass("acd-active");
                     $(this).next().slideUp("easeInExpo");
                 }
@@ -320,30 +321,27 @@ NOTE: This file contains all scripts for the actual Template.
             return false;
         });
 
-        $(document).on("mouseenter mouseleave",".wrapper > .side-menu-fixed", function(e) {
+        $(document).on("mouseenter mouseleave", ".wrapper > .side-menu-fixed", function (e) {
             if (e.type == "mouseenter") {
                 $wrapper.addClass("sidebar-hover");
-            }
-            else {
+            } else {
                 $wrapper.removeClass("sidebar-hover");
             }
             return false;
         });
-        $(document).on("mouseenter mouseleave",".wrapper > .side-menu-fixed", function(e) {
+        $(document).on("mouseenter mouseleave", ".wrapper > .side-menu-fixed", function (e) {
             if (e.type == "mouseenter") {
                 $wrapper.addClass("sidebar-hover");
-            }
-            else {
+            } else {
                 $wrapper.removeClass("sidebar-hover");
             }
             return false;
         });
 
-        $(document).on("mouseenter mouseleave",".wrapper > .setting-panel", function(e) {
+        $(document).on("mouseenter mouseleave", ".wrapper > .setting-panel", function (e) {
             if (e.type == "mouseenter") {
                 $wrapper.addClass("no-transition");
-            }
-            else {
+            } else {
                 $wrapper.removeClass("no-transition");
             }
             return false;
@@ -381,7 +379,8 @@ NOTE: This file contains all scripts for the actual Template.
                     }
                 }
             }
-            document.getElementById('btnFullscreen').addEventListener('click', function() {
+
+            document.getElementById('btnFullscreen').addEventListener('click', function () {
                 toggleFullscreen();
             });
         }
@@ -403,7 +402,7 @@ NOTE: This file contains all scripts for the actual Template.
         weekday[6] = "Saturday";
         var n = weekday[d.getDay()];
         $('.today-day').html(n);
-        var n =  new Date();
+        var n = new Date();
         var y = n.getFullYear();
         var m = n.getMonth() + 1;
         var d = n.getDate();
@@ -434,9 +433,9 @@ NOTE: This file contains all scripts for the actual Template.
             $('#cp1').colorpicker();
             $('#cp2, #cp3a, #cp3b').colorpicker();
             $('#cp4').colorpicker({"color": "#16813D"});
-            $('#cp5').colorpicker({ format: null });
-            $('#cp5b').colorpicker({ format: "rgba"  });
-            $('#cp6').colorpicker({ horizontal: true });
+            $('#cp5').colorpicker({format: null});
+            $('#cp5b').colorpicker({format: "rgba"});
+            $('#cp6').colorpicker({horizontal: true});
             $('#cp7').colorpicker({
                 color: '#DD0F20',
                 inline: true,
@@ -715,8 +714,8 @@ NOTE: This file contains all scripts for the actual Template.
                 // customize the button names,
                 // otherwise they'd all just say "list"
                 views: {
-                    listDay: { buttonText: 'list day' },
-                    listWeek: { buttonText: 'list week' }
+                    listDay: {buttonText: 'list day'},
+                    listWeek: {buttonText: 'list week'}
                 },
 
                 defaultView: 'listWeek',
@@ -807,7 +806,9 @@ NOTE: This file contains all scripts for the actual Template.
         if ($('#example-form, #example-basic, #example-manipulation, #example-vertical, #conferimento-form').exists()) {
             var form = $("#example-form");
             form.validate({
-                errorPlacement: function errorPlacement(error, element) { element.before(error); },
+                errorPlacement: function errorPlacement(error, element) {
+                    element.before(error);
+                },
                 rules: {
                     confirm: {
                         equalTo: "#password"
@@ -818,42 +819,38 @@ NOTE: This file contains all scripts for the actual Template.
                 headerTag: "h3",
                 bodyTag: "section",
                 transitionEffect: "fade",
-                onStepChanging: function (event, currentIndex, newIndex)
-                {
+                onStepChanging: function (event, currentIndex, newIndex) {
                     form.validate().settings.ignore = ":disabled,:hidden";
                     return form.valid();
                 },
-                onFinishing: function (event, currentIndex)
-                {
+                onFinishing: function (event, currentIndex) {
                     form.validate().settings.ignore = ":disabled";
                     return form.valid();
                 },
-                onFinished: function (event, currentIndex)
-                {
+                onFinished: function (event, currentIndex) {
                     alert("Submitted!");
                 }
             });
 
             form = $("#conferimento-form");
             form.validate({
-                errorPlacement: function errorPlacement(error, element) { element.before(error); }
+                errorPlacement: function errorPlacement(error, element) {
+                    element.before(error);
+                }
             });
             form.children("div").steps({
                 headerTag: "h3",
                 bodyTag: "section",
                 transitionEffect: "fade",
-                onStepChanging: function (event, currentIndex, newIndex)
-                {
+                onStepChanging: function (event, currentIndex, newIndex) {
                     form.validate().settings.ignore = ":disabled,:hidden";
                     return form.valid();
                 },
-                onFinishing: function (event, currentIndex)
-                {
+                onFinishing: function (event, currentIndex) {
                     form.validate().settings.ignore = ":disabled";
                     return form.valid();
                 },
-                onFinished: function (event, currentIndex)
-                {
+                onFinished: function (event, currentIndex) {
 
                     $.post(form.attr('action'), form.serialize(), function (result) {
 
@@ -893,7 +890,7 @@ NOTE: This file contains all scripts for the actual Template.
 
     POTENZA.navactivation = function () {
         var path = window.location.pathname.split("/").pop();
-        var target = $('.side-menu-fixed .navbar-nav a[href="'+path+'"]');
+        var target = $('.side-menu-fixed .navbar-nav a[href="' + path + '"]');
         target.parent().addClass('active');
         $('.side-menu-fixed .navbar-nav li.active').parents('li').addClass('active');
         /* FRANCESCO SIDEBAR */
@@ -905,14 +902,15 @@ NOTE: This file contains all scripts for the actual Template.
     /****************************************************
      javascript
      ****************************************************/
-    var _arr  = {};
+    var _arr = {};
+
     function loadScript(scriptName, callback) {
         if (!_arr[scriptName]) {
             _arr[scriptName] = true;
-            var body    = document.getElementsByTagName('body')[0];
-            var script    = document.createElement('script');
-            script.type   = 'text/javascript';
-            script.src    = scriptName;
+            var body = document.getElementsByTagName('body')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = scriptName;
             // then bind the event to the callback function
             // there are several events for cross browser compatibility
             // script.onreadystatechange = callback;
@@ -928,7 +926,7 @@ NOTE: This file contains all scripts for the actual Template.
      POTENZA Window load and functions
      ****************************************************/
     //Window load functions
-    $window.on("load",function(){
+    $window.on("load", function () {
         POTENZA.preloader(),
             POTENZA.pieChart();
     });
@@ -960,7 +958,7 @@ NOTE: This file contains all scripts for the actual Template.
 
 // ======= FRANCESCO ===========
 
-$('.elimina').click(function(e) {
+$('.elimina').click(function (e) {
     swal({
         title: 'Sei sicuro di voler procedere?',
         text: "I dati eliminati non potranno essere piu' recuperati!",
@@ -973,7 +971,7 @@ $('.elimina').click(function(e) {
     }).then((result) => {
         if (result.value) {
 
-            if(this.dataset.href !== '') location.href = this.dataset.href;
+            if (this.dataset.href !== '') location.href = this.dataset.href;
             else location.href = this.title;
 
             /*swal(
@@ -985,10 +983,10 @@ $('.elimina').click(function(e) {
     })
 });
 
-$('.sincro').click(function(e) {
+$('.sincro').click(function (e) {
     swal({
         title: 'Sei sicuro di voler procedere?',
-        text: "I prodotti associati a questo marchio saranno cancellati e sostituiti!",
+        text: "I prodotti associati a questo marca saranno cancellati e sostituiti!",
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -998,7 +996,7 @@ $('.sincro').click(function(e) {
     }).then((result) => {
         if (result.value) {
 
-            if(this.dataset.href !== '') location.href = this.dataset.href;
+            if (this.dataset.href !== '') location.href = this.dataset.href;
             else location.href = this.title;
 
             /*swal(
@@ -1010,7 +1008,7 @@ $('.sincro').click(function(e) {
     })
 });
 
-$('.alert-link').click(function(e) {
+$('.alert-link').click(function (e) {
     swal({
         title: 'Sei sicuro di voler procedere?',
         text: "",
@@ -1023,13 +1021,13 @@ $('.alert-link').click(function(e) {
     }).then((result) => {
         if (result.value) {
 
-            if(this.dataset.href !== '') location.href = this.dataset.href;
+            if (this.dataset.href !== '') location.href = this.dataset.href;
             else location.href = this.title;
         }
     })
 });
 
-$('.alert-link-ordini-archivio').click(function(e) {
+$('.alert-link-ordini-archivio').click(function (e) {
     swal({
         title: 'Sei sicuro di voler procedere?',
         text: "Puoi spostare questo ordine in archivio, potrai sempre recuperarlo dalla lista archivio.",
@@ -1043,13 +1041,13 @@ $('.alert-link-ordini-archivio').click(function(e) {
     }).then((result) => {
         if (result.value) {
 
-            if(this.dataset.href !== '') location.href = this.dataset.href;
+            if (this.dataset.href !== '') location.href = this.dataset.href;
             else location.href = this.title;
         }
     })
 });
 
-$('.alert-link-ordini-riprisrtina').click(function(e) {
+$('.alert-link-ordini-riprisrtina').click(function (e) {
     swal({
         title: 'Sei sicuro di voler procedere?',
         text: "Puoi spostare questo ordine di nuovo in gestione, una volta eseguite le attività, potrai sempre rimetterlo in archivio.",
@@ -1063,13 +1061,13 @@ $('.alert-link-ordini-riprisrtina').click(function(e) {
     }).then((result) => {
         if (result.value) {
 
-            if(this.dataset.href !== '') location.href = this.dataset.href;
+            if (this.dataset.href !== '') location.href = this.dataset.href;
             else location.href = this.title;
         }
     })
 });
 
-$('.alert-2').click(function(e) {
+$('.alert-2').click(function (e) {
     swal({
 
         title: 'Sei sicuro di voler procedere?',
@@ -1099,7 +1097,7 @@ $('.alert-2').click(function(e) {
 
 });*/
 
-$('.alert-errore').click(function(e) {
+$('.alert-errore').click(function (e) {
     swal({
         type: 'error',
         title: 'Attenzione!',
@@ -1111,39 +1109,39 @@ $('.alert-errore').click(function(e) {
 
 $(function () {
 
-    $('.modale').each(function() {
+    $('.modale').each(function () {
         $(this).attr("data-toggle", "modal");
         $(this).attr("data-target", ".modale-custom");
     });
 
-    $('.modale-email').each(function() {
+    $('.modale-email').each(function () {
         $(this).attr("data-toggle", "modal");
         $(this).attr("data-target", ".modale-custom-email");
     });
 
-    $('.modale-img').each(function() {
+    $('.modale-img').each(function () {
         $(this).attr("data-toggle", "modal");
         $(this).attr("data-target", ".modale-custom-img");
     });
 
 });
 
-$('.modale').click(function(e) {
+$('.modale').click(function (e) {
 
     var link;
-    if(this.dataset.href !== '') link = this.dataset.href;
+    if (this.dataset.href !== '') link = this.dataset.href;
     else link = this.title;
 
-    $.get(link + "&no_cache" + Date.now(), function( data ) {
+    $.get(link + "&no_cache" + Date.now(), function (data) {
         $("#body-custom-modale").html(data);
     });
 
 });
 
-$('.modale-email').click(function(e) {
+$('.modale-email').click(function (e) {
 
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("body-custom-modale-email").innerHTML = this.responseText;
         }
@@ -1153,18 +1151,18 @@ $('.modale-email').click(function(e) {
 
 });
 
-$('.modale-img').click(function(e) {
+$('.modale-img').click(function (e) {
 
     document.getElementById("img-modale").src = $(this).attr('href');
 
 });
 
-$('.modale-function').click(function(e) {
+$('.modale-function').click(function (e) {
 
     var link = this.dataset.href;
 
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
             document.getElementById("body-custom-modale").innerHTML = this.responseText;
@@ -1179,13 +1177,13 @@ $('.modale-function').click(function(e) {
 
 });
 
-$('.popup-custom').click(function(e) {
+$('.popup-custom').click(function (e) {
 
     var w = $(this).data('pop-width') > 0 ? $(this).data('pop-width') : 900;
     var h = $(this).data('pop-height') > 0 ? $(this).data('pop-height') : 600;
 
-    var l = Math.floor((screen.width-w)/2);
-    var t = Math.floor((screen.height-h)/2);
+    var l = Math.floor((screen.width - w) / 2);
+    var t = Math.floor((screen.height - h) / 2);
     window.open(this.dataset.href, "", "width=" + w + ",height=" + h + ",top=" + t + ",left=" + l + ",resizable=no, menubar=no, scrollbars=yes");
 
 });
@@ -1196,17 +1194,17 @@ $('.popup-custom').click(function(e) {
 
 $(function () {
 
-    $('.pattern-number').each(function() {
+    $('.pattern-number').each(function () {
         $(this).attr("pattern", "[0-9]*");
         $(this).attr("title", "solo valori numerici");
     });
 
-    $('.pattern-price').each(function() {
+    $('.pattern-price').each(function () {
         $(this).attr("pattern", "^\\d+(.\\d{3})*(\\,\\d{1,2})?$");
         $(this).attr("title", "solo valori numerici (Es. 1.234,56)");
     });
 
-    $('.pattern-anno').each(function() {
+    $('.pattern-anno').each(function () {
         $(this).attr("pattern", "[0-9]{4}");
         $(this).attr("title", "solo valori numerici. Formato: YYYY");
     });
@@ -1219,19 +1217,19 @@ $(".pattern-time").attr("maxlength", 5)
 
         var value = $(this).val();
 
-        if(value.length < 5) if(value.charAt(1) === ":") value = "0" + value;
-        if(value.length === 2) {
+        if (value.length < 5) if (value.charAt(1) === ":") value = "0" + value;
+        if (value.length === 2) {
 
-            if(value > 23) value = "23";
+            if (value > 23) value = "23";
             value = value + ":";
 
         }
 
-        if(value.length === 5) {
+        if (value.length === 5) {
 
             var array = value.split(":");
-            if(array[0] > 23) array[0] = "23";
-            if(array[1] > 59) array[1] = "59";
+            if (array[0] > 23) array[0] = "23";
+            if (array[1] > 59) array[1] = "59";
 
             value = array[0] + ":" + array[1];
 
@@ -1250,43 +1248,41 @@ function checkNewsletterBlog(type) {
     var count = 0;
     var i = 0;
 
-    if(type === 1) {
-        if(radio.length === 0) alert("Devi selezionare un articolo primario.");
+    if (type === 1) {
+        if (radio.length === 0) alert("Devi selezionare un articolo primario.");
         else {
             document.getElementById("nb_tipo").value = "singola";
             document.getElementById("form").submit();
         }
     }
 
-    if(type === 2) {
+    if (type === 2) {
 
         for (i = 0; i < checkboxes.length; i++) {
             count++;
         }
 
-        if(count % 2 === 0 && count > 0) {
+        if (count % 2 === 0 && count > 0) {
             document.getElementById("nb_tipo").value = "lista";
             document.getElementById("form").submit();
-        }
-        else alert("Devi selezionare un numero pari di articoli.");
+        } else alert("Devi selezionare un numero pari di articoli.");
     }
 
-    if(type === 3) {
+    if (type === 3) {
 
         for (i = 0; i < checkboxes.length; i++) {
             count++;
         }
 
-        if(count === 3) {
+        if (count === 3) {
 
-            if(radio.length === 0) alert("Devi selezionare un articolo primario.");
+            if (radio.length === 0) alert("Devi selezionare un articolo primario.");
             else {
                 document.getElementById("nb_tipo").value = "ibrida";
                 document.getElementById("form").submit();
             }
 
-        }
-        else alert("Devi selezionare 3 articoli secondari.");
+        } else alert("Devi selezionare 3 articoli secondari.");
     }
 }
 
@@ -1296,7 +1292,7 @@ function sendBlogEmail() {
     var ns_id = document.getElementById("ns_id").value;
     var nb_id = document.getElementById("nb_id").value;
 
-    if(ns_id === "") {
+    if (ns_id === "") {
         document.getElementById("error").innerText = "Devi selezionare una lista.";
         return 0;
     }
@@ -1309,7 +1305,7 @@ function sendBlogEmail() {
         "                </p>";
 
     var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             document.getElementById("body-custom-modale").innerHTML = this.responseText;
         }
@@ -1324,35 +1320,36 @@ function sendBlogEmail() {
 
 'use strict';
 
-( function ( document, window, index )
-{
-    var inputs = document.querySelectorAll( '.inputfile' );
-    Array.prototype.forEach.call( inputs, function( input )
-    {
-        var label	 = input.nextElementSibling,
+(function (document, window, index) {
+    var inputs = document.querySelectorAll('.inputfile');
+    Array.prototype.forEach.call(inputs, function (input) {
+        var label = input.nextElementSibling,
             labelVal = label.innerHTML;
 
-        input.addEventListener( 'change', function( e )
-        {
+        input.addEventListener('change', function (e) {
             var fileName = '';
-            if( this.files && this.files.length > 1 )
-                fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+            if (this.files && this.files.length > 1)
+                fileName = (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
             else
-                fileName = e.target.value.split( '\\' ).pop();
+                fileName = e.target.value.split('\\').pop();
 
-            if( fileName )
-                label.querySelector( 'span' ).innerHTML = fileName;
+            if (fileName)
+                label.querySelector('span').innerHTML = fileName;
             else
                 label.innerHTML = labelVal;
         });
 
         // Firefox bug fix
-        input.addEventListener( 'focus', function(){ input.classList.add( 'has-focus' ); });
-        input.addEventListener( 'blur', function(){ input.classList.remove( 'has-focus' ); });
+        input.addEventListener('focus', function () {
+            input.classList.add('has-focus');
+        });
+        input.addEventListener('blur', function () {
+            input.classList.remove('has-focus');
+        });
     });
-}( document, window, 0 ));
+}(document, window, 0));
 
-$('.custom-file-input').on('change',function(){
+$('.custom-file-input').on('change', function () {
 
     //get the file name
     var fileName = $(this).val();
@@ -1371,23 +1368,22 @@ $('.prog-numb-id').on('click', function () {
 
 function delayedProgNumb() {
 
-    $('input.inputfile').each(function(progNum){
+    $('input.inputfile').each(function (progNum) {
 
         var OldIdInput = $(this).attr('id');
         $(this).attr('id', OldIdInput + '-' + progNum);
         $(this).next().attr('for', OldIdInput + '-' + progNum);
 
-        $(this).on('change', function( e )
-        {
+        $(this).on('change', function (e) {
             var fileName = '';
-            if($(this).files && $(this).files.length > 1 )
-                fileName = ( $(this).attr( 'data-multiple-caption' ) || '' ).replace( '{count}', $(this).files.length );
+            if ($(this).files && $(this).files.length > 1)
+                fileName = ($(this).attr('data-multiple-caption') || '').replace('{count}', $(this).files.length);
             else
-                fileName = e.target.value.split( '\\' ).pop();
+                fileName = e.target.value.split('\\').pop();
 
             var label = $(this).next();
             var labelVal = label.find('span').html();
-            if(fileName)
+            if (fileName)
                 label.find('span').text(fileName);
             else
                 label.find('span').text(labelVal);
@@ -1395,12 +1391,13 @@ function delayedProgNumb() {
     });
 
 }
+
 // fine numero progressivo a label e id dell'input file quando c'è il repeater /////////////////
 
-$('.stato').click(function(e) {
+$('.stato').click(function (e) {
     $.ajax({
         url: this.title,
-        success: function(result){
+        success: function (result) {
             //alert(result);
         }
     });
@@ -1413,16 +1410,16 @@ function getSottocategorie() {
 
     $.ajax({
 
-        url : "ajax/select-sottocategorie.php?ct_id=" + ct_id + "&st_id=" + st_id,
+        url: "ajax/select-sottocategorie.php?ct_id=" + ct_id + "&st_id=" + st_id,
 
-        success : function (data) {
+        success: function (data) {
 
             //document.getElementById('st_id').options[0].selected = '';
             $("#st_id").html(data);
 
         },
 
-        error : function (richiesta, stato, errori) {
+        error: function (richiesta, stato, errori) {
 
             alert("E' evvenuto un errore. Il stato della chiamata: " + errori);
 
@@ -1438,16 +1435,16 @@ function getMarche() {
 
     $.ajax({
 
-        url : "ajax/select-marche.php?mr_id=" + mr_id + "&md_id=" + md_id + "&md_tipo=" + md_tipo,
+        url: "ajax/select-marche.php?mr_id=" + mr_id + "&md_id=" + md_id + "&md_tipo=" + md_tipo,
 
-        success : function (data) {
+        success: function (data) {
 
             //document.getElementById('md_id').options[0].selected = '';
             $("#mr_id").html(data);
 
         },
 
-        error : function (richiesta, stato, errori) {
+        error: function (richiesta, stato, errori) {
 
             alert("E' evvenuto un errore. Il stato della chiamata: " + errori);
 
@@ -1464,16 +1461,16 @@ function getModelli() {
 
     $.ajax({
 
-        url : "ajax/select-modelli.php?mr_id=" + mr_id + "&md_id=" + md_id + "&md_tipo=" + md_tipo,
+        url: "ajax/select-modelli.php?mr_id=" + mr_id + "&md_id=" + md_id + "&md_tipo=" + md_tipo,
 
-        success : function (data) {
+        success: function (data) {
 
             //document.getElementById('md_id').options[0].selected = '';
             $("#md_id").html(data);
 
         },
 
-        error : function (richiesta, stato, errori) {
+        error: function (richiesta, stato, errori) {
 
             alert("E' evvenuto un errore. Il stato della chiamata: " + errori);
 
@@ -1486,7 +1483,7 @@ function getPrezzoByCodice() {
 
     var pr_codice_produttore = document.getElementById('pr_codice_produttore').value;
 
-    if(pr_codice_produttore === '') {
+    if (pr_codice_produttore === '') {
 
         swal({
             type: 'error',
@@ -1498,13 +1495,13 @@ function getPrezzoByCodice() {
 
     $.ajax({
 
-        url : "ajax/get-prezzo.php?pr_codice_produttore=" + pr_codice_produttore,
+        url: "ajax/get-prezzo.php?pr_codice_produttore=" + pr_codice_produttore,
 
-        success : function (data) {
+        success: function (data) {
 
             var controll = parseFloat(data);
 
-            if(controll > 0) $("#pr_prezzo_consigliato").val(data);
+            if (controll > 0) $("#pr_prezzo_consigliato").val(data);
             else {
 
                 swal({
@@ -1517,7 +1514,7 @@ function getPrezzoByCodice() {
 
         },
 
-        error : function (richiesta, stato, errori) {
+        error: function (richiesta, stato, errori) {
 
             alert("E' evvenuto un errore. Il stato della chiamata: " + errori);
 
@@ -1526,8 +1523,7 @@ function getPrezzoByCodice() {
     });
 }
 
-$('.popover-img').each(function()
-{
+$('.popover-img').each(function () {
     $(this).data('trigger', 'hover');
     $(this).data('toggle', 'popover');
     $(this).data('placement', 'bottom');
@@ -1535,7 +1531,7 @@ $('.popover-img').each(function()
 
     let src = $(this).attr('src');
     src = src.length > 0 ? src : $(this).data('src');
-    let content = "<img src='"+src+"' height='200' width='200'>";
+    let content = "<img src='" + src + "' height='200' width='200'>";
 
     $(this).data('content', content);
     $(this).popover();
@@ -1590,7 +1586,7 @@ $(function () {
 });
 
 
-$('.alert-link-ordini-eliminato').click(function(e) {
+$('.alert-link-ordini-eliminato').click(function (e) {
     swal({
         title: 'Sei sicuro di voler procedere?',
         text: "Puoi settare questo ordine come eliminato, potrai sempre recuperarlo dalla lista eliminati.",
@@ -1604,7 +1600,7 @@ $('.alert-link-ordini-eliminato').click(function(e) {
     }).then((result) => {
         if (result.value) {
 
-            if(this.dataset.href !== '') location.href = this.dataset.href;
+            if (this.dataset.href !== '') location.href = this.dataset.href;
             else location.href = this.title;
         }
     })
@@ -1619,8 +1615,8 @@ $(".btn-print").click(function () {
 });
 
 // ==== AUTOCOMPLETAMENTO ====
-$.expr[":"].contains_ci = $.expr.createPseudo(function(arg) {
-    return function( elem ) {
+$.expr[":"].contains_ci = $.expr.createPseudo(function (arg) {
+    return function (elem) {
         return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
     };
 });
@@ -1632,11 +1628,11 @@ $(function () {
 
 });
 
-$(".lw-ac-input input[type='text']").on('keypress change keyup',function () {
+$(".lw-ac-input input[type='text']").on('keypress change keyup', function () {
 
     let searchInputValue = $(this).val();
 
-    if(searchInputValue.length > 0) {
+    if (searchInputValue.length > 0) {
 
         $('.lw-ac-list p').hide();
         $('.lw-ac-list').show().find('p:contains_ci(' + searchInputValue + ')').show();
@@ -1671,7 +1667,7 @@ $('.ac-distribuzione p').click(function () {
 
     if ($(this)[0].hasAttribute("disabled")) return 0;
 
-    $.get("ajax/select-giacenze.php?pr_id=" + $(this).data('value'), function( data ) {
+    $.get("ajax/select-giacenze.php?pr_id=" + $(this).data('value'), function (data) {
         $("#dp_gi_id").html(data);
     });
 
@@ -1683,7 +1679,7 @@ $('.ac-ordine p').click(function () {
 
     if ($(this)[0].hasAttribute("disabled")) return 0;
 
-    $.get("ajax/select-giacenze.php?pr_id=" + $(this).data('value'), function( data ) {
+    $.get("ajax/select-giacenze.php?pr_id=" + $(this).data('value'), function (data) {
         $("#or_gi_id").html(data);
     });
 
@@ -1701,7 +1697,7 @@ $('.ac-ordine-operatore p').click(function () {
     if (gi_id > 0) $("#or_gi_id").val(gi_id);
     else {
 
-        $.get("ajax/select-giacenze.php?pr_id=" + $(this).data('value'), function( data ) {
+        $.get("ajax/select-giacenze.php?pr_id=" + $(this).data('value'), function (data) {
             $("#or_gi_id").html(data);
         });
 
@@ -1718,7 +1714,7 @@ $('.btn-cart-mail').click(function () {
     let icon = $(this).find("i");
 
     icon.addClass("fa fa-spinner fa-spin");
-    $.get(link, function( data ) {
+    $.get(link, function (data) {
         icon.removeClass("fa-spinner fa-spin");
         icon.addClass("fa-check");
     });
@@ -1726,7 +1722,7 @@ $('.btn-cart-mail').click(function () {
 });
 //==== ====
 
-$('.detail-show').click( function() {
+$('.detail-show').click(function () {
     $(this).parent().parent().next().toggle();
     // $(this).parent().parent().next().next().toggle()
 });
@@ -1737,7 +1733,7 @@ $('.ajax-select').change(function () {
     let target = $(this).data('target');
     let href = $(this).data('href');
 
-    $.get(href + value, function(data) {
+    $.get(href + value, function (data) {
 
         $(target).html(data);
 
@@ -1746,7 +1742,7 @@ $('.ajax-select').change(function () {
 });
 
 
-$('.varianti-show').click( function() {
+$('.varianti-show').click(function () {
 
     let capofile = $(this).data("capofila");
     $("tr[data-capofila='" + capofile + "']").toggle();
@@ -1759,14 +1755,13 @@ $('.varianti-show').click( function() {
 });
 
 
-
 // ==== CHECK FILE ====
 $(function () {
 
-    $("input[type='file']").bind('change', function() {
+    $("input[type='file']").bind('change', function () {
 
         var file_size = this.files[0].size, input = $(this);
-        if(file_size > 2097152) {
+        if (file_size > 2097152) {
 
             alert("Il file non può essere più grande di 2MB.");
             $(this).val("").parent("div").find("label").html("Seleziona un file");
@@ -1776,9 +1771,10 @@ $(function () {
 
         var file, img,
             max_width = parseInt($(this).data('max-width')), max_height = parseInt($(this).data('max-height')),
-            width = parseInt($(this).data('width')), height = parseInt($(this).data('height')), ratio = $(this).data('ratio');
+            width = parseInt($(this).data('width')), height = parseInt($(this).data('height')),
+            ratio = $(this).data('ratio');
 
-        if(max_width > 0 || max_height > 0) {
+        if (max_width > 0 || max_height > 0) {
 
             if ((file = this.files[0])) {
 
@@ -1806,20 +1802,20 @@ $(function () {
 
         }
 
-        if(width > 0 || height > 0) {
+        if (width > 0 || height > 0) {
 
             if ((file = this.files[0])) {
 
                 img = new Image();
                 img.onload = function () {
 
-                    if(this.width !== width && width > 0) {
+                    if (this.width !== width && width > 0) {
 
                         alert("L'immagine non corrisponde alla larghezza obbligatoria (" + width + "px)");
                         input.val("").parent("div").find("label").html("Seleziona un file");
                         return 0;
 
-                    } else if(this.height !== height && height > 0) {
+                    } else if (this.height !== height && height > 0) {
 
                         alert("L'immagine non corrisponde all'altezza obbligatoria (" + height + "px)");
                         input.val("").parent("div").find("label").html("Seleziona un file");
@@ -1834,7 +1830,7 @@ $(function () {
 
         }
 
-        if(ratio.length > 0) {
+        if (ratio.length > 0) {
 
             if ((file = this.files[0])) {
 
@@ -1843,7 +1839,7 @@ $(function () {
                 img = new Image();
                 img.onload = function () {
 
-                    if((this.width / ratio_arr[0]) !== (this.height / ratio_arr[1])) {
+                    if ((this.width / ratio_arr[0]) !== (this.height / ratio_arr[1])) {
 
                         alert("L'immagine deve essere in proporzione (" + ratio + ")");
                         input.val("").parent("div").find("label").html("Seleziona un file");
@@ -1865,7 +1861,7 @@ $(function () {
 function PrintElem(elem) {
     var mywindow = window.open('', 'PRINT', 'height=500,width=800');
 
-    mywindow.document.write('<html><head><title>' + document.title  + '</title>');
+    mywindow.document.write('<html><head><title>' + document.title + '</title>');
     mywindow.document.write('</head><body >');
     //mywindow.document.write('<h1>' + document.title  + '</h1>');
     mywindow.document.write(document.getElementById(elem).innerHTML);

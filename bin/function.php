@@ -1,5 +1,6 @@
 <?php
-function generateStripeFastOrder($or_codice, $or_totale, $or_rapido = 0) {
+function generateStripeFastOrder($or_codice, $or_totale, $or_rapido = 0)
+{
 
     global $rootBasePath_http;
 
@@ -50,20 +51,22 @@ function generateStripeFastOrder($or_codice, $or_totale, $or_rapido = 0) {
 
 }
 
-function get_mr_marchio($mr_codice) {
+function get_mr_marche($mr_codice)
+{
 
     global $dbConn;
 
-    $querySql = "SELECT mr_marchio FROM mr_marchi WHERE mr_codice = '".$mr_codice."'";
+    $querySql = "SELECT mr_marche FROM mr_marche WHERE mr_codice = '" . $mr_codice . "'";
     $result = $dbConn->query($querySql);
-    $mr_marchio = $result->fetch_array()[0];
+    $mr_marche = $result->fetch_array()[0];
     $result->close();
 
-    return $mr_marchio;
+    return $mr_marche;
 
 }
 
-function getImg2Prodotto($pr_id) {
+function getImg2Prodotto($pr_id)
+{
 
     global $dbConn;
 
@@ -77,7 +80,8 @@ function getImg2Prodotto($pr_id) {
         : "assets/images/prodotto-dummy.jpg";
 }
 
-function getCategoria($ct_id, $dbConn) {
+function getCategoria($ct_id, $dbConn)
+{
 
     $querySql = "SELECT ct_categoria FROM ct_categorie WHERE ct_id = '$ct_id' ";
     $result = $dbConn->query($querySql);
@@ -85,12 +89,13 @@ function getCategoria($ct_id, $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['ct_categoria'];
 
 }
 
-function getSottocategoria($st_id, $dbConn) {
+function getSottocategoria($st_id, $dbConn)
+{
 
     $querySql = "SELECT st_sottocategoria FROM st_sottocategorie WHERE st_id = '$st_id' ";
     $result = $dbConn->query($querySql);
@@ -98,12 +103,13 @@ function getSottocategoria($st_id, $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['st_sottocategoria'];
 
 }
 
-function getCatBySot($st_id, $dbConn) {
+function getCatBySot($st_id, $dbConn)
+{
 
     $querySql = "SELECT st_ct_id FROM st_sottocategorie WHERE st_id = '$st_id' ";
     $result = $dbConn->query($querySql);
@@ -118,24 +124,25 @@ function getCatBySot($st_id, $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['ct_categoria'];
 
 }
 
-function countVarianti($pr_codice_alternativo) {
+function countVarianti($pr_codice_alternativo)
+{
 
     global $dbConn;
 
     $querySql =
-        "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_stato > 0 AND pr_codice_alternativo = '$pr_codice_alternativo' ".
+        "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_stato > 0 AND pr_codice_alternativo = '$pr_codice_alternativo' " .
         "AND LENGTH(pr_immagine_mini) > 0 ORDER BY pr_id";
     $result = $dbConn->query($querySql);
     $count = $result->fetch_array()[0];
     $result->close();
 
     $querySql =
-        "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_stato > 0 AND pr_codice_alternativo = '$pr_codice_alternativo' ".
+        "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_stato > 0 AND pr_codice_alternativo = '$pr_codice_alternativo' " .
         "AND LENGTH(pr_formato) > 0 ORDER BY pr_formato";
     $result = $dbConn->query($querySql);
     $count = $count + $result->fetch_array()[0];
@@ -145,12 +152,13 @@ function countVarianti($pr_codice_alternativo) {
 
 }
 
-function countVariantiColore($pr_codice_alternativo) {
+function countVariantiColore($pr_codice_alternativo)
+{
 
     global $dbConn;
 
     $querySql =
-        "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_stato > 0 AND pr_codice_alternativo = '$pr_codice_alternativo' ".
+        "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_stato > 0 AND pr_codice_alternativo = '$pr_codice_alternativo' " .
         "AND LENGTH(pr_immagine_mini) > 0 ORDER BY pr_id";
     $result = $dbConn->query($querySql);
     $count = $result->fetch_array()[0];
@@ -160,7 +168,8 @@ function countVariantiColore($pr_codice_alternativo) {
 
 }
 
-function selectCategorie($get_ct_id) {
+function selectCategorie($get_ct_id)
+{
 
     global $dbConn;
     $querySql = "SELECT * FROM ct_categorie ";
@@ -180,7 +189,8 @@ function selectCategorie($get_ct_id) {
 
 }
 
-function selectClientiCategorie($get_ct_id) {
+function selectClientiCategorie($get_ct_id)
+{
 
     global $dbConn;
     $querySql = "SELECT * FROM ct_categoria ";
@@ -200,7 +210,8 @@ function selectClientiCategorie($get_ct_id) {
 
 }
 
-function get_access_credential($param_username, $param_password, $dbConn) {
+function get_access_credential($param_username, $param_password, $dbConn)
+{
 
     $querySql_amministratore = "SELECT * FROM am_amministratore WHERE am_username = '$param_username' AND am_password = '$param_password'";
     $result_amministratore = $dbConn->query($querySql_amministratore);
@@ -210,7 +221,7 @@ function get_access_credential($param_username, $param_password, $dbConn) {
         $username = $rows_amministratore['am_username'];
         $password = $rows_amministratore['am_password'];
 
-        $credenziali = "administrator|".$username ."|".$password;
+        $credenziali = "administrator|" . $username . "|" . $password;
 
     };
 
@@ -218,9 +229,12 @@ function get_access_credential($param_username, $param_password, $dbConn) {
 
     $checkCredential = $credenziali;
     return $checkCredential;
-};
+}
 
-function get_access_credential_op($param_username, $param_password, $dbConn) {
+;
+
+function get_access_credential_op($param_username, $param_password, $dbConn)
+{
 
     $querySql = "SELECT * FROM op_operatori WHERE op_codice = '$param_username' AND op_password = '$param_password'";
     $result = $dbConn->query($querySql);
@@ -231,7 +245,7 @@ function get_access_credential_op($param_username, $param_password, $dbConn) {
         $username = $rows['op_codice'];
         $password = $rows['op_password'];
 
-        $credenziali = "operatore|".$username ."|".$password;
+        $credenziali = "operatore|" . $username . "|" . $password;
 
     };
 
@@ -242,7 +256,8 @@ function get_access_credential_op($param_username, $param_password, $dbConn) {
 
 }
 
-function get_access_credential_cl($param_username, $param_password, $dbConn) {
+function get_access_credential_cl($param_username, $param_password, $dbConn)
+{
 
     $querySql = "SELECT * FROM cl_clienti WHERE cl_email = '$param_username' AND cl_password = '$param_password'";
     $result = $dbConn->query($querySql);
@@ -253,7 +268,7 @@ function get_access_credential_cl($param_username, $param_password, $dbConn) {
         $username = $rows['cl_email'];
         $password = $rows['cl_password'];
 
-        $credenziali = "cliente|".$username ."|".$password;
+        $credenziali = "cliente|" . $username . "|" . $password;
 
     };
 
@@ -264,10 +279,11 @@ function get_access_credential_cl($param_username, $param_password, $dbConn) {
 
 }
 
-function selectProvince($cm_province_param, $cm_regioni_param, $dbConn) {
+function selectProvince($cm_province_param, $cm_regioni_param, $dbConn)
+{
 
     $querySql = "SELECT DISTINCT(cm_provincia) FROM cm_comuni WHERE cm_id > 0 ";
-    if(strlen($cm_regioni_param) > 0) $querySql .= " AND cm_regione = '$cm_regioni_param' ";
+    if (strlen($cm_regioni_param) > 0) $querySql .= " AND cm_regione = '$cm_regioni_param' ";
     $querySql .= " ORDER BY cm_provincia ";
     $result = $dbConn->query($querySql);
 
@@ -281,10 +297,11 @@ function selectProvince($cm_province_param, $cm_regioni_param, $dbConn) {
 
 }
 
-function selectComuni($cm_comune_param, $cm_provincia_param, $dbConn) {
+function selectComuni($cm_comune_param, $cm_provincia_param, $dbConn)
+{
 
     $querySql = "SELECT DISTINCT(cm_comune) FROM cm_comuni WHERE cm_id > 0 ";
-    if(strlen($cm_provincia_param) > 0) $querySql .= " AND cm_provincia = '$cm_provincia_param' ";
+    if (strlen($cm_provincia_param) > 0) $querySql .= " AND cm_provincia = '$cm_provincia_param' ";
     $querySql .= " ORDER BY cm_comune ";
     $result = $dbConn->query($querySql);
 
@@ -292,13 +309,14 @@ function selectComuni($cm_comune_param, $cm_provincia_param, $dbConn) {
 
         $cm_comune = $rows['cm_comune'];
         $status = ($cm_comune_param == $cm_comune) ? "selected" : "";
-        echo "<option value='".stripslashes($cm_comune)."' $status>$cm_comune</option>";
+        echo "<option value='" . stripslashes($cm_comune) . "' $status>$cm_comune</option>";
 
     };
 
 }
 
-function countEmailLista($ns_id, $dbConn) {
+function countEmailLista($ns_id, $dbConn)
+{
 
     $querySql = "SELECT COUNT(ne_id) AS count_email FROM ne_newsletter_email WHERE ne_ns_id = '$ns_id' AND ne_id > 0";
     $result = $dbConn->query($querySql);
@@ -306,10 +324,11 @@ function countEmailLista($ns_id, $dbConn) {
     $result->close();
 
     return $row_data['count_email'];
-    
+
 }
 
-function countListe(mysqli $dbConn) {
+function countListe(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(ns_id) AS ns_count FROM ns_newsletter_liste ";
     $result = $dbConn->query($querySql);
@@ -320,7 +339,8 @@ function countListe(mysqli $dbConn) {
 
 }
 
-function countInviiNewsletter(mysqli $dbConn) {
+function countInviiNewsletter(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(no_id) FROM no_newsletter_log GROUP BY no_timestamp ";
     $result = $dbConn->query($querySql);
@@ -331,7 +351,8 @@ function countInviiNewsletter(mysqli $dbConn) {
 
 }
 
-function countPostBlog(mysqli $dbConn) {
+function countPostBlog(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(bl_id) FROM bl_blog ";
     $result = $dbConn->query($querySql);
@@ -342,7 +363,8 @@ function countPostBlog(mysqli $dbConn) {
 
 }
 
-function countClienti(mysqli $dbConn) {
+function countClienti(mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(cl_id) FROM cl_clienti ";
     $result = $dbConn->query($querySql);
@@ -353,7 +375,8 @@ function countClienti(mysqli $dbConn) {
 
 }
 
-function countAttivita() {
+function countAttivita()
+{
 
     global $dbConn;
 
@@ -366,7 +389,8 @@ function countAttivita() {
 
 }
 
-function countOrdini() {
+function countOrdini()
+{
 
     global $dbConn;
 
@@ -379,7 +403,8 @@ function countOrdini() {
 
 }
 
-function countOrdiniEvasiOggi($op_id) {
+function countOrdiniEvasiOggi($op_id)
+{
 
     global $dbConn;
 
@@ -395,7 +420,8 @@ function countOrdiniEvasiOggi($op_id) {
 
 }
 
-function countProdotti(mysqli $dbConn) {
+function countProdotti(mysqli $dbConn)
+{
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
@@ -404,7 +430,8 @@ function countProdotti(mysqli $dbConn) {
     return $row_data[0];
 }
 
-function countRecensioni($pr_codice, mysqli $dbConn) {
+function countRecensioni($pr_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(rc_id) FROM rc_recensioni WHERE rc_pr_codice = '$pr_codice' ";
     $result = $dbConn->query($querySql);
@@ -415,7 +442,8 @@ function countRecensioni($pr_codice, mysqli $dbConn) {
 
 }
 
-function getCodRecensioni($pr_capofila) {
+function getCodRecensioni($pr_capofila)
+{
 
     global $dbConn;
 
@@ -429,7 +457,8 @@ function getCodRecensioni($pr_capofila) {
 
 }
 
-function getImmagineBlog($bl_id) {
+function getImmagineBlog($bl_id)
+{
 
     global $dbConn, $rootBasePath_http;
 
@@ -441,31 +470,33 @@ function getImmagineBlog($bl_id) {
 
 }
 
-function mediaRecensioni($pr_codice, mysqli $dbConn) {
+function mediaRecensioni($pr_codice, mysqli $dbConn)
+{
     $querySqlCount = "SELECT COUNT(rc_id) FROM rc_recensioni WHERE rc_id > 0 AND rc_pr_codice = '$pr_codice' ";
     $result = $dbConn->query($querySqlCount);
     $row = $result->fetch_row();
     $row_cnt = $row[0];
-    
+
     $media = 0;
     if ($row_cnt > 0) {
         $querySql = "SELECT * FROM rc_recensioni WHERE rc_id > 0 AND rc_pr_codice = '$pr_codice' ";
         $result = $dbConn->query($querySql);
         $rows = $dbConn->affected_rows;
-        
+
         $voto_totale = 0;
         while (($row_data = $result->fetch_assoc()) !== NULL) {
             $rc_voto = $row_data['rc_voto'];
             $voto_totale += $rc_voto;
         }
-        
+
         $media = $voto_totale / $row_cnt;
     }
-    
+
     return ceil($media);
 }
 
-function existRecensioniCliente($pr_codice, $cl_codice, mysqli $dbConn) {
+function existRecensioniCliente($pr_codice, $cl_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT COUNT(rc_id) FROM rc_recensioni WHERE rc_pr_codice = '$pr_codice' AND rc_cl_codice = '$cl_codice' ";
     $result = $dbConn->query($querySql);
@@ -476,7 +507,8 @@ function existRecensioniCliente($pr_codice, $cl_codice, mysqli $dbConn) {
 
 }
 
-function getSistema($si_id) {
+function getSistema($si_id)
+{
 
     global $dbConn;
 
@@ -489,20 +521,22 @@ function getSistema($si_id) {
 
 }
 
-function getMarchio($mr_id) {
+function getMarca($mr_id)
+{
 
     global $dbConn;
 
-    $querySql = "SELECT mr_marchio FROM mr_marchi WHERE mr_id = '$mr_id' LIMIT 0, 1 ";
+    $querySql = "SELECT mr_marche FROM mr_marche WHERE mr_id = '$mr_id' LIMIT 0, 1 ";
     $result = $dbConn->query($querySql);
-    $mr_marchio = $result->fetch_array()[0];
+    $mr_marche = $result->fetch_array()[0];
     $result->close();
 
-    return $mr_marchio;
+    return $mr_marche;
 
 }
 
-function getMetaDescCategoria($pr_ct_id) {
+function getMetaDescCategoria($pr_ct_id)
+{
 
     global $dbConn;
 
@@ -515,7 +549,8 @@ function getMetaDescCategoria($pr_ct_id) {
 
 }
 
-function getMetaDescSottocat($pr_st_id) {
+function getMetaDescSottocat($pr_st_id)
+{
 
     global $dbConn;
 
@@ -528,7 +563,8 @@ function getMetaDescSottocat($pr_st_id) {
 
 }
 
-function getMetaKeyCategoria($pr_ct_id) {
+function getMetaKeyCategoria($pr_ct_id)
+{
 
     global $dbConn;
 
@@ -541,7 +577,8 @@ function getMetaKeyCategoria($pr_ct_id) {
 
 }
 
-function getMetaKeySottocat($pr_st_id) {
+function getMetaKeySottocat($pr_st_id)
+{
 
     global $dbConn;
 
@@ -554,7 +591,8 @@ function getMetaKeySottocat($pr_st_id) {
 
 }
 
-function getTitleCategoria($pr_ct_id) {
+function getTitleCategoria($pr_ct_id)
+{
 
     global $dbConn;
 
@@ -567,7 +605,8 @@ function getTitleCategoria($pr_ct_id) {
 
 }
 
-function getTitleSottocat($pr_st_id) {
+function getTitleSottocat($pr_st_id)
+{
 
     global $dbConn;
 
@@ -580,7 +619,8 @@ function getTitleSottocat($pr_st_id) {
 
 }
 
-function getH1Categoria($pr_ct_id) {
+function getH1Categoria($pr_ct_id)
+{
 
     global $dbConn;
 
@@ -593,7 +633,8 @@ function getH1Categoria($pr_ct_id) {
 
 }
 
-function getH1Sottocat($pr_st_id) {
+function getH1Sottocat($pr_st_id)
+{
 
     global $dbConn;
 
@@ -606,7 +647,8 @@ function getH1Sottocat($pr_st_id) {
 
 }
 
-function getMetaDescSistema($pr_si_id) {
+function getMetaDescSistema($pr_si_id)
+{
 
     global $dbConn;
 
@@ -619,7 +661,8 @@ function getMetaDescSistema($pr_si_id) {
 
 }
 
-function getMetaKeySistema($pr_si_id) {
+function getMetaKeySistema($pr_si_id)
+{
 
     global $dbConn;
 
@@ -632,7 +675,8 @@ function getMetaKeySistema($pr_si_id) {
 
 }
 
-function getTitleSistema($pr_si_id) {
+function getTitleSistema($pr_si_id)
+{
 
     global $dbConn;
 
@@ -645,9 +689,10 @@ function getTitleSistema($pr_si_id) {
 
 }
 
-function getEsistenzaGiacenzaVariante($pr_codice, mysqli $dbConn) {
+function getEsistenzaGiacenzaVariante($pr_codice, mysqli $dbConn)
+{
 
-    $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_codice = '".$pr_codice."' AND pr_capofila != pr_id AND pr_giacenza > 0 ";
+    $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_codice = '" . $pr_codice . "' AND pr_capofila != pr_id AND pr_giacenza > 0 ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -656,11 +701,12 @@ function getEsistenzaGiacenzaVariante($pr_codice, mysqli $dbConn) {
 
 }
 
-function getDescMarchio($pr_codice_marchio) {
+function getDescMarca($pr_codice_marche)
+{
 
     global $dbConn;
 
-    $querySql = "SELECT mr_descrizione FROM mr_marchi WHERE mr_codice = '$pr_codice_marchio' ";
+    $querySql = "SELECT mr_descrizione FROM mr_marche WHERE mr_codice = '$pr_codice_marche' ";
     $result = $dbConn->query($querySql);
     $mr_descrizione = $result->fetch_array()[0];
     $result->close();
@@ -669,11 +715,12 @@ function getDescMarchio($pr_codice_marchio) {
 
 }
 
-function getDescrizioneMarchio($pr_codice_marchio) {
+function getDescrizioneMarca($pr_codice_marche)
+{
 
     global $dbConn;
 
-    $querySql = "SELECT mr_descrizione FROM mr_marchi WHERE mr_codice = '$pr_codice_marchio' LIMIT 0, 1 ";
+    $querySql = "SELECT mr_descrizione FROM mr_marche WHERE mr_codice = '$pr_codice_marche' LIMIT 0, 1 ";
     $result = $dbConn->query($querySql);
     $mr_descrizione = $result->fetch_array()[0];
     $result->close();
@@ -682,35 +729,38 @@ function getDescrizioneMarchio($pr_codice_marchio) {
 
 }
 
-function getImgMarchio($mr_codice) {
+function getImgMarca($mr_codice)
+{
 
     global $dbConn, $rootBasePath_http;
 
-    $querySql = "SELECT mr_immagine FROM mr_marchi WHERE mr_codice = '$mr_codice' ";
+    $querySql = "SELECT mr_immagine FROM mr_marche WHERE mr_codice = '$mr_codice' ";
     $result = $dbConn->query($querySql);
     $mr_immagine = $result->fetch_array()[0];
     $result->close();
 
-    return strlen($mr_immagine) > 0 && file_exists("upload/marchi/$mr_immagine") ? "$rootBasePath_http/upload/marchi/$mr_immagine" : "assets/img/prodotto-dummy.jpg";
+    return strlen($mr_immagine) > 0 && file_exists("upload/marche/$mr_immagine") ? "$rootBasePath_http/upload/marche/$mr_immagine" : "assets/img/prodotto-dummy.jpg";
 
 }
 
-function getBannerMarchio($mr_codice) {
+function getBannerMarca($mr_codice)
+{
 
     global $dbConn, $rootBasePath_http;
 
-    $querySql = "SELECT mr_banner FROM mr_marchi WHERE mr_codice = '$mr_codice' ";
+    $querySql = "SELECT mr_banner FROM mr_marche WHERE mr_codice = '$mr_codice' ";
     $result = $dbConn->query($querySql);
     $mr_banner = $result->fetch_array()[0];
     $result->close();
 
-    return strlen($mr_banner) > 0 && is_file("upload/marchi/$mr_banner") ? "$rootBasePath_http/upload/marchi/$mr_banner" : "";
+    return strlen($mr_banner) > 0 && is_file("upload/marche/$mr_banner") ? "$rootBasePath_http/upload/marche/$mr_banner" : "";
 
 }
 
-function selectListeEmail($ns_id_param, $dbConn, $check = 0) {
+function selectListeEmail($ns_id_param, $dbConn, $check = 0)
+{
 
-    if($check == 1) {
+    if ($check == 1) {
 
         include_once "../class/class.controllo-mail.php";
         $checkmail = new ControlloMail($dbConn);
@@ -728,15 +778,15 @@ function selectListeEmail($ns_id_param, $dbConn, $check = 0) {
         $stato = $ns_id_param == $ns_id ? "selected" : "";
 
 
-        if($check == 1) {
+        if ($check == 1) {
 
             $count = countEmailLista($ns_id, $dbConn);
 
-            if(!$checkmail->CheckMailEx($count)) $stato = "disabled";
+            if (!$checkmail->CheckMailEx($count)) $stato = "disabled";
 
         }
 
-        if($stato == 'disabled') echo "<option style='background-color: lightgrey;' value='$ns_id' $stato>$ns_lista (supera il limite)</option>";
+        if ($stato == 'disabled') echo "<option style='background-color: lightgrey;' value='$ns_id' $stato>$ns_lista (supera il limite)</option>";
         else echo "<option value='$ns_id' $stato>$ns_lista</option>";
 
     }
@@ -744,10 +794,11 @@ function selectListeEmail($ns_id_param, $dbConn, $check = 0) {
     $result->close();
 }
 
-function pageGetProdVetrina() {
+function pageGetProdVetrina()
+{
     global $dbConn;
 
-    $querySql = "SELECT * FROM pr_prodotti INNER JOIN mr_marchi ON mr_codice = pr_codice_marchio WHERE pr_stato > 0 AND mr_riservato = 0 AND pr_prezzo_scontato > 0 AND pr_vetrina = 'S' ORDER BY RAND() LIMIT 0,4";
+    $querySql = "SELECT * FROM pr_prodotti INNER JOIN mr_marche ON mr_codice = pr_codice_marche WHERE pr_stato > 0 AND mr_riservato = 0 AND pr_prezzo_scontato > 0 AND pr_vetrina = 'S' ORDER BY RAND() LIMIT 0,4";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
@@ -758,8 +809,8 @@ function pageGetProdVetrina() {
         $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
         $pr_link = generateProductLink($pr_id);
 
-        $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("ftp/immagini/".$row_data['pr_immagine'])
-            ? "ftp/immagini/".$row_data['pr_immagine']
+        $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("ftp/immagini/" . $row_data['pr_immagine'])
+            ? "ftp/immagini/" . $row_data['pr_immagine']
             : "assets/img/prodotto-dummy.jpg";
         ?>
         <article class="single_product">
@@ -767,14 +818,14 @@ function pageGetProdVetrina() {
                 <div class="product_thumb">
                     <!--<div class="vetrina">VETRINA</div>-->
                     <a class="primary_img" href="<?php echo $pr_link; ?>">
-                        <img src="<?php echo $pr_immagine; ?>" alt="" class="img-fix-xs">
-                    </a>
+                        <img src="<?php echo $pr_immagine; ?>" alt="" class="img-fix-xs"> </a>
                     <a class="secondary_img" href="<?php echo $pr_link; ?>">
-                        <img src="<?php echo "ftp/immagini/".$row_data['pr_immagine_2']; ?>" alt="" class="img-fix-xs">
+                        <img src="<?php echo "ftp/immagini/" . $row_data['pr_immagine_2']; ?>" alt="" class="img-fix-xs">
                     </a>
                 </div>
                 <figcaption class="product_content">
-                    <h4 class="product_name"><a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_descrizione_breve']; ?></a></h4>
+                    <h4 class="product_name">
+                        <a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_descrizione_breve']; ?></a></h4>
                     <div class="product_rating">
                         <?php $media_voto = mediaRecensioni($pr_codice, $dbConn) ?>
 
@@ -786,16 +837,16 @@ function pageGetProdVetrina() {
                                 echo $star;
                                 break;
                             case '2':
-                                echo $star.$star;
+                                echo $star . $star;
                                 break;
                             case '3':
-                                echo $star.$star.$star;
+                                echo $star . $star . $star;
                                 break;
                             case '4':
-                                echo $star.$star.$star.$star;
+                                echo $star . $star . $star . $star;
                                 break;
                             case '5':
-                                echo $star.$star.$star.$star.$star;
+                                echo $star . $star . $star . $star . $star;
                                 break;
                             default:
                                 echo "";
@@ -827,10 +878,11 @@ function pageGetProdVetrina() {
     $result->close();
 }
 
-function pageGetProdNovita() {
+function pageGetProdNovita()
+{
     global $dbConn;
 
-    $querySql = "SELECT * FROM pr_prodotti INNER JOIN mr_marchi ON mr_codice = pr_codice_marchio WHERE pr_stato > 0 AND mr_riservato = 0 AND pr_prezzo_scontato > 0 AND pr_novita = 'S' ORDER BY RAND() LIMIT 0,4";
+    $querySql = "SELECT * FROM pr_prodotti INNER JOIN mr_marche ON mr_codice = pr_codice_marche WHERE pr_stato > 0 AND mr_riservato = 0 AND pr_prezzo_scontato > 0 AND pr_novita = 'S' ORDER BY RAND() LIMIT 0,4";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
@@ -841,8 +893,8 @@ function pageGetProdNovita() {
         $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
         $pr_link = generateProductLink($pr_id);
 
-        $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("ftp/immagini/".$row_data['pr_immagine'])
-            ? "ftp/immagini/".$row_data['pr_immagine']
+        $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("ftp/immagini/" . $row_data['pr_immagine'])
+            ? "ftp/immagini/" . $row_data['pr_immagine']
             : "assets/img/prodotto-dummy.jpg";
         ?>
         <article class="single_product">
@@ -850,14 +902,14 @@ function pageGetProdNovita() {
                 <div class="product_thumb">
                     <!--<div class="new">NOVIT&Agrave;</div>-->
                     <a class="primary_img" href="<?php echo $pr_link; ?>">
-                        <img src="<?php echo $pr_immagine; ?>" alt="" class="img-fix-xs">
-                    </a>
+                        <img src="<?php echo $pr_immagine; ?>" alt="" class="img-fix-xs"> </a>
                     <a class="secondary_img" href="<?php echo $pr_link; ?>">
-                        <img src="<?php echo "ftp/immagini/".$row_data['pr_immagine_2']; ?>" alt="" class="img-fix-xs">
+                        <img src="<?php echo "ftp/immagini/" . $row_data['pr_immagine_2']; ?>" alt="" class="img-fix-xs">
                     </a>
                 </div>
                 <figcaption class="product_content">
-                    <h4 class="product_name"><a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_descrizione_breve']; ?></a></h4>
+                    <h4 class="product_name">
+                        <a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_descrizione_breve']; ?></a></h4>
                     <div class="product_rating">
                         <?php $media_voto = mediaRecensioni($pr_codice, $dbConn) ?>
 
@@ -869,16 +921,16 @@ function pageGetProdNovita() {
                                 echo $star;
                                 break;
                             case '2':
-                                echo $star.$star;
+                                echo $star . $star;
                                 break;
                             case '3':
-                                echo $star.$star.$star;
+                                echo $star . $star . $star;
                                 break;
                             case '4':
-                                echo $star.$star.$star.$star;
+                                echo $star . $star . $star . $star;
                                 break;
                             case '5':
-                                echo $star.$star.$star.$star.$star;
+                                echo $star . $star . $star . $star . $star;
                                 break;
                             default:
                                 echo "";
@@ -910,10 +962,11 @@ function pageGetProdNovita() {
     $result->close();
 }
 
-function pageGetProdPromo() {
+function pageGetProdPromo()
+{
     global $dbConn;
 
-    $querySql = "SELECT * FROM pr_prodotti INNER JOIN mr_marchi ON mr_codice = pr_codice_marchio WHERE pr_stato > 0 AND mr_riservato = 0 AND pr_prezzo_scontato > 0 AND pr_promo = 'S' ORDER BY RAND() LIMIT 0,4";
+    $querySql = "SELECT * FROM pr_prodotti INNER JOIN mr_marche ON mr_codice = pr_codice_marche WHERE pr_stato > 0 AND mr_riservato = 0 AND pr_prezzo_scontato > 0 AND pr_promo = 'S' ORDER BY RAND() LIMIT 0,4";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
@@ -924,8 +977,8 @@ function pageGetProdPromo() {
         $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
         $pr_link = generateProductLink($pr_id);
 
-        $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("ftp/immagini/".$row_data['pr_immagine'])
-            ? "ftp/immagini/".$row_data['pr_immagine']
+        $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("ftp/immagini/" . $row_data['pr_immagine'])
+            ? "ftp/immagini/" . $row_data['pr_immagine']
             : "assets/img/prodotto-dummy.jpg";
         ?>
         <article class="single_product">
@@ -933,14 +986,14 @@ function pageGetProdPromo() {
                 <div class="product_thumb">
                     <!--<div class="offerta">PROMO</div>-->
                     <a class="primary_img" href="<?php echo $pr_link; ?>">
-                        <img src="<?php echo $pr_immagine; ?>" alt="" class="img-fix-xs">
-                    </a>
+                        <img src="<?php echo $pr_immagine; ?>" alt="" class="img-fix-xs"> </a>
                     <a class="secondary_img" href="<?php echo $pr_link; ?>">
-                        <img src="<?php echo "ftp/immagini/".$row_data['pr_immagine_2']; ?>" alt="" class="img-fix-xs">
+                        <img src="<?php echo "ftp/immagini/" . $row_data['pr_immagine_2']; ?>" alt="" class="img-fix-xs">
                     </a>
                 </div>
                 <figcaption class="product_content">
-                    <h4 class="product_name"><a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_descrizione_breve']; ?></a></h4>
+                    <h4 class="product_name">
+                        <a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_descrizione_breve']; ?></a></h4>
                     <div class="product_rating">
                         <?php $media_voto = mediaRecensioni($pr_codice, $dbConn) ?>
 
@@ -952,16 +1005,16 @@ function pageGetProdPromo() {
                                 echo $star;
                                 break;
                             case '2':
-                                echo $star.$star;
+                                echo $star . $star;
                                 break;
                             case '3':
-                                echo $star.$star.$star;
+                                echo $star . $star . $star;
                                 break;
                             case '4':
-                                echo $star.$star.$star.$star;
+                                echo $star . $star . $star . $star;
                                 break;
                             case '5':
-                                echo $star.$star.$star.$star.$star;
+                                echo $star . $star . $star . $star . $star;
                                 break;
                             default:
                                 echo "";
@@ -993,7 +1046,8 @@ function pageGetProdPromo() {
     $result->close();
 }
 
-function getProdottoById($pr_id, mysqli $dbConn) {
+function getProdottoById($pr_id, mysqli $dbConn)
+{
 
     $querySql = "SELECT * FROM pr_prodotti WHERE pr_id = '$pr_id' ";
     $result = $dbConn->query($querySql);
@@ -1001,12 +1055,13 @@ function getProdottoById($pr_id, mysqli $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['pr_descrizione'];
 
 }
 
-function getIDClienteByCodice($cl_codice, mysqli $dbConn) {
+function getIDClienteByCodice($cl_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT * FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
     $result = $dbConn->query($querySql);
@@ -1014,12 +1069,13 @@ function getIDClienteByCodice($cl_codice, mysqli $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['cl_id'];
 
 }
 
-function getTitoloBlog($bl_id, $dbConn) {
+function getTitoloBlog($bl_id, $dbConn)
+{
 
     $querySql = "SELECT bl_titolo FROM bl_blog WHERE bl_id IN ('$bl_id') ";
     $result = $dbConn->query($querySql);
@@ -1027,16 +1083,17 @@ function getTitoloBlog($bl_id, $dbConn) {
     $row_data = $result->fetch_assoc();
     $result->close();
 
-    if($rows == 0) return "//";
+    if ($rows == 0) return "//";
     else return $row_data['bl_titolo'];
 
 }
 
 // === FUNZIONI VARIE FRANCESCO ===
 
-function purifyString($string) {
+function purifyString($string)
+{
 
-    if(strlen($string) == 0) return "";
+    if (strlen($string) == 0) return "";
 
     $string = str_replace("' ", "'", $string);
     $string = preg_replace('#\ \ +#', ' ', $string);
@@ -1045,7 +1102,8 @@ function purifyString($string) {
     return $string;
 }
 
-function download_remote_file($file_url, $save_to) {
+function download_remote_file($file_url, $save_to)
+{
 
     $content = file_get_contents($file_url);
     file_put_contents($save_to, $content);
@@ -1055,7 +1113,8 @@ function download_remote_file($file_url, $save_to) {
 
 }
 
-function truncate($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true) {
+function truncate($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true)
+{
 
     if ($considerHtml) {
 
@@ -1123,7 +1182,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
             $content_length = strlen(preg_replace('/&[0-9a-z]{2,8};|&#[0-9]{1,7};|&#x[0-9a-f]{1,6};/i', ' ', $line_matchings[2]));
 
-            if ($total_length+$content_length > $length) {
+            if ($total_length + $content_length > $length) {
 
                 // the number of characters which are left
 
@@ -1139,7 +1198,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
                     foreach ($entities[0] as $entity) {
 
-                        if ($entity[1]+1-$entities_length <= $left) {
+                        if ($entity[1] + 1 - $entities_length <= $left) {
 
                             $left--;
 
@@ -1157,7 +1216,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
                 }
 
-                $truncate .= substr($line_matchings[2], 0, $left+$entities_length);
+                $truncate .= substr($line_matchings[2], 0, $left + $entities_length);
 
                 // maximum lenght is reached, so get off the loop
 
@@ -1173,7 +1232,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
             // if the maximum length is reached, get off the loop
 
-            if($total_length >= $length) {
+            if ($total_length >= $length) {
 
                 break;
 
@@ -1217,7 +1276,7 @@ function truncate($text, $length = 100, $ending = '...', $exact = false, $consid
 
     $truncate .= $ending;
 
-    if($considerHtml) {
+    if ($considerHtml) {
 
         // close all unclosed html-tags
 
@@ -1240,21 +1299,26 @@ function is_base64_encoded($data)
     } else {
         return 0;
     }
-};
+}
 
-function formatPercent($number) {
+;
+
+function formatPercent($number)
+{
 
     return number_format($number, 0, ",", ".");
 
 }
 
-function formatPrice($number) {
+function formatPrice($number)
+{
 
     return number_format($number, 2, ",", ".");
 
 }
 
-function formatPriceForDB($number) {
+function formatPriceForDB($number)
+{
 
     $number = str_replace(".", "", $number);
     $number = str_replace(",", ".", $number);
@@ -1263,7 +1327,8 @@ function formatPriceForDB($number) {
 
 }
 
-function dateToTimestamp($date) {
+function dateToTimestamp($date)
+{
 
     list($day, $month, $year) = explode("/", $date);
     return mktime(0, 0, 0, $month, $day, $year);
@@ -1273,7 +1338,8 @@ function dateToTimestamp($date) {
 
 // ==== EMAIL ====
 
-function convertLink($string, $root_base_path, $codice_log, $ne_email) {
+function convertLink($string, $root_base_path, $codice_log, $ne_email)
+{
 
     $url = "$root_base_path/crm/clicker.php?cod=$codice_log&email=$ne_email&url=";
 
@@ -1283,10 +1349,10 @@ function convertLink($string, $root_base_path, $codice_log, $ne_email) {
 
     $links = $dom->getElementsByTagName('a');
 
-    foreach ($links as $link){
+    foreach ($links as $link) {
 
-        $string = str_replace(array('href="'.$link->getAttribute('href').'"', "href='".$link->getAttribute('href')."'"),
-            'href="'.$url.$link->getAttribute('href').'"', $string);
+        $string = str_replace(array('href="' . $link->getAttribute('href') . '"', "href='" . $link->getAttribute('href') . "'"),
+            'href="' . $url . $link->getAttribute('href') . '"', $string);
 
     }
 
@@ -1295,11 +1361,12 @@ function convertLink($string, $root_base_path, $codice_log, $ne_email) {
 }
 
 //========= IMAGE ==============
-function checkImage($immagine, $upload_path, $array_size) {
+function checkImage($immagine, $upload_path, $array_size)
+{
 
     //$array_size = array("409x309", "848x641", "60x60", "105x79", "453x343");
 
-    foreach ($array_size AS &$size) {
+    foreach ($array_size as &$size) {
 
         list($width, $height) = explode("x", $size);
         resizeImage($immagine, $upload_path, $width, $height);
@@ -1311,7 +1378,8 @@ function checkImage($immagine, $upload_path, $array_size) {
 }
 
 
-function checkImageName($immagine, $upload_path, $array_size, $image_name) {
+function checkImageName($immagine, $upload_path, $array_size, $image_name)
+{
 
     list($width, $height) = explode("x", $array_size);
     return resizeImage($immagine, $upload_path, $width, $height, 33, false, 0, $image_name);
@@ -1320,7 +1388,7 @@ function checkImageName($immagine, $upload_path, $array_size, $image_name) {
 
 function resizeImage($immagine, $upload_path, $width, $height, $qualita = 100, $responsive = false, $ritaglia = 0, $image_name_new = "")
 {
-    if(!file_exists($immagine)) return 0;
+    if (!file_exists($immagine)) return 0;
 
     $imagick = new Imagick(realpath($immagine));
     $imagick->setImageCompressionQuality($qualita);
@@ -1358,16 +1426,17 @@ function resizeImage($immagine, $upload_path, $width, $height, $qualita = 100, $
 
     /*$img_path = explode("/", $immagine);
     $img_path = $img_path[count($img_path) - 2];*/
-    if(strlen($image_name_new) == 0) $image_name_new = $width."x".$height;
+    if (strlen($image_name_new) == 0) $image_name_new = $width . "x" . $height;
 
     return $imagick->writeImage("$upload_path/$image_name_new");
 }
 
-function optimizeImageProdotto($immagine, $upload_path, $immagine_name, $dimensione) {
+function optimizeImageProdotto($immagine, $upload_path, $immagine_name, $dimensione)
+{
 
-    if(file_exists("$upload_path/$immagine_name")) return "$upload_path/$immagine_name";
+    if (file_exists("$upload_path/$immagine_name")) return "$upload_path/$immagine_name";
 
-    if(!file_exists($upload_path)) {
+    if (!file_exists($upload_path)) {
 
         mkdir($upload_path, 0777);
         chmod($upload_path, 0777);
@@ -1378,16 +1447,16 @@ function optimizeImageProdotto($immagine, $upload_path, $immagine_name, $dimensi
     /*if(!file_exists("../../upload/bak/$remote_img"))*/
     $download = download_remote_file($immagine, "../../upload/bak/$remote_img");
 
-    if($download > 0) checkImageName("../../upload/bak/$remote_img", $upload_path, $dimensione, $immagine_name);
+    if ($download > 0) checkImageName("../../upload/bak/$remote_img", $upload_path, $dimensione, $immagine_name);
 
     return $download;
 
 }
 
 
-
 // ======== ============
-function getInfoTesseraCliente($cl_codice) {
+function getInfoTesseraCliente($cl_codice)
+{
 
     global $dbConn;
 
@@ -1400,7 +1469,8 @@ function getInfoTesseraCliente($cl_codice) {
 
 }
 
-function getEmailClienteByCodice($cl_codice, mysqli $dbConn) {
+function getEmailClienteByCodice($cl_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT cl_email FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
     $result = $dbConn->query($querySql);
@@ -1411,9 +1481,10 @@ function getEmailClienteByCodice($cl_codice, mysqli $dbConn) {
 
 }
 
-function getPrezzoParzialeMarchio($mr_codice, mysqli $dbConn) {
+function getPrezzoParzialeMarca($mr_codice, mysqli $dbConn)
+{
 
-    $querySql = "SELECT mr_prezzo_parziale FROM mr_marchi WHERE mr_codice = '$mr_codice' ";
+    $querySql = "SELECT mr_prezzo_parziale FROM mr_marche WHERE mr_codice = '$mr_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1423,7 +1494,8 @@ function getPrezzoParzialeMarchio($mr_codice, mysqli $dbConn) {
 }
 
 //Funzione popolamento select regioni
-function getNazioniSelect($id_nazione_param,$dbConn) {
+function getNazioniSelect($id_nazione_param, $dbConn)
+{
 
     $querySql = "SELECT * FROM si_stati ORDER BY si_nazione";
     $result = $dbConn->query($querySql);
@@ -1437,13 +1509,16 @@ function getNazioniSelect($id_nazione_param,$dbConn) {
 
         $status = ($id_nazione_param == $si_duelettere) ? "selected" : "";
 
-        echo $select_nazione = "<option value='$si_duelettere' ".$status.">$si_nazione - $si_inglese ($si_duelettere)</option>";
+        echo $select_nazione = "<option value='$si_duelettere' " . $status . ">$si_nazione - $si_inglese ($si_duelettere)</option>";
     };
 
-};
+}
+
+;
 
 //Funzione popolamento select regioni
-function getProvinceSelect($id_provincia_param) {
+function getProvinceSelect($id_provincia_param)
+{
 
     global $dbConn;
 
@@ -1464,18 +1539,20 @@ function getProvinceSelect($id_provincia_param) {
 
 }
 
-function getNominativoClienteByCodice($cl_codice, mysqli $dbConn) {
+function getNominativoClienteByCodice($cl_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT cl_nome, cl_cognome FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
 
-    return $row_data[0]." ".$row_data[1];
+    return $row_data[0] . " " . $row_data[1];
 
 }
 
-function getNomeClienteByCodice($cl_codice, mysqli $dbConn) {
+function getNomeClienteByCodice($cl_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT cl_nome FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
     $result = $dbConn->query($querySql);
@@ -1486,13 +1563,14 @@ function getNomeClienteByCodice($cl_codice, mysqli $dbConn) {
 
 }
 
-function checkFatturazione($cl_codice) {
+function checkFatturazione($cl_codice)
+{
 
     global $dbConn;
 
-    $querySql = "SELECT COUNT(cl_id) FROM cl_clienti WHERE cl_codice = '$cl_codice' ".
-        "AND LENGTH(cl_ragione_sociale) > 0 AND (LENGTH(cl_partita_iva) > 0 OR LENGTH(cl_codice_fiscale) > 0) ".
-        "AND (LENGTH(cl_sdi) > 0 OR LENGTH(cl_pec) > 0) AND LENGTH(cl_indirizzo_fatturazione) > 0 ".
+    $querySql = "SELECT COUNT(cl_id) FROM cl_clienti WHERE cl_codice = '$cl_codice' " .
+        "AND LENGTH(cl_ragione_sociale) > 0 AND (LENGTH(cl_partita_iva) > 0 OR LENGTH(cl_codice_fiscale) > 0) " .
+        "AND (LENGTH(cl_sdi) > 0 OR LENGTH(cl_pec) > 0) AND LENGTH(cl_indirizzo_fatturazione) > 0 " .
         "AND LENGTH(cl_cap_fatturazione) > 0 AND LENGTH(cl_comune_fatturazione) > 0 AND LENGTH(cl_provincia_fatturazione) > 0 ";
     $result = $dbConn->query($querySql);
     $count = (int)$result->fetch_array()[0];
@@ -1502,29 +1580,31 @@ function checkFatturazione($cl_codice) {
 
 }
 
-function getIndirizzoClienteByCodice($cl_codice, mysqli $dbConn) {
+function getIndirizzoClienteByCodice($cl_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT cl_indirizzo, cl_comune, cl_provincia, cl_cap FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
 
-    return $row_data[0]." ".$row_data[1]." (".$row_data[2].") CAP:".$row_data[3];
+    return $row_data[0] . " " . $row_data[1] . " (" . $row_data[2] . ") CAP:" . $row_data[3];
 
 }
 
 
-function getTotalecarrello($cl_codice) {
+function getTotalecarrello($cl_codice)
+{
 
     global $dbConn;
 
     $querySql =
-        "SELECT * FROM pr_prodotti ".
-        "INNER JOIN cr_carrello ON cr_pr_codice = pr_codice ".
+        "SELECT * FROM pr_prodotti " .
+        "INNER JOIN cr_carrello ON cr_pr_codice = pr_codice " .
         "WHERE cr_cl_codice = '$cl_codice' ";
     $result = $dbConn->query($querySql);
 
-    $cr_totale=0;
+    $cr_totale = 0;
     while ($row_data = $result->fetch_assoc()) {
 
         $cr_pr_quantita = $row_data['cr_pr_quantita'];
@@ -1537,7 +1617,8 @@ function getTotalecarrello($cl_codice) {
 
 }
 
-function getPrezzoPagamento($cr_pagamento, $cr_totale) {
+function getPrezzoPagamento($cr_pagamento, $cr_totale)
+{
     global $dbConn;
 
     $cr_pagamento_prezzo = 0;
@@ -1549,7 +1630,7 @@ function getPrezzoPagamento($cr_pagamento, $cr_totale) {
             $dp_valore = $result->fetch_array()[0];
             $result->close();
 
-            $cr_pagamento_prezzo = $dp_valore > 0 ?  $cr_totale * ($dp_valore / 100) : 0;
+            $cr_pagamento_prezzo = $dp_valore > 0 ? $cr_totale * ($dp_valore / 100) : 0;
             break;
 
         case "Stripe":
@@ -1559,7 +1640,7 @@ function getPrezzoPagamento($cr_pagamento, $cr_totale) {
             $dp_valore = $result->fetch_array()[0];
             $result->close();
 
-            $cr_pagamento_prezzo = strlen($dp_valore) > 0 ?  $cr_totale * ($dp_valore / 100) : 0;
+            $cr_pagamento_prezzo = strlen($dp_valore) > 0 ? $cr_totale * ($dp_valore / 100) : 0;
             break;
 
         case "Contrassegno":
@@ -1577,32 +1658,37 @@ function getPrezzoPagamento($cr_pagamento, $cr_totale) {
 
 }
 
-function getScontoPunti($cr_punti) {
+function getScontoPunti($cr_punti)
+{
 
     switch ($cr_punti) {
 
-        case 80: {
+        case 80:
+        {
 
             $cr_sconto = 10.00;
             break;
 
         }
 
-        case 160: {
+        case 160:
+        {
 
             $cr_sconto = 30.00;
             break;
 
         }
 
-        case 290: {
+        case 290:
+        {
 
             $cr_sconto = 50.00;
             break;
 
         }
 
-        default: {
+        default:
+        {
 
             $cr_sconto = 0.00;
             break;
@@ -1615,12 +1701,13 @@ function getScontoPunti($cr_punti) {
 
 }
 
-function getPrezzoSpedizione($spedizione, $totale) {
+function getPrezzoSpedizione($spedizione, $totale)
+{
 
     global $dbConn;
 
     $querySql =
-        "SELECT * FROM ci_corrieri ".
+        "SELECT * FROM ci_corrieri " .
         "WHERE ci_titolo = '$spedizione' ";
     $result = $dbConn->query($querySql);
     $rows = $result->num_rows;
@@ -1635,9 +1722,9 @@ function getPrezzoSpedizione($spedizione, $totale) {
         else if ($totale < $ci_ordine_minimo) $prezzo = $ci_costo_standard;
         else $prezzo = 0;*/
 
-        if($ci_titolo == 'BRT' && $totale > 29.90){
+        if ($ci_titolo == 'BRT' && $totale > 29.90) {
             $prezzo = 0;
-        }else{
+        } else {
             $prezzo = $ci_costo_standard;
         }
 
@@ -1647,7 +1734,8 @@ function getPrezzoSpedizione($spedizione, $totale) {
 
 }
 
-function getImmagineProdotto($pr_id) {
+function getImmagineProdotto($pr_id)
+{
 
     global $dbConn, $rootBasePath_http;
 
@@ -1665,7 +1753,8 @@ function getImmagineProdotto($pr_id) {
 
 }
 
-function getCouponByCodice($get_or_codice, mysqli $dbConn) {
+function getCouponByCodice($get_or_codice, mysqli $dbConn)
+{
 
     $querySql = "SELECT uc_coupon FROM uc_utilizzo_coupon WHERE uc_ordine = '$get_or_codice' ";
     $result = $dbConn->query($querySql);
@@ -1678,14 +1767,15 @@ function getCouponByCodice($get_or_codice, mysqli $dbConn) {
 
 //==== ====
 
-function getVarGet($exclude) {
+function getVarGet($exclude)
+{
 
-    if(!is_array($exclude)) $exclude = array($exclude);
+    if (!is_array($exclude)) $exclude = array($exclude);
 
     $string = "";
     foreach ($_GET as $k => $v) {
 
-        if(in_array($k, $exclude)) continue;
+        if (in_array($k, $exclude)) continue;
         if (strlen($v) > 0) $string .= "&$k=$v";
 
     }
@@ -1694,14 +1784,15 @@ function getVarGet($exclude) {
 
 }
 
-function varGetToInput($exclude) {
+function varGetToInput($exclude)
+{
 
-    if(!is_array($exclude)) $exclude = array($exclude);
+    if (!is_array($exclude)) $exclude = array($exclude);
 
     $string = "";
     foreach ($_GET as $k => $v) {
 
-        if(in_array($k, $exclude)) continue;
+        if (in_array($k, $exclude)) continue;
         if (strlen($v) > 0) $string .= "<input type='hidden' name='$k' value='$v'>";
 
     }
@@ -1710,18 +1801,20 @@ function varGetToInput($exclude) {
 
 }
 
-function checkLinkSpam($value) {
+function checkLinkSpam($value)
+{
 
-    if(preg_match('/http|www/i', $value)) return 0;
+    if (preg_match('/http|www/i', $value)) return 0;
     else return 1;
 
 }
 
-function checkAntiBot($array, $exclude = array()) {
+function checkAntiBot($array, $exclude = array())
+{
 
     foreach ($array as $key => $value) {
 
-        if(!in_array($key, $exclude)) {
+        if (!in_array($key, $exclude)) {
 
             if (checkLinkSpam($value) == 0) die("You are a robot");
 
@@ -1731,31 +1824,33 @@ function checkAntiBot($array, $exclude = array()) {
 
 }
 
-function getUserIP(){
+function getUserIP()
+{
 
-    $client  = @$_SERVER['HTTP_CLIENT_IP'];
+    $client = @$_SERVER['HTTP_CLIENT_IP'];
     $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-    $remote  = $_SERVER['REMOTE_ADDR'];
+    $remote = $_SERVER['REMOTE_ADDR'];
 
-    if(filter_var($client, FILTER_VALIDATE_IP)) $ip = $client;
-    elseif(filter_var($forward, FILTER_VALIDATE_IP)) $ip = $forward;
+    if (filter_var($client, FILTER_VALIDATE_IP)) $ip = $client;
+    elseif (filter_var($forward, FILTER_VALIDATE_IP)) $ip = $forward;
     else $ip = $remote;
 
     return $ip;
 }
 
-function addLogPrivacy($py_nominativo, $py_email, $py_dati, $py_origine, $py_azione, $py_attivita, $py_checkbox_privacy, $py_checkbox_marketing, $py_checkbox_cessione, $dbConn) {
+function addLogPrivacy($py_nominativo, $py_email, $py_dati, $py_origine, $py_azione, $py_attivita, $py_checkbox_privacy, $py_checkbox_marketing, $py_checkbox_cessione, $dbConn)
+{
 
     $py_token = rand(000000000000, 999999999999);
     $py_timestamp = time();
     $py_ip = getUserIP();
 
     $querySql =
-        "INSERT INTO py_privacy (".
-        "py_nominativo, py_email, py_dati, py_token, py_origine, py_azione, py_attivita, py_timestamp, py_ip, ".
-        "py_checkbox_privacy, py_checkbox_marketing, py_checkbox_cessione, py_stato".
-        ") VALUES (".
-        "'$py_nominativo', '$py_email', '$py_dati', '$py_token', '$py_origine', '$py_azione', '$py_attivita', '$py_timestamp', '$py_ip', ".
+        "INSERT INTO py_privacy (" .
+        "py_nominativo, py_email, py_dati, py_token, py_origine, py_azione, py_attivita, py_timestamp, py_ip, " .
+        "py_checkbox_privacy, py_checkbox_marketing, py_checkbox_cessione, py_stato" .
+        ") VALUES (" .
+        "'$py_nominativo', '$py_email', '$py_dati', '$py_token', '$py_origine', '$py_azione', '$py_attivita', '$py_timestamp', '$py_ip', " .
         "'$py_checkbox_privacy', '$py_checkbox_marketing', '$py_checkbox_cessione', 1) ";
 
     $result = $dbConn->query($querySql);
@@ -1765,7 +1860,8 @@ function addLogPrivacy($py_nominativo, $py_email, $py_dati, $py_origine, $py_azi
 
 }
 
-function checkQnt($pr_codice, $pr_quantita = 1) {
+function checkQnt($pr_codice, $pr_quantita = 1)
+{
 
     global $dbConn;
 
@@ -1779,16 +1875,19 @@ function checkQnt($pr_codice, $pr_quantita = 1) {
 }
 
 // include resources inserito da antonio
-function loadExFile($tag, $files = array()) {
+function loadExFile($tag, $files = array())
+{
 
     $string = "";
-    foreach ($files as $file) $string .= " ".file_get_contents($file);
+    foreach ($files as $file) $string .= " " . file_get_contents($file);
     return "<$tag>$string</$tag>";
 
 }
+
 // fine include resources inserito da antonio
 
-function getStatoCarrello($cl_codice) {
+function getStatoCarrello($cl_codice)
+{
 
     /*
      * FRANCESCO (Funzione per redirect)
@@ -1810,10 +1909,10 @@ function getStatoCarrello($cl_codice) {
 
 /////////////////////////////////////
 //INIZIO DATI PAGAMENTO PER IL FLUSSO
-function configGetDato($dp_nome) {
+function configGetDato($dp_nome)
+{
 
     global $dbConn;
-
 
 
     return 2;
@@ -1836,7 +1935,6 @@ $bonifico["iban_bonifico"] = strlen($bonifico["iban_bonifico"]) > 0 ? $bonifico[
 $bonifico["bic_bonifico"] = strlen($bonifico["bic_bonifico"]) > 0 ? $bonifico["bic_bonifico"] : "//";
 //FINE DATI PAGAMENTO PER IL FLUSSO
 /////////////////////////////////////
-
 
 
 ?>
