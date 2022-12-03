@@ -1105,29 +1105,6 @@ function countProdotti(mysqli $dbConn)
     return $row_data[0];
 }
 
-function countProdottiMerceologia($pr_codice_merceologia, mysqli $dbConn)
-{
-
-    $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_codice_merceologia = '$pr_codice_merceologia' ";
-    $result = $dbConn->query($querySql);
-    $count = (int)$result->fetch_array()[0];
-    $result->close();
-
-    return $count;
-
-}
-
-function countProdottiFamiglia($pr_fm_codice, mysqli $dbConn)
-{
-
-    $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_fm_codice = '$pr_fm_codice' ";
-    $result = $dbConn->query($querySql);
-    $count = (int)$result->fetch_array()[0];
-    $result->close();
-
-    return $count;
-
-}
 
 function countProdottiMarca($pr_mr_id, mysqli $dbConn)
 {
@@ -1159,18 +1136,6 @@ function countProdottiLinea($pr_codice_linea, mysqli $dbConn)
 {
 
     $querySql = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_codice_linea = '$pr_codice_linea' ";
-    $result = $dbConn->query($querySql);
-    $count = (int)$result->fetch_array()[0];
-    $result->close();
-
-    return $count;
-
-}
-
-function countLineeMarca($pr_codice_marche, mysqli $dbConn)
-{
-
-    $querySql = "SELECT COUNT(DISTINCT pr_codice_linea) FROM pr_prodotti WHERE pr_codice_marche = '$pr_codice_marche' ";
     $result = $dbConn->query($querySql);
     $count = (int)$result->fetch_array()[0];
     $result->close();

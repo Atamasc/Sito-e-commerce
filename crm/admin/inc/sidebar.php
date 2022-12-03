@@ -55,7 +55,6 @@
                     <li><a href="prodotti-add.php">Nuovo prodotto</a></li>
                     <li><a href="prodotti-gst.php">Elenco prodotti</a></li>
                     <li><a href="prodotti-categorie-gst.php">Categorie prodotti</a></li>
-                    <li><a href="prodotti-sottocategorie-gst.php">Sottocategorie prodotti</a></li>
 
                     <li style="display: none;"><a href="prodotti-mod.php">Modifica prodotto</a></li>
                 </ul>

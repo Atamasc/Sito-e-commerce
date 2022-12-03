@@ -112,15 +112,6 @@
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="pr_st_id">Sottocategoria</label>
-                                                <select class="form-control" id="pr_st_id" name="pr_st_id">
-                                                    <option value="">Seleziona prima una categoria</option>
-                                                    <option value=""></option>
-                                                    <?php selectSottocategorieProdotti($pr_ct_id, $dbConn); ?>
-                                                </select> <span class="tooltips">Inserisci qui la sottocategoria del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Sottocategoria prodotto" data-content="Assegna una categoria pi&ugrave; specifica al tuo prodotto. Una sottocategoria appropriata facilita l'inserimento e la ricerca del prodotto. Es. Cappellini">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
                                                 <label for="pr_mr_id">Marca *</label>
                                                 <select class="form-control" id="pr_mr_id" name="pr_mr_id" required>
                                                     <option value="">Seleziona una marca</option>

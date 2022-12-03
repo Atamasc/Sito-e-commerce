@@ -7,7 +7,7 @@
         <?php include "inc/head.php"; ?>
 
         <style>
-            .tooltips{
+            .tooltips {
                 font-size: 10px;
             }
         </style>
@@ -17,7 +17,8 @@
     <body>
 
     <?php
-    $get_ct_id = isset($_GET['ct_id']) ? (int)$_GET['ct_id'] : 0;
+    $get_ct_categoria = isset($_GET['ct_categoria']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ct_categoria']))) : "";
+
     ?>
 
     <div class="wrapper">
@@ -49,7 +50,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Gestione categorie</li>
                                 </ol>
                             </div>
@@ -71,7 +73,7 @@
 
                                             <div class="col-md-3 mb-3">
                                                 <label>Titolo</label>
-                                                <input type="text" name="ct_titolo" class="form-control" value="<?php echo $get_ct_titolo; ?>">
+                                                <input type="text" name="ct_categoria" class="form-control" value="<?php echo $get_ct_categoria; ?>">
                                             </div>
                                         </div>
 
@@ -92,7 +94,7 @@
                                     <h5 class="card-title border-0 pb-0">Lista categorie</h5>
 
                                     <?php
-                                    if(@$_GET['delete'] == 'true') {
+                                    if (@$_GET['delete'] == 'true') {
 
                                         ?>
                                         <div class="alert alert-success" role="alert">
@@ -108,13 +110,10 @@
                                         <table class="table table-1 table-bordered table-striped mb-0">
                                             <thead>
                                             <tr>
-                                                <th width="40">ID</th>
                                                 <th width="120">Codice</th>
                                                 <th>Categoria</th>
                                                 <th>Descrizione</th>
                                                 <th width="80">Prodotti</th>
-                                                <th width="80">Sottocategorie</th>
-                                                <th width="80">Pos</th>
                                                 <th style="text-align: center;" width="100">Stato</th>
                                                 <th style="text-align: center;" width="300">Gestione</th>
                                             </tr>
@@ -123,6 +122,7 @@
 
                                             <?php
                                             $querySql = "SELECT COUNT(ct_id) FROM ct_categorie WHERE ct_id > 0 ";
+                                            if (strlen($get_ct_categoria) > 0) $querySql .= " AND ct_categoria LIKE '%$get_ct_categoria%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -138,6 +138,7 @@
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql = "SELECT * FROM ct_categorie WHERE ct_id > 0 ";
+                                            if (strlen($get_ct_categoria) > 0) $querySql .= " AND ct_categoria LIKE '%$get_ct_categoria%' ";
                                             $querySql .= " ORDER BY ct_categoria LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -148,19 +149,13 @@
                                                 $ct_codice = $row_data['ct_codice'];
                                                 $ct_categoria = $row_data['ct_categoria'];
                                                 $ct_descrizione = $row_data['ct_descrizione'];
-                                                $ct_posizione = $row_data['ct_posizione'];
                                                 $count_prodotti = countProdottiCategoria($ct_id);
-                                                $count_sottocategorie = countSottocategorieCategoria($ct_id);
 
                                                 echo "<tr>";
-                                                echo "<td>$ct_id</td>";
                                                 echo "<td>$ct_codice</td>";
-                                                echo "<td>".$ct_categoria."</td>";
-                                                echo "<td>".$ct_descrizione."</td>";
-                                                echo "<td>".$count_prodotti."</td>";
-                                                echo "<td>".$count_sottocategorie."</td>";
-                                                echo "<td>".$ct_posizione."</td>";
-                                                //echo "<td>$count</td>";
+                                                echo "<td>" . $ct_categoria . "</td>";
+                                                echo "<td>" . $ct_descrizione . "</td>";
+                                                echo "<td>" . $count_prodotti . "</td>";
 
                                                 //Stato
                                                 echo "<td align='center'>";
@@ -191,7 +186,6 @@
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                echo "<a class='btn btn-primary btn-sm' href='prodotti-sottocategorie-gst.php?ct_id=$ct_id' title='Sottocategorie'>sottocategorie</a>&nbsp;";
                                                 echo "<a class='btn btn-success btn-sm' href='categoria-mod.php?ct_id=$ct_id' title='Modifica'>modifica</a>&nbsp;";
                                                 echo $count_prodotti > 0
                                                     ? "<button class='btn btn-danger btn-sm disabled'><i class='far fa-trash-alt'></i></button>"
@@ -199,7 +193,6 @@
                                                 echo "</td>";
                                                 echo "</tr>";
 
-                                                $i += 1;
                                             };
 
                                             if ($rows == 0) {
@@ -212,11 +205,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";
