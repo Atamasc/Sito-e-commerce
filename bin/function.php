@@ -1088,7 +1088,6 @@ function getTitoloBlog($bl_id, $dbConn)
 
 }
 
-// === FUNZIONI VARIE FRANCESCO ===
 
 function purifyString($string)
 {
@@ -1889,9 +1888,6 @@ function loadExFile($tag, $files = array())
 function getStatoCarrello($cl_codice)
 {
 
-    /*
-     * FRANCESCO (Funzione per redirect)
-     * */
 
     global $dbConn;
 

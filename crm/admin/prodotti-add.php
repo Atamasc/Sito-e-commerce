@@ -108,7 +108,7 @@
                                                     <option value="">Seleziona una categoria</option>
                                                     <option value=""></option>
                                                     <?php selectCategorieProdotti($pr_ct_id, $dbConn); ?>
-                                                </select> <span class="tooltips">Inserisci qui la categoria del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Categoria Prodotto" data-content="Assegna una categoria al tuo prodotto. Una categoria appropriata facilita l'inserimento e la ricerca del prodotto. Es. Neonato">[aiuto]</a></span>
+                                                </select> <span class="tooltips">Inserisci qui la categoria del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Categoria Prodotto" data-content="Assegna una categoria al tuo prodotto">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
@@ -118,27 +118,7 @@
                                                     <option value=""></option>
                                                     <?php selectMarca(""); ?>
                                                 </select>
-                                                <span class="tooltips">Inserisci qui la marca del prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Marca Prodotto" data-content="Inserisci qui la marca del prodotto che vuoi modificare">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_codice_rif">Codice Riferimento </label>
-                                                <input type="text" class="form-control" id="pr_codice_rif" name="pr_codice_rif">
-                                                <span class="tooltips">Inserisci qui il codice di riferimento dell'articolo associato al prodotto da magazzino <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Codice Riferimento" data-content="In questo campo devi inserire il codice associato all'articolo da magazzino giacenza">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_codice_ean">Codice EAN </label>
-                                                <input type="text" class="form-control" id="pr_codice_ean" name="pr_codice_ean">
-                                                <span class="tooltips">Inserisci qui il codice EAN del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Codice EAN" data-content="Sul prodotto è presente un codice a barre. oltre alle consuete linee nere verticali è presente un codice formto da numeri, quello è definito codice EAN. Inseriscilo qui per identificarlo">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <div class="checkbox checbox-switch switch-success">
-                                                    <label style="margin-top: 35px;"> BestSeller
-                                                        <input type="checkbox" name="best_seller" class="stato" title="prodotti-categorie-visibile-do.php?ct_id=<?php echo $ct_id; ?>">
-                                                        <span></span> </label>
-                                                </div>
+                                                <span class="tooltips">Inserisci qui la marca del prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Marca Prodotto" data-content="Inserisci qui la marca del prodotto che vuoi aggiungere">[aiuto]</a></span>
                                             </div>
 
                                         </div>
@@ -164,11 +144,6 @@
                                                 <span class="tooltips">Inserisci qui la percentuale dello sconto che intendi applicare <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Sconto sul Prodotto" data-content="Indica qui quanto sconto vuoi applicare al prodotto,">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_prezzo_acquisto">Prezzo acquisto &euro; (Es formato: 5,70 ) *</label>
-                                                <input type="text" class="form-control" id="pr_prezzo_acquisto" name="pr_prezzo_acquisto">
-                                                <span class="tooltips">Inserisci qui il prezzo di acquisto del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Prezzo Prodotto" data-content="Indica qui la cifra di acquisto al fornitore del prodotto. ">[aiuto]</a></span>
-                                            </div>
                                         </div>
 
                                         <h6 class="card-title mt-3">Caratteristiche fisiche</h6>
@@ -186,40 +161,24 @@
                                                 <span class="tooltips">Inserisci qui quanti pezzi restano in magazzino del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Giacenza Prodotto" data-content="Indica qui la quantità di pezzi presenti in magazzino del prodotto.">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_si_id">Sistema</label>
-                                                <select class="form-control" id="pr_si_id" name="pr_si_id">
-                                                    <option value="">Seleziona un'opzione</option>
-                                                    <option value=""></option>
-                                                    <?php selectSistema(""); ?>
-                                                </select>
-                                                <span class="tooltips">Sistema Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Sistema Prodotto" data-content="Inserisci qui il sistema del prodotto che vuoi modificare">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_formato">Formato</label>
-                                                <input type="text" class="form-control" id="pr_formato" name="pr_formato">
-                                                <span class="tooltips">Formato Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Formato Prodotto" data-content="Inserisci qui il formato del prodotto che vuoi modificare">[aiuto]</a></span>
-                                            </div>
-
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-12 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <label for="pr_abstract">Abstract</label>
                                                 <textarea class="form-control" id="pr_abstract" name="pr_abstract" rows="2"></textarea>
-                                                <span class="tooltips">Descrizione breve Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Descrizione breve Prodotto" data-content="Inserisci qui una descrizione breve del prodotto che vuoi modificare">[aiuto]</a></span>
+                                                <span class="tooltips">Descrizione breve Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Descrizione breve Prodotto" data-content="Inserisci qui una descrizione breve del prodotto che vuoi aggiungere">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-12 mb-3">
+                                            <div class="col-md-7 mb-3">
                                                 <label for="summernote">Descrizione</label>
                                                 <textarea class="form-control" id="summernote" name="pr_descrizione" rows="3"></textarea>
-                                                <span class="tooltips">Descrizione Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Descrizione Prodotto" data-content="Inserisci qui la descrizione del prodotto che vuoi modificare">[aiuto]</a></span>
+                                                <span class="tooltips">Descrizione Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Descrizione Prodotto" data-content="Inserisci qui la descrizione del prodotto che vuoi aggiungere">[aiuto]</a></span>
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-3 mb-3">
                                                 <p>Immagine</p>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="pr_immagine" name="pr_immagine">
@@ -228,7 +187,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-3 mb-3">
                                                 <p>Allegato</p>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="pr_allegato" name="pr_allegato">
@@ -239,7 +198,7 @@
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-6 mb-3">
+                                            <div class="col-md-4 mb-3">
                                                 <label for="pr_note">Note</label>
                                                 <textarea class="form-control" id="pr_note" name="pr_note" rows="3"></textarea>
                                             </div>

@@ -158,17 +158,17 @@ function selectMarca($pr_mr_id)
 
     global $dbConn;
 
-    $querySql = "SELECT mr_id, mr_marche FROM mr_marche WHERE mr_id > 0 ORDER BY mr_marche";
+    $querySql = "SELECT mr_id, mr_titolo FROM mr_marche WHERE mr_id > 0 ORDER BY mr_titolo";
     $result = $dbConn->query($querySql);
 
     while (($rows = $result->fetch_assoc()) !== NULL) {
 
         $mr_id = $rows['mr_id'];
-        $mr_marche = $rows['mr_marche'];
+        $mr_titolo = $rows['mr_titolo'];
 
         $status = ($pr_mr_id == $mr_id) ? "selected" : "";
 
-        echo "<option value='$mr_id' $status>$mr_marche</option>";
+        echo "<option value='$mr_id' $status>$mr_titolo</option>";
     }
 
     $result->close();
@@ -180,39 +180,17 @@ function selectCodiceMarca($mr_codice_param)
 
     global $dbConn;
 
-    $querySql = "SELECT mr_codice, mr_marche FROM mr_marche WHERE mr_id > 0 ORDER BY mr_marche";
+    $querySql = "SELECT mr_codice, mr_titolo FROM mr_marche WHERE mr_id > 0 ORDER BY mr_titolo";
     $result = $dbConn->query($querySql);
 
     while (($rows = $result->fetch_assoc()) !== NULL) {
 
         $mr_codice = $rows['mr_codice'];
-        $mr_marche = $rows['mr_marche'];
+        $mr_titolo = $rows['mr_titolo'];
 
         $status = ($mr_codice_param == $mr_codice) ? "selected" : "";
 
-        echo "<option value='$mr_codice' $status>$mr_marche</option>";
-    }
-
-    $result->close();
-
-}
-
-function selectLinea($pr_codice_linea_param)
-{
-
-    global $dbConn;
-
-    $querySql = "SELECT DISTINCT pr_codice_linea, pr_descrizione_linea FROM pr_prodotti WHERE length(pr_codice_linea) > 0 ORDER BY pr_codice_linea";
-    $result = $dbConn->query($querySql);
-
-    while (($rows = $result->fetch_assoc()) !== NULL) {
-
-        $pr_codice_linea = $rows['pr_codice_linea'];
-        $pr_descrizione_linea = $rows['pr_descrizione_linea'];
-
-        $status = ($pr_codice_linea_param == $pr_codice_linea) ? "selected" : "";
-
-        echo "<option value='$pr_codice_linea' $status>$pr_codice_linea - $pr_descrizione_linea</option>";
+        echo "<option value='$mr_codice' $status>$mr_titolo</option>";
     }
 
     $result->close();
@@ -236,27 +214,6 @@ function getImgCapofila($pr_capofila)
 
 }
 
-function selectSistema($pr_si_id)
-{
-
-    global $dbConn;
-
-    $querySql = "SELECT si_id, si_sistema FROM si_sistemi WHERE si_id > 0 ORDER BY si_sistema";
-    $result = $dbConn->query($querySql);
-
-    while (($rows = $result->fetch_assoc()) !== NULL) {
-
-        $si_id = $rows['si_id'];
-        $si_sistema = $rows['si_sistema'];
-
-        $status = ($pr_si_id == $si_id) ? "selected" : "";
-
-        echo "<option value='$si_id' $status>$si_sistema</option>";
-    }
-
-    $result->close();
-
-}
 
 function selectCategorie($get_ct_id)
 {
@@ -299,27 +256,6 @@ function selectCategorieProdotti($ct_id_param, mysqli $dbConn)
     $result->close();
 }
 
-function selectSottocategorieProdotti($st_id_param, $dbConn, $ct_id = '')
-{
-
-    $querySql = "SELECT * FROM st_sottocategorie WHERE st_id > 0 ";
-    if (strlen($ct_id) > 0) $querySql .= "AND st_ct_id = '$ct_id' ";
-    $querySql .= "  ORDER BY st_sottocategoria";
-    $result = $dbConn->query($querySql);
-
-    while (($row_data = $result->fetch_assoc()) !== NULL) {
-
-        $st_id = $row_data['st_id'];
-        $st_sottocategoria = $row_data['st_sottocategoria'];
-
-        $stato = $st_id_param == $st_id ? "selected" : "";
-
-        echo "<option value='$st_id' $stato>$st_sottocategoria</option>";
-
-    }
-
-    $result->close();
-}
 
 //Funzione count utilizzo coupon
 function get_numero_utilizzi_by_code($uc_coupon_param, $dbConn)
@@ -1209,7 +1145,6 @@ function getTitoloBlog($bl_id, $dbConn)
 
 }
 
-// === FUNZIONI VARIE FRANCESCO ===
 
 function purifyString($string)
 {
@@ -1641,7 +1576,6 @@ function selectTag($par1)
 
 }
 
-// LUIGI
 function selectBlogCategorie($bc_param = '', $dbConn)
 {
 
