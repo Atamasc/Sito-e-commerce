@@ -22,18 +22,13 @@
     $get_pr_capofila = isset($_GET['pr_capofila']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_capofila']))) : "";
 
     $get_pr_ct_id = isset($_GET['pr_ct_id']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_ct_id']))) : "";
-    $get_pr_st_id = isset($_GET['pr_st_id']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_st_id']))) : "";
     $get_pr_titolo = isset($_GET['pr_titolo']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_titolo']))) : "";
     $get_pr_mr_id = isset($_GET['pr_mr_id']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_mr_id']))) : "";
-    $get_pr_si_id = isset($_GET['pr_si_id']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_si_id']))) : "";
-    $get_pr_misura = isset($_GET['pr_misura']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_misura']))) : "";
-    $get_pr_descrizione = isset($_GET['pr_descrizione']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_descrizione']))) : "";
     $get_pr_sconto = isset($_GET['pr_sconto']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_sconto']))) : "";
     $get_pr_stato = isset($_GET['pr_stato']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_stato']))) : "";
-    $get_pr_ottimizzazione = isset($_GET['pr_ottimizzazione']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['pr_ottimizzazione']))) : "";
 
-    $pr_codice = strlen($row_data['pr_codice']) > 0 ? $row_data['pr_codice'] : "";
-    $pr_titolo = strlen($row_data['pr_titolo']) > 0 ? $row_data['pr_titolo'] : "";
+    $pr_codice = isset($row_data['pr_codice']) ? $row_data['pr_codice'] : "";
+    $pr_titolo = isset($row_data['pr_titolo']) ? $row_data['pr_titolo'] : "";
     ?>
 
     <div class="wrapper">
@@ -85,7 +80,7 @@
 
                                         <div class="form-row">
 
-                                            <div class="col-md-3 mb-3">
+                                            <div class="col-md-2 mb-3">
                                                 <label for="pr_ct_id">Categoria</label>
                                                 <select class="form-control ajax-select" id="pr_ct_id" name="pr_ct_id"
                                                         data-href="../ajax/select-sottocategorie.php?ct_id=" data-target="#pr_st_id">
@@ -95,16 +90,7 @@
                                                 </select>
                                             </div>
 
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_st_id">Sottocategoria</label>
-                                                <select class="form-control" id="pr_st_id" name="pr_st_id">
-                                                    <option value="">Seleziona prima una categoria</option>
-                                                    <option value=""></option>
-                                                    <?php if (strlen($get_pr_ct_id) > 0) selectSottocategorieProdotti($get_pr_st_id, $dbConn, $get_pr_ct_id); ?>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
+                                            <div class="col-md-2 mb-3">
                                                 <label for="pr_mr_id">Marca</label>
                                                 <select class="form-control" id="pr_mr_id" name="pr_mr_id">
                                                     <option value="">Seleziona una marca</option>
@@ -118,19 +104,6 @@
                                                 <input type="text" class="form-control" id="pr_titolo" name="pr_titolo" value="<?php echo $get_pr_titolo; ?>" autocomplete="off">
                                             </div>
 
-                                        </div>
-
-                                        <div class="form-row">
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_si_id">Sistema</label>
-                                                <select class="form-control" id="pr_si_id" name="pr_si_id">
-                                                    <option value="">Seleziona un sistema</option>
-                                                    <option value=""></option>
-                                                    <?php selectSistema($get_pr_si_id); ?>
-                                                </select>
-                                            </div>
-
                                             <div class="form-group col-md-2">
                                                 <label for="pr_sconto">Sconto</label>
                                                 <select class="form-control" id="pr_sconto" name="pr_sconto">
@@ -141,11 +114,6 @@
                                                 </select>
                                             </div>
 
-                                            <div class="form-group col-md-2">
-                                                <label for="pr_descrizione">Descrizione</label>
-                                                <input type="text" name="pr_descrizione" id="pr_descrizione" class="form-control" value="<?php echo $get_pr_descrizione; ?>">
-                                            </div>
-
                                             <div class="col-md-2 mb-3">
                                                 <label for="pr_stato">Visibilità</label>
                                                 <select class="form-control" id="pr_stato" name="pr_stato">
@@ -153,20 +121,6 @@
                                                     <option value=""></option>
                                                     <option value="1" <?php if ($get_pr_stato == '1') echo "selected"; ?>>Attivo</option>
                                                     <option value="0" <?php if ($get_pr_stato == '0') echo "selected"; ?>>Non attivo</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="form-group col-md-2">
-                                                <label for="pr_ottimizzazione">Ottimizzazione</label>
-                                                <select class="form-control" id="pr_ottimizzazione" name="pr_ottimizzazione">
-                                                    <option value="">Filtra per ottimizzazione</option>
-                                                    <option value=""></option>
-                                                    <option value="immagine" <?php if ($get_pr_ottimizzazione == 'immagine') echo "selected"; ?>>Prodotti senza immagine</option>
-                                                    <option value="bestseller" <?php if ($get_pr_ottimizzazione == 'bestseller') echo "selected"; ?>>Prodotti bestseller</option>
-                                                    <option value="sconto" <?php if ($get_pr_ottimizzazione == 'sconto') echo "selected"; ?>>Prodotti con sconto</option>
-                                                    <option value="stato" <?php if ($get_pr_ottimizzazione == 'stato') echo "selected"; ?>>Prodotti non attivi</option>
-                                                    <option value="prezzo" <?php if ($get_pr_ottimizzazione == 'prezzo') echo "selected"; ?>>Prodotti senza prezzo</option>
-                                                    <option value="acquisto" <?php if ($get_pr_ottimizzazione == 'acquisto') echo "selected"; ?>>Prodotti senza costo di acquisto</option>
                                                 </select>
                                             </div>
 
@@ -209,19 +163,15 @@
                                                 </th>
 
                                                 <th width="200">
-                                                    Categoria <br> Sottocategoria
+                                                    Categoria<br>Marca
                                                 </th>
 
                                                 <th width="180">
-                                                    Prezzo <br> Prezzo scontato (%)<br> Prezzo acquisto
-                                                </th>
-
-                                                <th width="180">
-                                                    Marca<br> Sistema
+                                                    Prezzo <br> Prezzo scontato (%)<br>
                                                 </th>
 
                                                 <th width="130">
-                                                    Peso KG.<br> Giacenza Qta.<br> Formato
+                                                    Peso KG.<br> Giacenza Qta.<br>
                                                 </th>
 
                                                 <th style="width: 100px; text-align: center;">Stato</th>
@@ -238,8 +188,7 @@
 
                                                 $querySql =
                                                     "SELECT * FROM pr_prodotti " .
-                                                    "LEFT JOIN st_sottocategorie ON st_id = pr_st_id " .
-                                                    "LEFT JOIN ct_categorie ON ct_id = st_ct_id " .
+                                                    "LEFT JOIN ct_categorie ON ct_id = pr_ct_id " .
                                                     "WHERE pr_capofila = $pr_capofila AND pr_id != $pr_capofila ORDER BY pr_id ";
                                                 $result = $dbConn->query($querySql);
                                                 $rows = $dbConn->affected_rows;
@@ -252,21 +201,17 @@
 
                                                         $pr_id = $row_data['pr_id'];
                                                         $pr_ct_id = $row_data['pr_ct_id'];
-                                                        $pr_st_id = $row_data['pr_st_id'];
                                                         $pr_codice = $row_data['pr_codice'];
                                                         $pr_capofila = $row_data['pr_capofila'];
                                                         $pr_titolo = $row_data['pr_titolo'];
                                                         $pr_giacenza = $row_data['pr_giacenza'];
                                                         $pr_peso = $row_data['pr_peso'];
-                                                        $pr_formato = $row_data['pr_formato'];
 
                                                         $mr_marche = getMarca($row_data['pr_mr_id']);
-                                                        $si_sistema = getSistema($row_data['pr_si_id']);
 
                                                         $pr_prezzo = formatPrice($row_data['pr_prezzo']);
                                                         $pr_sconto = $row_data['pr_sconto'];
                                                         $pr_prezzo_scontato = formatPrice($row_data['pr_prezzo_scontato']);
-                                                        $pr_prezzo_acquisto = formatPrice($row_data['pr_prezzo_acquisto']);
 
                                                         $pr_immagine = $row_data['pr_immagine'];
                                                         if (strlen($row_data['pr_immagine']) > 0) {
@@ -285,24 +230,17 @@
 
                                                         echo "<td>";
                                                         echo "<span style='font-style: italic'>" . $row_data['ct_categoria'] . "</span><br>";
-                                                        echo "<span>" . $row_data['st_sottocategoria'] . "</span>";
+                                                        echo "<span style='font-style: italic'>$mr_marche</span><br>";
                                                         echo "</td>";
 
                                                         echo "<td>";
                                                         echo "<span style='font-style: italic'>&euro; " . $pr_prezzo . "</span><br>";
                                                         echo "<span>&euro; " . $pr_prezzo_scontato . " (" . $pr_sconto . " %)</span><br>";
-                                                        echo "<span>&euro; " . $pr_prezzo_acquisto . "</span>";
-                                                        echo "</td>";
-
-                                                        echo "<td>";
-                                                        echo "<span style='font-style: italic'>$mr_marche</span><br>";
-                                                        echo "<span style='font-style: italic'>$si_sistema</span>";
                                                         echo "</td>";
 
                                                         echo "<td>";
                                                         echo "<span style='font-style: italic'>Kg. " . $pr_peso . "</span><br>";
                                                         echo "<span>Qt&agrave;: " . $pr_giacenza . "</span><br>";
-                                                        echo "<span style='font-style: italic'>$pr_formato</span>";
                                                         echo "</td>";
 
                                                         $checked = $row_data['pr_stato'] > 0 ? "checked" : "";
@@ -338,24 +276,14 @@
 
                                             $querySql =
                                                 "SELECT COUNT(pr_id) FROM pr_prodotti " .
-                                                "LEFT JOIN st_sottocategorie ON st_id = pr_st_id " .
-                                                "LEFT JOIN ct_categorie ON ct_id = st_ct_id " .
+                                                "LEFT JOIN ct_categorie ON ct_id = pr_ct_id " .
                                                 "WHERE pr_id > 0 AND pr_capofila = pr_id ";
                                             if (strlen($get_pr_capofila) > 0) $querySql .= " AND (pr_capofila = '$get_pr_capofila' OR pr_codice = '$get_pr_capofila') ";
                                             if (strlen($get_pr_ct_id) > 0) $querySql .= " AND pr_ct_id = '$get_pr_ct_id' ";
-                                            if (strlen($get_pr_st_id) > 0) $querySql .= " AND pr_st_id = '$get_pr_st_id' ";
                                             if (strlen($get_pr_titolo) > 0) $querySql .= " AND (pr_titolo LIKE '%$get_pr_titolo%' OR pr_codice LIKE '%$get_pr_titolo%' ) ";
                                             if (strlen($get_pr_mr_id) > 0) $querySql .= " AND pr_mr_id = '$get_pr_mr_id' ";
-                                            if (strlen($get_pr_si_id) > 0) $querySql .= " AND pr_si_id = '$get_pr_si_id' ";
                                             if (strlen($get_pr_sconto) > 0) $querySql .= $get_pr_sconto == 0 ? " AND pr_sconto = '0' " : " AND pr_sconto != '0' ";
-                                            if (strlen($get_pr_descrizione) > 0) $querySql .= " AND pr_descrizione LIKE '%$get_pr_descrizione%' ";
                                             if (strlen($get_pr_stato) > 0) $querySql .= $get_pr_stato == 0 ? " AND pr_stato = '0' " : " AND pr_stato = '1' ";
-                                            if ($get_pr_ottimizzazione == 'immagine') $querySql .= " AND LENGTH(pr_immagine) = 0 ";
-                                            if ($get_pr_ottimizzazione == 'stato') $querySql .= " AND pr_stato = 0 ";
-                                            if ($get_pr_ottimizzazione == 'bestseller') $querySql .= " AND pr_best_seller = 1 ";
-                                            if ($get_pr_ottimizzazione == 'prezzo') $querySql .= " AND (pr_prezzo = '' AND pr_prezzo_scontato = '') ";
-                                            if ($get_pr_ottimizzazione == 'acquisto') $querySql .= " AND (pr_prezzo_acquisto = '' OR pr_prezzo_acquisto = 0) ";
-                                            if ($get_pr_ottimizzazione == 'sconto') $querySql .= " AND (pr_sconto > 0) ";
 
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
@@ -373,50 +301,34 @@
 
                                             $querySql =
                                                 "SELECT * FROM pr_prodotti " .
-                                                "LEFT JOIN st_sottocategorie ON st_id = pr_st_id " .
-                                                "LEFT JOIN ct_categorie ON ct_id = st_ct_id " .
+                                                "LEFT JOIN ct_categorie ON ct_id = pr_ct_id " .
                                                 "WHERE pr_id > 0 AND pr_capofila = pr_id ";
                                             if (strlen($get_pr_capofila) > 0) $querySql .= " AND (pr_capofila = '$get_pr_capofila' OR pr_codice = '$get_pr_capofila') ";
                                             if (strlen($get_pr_ct_id) > 0) $querySql .= " AND pr_ct_id = '$get_pr_ct_id' ";
-                                            if (strlen($get_pr_st_id) > 0) $querySql .= " AND pr_st_id = '$get_pr_st_id' ";
                                             if (strlen($get_pr_titolo) > 0) $querySql .= " AND (pr_titolo LIKE '%$get_pr_titolo%' OR pr_codice LIKE '%$get_pr_titolo%' ) ";
                                             if (strlen($get_pr_mr_id) > 0) $querySql .= " AND pr_mr_id = '$get_pr_mr_id' ";
-                                            if (strlen($get_pr_si_id) > 0) $querySql .= " AND pr_si_id = '$get_pr_si_id' ";
                                             if (strlen($get_pr_sconto) > 0) $querySql .= $get_pr_sconto == 0 ? " AND (pr_sconto = '0' " : " AND pr_sconto != '0') ";
-                                            if (strlen($get_pr_descrizione) > 0) $querySql .= " AND pr_descrizione LIKE '%$get_pr_descrizione%' ";
                                             if (strlen($get_pr_stato) > 0) $querySql .= $get_pr_stato == 0 ? " AND (pr_stato = '0' " : " AND pr_stato = '1') ";
-                                            if ($get_pr_ottimizzazione == 'immagine') $querySql .= " AND LENGTH(pr_immagine) = 0 ";
-                                            if ($get_pr_ottimizzazione == 'stato') $querySql .= " AND pr_stato = 0 ";
-                                            if ($get_pr_ottimizzazione == 'bestseller') $querySql .= " AND pr_best_seller = 1 ";
-                                            if ($get_pr_ottimizzazione == 'prezzo') $querySql .= " AND (pr_prezzo = '' AND pr_prezzo_scontato = '') ";
-                                            if ($get_pr_ottimizzazione == 'acquisto') $querySql .= " AND (pr_prezzo_acquisto = '' OR pr_prezzo_acquisto = 0) ";
-                                            if ($get_pr_ottimizzazione == 'sconto') $querySql .= " AND (pr_sconto > 0) ";
 
                                             $querySql .= "ORDER BY pr_id LIMIT $primo, $per_page";
-                                            echo "<br>querySql:" . $querySql;
+                                            //echo "<br>querySql:" . $querySql;
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
-
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
-
                                                 $pr_id = $row_data['pr_id'];
                                                 $pr_ct_id = $row_data['pr_ct_id'];
-                                                $pr_st_id = $row_data['pr_st_id'];
                                                 $pr_codice = $row_data['pr_codice'];
                                                 $pr_capofila = $row_data['pr_capofila'];
                                                 $pr_titolo = $row_data['pr_titolo'];
                                                 $pr_giacenza = $row_data['pr_giacenza'];
                                                 $pr_peso = $row_data['pr_peso'];
-                                                $pr_formato = $row_data['pr_formato'];
 
                                                 $mr_marche = getMarca($row_data['pr_mr_id']);
-                                                $si_sistema = getSistema($row_data['pr_si_id']);
 
                                                 $pr_prezzo = formatPrice($row_data['pr_prezzo']);
                                                 $pr_sconto = $row_data['pr_sconto'];
                                                 $pr_prezzo_scontato = formatPrice($row_data['pr_prezzo_scontato']);
-                                                $pr_prezzo_acquisto = formatPrice($row_data['pr_prezzo_acquisto']);
 
                                                 $esistenza_varianti = getEsistenzaVarianti($pr_id, $dbConn);
 
@@ -437,24 +349,17 @@
 
                                                 echo "<td>";
                                                 echo "<span style='font-style: italic'>" . $row_data['ct_categoria'] . "</span><br>";
-                                                echo "<span>" . $row_data['st_sottocategoria'] . "</span>";
+                                                echo "<span style='font-style: italic'>$mr_marche</span><br>";
                                                 echo "</td>";
 
                                                 echo "<td>";
                                                 echo "<span style='font-style: italic'>&euro; " . $pr_prezzo . "</span><br>";
                                                 echo "<span>&euro; " . $pr_prezzo_scontato . " (" . $pr_sconto . " %)</span><br>";
-                                                echo "<span>&euro; " . $pr_prezzo_acquisto . "</span>";
-                                                echo "</td>";
-
-                                                echo "<td>";
-                                                echo "<span style='font-style: italic'>$mr_marche</span><br>";
-                                                echo "<span style='font-style: italic'>$si_sistema</span>";
                                                 echo "</td>";
 
                                                 echo "<td>";
                                                 echo "<span style='font-style: italic'>Kg. " . $pr_peso . "</span><br>";
                                                 echo "<span>Qt&agrave;: " . $pr_giacenza . "</span><br>";
-                                                echo "<span style='font-style: italic'>$pr_formato</span>";
                                                 echo "</td>";
 
                                                 $checked = $row_data['pr_stato'] > 0 ? "checked" : "";

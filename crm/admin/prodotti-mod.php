@@ -108,7 +108,7 @@
                                         }
                                         ?>
 
-                                        <h6 class="card-title mt-3">Identificazione e categorizzazione</h6>
+                                        <h6 class="card-title mt-3">Identificazione</h6>
                                         <div class="row">
 
                                             <div class="col-md-3 mb-3">
@@ -134,16 +134,6 @@
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="pr_st_id">Sottocategoria</label>
-                                                <select class="form-control" id="pr_st_id" name="pr_st_id">
-                                                    <option value="">Seleziona prima una categoria</option>
-                                                    <option value=""></option>
-                                                    <?php selectSottocategorieProdotti($row_data['pr_st_id'], $dbConn, $row_data['pr_ct_id']); ?>
-                                                </select>
-                                                <span class="tooltips">Sottocategoria Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Sottocategoria Prodotto" data-content="Inserisci qui la sottocategoria del prodotto che vuoi modificare">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
                                                 <label for="pr_mr_id">Marca *</label>
                                                 <select class="form-control" id="pr_mr_id" name="pr_mr_id" required>
                                                     <option value="">Seleziona una marca</option>
@@ -153,27 +143,9 @@
                                                 <span class="tooltips">Marca Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Marca Prodotto" data-content="Inserisci qui la marca del prodotto che vuoi modificare">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_codice_rif">Codice Riferimento </label>
-                                                <input type="text" class="form-control" id="pr_codice_rif" name="pr_codice_rif" value="<?php echo $row_data['pr_codice_rif']; ?>">
-                                                <span class="tooltips">Codice Riferimento Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-pr_codice_rif="focus" title="Categoria Prodotto" data-content="Inserisci qui il codice riferimento del prodotto che vuoi modificare. Il codice Riferimento è un codice formato di magazzino.">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_codice_ean">Codice EAN </label>
-                                                <input type="text" class="form-control" id="pr_codice_ean" name="pr_codice_ean" value="<?php echo $row_data['pr_codice_ean']; ?>">
-                                                <span class="tooltips">Codice EAN Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Categoria Prodotto" data-content="Inserisci qui il codice EAN del prodotto che vuoi modificare. Il codice EAN è un codice formato da 12 caratteri numerici, spesso accompagnato da un codice a barre, quel codice va inserito qui.">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="checkbox checbox-switch switch-success">
-                                                <label style="margin-top: 35px;"> BestSeller
-                                                    <input type="checkbox" class="stato" name="best_seller" <?php if ($row_data['pr_best_seller'] == 1) echo "checked"; ?> >
-                                                    <span></span> </label>
-                                            </div>
-
                                         </div>
 
-                                        <h6 class="card-title mt-3">Importi di acquisto e vendita</h6>
+                                        <h6 class="card-title mt-3">Dettagli Di Acquisto/Vendita</h6>
 
                                         <div class="row">
                                             <div class="col-md-3 mb-3">
@@ -193,15 +165,9 @@
                                                 <input type="text" class="form-control" id="pr_sconto" name="pr_sconto" value="<?php echo $row_data['pr_sconto']; ?>">
                                                 <span class="tooltips">Sconto Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Sconto Prodotto" data-content="Inserisci qui la percentuale di sconto visibile online che vuoi applicare sul prodotto">[aiuto]</a></span>
                                             </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_prezzo_acquisto">Prezzo acquisto &euro; (Es formato: 5,70 ) *</label>
-                                                <input type="text" class="form-control" id="pr_prezzo_acquisto" name="pr_prezzo_acquisto" value="<?php echo strlen(@$row_data['pr_prezzo_acquisto']) > 0 ? formatPrice(@$row_data['pr_prezzo_acquisto']) : ""; ?>">
-                                                <span class="tooltips">Prezzo acquisto Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Prezzo Prodotto" data-content="Inserisci qui il prezzo di acquisto del prodotto al fornitore comprensivo di iva">[aiuto]</a></span>
-                                            </div>
                                         </div>
 
-                                        <h6 class="card-title mt-3">Caratteristiche e descrizioni</h6>
+                                        <h6 class="card-title mt-3">Caratteristiche fisiche</h6>
 
                                         <div class="row">
                                             <div class="col-md-3 mb-3">
@@ -216,32 +182,16 @@
                                                 <span class="tooltips">Giacenza Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Giacenza Prodotto" data-content="Inserisci qui il numero di pezzi rimasti in magazzino del prodotto">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_si_id">Sistema</label>
-                                                <select class="form-control" id="pr_si_id" name="pr_si_id">
-                                                    <option value="">Seleziona un'opzione</option>
-                                                    <option value=""></option>
-                                                    <?php selectSistema($row_data['pr_si_id']); ?>
-                                                </select>
-                                                <span class="tooltips">Sistema Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Sistema Prodotto" data-content="Inserisci qui il sistema del prodotto che vuoi modificare">[aiuto]</a></span>
-                                            </div>
-
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_formato">Formato</label>
-                                                <input type="text" class="form-control" id="pr_formato" name="pr_formato" value="<?php echo $row_data['pr_formato']; ?>">
-                                                <span class="tooltips">Formato Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Formato Prodotto" data-content="Inserisci qui il formato del prodotto che vuoi modificare">[aiuto]</a></span>
-                                            </div>
-
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-md-12 mb-3">
+                                            <div class="col-md-6 mb-3">
                                                 <label for="pr_abstract">Abstract</label>
                                                 <textarea class="form-control" id="pr_abstract" name="pr_abstract" rows="2"><?php echo $row_data['pr_abstract']; ?></textarea>
                                                 <span class="tooltips">Descrizione breve Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Descrizione breve Prodotto" data-content="Inserisci qui una descrizione breve del prodotto che vuoi modificare">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-12 mb-3">
+                                            <div class="col-md-7 mb-3">
                                                 <label for="summernote">Descrizione</label>
                                                 <textarea class="form-control" id="summernote" name="pr_descrizione" rows="3"><?php echo $row_data['pr_descrizione']; ?></textarea>
                                                 <span class="tooltips">Descrizione Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Descrizione Prodotto" data-content="Inserisci qui la descrizione del prodotto che vuoi modificare">[aiuto]</a></span>
@@ -250,7 +200,7 @@
 
                                         <div class="row">
 
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-3 mb-3">
                                                 <p>Immagine</p>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="pr_immagine" name="pr_immagine">
@@ -266,13 +216,11 @@
 
                                                     <?php } ?>
                                                 </div>
-                                                <p class="tooltips">Dimensioni consigliate:
-                                                    <b>1000 x 1000 px</b> - Se hai un'immagine di dimensioni diverse la puoi modificare utilizzando
-                                                    <a class="popup-a" href="https://www.iloveimg.com/it/ritagliare-immagine" target="_blank">questo strumento gratuito</a>
+                                                <p class="tooltips">Dimensioni consigliate: 1000x1000
                                                 </p>
                                             </div>
 
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-3 mb-3">
                                                 <p>Allegato</p>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="pr_allegato" name="pr_allegato">
@@ -300,17 +248,21 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                            <div class="col-md-3 mb-3">
-                                                <label for="pr_stato">Visibilità</label>
-                                                <select class="form-control" id="pr_stato" name="pr_stato" required>
-                                                    <option value="">Seleziona visibilità</option>
-                                                    <option value=""></option>
-                                                    <option value="1" <?php if ($row_data['pr_stato'] == '1') echo "selected"; ?>>Online</option>
-                                                    <option value="0" <?php if ($row_data['pr_stato'] == '0') echo "selected"; ?>>Offline</option>
-                                                </select>
+                                        <div class="row" style="margin-bottom: 10px">
+                                            <div class="checkbox checbox-switch switch-success" style="padding-left: 15px">
+                                                <label style="margin-top: 35px;">
+                                                    <input type="checkbox" class="stato" name="pr_stato" <?php if ($row_data['pr_stato'] == 1) echo "checked"; ?> >
+                                                    <span></span>&nbsp;Visibilità</label>
+                                            </div>
+
+                                            <div class="checkbox checbox-switch switch-success" style="padding-left: 15px">
+                                                <label style="margin-top: 35px;">
+                                                    <input type="checkbox" class="stato" name="best_seller" <?php if ($row_data['pr_best_seller'] == 1) echo "checked"; ?> >
+                                                    <span></span>&nbsp;BestSeller</label>
                                             </div>
                                         </div>
+
+
                                         <input type="hidden" name="pr_id" value="<?php echo $get_pr_id; ?>">
                                         <button class="btn btn-primary mt-2" type="submit">Modifica</button>
 

@@ -1880,7 +1880,7 @@ function getMarca($mr_id)
 
     global $dbConn;
 
-    $querySql = "SELECT mr_marche FROM mr_marche WHERE mr_id = '$mr_id' ";
+    $querySql = "SELECT mr_titolo FROM mr_marche WHERE mr_id = '$mr_id' ";
     $result = $dbConn->query($querySql);
     $mr_marche = $result->fetch_array()[0];
     $result->close();

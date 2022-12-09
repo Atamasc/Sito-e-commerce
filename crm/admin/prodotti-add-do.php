@@ -64,7 +64,7 @@ $querySql =
     "pr_prezzo_scontato, pr_sconto, pr_peso, pr_giacenza, pr_allegato, pr_immagine, pr_note, pr_timestamp, pr_stato" .
     ") VALUES (" .
     "'$pr_ct_id', '$pr_mr_id', '$pr_codice', '$pr_titolo', '$pr_abstract', '$pr_descrizione', '$pr_prezzo', " .
-    "'$pr_prezzo_scontato', '$pr_sconto', '$pr_peso', '$pr_giacenza', '$pr_allegato', '$pr_immagine', '$pr_note', '$pr_timestamp', 1,) ";
+    "'$pr_prezzo_scontato', '$pr_sconto', '$pr_peso', '$pr_giacenza', '$pr_allegato', '$pr_immagine', '$pr_note', '$pr_timestamp', 1) ";
 $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 $pr_id = $dbConn->insert_id;
