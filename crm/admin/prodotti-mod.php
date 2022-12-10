@@ -227,7 +227,7 @@
                                                     <?php if (strlen($row_data['pr_allegato']) > 0) { ?>
 
                                                         <label class="custom-file-label" for="pr_allegato"><?php echo $row_data['pr_allegato']; ?></label>
-                                                        <a class="modale-img" href="<?php echo "$upload_path_dir_prodotti/" . $row_data['pr_allegato'] ?>">vedi allegato</a>&nbsp;|&nbsp;
+                                                        <a target="_blank" href="<?php echo "$upload_path_dir_prodotti/" . $row_data['pr_allegato'] ?>">vedi allegato</a>&nbsp;|&nbsp;
                                                         <a class="elimina" href="javascript:;" data-href='prodotti-allegato-del-do.php?pr_id=<?php echo $get_pr_id; ?>'>elimina</a>
 
                                                     <?php } else { ?>

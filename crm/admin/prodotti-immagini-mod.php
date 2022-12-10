@@ -49,7 +49,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
+                                    </li>
                                     <li class="breadcrumb-item active">Gestione immagine prodotti</li>
                                 </ol>
                             </div>
@@ -72,12 +73,12 @@
 
                                         <div class="form-row">
 
-                                            <div class="col-md-4 mb-3">
+                                            <div class="col-md-3 mb-3">
                                                 <label for="pi_descrizione">Titolo</label>
                                                 <input type="text" name="pi_descrizione" class="form-control" value="<?php echo $row_data['pi_descrizione']; ?>">
                                             </div>
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <label>&nbsp;</label>
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="customFile" name="pi_immagine">
@@ -88,8 +89,8 @@
 
                                         <div class="clearfix">
 
-                                            <input type="hidden" name="pi_id" value="<?php echo $pi_id; ?>" />
-                                            <input type="hidden" name="pi_pr_id" value="<?php echo $pi_pr_id; ?>" />
+                                            <input type="hidden" name="pi_id" value="<?php echo $pi_id; ?>"/>
+                                            <input type="hidden" name="pi_pr_id" value="<?php echo $pi_pr_id; ?>"/>
 
                                             <button class="btn btn-success" type="submit">Modifica</button>
                                         </div>
@@ -102,7 +103,6 @@
                         </div>
 
                         <?php //include "inc/datalist-galleria.php"; ?>
-
 
 
                         <div class="col-xl-12 mb-10">
@@ -138,9 +138,9 @@
                                                 $pi_immagine_path = "$upload_path_dir_prodotti_img/$pi_immagine";
 
                                                 echo "<tr>";
-                                                echo "<td>".$row_data['pi_id']."</td>";
-                                                echo "<td>".$row_data['pi_descrizione']."</td>";
-                                                echo "<td>".date('d/m/Y - H:i', $row_data["pi_data"])."</td>";
+                                                echo "<td>" . $row_data['pi_id'] . "</td>";
+                                                echo "<td>" . $row_data['pi_descrizione'] . "</td>";
+                                                echo "<td>" . date('d/m/Y - H:i', $row_data["pi_data"]) . "</td>";
 
                                                 // anteprima
                                                 echo "<td align='center'>";
@@ -183,8 +183,6 @@
 
                             </div>
                         </div>
-
-
 
 
                     </div>

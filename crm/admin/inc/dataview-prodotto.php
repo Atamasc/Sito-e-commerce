@@ -15,15 +15,11 @@
                         </th>
 
                         <th width="200">
-                            Categoria <br> Sottocategoria
+                            Categoria <br> Marca
                         </th>
 
                         <th width="180">
                             Prezzo <br> Prezzo scontato (%)
-                        </th>
-
-                        <th width="130">
-                            Marca <br> Sistema
                         </th>
 
                         <th width="130">
@@ -49,7 +45,6 @@
 
                             $pr_id = $row_data['pr_id'];
                             $pr_ct_id = $row_data['pr_ct_id'];
-                            $pr_st_id = $row_data['pr_st_id'];
                             $pr_codice = $row_data['pr_codice'];
                             $pr_capofila = $row_data['pr_capofila'];
                             $pr_titolo = $row_data['pr_titolo'];
@@ -57,20 +52,18 @@
                             $pr_peso = $row_data['pr_peso'];
 
                             $mr_marche = getMarca($row_data['pr_mr_id']);
-                            $si_sistema = getSistema($row_data['pr_si_id']);
 
                             $pr_prezzo = $row_data['pr_prezzo'];
                             $pr_sconto = $row_data['pr_sconto'];
                             $pr_prezzo_scontato = $row_data['pr_prezzo_scontato'];
 
-                            $categoria = getCategoria($pr_ct_id, $dbConn); //TODO cambiare con logica pr_
-                            $sottocategoria = getSottocategoria($pr_st_id, $dbConn); //TODO cambiare con logica pr_
+                            $categoria = getCategoria($pr_ct_id, $dbConn);
 
                             if ((strlen($row_data['pr_immagine']) > 0) && is_file("../../upload/prodotti/" . $row_data['pr_immagine'])) {
                                 $pr_immagine = $row_data['pr_immagine'];
                                 $pr_immagine_src = $upload_path_dir_prodotti . "/" . $pr_immagine;
                             } else {
-                                $pr_immagine_src = "../../assets/img/prodotto-dummy.jpg";
+                                $pr_immagine_src = "../../assets/images/prodotto-dummy.jpg";
                             }
 
                             echo "<tr>";
@@ -83,17 +76,12 @@
 
                             echo "<td>";
                             echo "<span style='font-style: italic'>" . $categoria . "</span><br>";
-                            echo "<span>" . $sottocategoria . "</span>";
+                            echo "<span style='font-style: italic'>$mr_marche</span><br>";
                             echo "</td>";
 
                             echo "<td>";
                             echo "<span style='font-style: italic'>&euro; " . $pr_prezzo . "</span><br>";
                             echo "<span>&euro; " . $pr_prezzo_scontato . " (" . $pr_sconto . " %)</span>";
-                            echo "</td>";
-
-                            echo "<td>";
-                            echo "<span style='font-style: italic'>$mr_marche</span><br>";
-                            echo "<span style='font-style: italic'>$si_sistema</span>";
                             echo "</td>";
 
                             echo "<td>";

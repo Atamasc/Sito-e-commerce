@@ -99,7 +99,7 @@
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_titolo">Titolo *</label>
                                                 <input type="text" class="form-control" id="pr_titolo" name="pr_titolo" required>
-                                                <span class="tooltips">Inserisci qui il titolo del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Titolo prodotto" data-content="Assegna un nome(o titolo) specifico e facile da ricordare al tuo prodotto. Un titolo appropriato facilita l'inserimento e la ricerca del prodotto oltre a incrementarne le possibilità di vendita Es. Cappellino Rosa Neonato">[aiuto]</a></span>
+                                                <span class="tooltips">Inserisci qui il titolo del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Titolo prodotto" data-content="Assegna un nome(o titolo) specifico e facile da ricordare al tuo prodotto.">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">

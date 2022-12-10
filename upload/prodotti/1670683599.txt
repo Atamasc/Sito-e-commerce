@@ -1,0 +1,133 @@
+MySQL: 5.7
+PHP: 8.1
+Bootstrap: 5.1
+
+Dump: backup (ad esempio di un db)
+
+Sincrono: quando delle istruzioni vengono elaborate una alla volta
+
+Asincrono: mentre viene elaborata un istruzione, le successive vengono gia messe in coda
+
+var_dump(): stampa sia il valore che il tipo di dato, esempio: float(29.5) 
+
+La OOP è basata sui dati. Si utilizzano gli oggetti che sono entità costituite da dati e metodi che operano su questi dati.
+
+ORM: Usare delle librerie di object-relational mapping evita di scrivere codice SQL. Le librerie ORM generano automaticamente degli statement SQL parametrizzati, partendo da del codice orientato agli oggetti.
+
+MVC(Model View Controller): è un pattern utilizzato per dividere il codice in blocchi per renderlo piu pulito e comprensibile. Il pattern MVC prevede la suddivisione in tre parti: Model che contiene i dati e la logica dell'applicazione, View che rappresenta i dati del Model, e Controller che prende in input i dati dell'utente e aggiorna Model o View.
+
+JWT: acronimo di JSON Web Token, è un sistema di cifratura e di contatto in formato JSON per lo scambio di informazioni tra i vari servizi di un server. Si genera così un token che può essere cifrato e firmato tramite una chiave disponibile solo a colui che lo ha effettivamente generato.
+
+Metodo: è un blocco di codice che comprende delle istruzioni.
+
+Classe: è un insieme composto da attributi e metodi. Gli attributi sono le variabili, mentre i metodi sono le funzioni della classe.
+
+Oggetto: rappresenta un'entità della vita reale. In Java, un oggetto è l'istanza di una classe e si crea utilizzando l'operatore new che richiama il costruttore della classe.
+
+Costruttore: è quel metodo di una classe il cui compito è proprio quello di creare nuove istanze. Il costruttore deve avere lo stesso nome della classe che lo contiene e può ricevere zero o più parametri. Il tipo non viene specificato e il modificatore static non puo essere utilizzato
+
+Variabili di Istanza: sono usate per memorizzare lo stato di un oggetto e si dichiarano all’interno della classe ma all’esterno del metodo quindi sono visibili a tutti i metodi della classe. 
+
+Variabile Statica: quando un membro viene dichiarato statico, è possibile accedervi senza utilizzare un oggetto. Ciò significa che prima di creare un'istanza di una classe, il membro statico è attivo e accessibile.
+
+
+Ereditarietà: si basa sul creare una gerarchia tra le classi. Una classe, detta "classe figlia", può ereditare le caratteristiche di un'altra classe, detta "classe padre". Questo ci permette di riutilizzare il codice già scritto e non crearne uno duplicato avendo così un codice più pulito. Un esempio può essere la classe padre 'Mammifero' e come sue sottoclassi invece 'Cane', 'Mucca', 'Gatto'. 
+
+Polimorfismo: consente ad un oggetto di comportarsi in modo diverso in base alle circostanze e, quindi, di assumere più forme. Un esempio può essere l'operatore '+' in Java, che se gli vengono passati due parametri numerici li addiziona, mentre se gli vengono passati due parametri Stringa li concatena. (ALTRO ESEMPIO E' L'OVERLOAD)
+
+Incapsulamento: riguarda il raggruppare di dati in una specifica area. Ad esempio una classe è appunto un esempio di incapsulamento, poichè racchiude gli attributi e i metodi in quella singola unità. L'incapsulamento poi si occupa anche dell'accesso a questi dati tramite i modificatori di accesso, cioè si puo rendere un dato privato così non è accessibile al di fuori della classe.
+
+Astrazione: con l'astrazione si riduce la complessità della programmazione, poichè si va a 'mostrare' solo le cose rilevanti e a 'nascondere' i dettagli non necessari, quindi si riduce la dimensione del codice. Un utente finale che utilizza ad esempio un' applicazione si preoccupa solo della funzionalità e non di come è stata fatta. In java l'astrazione avviene con il modificatore 'abstract' che può essere utilizzato solo con classi e metodi ma non con variabili.
+(ESEMPIO NELLA REALTA: quando guidiamo un auto ci preoccupiamo solo di guidarla e quindi di accellerare, frenare, cambiare marcia e non di come di come avviene il funzionamento)
+
+Overload: consiste nell' avere piu metodi con lo stesso nome ma con numeri e parametri differenti.
+
+Override: è la dichiarazione di un metodo nella sottoclasse che esiste già nella classe genitore.
+
+
+Classe statica: è una classe interna che non crea nessuna istanza e può accedere solo alle variabili e ai metodi statici della classe a cui appartiene. Per cui i metodi si possono richiamare direttamente dal nome della classe.
+
+Classe astratta: una classe è astratta se ha almeno un metodo astratto, cioè un metodo senza codice ( public abstract void metodoAstratto(); ). Questa può essere estesa e quindi la classe figlia eredita i suoi metodi astratti che devono essere implementati attraverso l'override altrimenti si avrebbero metodi non funzionanti. La classe astratta non può essere instanziata perchè ha dei metodi senza codice e per ovviare a questo problema viene estesa e ai suoi metodi viene applicato l'override. 
+(ES Reale: classe astratta veicoli che ha metodi astratti accellera() e decellera(), si intende in modo generico poichè ogni veicolo ha un modo di accellerare e decellerare. La si estende a classi come Auto, Nave, Aereo e si sovrascrivono i metodi)
+
+Interface: Le interfacce sono delle astrazioni simili alle classi astratte, solo che non c'è bisogno di dover dichiarare tutto con 'abstract'. L'interfaccia si dichiare con 'interface' e può essere estesa con 'implements' e non con 'extends'. Le interfacce non posso essere instanziate, così come le classi astratte infatti entrambe sono molto simili poichè possono obbligare le sottoclassi ad implementare i metodi, cioè una classe che eredita un metodo astratto deve fare l'override del metodo ereditato oppure essere dichiarata a sua volta astratta.
+È possibile estendere una sola classe alla volta, ma è possibile implementare più interfacce.
+Le classi possono essere estese solo da altre classi, mentre le interfacce possono essere implementate anche da enumerazioni e record.
+( public interface Pesabile { ... } )
+
+List: consente di memorizzare lo stesso elemento più volte, mentre Set no. Le classi per implementare la List e Set sono diverse (List: ArrayList, Vector e LinkedList - Set: HashSet, LinkedHashSet e TreeSet). List consente un numero qualsiasi di valori null mentre un set contiene al massimo un elemento null.
+
+PK: serve a identificare in modo univoco ogni riga della tabella e ogni tabella puo avere una sola PK.
+
+FK: serve a stabilire un collegamento tra due tabelle (In sql si scrive: FOREIGN KEY (Customer_SID) REFERENCES CUSTOMER (SID))
+
+Le viste sono tabelle create in RAM e non fisicamente su un disco. Sono tabelle a cui possono essere effettuate le normali operazioni di interrogazione, come select, update, drop.. Vengono utilizzate ad esempio quando si vuol mostrare solo alcuni campi specifici ad un certo tipo di utenza che ha accesso al db.
+(CREATE VIEW nome_vista (id, nome, cognome) AS SELECT * FROM ...)
+
+Gli indici consentono di accedere rapidamente a dei dati. Vengono utilizzati principalmente in tabelle con molti record, questo perché, senza indici, MySQL sarebbe costretto a verificare ogni record della tabella prima di poter rispondere, ad esempio, ad una SELECT. Con gli indici invece l'operazione è piu veloce perchè MySQL sa già dove andare a cercare i record interessati.
+
+-Primary key
+-Unique: non accetta valori duplicati, ma accetta valori nulli
+-Index: aumentano la velocità di accesso ai record
+-Fulltext: consente di effettuare ricerche in campi di tipo CHAR, VARCHAR e TEXT
+
+
+
+Preprocessore css: serve a potenziare gli strumenti del css, con sintassi piu semplici e leggibili. SASS -> SCSS
+che introduce variabili, cicli, funzioni, funzioni matematiche..
+
+GitFlow: è un insieme di strategie su come utilizzare Git e lavorare in modo più pulito.
+
+Docker: puo creare immagini automaticamente da delle istruzioni presenti nel DockerFile.
+
+Docker Compose: è un tool che definisce e esegue le applicazioni Docker.
+
+
+------public static void main (String[] args){ ------
+
+-è un metodo che non restituisce dati a chi lo invoca poichè è di tipo void, e indica il punto d'inizio per l'esecuzione del programma.
+-il parametro String args[] il cui significato è quello di salvare nell'array args  eventuali stringhe scritte dall'utente in fase di lancio del programma.
+
+
+----COMANDI LINUX----
+
+ls: elenca il contenuto di una directory
+cd: serve per cambiare directory
+cp: copia file e cartelle
+rm: cancella file o directory
+mkdir: per creare una cartella
+kill: per terminare un processo
+top: mostra i processi attualmente in esecuzione
+
+
+1) Qual è la differenza tra C ++ e Java?
+
+Risposta: Sia C ++ che Java sono linguaggi orientati agli oggetti. Ma C ++ è un linguaggio compilato mentre Java utilizza un  interprete che esegue il codice e genera un output che lo rende indipendente dalla piattaforma. C ++ invece dipende dalla piattaforma.
+
+
+Il compilatore JIT (Just in Time) ha il compito di compilare parti del codice durante il tempo di esecuzione (runtime)
+
+
+-Enumeratori: Sono un tipo di dati che consiste in un insieme di possibili valori definiti con un case. Tutti i diversi casi devono avere lo stesso valore, quindi ad esempio, o tutti stringa o tutti interi.
+
+enum Suit: string {
+  case Hearts = 'H';
+  case Diamonds = 'D';
+  case Clubs = 'C';
+  case Spades = 'S';
+}
+
+
+-Si può dichiarare 'Final' una costante in una classe e così non può essere sovrascritta (override) nella sottoclasse.
+-Le funzioni dichiarate con il tipo 'Never' indicano che non restituiranno nessun valore. A differenza del tipo 'Void', Never viene utilizzato quando si prospetta la fine del codice PHP dopo la chiamata della funzione, infatti le funzioni di tipo 'Never' non devono avere un 'return' ma un 'exit'.
+
+
+CODICE OOP:
+class HTML {
+        public function ph($txt) {
+                echo "<p>" . $txt . "</p>";
+        }
+}
+$html = new HTML();
+
+$html->ph("This is a paraghrap");

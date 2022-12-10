@@ -307,8 +307,8 @@
                                             if (strlen($get_pr_ct_id) > 0) $querySql .= " AND pr_ct_id = '$get_pr_ct_id' ";
                                             if (strlen($get_pr_titolo) > 0) $querySql .= " AND (pr_titolo LIKE '%$get_pr_titolo%' OR pr_codice LIKE '%$get_pr_titolo%' ) ";
                                             if (strlen($get_pr_mr_id) > 0) $querySql .= " AND pr_mr_id = '$get_pr_mr_id' ";
-                                            if (strlen($get_pr_sconto) > 0) $querySql .= $get_pr_sconto == 0 ? " AND (pr_sconto = '0' " : " AND pr_sconto != '0') ";
-                                            if (strlen($get_pr_stato) > 0) $querySql .= $get_pr_stato == 0 ? " AND (pr_stato = '0' " : " AND pr_stato = '1') ";
+                                            if (strlen($get_pr_sconto) > 0) $querySql .= $get_pr_sconto == 0 ? " AND pr_sconto = '0' " : " AND pr_sconto != '0' ";
+                                            if (strlen($get_pr_stato) > 0) $querySql .= $get_pr_stato == 0 ? " AND pr_stato = '0' " : " AND pr_stato = '1' ";
 
                                             $querySql .= "ORDER BY pr_id LIMIT $primo, $per_page";
                                             //echo "<br>querySql:" . $querySql;
