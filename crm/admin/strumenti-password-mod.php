@@ -81,13 +81,15 @@
                                             <div class="col-md-3 mb-3">
                                                 <label for="ut_password">Password attuale</label>
                                                 <input type="password" class="form-control" id="password_old" name="password_old"
-                                                        required autocomplete="off"> <span class="tooltips">Password Utente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Password Utente" data-content="Inserisci qui la password attuale">[aiuto]</a></span>
+                                                        required autocomplete="off">
+                                                <span class="tooltips">Password <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Password Utente" data-content="Inserisci qui la password attuale">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="ut_password">Nuova password</label>
                                                 <input type="password" class="form-control" id="am_password" name="am_password"
-                                                        required autocomplete="off"> <span class="tooltips">Password Utente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Password Utente" data-content="Inserisci qui la nuova password. N.B. Dev'essere una password alfanumerica, composta da 8 caratteri minimo, con una maiuscola">[aiuto]</a></span>
+                                                        required autocomplete="off">
+                                                <span class="tooltips">Password <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Password Utente" data-content="Inserisci qui la nuova password.">[aiuto]</a></span>
                                             </div>
 
                                         </div>

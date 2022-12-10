@@ -8,5 +8,5 @@ $result = $dbConn->query($querySql);
 $rows = $dbConn->affected_rows;
 
 $delete = $rows > 0 ? 'true' : 'false';
-header("Location: spedizionieri-gst.php?ci_id=$get_ci_id&delete=$delete");
+header("Location: corrieri-gst.php?ci_id=$get_ci_id&delete=$delete");
 ?>

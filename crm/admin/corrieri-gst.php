@@ -40,13 +40,13 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4 class="mb-0"> Gestione spedizionieri </h4>
+                                <h4 class="mb-0"> Gestione corrieri </h4>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                                     <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Gestione spedizionieri</li>
+                                    <li class="breadcrumb-item active">Gestione corrieri</li>
                                 </ol>
                             </div>
                         </div>
@@ -61,21 +61,18 @@
 
                                     <form method="get" action="?" enctype="multipart/form-data">
 
-                                        <h5 class="card-title">Filtra spedizionieri</h5>
+                                        <h5 class="card-title">Filtra corrieri</h5>
 
                                         <div class="form-row">
 
                                             <div class="col-md-3 mb-3">
                                                 <label>Titolo</label>
                                                 <input type="text" name="ci_titolo" class="form-control" value="<?php echo $get_ci_titolo; ?>">
-                                                <span class="tooltips">Titolo Spedizioniere <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Titolo Spedizioniere" data-content="Inserisci qui il titolo dello spedizioniere che stai cercando">[aiuto]</a></span>
+                                                <span class="tooltips">Titolo Corriere <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Titolo Corriere" data-content="Inserisci qui il titolo dello corriere che stai cercando">[aiuto]</a></span>
                                             </div>
                                         </div>
 
                                         <button class="btn btn-primary" type="submit">Cerca</button>
-                                        <a href="spedizionieri-add.php" class="btn btn-success">Aggiungi spedizioniere</a>
-                                        <a href="spedizionieri-utenti-do.php" class="btn btn-orange">Genera CSV clienti</a>
-
                                     </form>
 
                                 </div>
@@ -87,7 +84,7 @@
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
 
-                                    <h5 class="card-title border-0 pb-0">Lista spedizionieri</h5>
+                                    <h5 class="card-title border-0 pb-0">Lista corrieri</h5>
 
                                     <?php
                                     if (@$_GET['delete'] == 'true') {
@@ -106,7 +103,6 @@
                                         <table class="table table-1 table-bordered table-striped mb-0">
                                             <thead>
                                             <tr>
-                                                <th width="40">ID</th>
                                                 <th>Titolo</th>
                                                 <th>Costo Spedizione Standard</th>
                                                 <th>Costo Spedizione Espressa</th>
@@ -148,11 +144,8 @@
                                                 $ci_costo_espressa = $row_data['ci_costo_espressa'];
                                                 $ci_costo_estera = $row_data['ci_costo_estera'];
 
-                                                //echo "<br>".$ci_costo_standard;
-                                                //echo "<br>".number_format($ci_costo_standard, 2, ",", ".");
 
                                                 echo "<tr>";
-                                                echo "<td>$ci_id</td>";
                                                 echo "<td>$ci_titolo</td>";
                                                 echo "<td>" . formatPrice($ci_costo_standard) . "&euro;</td>";
                                                 echo "<td>" . formatPrice($ci_costo_espressa) . "&euro;</td>";
@@ -164,13 +157,13 @@
                                                 if ($row_data['ci_stato'] == 0) { ?>
                                                     <div class="checkbox checbox-switch switch-success">
                                                         <label>
-                                                            <input type="checkbox" class="stato" title="spedizionieri-stato-do.php?ci_id=<?php echo $ci_id; ?>"><span></span>
+                                                            <input type="checkbox" class="stato" title="corrieri-stato-do.php?ci_id=<?php echo $ci_id; ?>"><span></span>
                                                         </label>
                                                     </div>
                                                 <?php } else { ?>
                                                     <div class="checkbox checbox-switch switch-success">
                                                         <label>
-                                                            <input type="checkbox" class="stato" title="spedizionieri-stato-do.php?ci_id=<?php echo $ci_id; ?>" checked><span></span>
+                                                            <input type="checkbox" class="stato" title="corrieri-stato-do.php?ci_id=<?php echo $ci_id; ?>" checked><span></span>
                                                         </label>
                                                     </div>
                                                 <?php }
@@ -179,16 +172,15 @@
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                echo "<a class='btn btn-success btn-sm' href='spedizionieri-mod.php?ci_id=$ci_id' title='Modifica'>modifica</a>&nbsp;";
-                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='spedizionieri-del-do.php?ci_id=$ci_id'><i class='fa fa-trash-alt'></i></button>";
+                                                echo "<a class='btn btn-success btn-sm' href='corrieri-mod.php?ci_id=$ci_id' title='Modifica'>modifica</a>&nbsp;";
+                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='corrieri-del-do.php?ci_id=$ci_id'><i class='fa fa-trash-alt'></i></button>";
                                                 echo "</td>";
                                                 echo "</tr>";
 
-                                                $i += 1;
                                             };
 
                                             if ($rows == 0) {
-                                                echo "<tr><td colspan='99' align='center'>Non ci sono spedizionieri presenti</td></tr>";
+                                                echo "<tr><td colspan='99' align='center'>Non ci sono corrieri presenti</td></tr>";
                                             }
 
                                             $result->close();

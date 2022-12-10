@@ -35,7 +35,7 @@
 
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#marche">
-                    <div class="pull-left"><i class="ti-medall"></i><span class="right-nav-text">Marche</span></div>
+                    <div class="pull-left"><i class="ti-tag"></i><span class="right-nav-text">Marche</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
@@ -62,7 +62,7 @@
 
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#recensioni">
-                    <div class="pull-left"><i class="fas fa-star"></i><span class="right-nav-text">Recensioni</span>
+                    <div class="pull-left"><i class="ti-star"></i><span class="right-nav-text">Recensioni</span>
                     </div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
@@ -159,15 +159,15 @@
             <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Impostazioni</li>
 
             <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#spedizionieri">
-                    <div class="pull-left"><i class="ti-package"></i><span class="right-nav-text">Spedizionieri</span>
+                <a href="javascript:void(0);" data-toggle="collapse" data-target="#corrieri">
+                    <div class="pull-left"><i class="ti-package"></i><span class="right-nav-text">Corrieri</span>
                     </div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
-                <ul id="spedizionieri" class="collapse" data-parent="#sidebarnav">
-                    <li><a href="spedizionieri-add.php">Aggiungi spedizioniere</a></li>
-                    <li><a href="spedizionieri-gst.php">Gestione spedizionieri</a></li>
+                <ul id="corrieri" class="collapse" data-parent="#sidebarnav">
+                    <li><a href="corrieri-add.php">Aggiungi corriere</a></li>
+                    <li><a href="corrieri-gst.php">Gestione corrieri</a></li>
 
                 </ul>
             </li>
@@ -187,13 +187,13 @@
 
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#strumenti">
-                    <div class="pull-left"><i class="ti-user"></i><span class="right-nav-text">Strumenti</span></div>
+                    <div class="pull-left"><i class="fa fa-tools"></i><span class="right-nav-text">Strumenti</span>
+                    </div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
 
                 <ul id="strumenti" class="collapse" data-parent="#sidebarnav">
-                    <li><a href="strumenti-feed-gst.php">Gestione feed</a></li>
                     <li><a href="strumenti-cropping.php">Modifica immagini</a></li>
                 </ul>
             </li>
@@ -211,7 +211,7 @@
 
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#authentication">
-                    <div class="pull-left"><i class="ti-id-badge"></i><span class="right-nav-text">Accesso</span></div>
+                    <div class="pull-left"><i class="ti-lock"></i><span class="right-nav-text">Accesso</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>
                     <div class="clearfix"></div>
                 </a>
