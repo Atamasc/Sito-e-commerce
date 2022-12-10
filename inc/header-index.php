@@ -81,7 +81,7 @@ function isMobile()
                         <div class="main-navigation d-none d-lg-block">
                             <ul>
                                 <li><a href="index.php">Home</a></li>
-                                <li><a href="prodotti-lista.php">Prodotti</a></li>
+                                <li><a href="lista-prodotti.php">Prodotti</a></li>
                                 <li><a href="blog.php">Blog</a></li>
                             </ul>
                         </div>

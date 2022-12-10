@@ -32,3 +32,12 @@
 .breadcrumb-hrading, .breadcrumb-links, .breadcrumb-links li a {
     color: white !important;
 }
+
+.inner-link:hover {
+    color: #999;
+}
+
+.inner-link a {
+
+    color: #999 !important;
+}

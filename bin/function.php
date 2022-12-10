@@ -56,7 +56,7 @@ function get_mr_marche($mr_codice)
 
     global $dbConn;
 
-    $querySql = "SELECT mr_marche FROM mr_marche WHERE mr_codice = '" . $mr_codice . "'";
+    $querySql = "SELECT mr_titolo FROM mr_marche WHERE mr_codice = '" . $mr_codice . "'";
     $result = $dbConn->query($querySql);
     $mr_marche = $result->fetch_array()[0];
     $result->close();
@@ -259,14 +259,14 @@ function get_access_credential_op($param_username, $param_password, $dbConn)
 function get_access_credential_cl($param_username, $param_password, $dbConn)
 {
 
-    $querySql = "SELECT * FROM cl_clienti WHERE cl_email = '$param_username' AND cl_password = '$param_password'";
+    $querySql = "SELECT * FROM ut_utenti WHERE ut_email = '$param_username' AND ut_password = '$param_password'";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 
     while (($rows = $result->fetch_assoc()) !== NULL) {
 
-        $username = $rows['cl_email'];
-        $password = $rows['cl_password'];
+        $username = $rows['ut_email'];
+        $password = $rows['ut_password'];
 
         $credenziali = "cliente|" . $username . "|" . $password;
 
@@ -366,7 +366,7 @@ function countPostBlog(mysqli $dbConn)
 function countClienti(mysqli $dbConn)
 {
 
-    $querySql = "SELECT COUNT(cl_id) FROM cl_clienti ";
+    $querySql = "SELECT COUNT(ut_id) FROM ut_utenti ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -495,10 +495,10 @@ function mediaRecensioni($pr_codice, mysqli $dbConn)
     return ceil($media);
 }
 
-function existRecensioniCliente($pr_codice, $cl_codice, mysqli $dbConn)
+function existRecensioniCliente($pr_codice, $ut_codice, mysqli $dbConn)
 {
 
-    $querySql = "SELECT COUNT(rc_id) FROM rc_recensioni WHERE rc_pr_codice = '$pr_codice' AND rc_cl_codice = '$cl_codice' ";
+    $querySql = "SELECT COUNT(rc_id) FROM rc_recensioni WHERE rc_pr_codice = '$pr_codice' AND rc_ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -526,7 +526,7 @@ function getMarca($mr_id)
 
     global $dbConn;
 
-    $querySql = "SELECT mr_marche FROM mr_marche WHERE mr_id = '$mr_id' LIMIT 0, 1 ";
+    $querySql = "SELECT mr_titolo FROM mr_marche WHERE mr_id = '$mr_id' LIMIT 0, 1 ";
     $result = $dbConn->query($querySql);
     $mr_marche = $result->fetch_array()[0];
     $result->close();
@@ -1060,17 +1060,17 @@ function getProdottoById($pr_id, mysqli $dbConn)
 
 }
 
-function getIDClienteByCodice($cl_codice, mysqli $dbConn)
+function getIDClienteByCodice($ut_codice, mysqli $dbConn)
 {
 
-    $querySql = "SELECT * FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT * FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
     $row_data = $result->fetch_assoc();
     $result->close();
 
     if ($rows == 0) return "//";
-    else return $row_data['cl_id'];
+    else return $row_data['ut_id'];
 
 }
 
@@ -1454,12 +1454,12 @@ function optimizeImageProdotto($immagine, $upload_path, $immagine_name, $dimensi
 
 
 // ======== ============
-function getInfoTesseraCliente($cl_codice)
+function getInfoTesseraCliente($ut_codice)
 {
 
     global $dbConn;
 
-    $querySql = "SELECT cl_stato_tessera, cl_saldo_punti FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_stato_tessera, ut_saldo_punti FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1468,10 +1468,10 @@ function getInfoTesseraCliente($cl_codice)
 
 }
 
-function getEmailClienteByCodice($cl_codice, mysqli $dbConn)
+function getEmailClienteByCodice($ut_codice, mysqli $dbConn)
 {
 
-    $querySql = "SELECT cl_email FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_email FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1538,10 +1538,10 @@ function getProvinceSelect($id_provincia_param)
 
 }
 
-function getNominativoClienteByCodice($cl_codice, mysqli $dbConn)
+function getNominativoClienteByCodice($ut_codice, mysqli $dbConn)
 {
 
-    $querySql = "SELECT cl_nome, cl_cognome FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_nome, ut_cognome FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1550,10 +1550,10 @@ function getNominativoClienteByCodice($cl_codice, mysqli $dbConn)
 
 }
 
-function getNomeClienteByCodice($cl_codice, mysqli $dbConn)
+function getNomeClienteByCodice($ut_codice, mysqli $dbConn)
 {
 
-    $querySql = "SELECT cl_nome FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_nome FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1562,15 +1562,15 @@ function getNomeClienteByCodice($cl_codice, mysqli $dbConn)
 
 }
 
-function checkFatturazione($cl_codice)
+function checkFatturazione($ut_codice)
 {
 
     global $dbConn;
 
-    $querySql = "SELECT COUNT(cl_id) FROM cl_clienti WHERE cl_codice = '$cl_codice' " .
-        "AND LENGTH(cl_ragione_sociale) > 0 AND (LENGTH(cl_partita_iva) > 0 OR LENGTH(cl_codice_fiscale) > 0) " .
-        "AND (LENGTH(cl_sdi) > 0 OR LENGTH(cl_pec) > 0) AND LENGTH(cl_indirizzo_fatturazione) > 0 " .
-        "AND LENGTH(cl_cap_fatturazione) > 0 AND LENGTH(cl_comune_fatturazione) > 0 AND LENGTH(cl_provincia_fatturazione) > 0 ";
+    $querySql = "SELECT COUNT(ut_id) FROM ut_utenti WHERE ut_codice = '$ut_codice' " .
+        "AND LENGTH(ut_ragione_sociale) > 0 AND (LENGTH(ut_partita_iva) > 0 OR LENGTH(ut_codice_fiscale) > 0) " .
+        "AND (LENGTH(ut_sdi) > 0 OR LENGTH(ut_pec) > 0) AND LENGTH(ut_indirizzo_fatturazione) > 0 " .
+        "AND LENGTH(ut_cap_fatturazione) > 0 AND LENGTH(ut_comune_fatturazione) > 0 AND LENGTH(ut_provincia_fatturazione) > 0 ";
     $result = $dbConn->query($querySql);
     $count = (int)$result->fetch_array()[0];
     $result->close();
@@ -1579,10 +1579,10 @@ function checkFatturazione($cl_codice)
 
 }
 
-function getIndirizzoClienteByCodice($cl_codice, mysqli $dbConn)
+function getIndirizzoClienteByCodice($ut_codice, mysqli $dbConn)
 {
 
-    $querySql = "SELECT cl_indirizzo, cl_comune, cl_provincia, cl_cap FROM cl_clienti WHERE cl_codice = '$cl_codice' ";
+    $querySql = "SELECT ut_indirizzo, ut_comune, ut_provincia, ut_cap FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1592,7 +1592,7 @@ function getIndirizzoClienteByCodice($cl_codice, mysqli $dbConn)
 }
 
 
-function getTotalecarrello($cl_codice)
+function getTotalecarrello($ut_codice)
 {
 
     global $dbConn;
@@ -1600,7 +1600,7 @@ function getTotalecarrello($cl_codice)
     $querySql =
         "SELECT * FROM pr_prodotti " .
         "INNER JOIN cr_carrello ON cr_pr_codice = pr_codice " .
-        "WHERE cr_cl_codice = '$cl_codice' ";
+        "WHERE cr_ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
 
     $cr_totale = 0;
@@ -1885,14 +1885,14 @@ function loadExFile($tag, $files = array())
 
 // fine include resources inserito da antonio
 
-function getStatoCarrello($cl_codice)
+function getStatoCarrello($ut_codice)
 {
 
 
     global $dbConn;
 
     $querySql =
-        "SELECT COUNT(cr_id), cr_pagamento FROM cr_carrello WHERE cr_cl_codice = '$cl_codice' ";
+        "SELECT COUNT(cr_id), cr_pagamento FROM cr_carrello WHERE cr_ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     list($cr_totale, $cr_pagamento) = $result->fetch_array();
     $result->close();

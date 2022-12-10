@@ -100,7 +100,8 @@ $mr_immagine_path = "$upload_path_dir_marche/$mr_immagine";
                                                 <small class="text-muted"> formato jpg, png - dimensioni 600 x 600 pixel - peso max 2 Mb
                                                     <?php if (strlen($mr_immagine) > 0) { ?>
                                                         <br>
-                                                        <a class="text-success popover-img" target="_blank" href="<?php echo $mr_immagine_path; ?>">vedi immagine</a>
+                                                        <a class="modale-img" href="<?php echo "$upload_path_dir_marche/" . $row_data['mr_immagine'] ?>">vedi immagine</a>&nbsp;|&nbsp;
+                                                        <a class="elimina" href="javascript:;" data-href='marche-immagine-del-do.php?mr_id=<?php echo $get_mr_id; ?>'>elimina</a>
                                                     <?php } ?>
                                                 </small>
                                             </div>

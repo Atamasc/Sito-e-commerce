@@ -17,22 +17,6 @@ function generateCatLink($ct_id)
 
 }
 
-function generateSistemaLink($si_id)
-{
-
-    global $dbConn, $rootBasePath_http;
-
-    $querySql =
-        "SELECT si_sistema FROM si_sistemi WHERE si_id = '$si_id' LIMIT 0,1 ";
-    $result = $dbConn->query($querySql);
-    list($si_sistema) = $result->fetch_array();
-    $result->close();
-
-    $si_url = generateURLRewrite($si_sistema);
-
-    return "$rootBasePath_http/$si_url-si$si_id";
-
-}
 
 function generateMarca2Link($mr_id)
 {
@@ -40,223 +24,14 @@ function generateMarca2Link($mr_id)
     global $dbConn, $rootBasePath_http;
 
     $querySql =
-        "SELECT mr_marche FROM mr_marche WHERE mr_id = '$mr_id' LIMIT 0,1 ";
+        "SELECT mr_titolo FROM mr_marche WHERE mr_id = '$mr_id' LIMIT 0,1 ";
     $result = $dbConn->query($querySql);
-    list($mr_marche) = $result->fetch_array();
+    list($mr_titolo) = $result->fetch_array();
     $result->close();
 
-    $mr_url = generateURLRewrite($mr_marche);
+    $mr_url = generateURLRewrite($mr_titolo);
 
     return "$rootBasePath_http/$mr_url-mr$mr_id";
-
-}
-
-function generateSubCatLink($st_id)
-{
-
-    global $dbConn, $rootBasePath_http;
-
-    $querySql =
-        "SELECT ct_categoria, st_sottocategoria FROM st_sottocategorie INNER JOIN ct_categorie ON ct_id = st_ct_id WHERE st_id = '$st_id' LIMIT 0,1 ";
-    $result = $dbConn->query($querySql);
-    list($ct_categoria, $st_sottocategoria) = $result->fetch_array();
-    $result->close();
-
-    $ct_url = generateURLRewrite($ct_categoria);
-    $st_url = generateURLRewrite($st_sottocategoria);
-
-    return "$rootBasePath_http/$ct_url/$st_url-st$st_id";
-
-}
-
-function generateSubCatLink2($mr_id, $st_id)
-{
-
-    global $dbConn, $rootBasePath_http;
-
-    $querySql =
-        "SELECT ct_categoria, st_sottocategoria FROM st_sottocategorie INNER JOIN ct_categorie ON ct_id = st_ct_id WHERE st_id = '$st_id' LIMIT 0,1  ";
-    $result = $dbConn->query($querySql);
-    list($ct_categoria, $st_sottocategoria) = $result->fetch_array();
-    $result->close();
-
-    $ct_url = generateURLRewrite($ct_categoria);
-    $st_url = generateURLRewrite($st_sottocategoria);
-
-
-    $querySql =
-        "SELECT mr_marche FROM mr_marche WHERE mr_id = '$mr_id' LIMIT 0,1 ";
-    $result = $dbConn->query($querySql);
-    list($mr_marche) = $result->fetch_array();
-    $result->close();
-
-    $mr_url = generateURLRewrite($mr_marche);
-
-    return "$rootBasePath_http/$ct_url/$mr_url-per-$st_url-st$st_id-mr$mr_id";
-
-}
-
-function generateFamigliaLink($pr_fm_codice)
-{
-
-    global $dbConn, $rootBasePath_http;
-
-    $pr_fm_arr = str_split($pr_fm_codice, 2);
-    $fm_link = "$rootBasePath_http";
-
-    $querySql =
-        "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '" . $pr_fm_arr[0] . "0000' ";
-    $result = $dbConn->query($querySql);
-    $pr_fm_descrizione = $result->fetch_array()[0];
-    $result->close();
-
-    $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-    $fm_link .= "/$famiglia_url";
-
-    if ($pr_fm_arr[1] != '00') {
-
-        $querySql =
-            "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '" . $pr_fm_arr[0] . $pr_fm_arr[1] . "00' ";
-        $result = $dbConn->query($querySql);
-        $pr_fm_descrizione = $result->fetch_array()[0];
-        $result->close();
-
-        $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-        $fm_link .= "/$famiglia_url";
-
-    }
-
-    if ($pr_fm_arr[2] != '00') {
-
-        $querySql =
-            "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '$pr_fm_codice' ";
-        $result = $dbConn->query($querySql);
-        $pr_fm_descrizione = $result->fetch_array()[0];
-        $result->close();
-
-        $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-        $fm_link .= "/$famiglia_url";
-
-    }
-
-    return "$fm_link-$pr_fm_codice";
-
-}
-
-function generateLineaLink($pr_codice_linea, $pr_fm_codice = "")
-{
-
-    global $dbConn, $rootBasePath_http;
-
-    $querySql =
-        "SELECT pr_descrizione_linea, pr_descrizione_marche FROM pr_prodotti " .
-        "WHERE pr_codice_linea = '$pr_codice_linea' LIMIT 0,1 ";
-    $result = $dbConn->query($querySql);
-    list($pr_descrizione_linea, $pr_descrizione_marche) = $result->fetch_array();
-    $result->close();
-
-    $marche_url = generateURLRewrite($pr_descrizione_marche);
-    $linea_url = generateURLRewrite($pr_descrizione_linea);
-
-    if (strlen($pr_fm_codice) == 0) return "$rootBasePath_http/marche-$marche_url/linea-$linea_url-$pr_codice_linea";
-
-    $pr_fm_arr = str_split($pr_fm_codice, 2);
-    $fm_link = "$rootBasePath_http/marche-$marche_url/linea-$linea_url";
-
-    $querySql =
-        "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '" . $pr_fm_arr[0] . "0000' ";
-    $result = $dbConn->query($querySql);
-    $pr_fm_descrizione = $result->fetch_array()[0];
-    $result->close();
-
-    $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-    $fm_link .= "/$famiglia_url";
-
-    if ($pr_fm_arr[1] != '00') {
-
-        $querySql =
-            "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '" . $pr_fm_arr[0] . $pr_fm_arr[1] . "00' ";
-        $result = $dbConn->query($querySql);
-        $pr_fm_descrizione = $result->fetch_array()[0];
-        $result->close();
-
-        $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-        $fm_link .= "/$famiglia_url";
-
-    }
-
-    if ($pr_fm_arr[2] != '00') {
-
-        $querySql =
-            "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '$pr_fm_codice' ";
-        $result = $dbConn->query($querySql);
-        $pr_fm_descrizione = $result->fetch_array()[0];
-        $result->close();
-
-        $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-        $fm_link .= "/$famiglia_url";
-
-    }
-
-    return "$fm_link-$pr_codice_linea-$pr_fm_codice";
-
-}
-
-function generateMarcaLink($pr_codice_marche, $pr_fm_codice = "")
-{
-
-    global $dbConn, $rootBasePath_http;
-
-    $querySql =
-        "SELECT pr_descrizione_marche FROM pr_prodotti " .
-        "WHERE pr_codice_marche = '$pr_codice_marche' LIMIT 0,1 ";
-    $result = $dbConn->query($querySql);
-    list($pr_descrizione_marche) = $result->fetch_array();
-    $result->close();
-
-    $marche_url = generateURLRewrite($pr_descrizione_marche);
-
-    if (strlen($pr_fm_codice) == 0) return "$rootBasePath_http/marche-$marche_url-$pr_codice_marche";
-
-    $pr_fm_arr = str_split($pr_fm_codice, 2);
-    $fm_link = "$rootBasePath_http/marche-$marche_url";
-
-    $querySql =
-        "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '" . $pr_fm_arr[0] . "0000' ";
-    $result = $dbConn->query($querySql);
-    $pr_fm_descrizione = $result->fetch_array()[0];
-    $result->close();
-
-    $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-    $fm_link .= "/$famiglia_url";
-
-    if ($pr_fm_arr[1] != '00') {
-
-        $querySql =
-            "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '" . $pr_fm_arr[0] . $pr_fm_arr[1] . "00' ";
-        $result = $dbConn->query($querySql);
-        $pr_fm_descrizione = $result->fetch_array()[0];
-        $result->close();
-
-        $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-        $fm_link .= "/$famiglia_url";
-
-    }
-
-    if ($pr_fm_arr[2] != '00') {
-
-        $querySql =
-            "SELECT fm_descrizione FROM fm_famiglie WHERE fm_codice = '$pr_fm_codice' ";
-        $result = $dbConn->query($querySql);
-        $pr_fm_descrizione = $result->fetch_array()[0];
-        $result->close();
-
-        $famiglia_url = generateURLRewrite($pr_fm_descrizione);
-        $fm_link .= "/$famiglia_url";
-
-    }
-
-    return "$fm_link-$pr_codice_marche-$pr_fm_codice";
 
 }
 
@@ -266,21 +41,17 @@ function generateProductLink($pr_id)
     global $dbConn, $rootBasePath_http;
 
     $querySql =
-        "SELECT pr_titolo, pr_si_id, pr_mr_id, pr_formato FROM pr_prodotti " .
+        "SELECT pr_id, pr_titolo, ct_categoria FROM pr_prodotti INNER JOIN ct_categorie ON pr_ct_id = ct_id " .
         "WHERE pr_id = '$pr_id' ";
     $result = $dbConn->query($querySql);
-    list($pr_titolo, $pr_si_id, $pr_mr_id, $pr_formato) = $result->fetch_array();
+    list($pr_id, $pr_titolo, $ct_categoria) = $result->fetch_array();
     $result->close();
 
-    $pr_sistema = getSistema($pr_si_id);
-    $pr_marche = getMarca($pr_mr_id);
+    $pr_url = generateURLRewrite($pr_titolo);
+    $ct_categoria = generateURLRewrite($ct_categoria);
+    $link = "$rootBasePath_http/$pr_url-$pr_id";
 
-    $pr_url = generateURLRewrite("$pr_titolo");
-    if (strlen($pr_marche) > 0) $pr_url .= "-della-" . generateURLRewrite($pr_marche);
-    if (strlen($pr_sistema) > 0) $pr_url .= "-sistema-" . generateURLRewrite($pr_sistema);
-    if (strlen($pr_formato) > 0) $pr_url .= "-" . generateURLRewrite($pr_formato);
-
-    return "$rootBasePath_http/$pr_url-pr$pr_id";
+    return $link;
 
 }
 

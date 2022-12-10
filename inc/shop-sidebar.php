@@ -25,32 +25,6 @@
                             ?>
                             <li>
                                 <a href="javascript:;"><?php echo "$ct_categoria <span>($pr_count)</span>"; ?></a><i class="ion-ios-arrow-forward open-submenu"></i>
-                                <ul class="categories-submenu">
-
-                                    <?php
-                                    $subQuery = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_st_id = st_id AND pr_stato > 0 ";
-                                    $querySql = "SELECT st_id, st_sottocategoria, ($subQuery) AS pr_count FROM st_sottocategorie WHERE st_stato > 0 AND st_ct_id = '$ct_id' ";
-                                    $result_st = $dbConn->query($querySql);
-
-                                    while (($row_data_st = $result_st->fetch_assoc()) !== NULL) {
-
-                                        $st_id = $row_data_st['st_id'];
-                                        $st_sottocategoria = $row_data_st['st_sottocategoria'];
-                                        $pr_count = $row_data_st['pr_count'];
-
-                                        $st_link = generateSubCatLink($st_id);
-                                        ?>
-                                        <li>
-                                            <a href="<?php echo $st_link; ?>"><?php echo "$st_sottocategoria <span>($pr_count)</span>"; ?></a>
-                                        </li>
-                                        <?php
-
-                                    }
-
-                                    $result_st->close();
-                                    ?>
-                                    <li><a href="<?php echo $ct_link; ?>">Tutti i prodotti</a></li>
-                                </ul>
                             </li>
                             <?php
 
@@ -63,46 +37,6 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="sidebar-heading">
-            <div class="main-heading">
-                <h2>Sistemi</h2>
-            </div>
-            <!-- Sidebar single item -->
-            <div class="sidebar-widget">
-                <div class="sidebar-widget-list">
-                    <ul class="categories-menu">
-                        <?php
-                        $subQuery = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_si_id = si_id AND pr_stato > 0 ";
-
-                        $querySql = "SELECT si_id, si_sistema, ($subQuery) AS si_count FROM si_sistemi WHERE si_stato > 0 ";
-                        $result = $dbConn->query($querySql);
-                        $rows = $dbConn->affected_rows;
-
-                        while (($row_data = $result->fetch_assoc()) !== NULL) {
-
-                            $si_id = $row_data['si_id'];
-                            $si_sistema = $row_data['si_sistema'];
-                            $si_count = $row_data['si_count'];
-
-                            $si_link = generateSistemaLink($si_id);
-                            ?>
-                            <li>
-                                <a href="<?php echo $si_link; ?>"><?php echo "$si_sistema <span>($si_count)</span>"; ?></a>
-                            </li>
-                            <?php
-
-                        }
-
-                        $result->close();
-                        ?>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-
 
         <div class="sidebar-heading">
             <div class="main-heading">
@@ -114,21 +48,20 @@
                     <ul class="categories-menu">
                         <?php
                         $subQuery = "SELECT COUNT(pr_id) FROM pr_prodotti WHERE pr_mr_id = mr_id AND pr_stato > 0 ";
-
-                        $querySql = "SELECT mr_id, mr_marche, ($subQuery) AS mr_count FROM mr_marche WHERE mr_stato > 0 ";
+                        $querySql = "SELECT mr_id, mr_titolo, ($subQuery) AS mr_count FROM mr_marche WHERE mr_stato > 0 ";
                         $result = $dbConn->query($querySql);
                         $rows = $dbConn->affected_rows;
 
                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
                             $mr_id = $row_data['mr_id'];
-                            $mr_marche = $row_data['mr_marche'];
+                            $mr_titolo = $row_data['mr_titolo'];
                             $mr_count = $row_data['mr_count'];
 
                             $mr_link = generateMarca2Link($mr_id);
                             ?>
                             <li>
-                                <a href="<?php echo $mr_link; ?>"><?php echo "$mr_marche <span>($mr_count)</span>"; ?></a>
+                                <a href="<?php echo $mr_link; ?>"><?php echo "$mr_titolo <span>($mr_count)</span>"; ?></a>
                             </li>
                             <?php
 
