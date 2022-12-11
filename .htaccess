@@ -23,8 +23,7 @@ RewriteRule ^blog/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)-([0-9]+)$ blog-dettaglio.php?b
 RewriteRule ^blog/([0-9]+)$ blog-lista.php?page=$1 [L]
 RewriteRule ^blog$ blog-lista.php [L]
 
-RewriteRule ^([^\.]+)-pr([0-9-]+)$ dettaglio-prodotto.php?pr_id=$2 [L]
-#RewriteRule ^([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([a-z0-9-]+)/([^\.]+)$ prodotto-dettaglio.php?pr_codice=$6 [L]
+RewriteRule ^([^\.]+)-([0-9-]+)$ dettaglio-prodotto.php?pr_id=$2 [L]
 
 RewriteRule ^ricerca/([^\.]+)/([0-9]+)$ lista-prodotti.php?$1&page=$2&page_type=2 [L]
 RewriteRule ^ricerca/([^\.]+)$ lista-prodotti.php?$1&page_type=2 [L]
