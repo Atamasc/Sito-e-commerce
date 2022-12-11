@@ -92,7 +92,7 @@
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_codice">Codice</label>
-                                                <input type="text" class="form-control" id="pr_codice" name="pr_codice" required>
+                                                <input type="text" class="form-control" id="pr_codice" name="pr_codice">
                                                 <span class="tooltips">Inserisci qui il codice inventario del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Codice Inventario" data-content="Codice del prodotto che stai inserendo.">[aiuto]</a></span>
                                             </div>
 

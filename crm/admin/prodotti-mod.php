@@ -112,14 +112,14 @@
                                         <div class="row">
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="pr_codice">Codice</label>
-                                                <input type="text" class="form-control" id="pr_codice" name="pr_codice" value="<?php echo $row_data['pr_codice']; ?>" required>
+                                                <label for="pr_codice">Codice </label>
+                                                <input type="text" class="form-control" id="pr_codice" name="pr_codice" value="<?php echo $row_data['pr_codice']; ?>">
                                                 <span class="tooltips">Codice Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Codice Prodotto" data-content="Questo codice viene generato automaticamente">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="pr_titolo">Titolo</label>
-                                                <input type="text" class="form-control" id="pr_titolo" name="pr_titolo" value="<?php echo $row_data['pr_titolo']; ?>">
+                                                <label for="pr_titolo">Titolo *</label>
+                                                <input type="text" class="form-control" id="pr_titolo" name="pr_titolo" value="<?php echo $row_data['pr_titolo']; ?>" required>
                                                 <span class="tooltips">Titolo Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Titolo Prodotto" data-content="Inserisci qui il titolo del prodotto che vuoi modificare">[aiuto]</a></span>
                                             </div>
 
@@ -156,13 +156,13 @@
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_prezzo_scontato">Prezzo scontato &euro; (Es formato: 5,70 )</label>
-                                                <input type="text" class="form-control" id="pr_prezzo_scontato" name="pr_prezzo_scontato" value="<?php echo strlen(@$row_data['pr_prezzo_scontato']) > 0 ? formatPrice(@$row_data['pr_prezzo_scontato']) : ""; ?>">
+                                                <input type="text" class="form-control" id="pr_prezzo_scontato" name="pr_prezzo_scontato" value="<?php echo @$row_data['pr_prezzo_scontato'] > 0 ? formatPrice(@$row_data['pr_prezzo_scontato']) : ""; ?>">
                                                 <span class="tooltips">Prezzo Prodotto Scontato <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Prezzo Prodotto Scontato" data-content="Inserisci qui il prezzo di vendita scontato del prodotto visibile online compreso di iva">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_sconto">Sconto (%)</label>
-                                                <input type="text" class="form-control" id="pr_sconto" name="pr_sconto" value="<?php echo $row_data['pr_sconto']; ?>">
+                                                <input type="text" class="form-control" id="pr_sconto" name="pr_sconto" value="<?php echo @$row_data['pr_sconto'] > 0 ? formatPrice(@$row_data['pr_sconto']) : ""; ?>">
                                                 <span class="tooltips">Sconto Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Sconto Prodotto" data-content="Inserisci qui la percentuale di sconto visibile online che vuoi applicare sul prodotto">[aiuto]</a></span>
                                             </div>
                                         </div>
@@ -172,13 +172,13 @@
                                         <div class="row">
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_peso">Peso Kg (Es formato: 5.70 )</label>
-                                                <input type="text" class="form-control" id="pr_peso" name="pr_peso" placeholder="Solo numeri e punti (vedi formato)" value="<?php echo strlen(@$row_data['pr_peso']) > 0 ? formatPrice(@$row_data['pr_peso']) : ""; ?>">
+                                                <input type="text" class="form-control" id="pr_peso" name="pr_peso" placeholder="Solo numeri e punti (vedi formato)" value="<?php echo @$row_data['pr_peso'] > 0 ? formatPrice(@$row_data['pr_peso']) : ""; ?>">
                                                 <span class="tooltips">Peso Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Peso Prodotto" data-content="Inserisci qui il peso del prodotto">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
-                                                <label for="pr_giacenza">Giacenza totale</label>
-                                                <input type="text" class="form-control" id="pr_giacenza" name="pr_giacenza" value="<?php echo $row_data['pr_giacenza']; ?>">
+                                                <label for="pr_giacenza">Giacenza totale *</label>
+                                                <input type="text" class="form-control" id="pr_giacenza" name="pr_giacenza" value="<?php echo $row_data['pr_giacenza']; ?>" required>
                                                 <span class="tooltips">Giacenza Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Giacenza Prodotto" data-content="Inserisci qui il numero di pezzi rimasti in magazzino del prodotto">[aiuto]</a></span>
                                             </div>
 
