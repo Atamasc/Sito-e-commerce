@@ -48,7 +48,7 @@ $page_link = generateProductLink($pr_capofila);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Cybek</title>
+    <title><?php echo $pr_titolo; ?> | Cybek</title>
     <meta name="description" content=""/>
     <?php include('inc/head.php'); ?>
 
@@ -98,6 +98,10 @@ $page_link = generateProductLink($pr_capofila);
             color: #fff !important;
         }
 
+        .product-dec-slider-2 .slick-slide img {
+            width: 134px !important;
+        }
+
     </style>
 
 </head>
@@ -125,10 +129,11 @@ $page_link = generateProductLink($pr_capofila);
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumb-content">
-                        <h1 class="breadcrumb-hrading">Single Product Page</h1>
+                        <h1 class="breadcrumb-hrading"><?php echo $pr_titolo; ?></h1>
                         <ul class="breadcrumb-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li>Single Product</li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="<?php echo $ct_link; ?>"><?php echo $ct_categoria; ?></a></li>
+                            <li><?php echo $pr_titolo; ?></li>
                         </ul>
                     </div>
                 </div>
@@ -147,48 +152,48 @@ $page_link = generateProductLink($pr_capofila);
                                 <img class="zoompro" src="<?php echo $pr_immagine; ?>" data-zoom-image="<?php echo $pr_immagine; ?>" alt=""/>
                             </div>
                         </div>
-                        <div id="gallery" class="product-dec-slider-2">
+                        <div id="gallery" class="product-dec-slider-2" style="margin-top: 40px;">
                             <a class="active" data-image="<?php echo $pr_immagine; ?>" data-zoom-image="<?php echo $pr_immagine; ?>">
-                                <img src="<?php echo $pr_immagine; ?>" alt=""/> </a>
+                                <img src="<?php echo $pr_immagine; ?>" alt="" style="cursor: pointer"/>
 
-                            <?php
-                            pageGetImage($get_pr_id);
-                            function pageGetImage($pr_id)
-                            {
+                                <?php
+                                pageGetImage($get_pr_id);
+                                function pageGetImage($pr_id)
+                                {
 
-                                global $dbConn, $rootBasePath_http;
+                                    global $dbConn, $rootBasePath_http;
 
-                                $querySql = "SELECT pi_immagine FROM pi_prodotti_immagini WHERE pi_pr_id = '$pr_id'";
-                                $result = $dbConn->query($querySql);
+                                    $querySql = "SELECT pi_immagine FROM pi_prodotti_immagini WHERE pi_pr_id = '$pr_id' AND pi_stato > 0 ";
+                                    $result = $dbConn->query($querySql);
 
-                                while (($row_data = $result->fetch_assoc()) !== NULL) {
+                                    while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                    $pi_immagine = strlen($row_data['pi_immagine']) > 0 && file_exists("upload/prodotti-immagini/" . $row_data['pi_immagine'])
-                                        ? "$rootBasePath_http/upload/prodotti-immagini/" . $row_data['pi_immagine']
-                                        : "$rootBasePath_http/assets/img/prodotto-dummy.jpg";
-                                    ?>
-                                    <a data-image="<?php echo $pi_immagine; ?>" data-zoom-image="<?php echo $pi_immagine; ?>">
-                                        <img src="<?php echo $pi_immagine; ?>" data-src="<?php echo $pi_immagine; ?>" alt=""/>
-                                    </a>
-                                    <?php
+                                        $pi_immagine = strlen($row_data['pi_immagine']) > 0 && file_exists("upload/prodotti-immagini/" . $row_data['pi_immagine'])
+                                            ? "$rootBasePath_http/upload/prodotti-immagini/" . $row_data['pi_immagine']
+                                            : "$rootBasePath_http/assets/img/prodotto-dummy.jpg";
+                                        ?>
+                                        <a data-image="<?php echo $pi_immagine; ?>" data-zoom-image="<?php echo $pi_immagine; ?>">
+                                            <img src="<?php echo $pi_immagine; ?>" data-src="<?php echo $pi_immagine; ?>" style="cursor: pointer" alt=""/>
+                                        </a>
+                                        <?php
+
+                                    }
+
+                                    $result->close();
 
                                 }
 
-                                $result->close();
+                                ?>
 
-                            }
-
-                            ?>
-
-                            <!--                            <a data-image="assets/images/product-image/organic/product-19.jpg" data-zoom-image="assets/images/product-image/organic/zoom/4.jpg">-->
-                            <!--                                <img src="assets/images/product-image/organic/product-19.jpg" alt=""/> </a>-->
+                                <!--                            <a data-image="assets/images/product-image/organic/product-19.jpg" data-zoom-image="assets/images/product-image/organic/zoom/4.jpg">-->
+                                <!--                                <img src="assets/images/product-image/organic/product-19.jpg" alt=""/> </a>-->
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12">
                     <div class="product-details-content">
-                        <h2 style="margin-top: 0px; text-align: left; font-weight: bold; background-color: #fff; line-height: 36px; margin-bottom: 0px;"><?php echo $pr_titolo; ?></h2>
-                        <p class="reference">Categoria:<a href="<?php echo $ct_link; ?>"><span> <?php echo $ct_titolo; ?></span></a>
+                        <h2 style="margin-top: 0px; text-align: left; font-weight: bold; background-color: #fff; line-height: 36px; margin-bottom: 10px;"><?php echo $pr_titolo; ?></h2>
+                        <p class="reference" style="padding-bottom: 10px">Categoria:<a href="<?php echo $ct_link; ?>"><span style="padding-right: 40px;"> <?php echo $ct_titolo; ?></span></a> Marca:<a href="<?php echo $mr_link; ?>"><span> <?php echo $mr_marchio; ?></span></a>
                         </p>
                         <div class="pro-details-rating-wrap">
                             <div class="rating-product">
@@ -271,7 +276,7 @@ $page_link = generateProductLink($pr_capofila);
                                     <?php }; ?>
 
                                 <?php } else { ?>
-                                    <div style="border: 2px solid red; padding: 20px;">
+                                    <div style="border: 2px solid #0090f0; padding: 20px;">
 
                                         <?php if (substr($_SERVER['REQUEST_URI'], -13) == 'notifica=true') { ?>
                                             <div class="alert alert-success">
@@ -314,22 +319,22 @@ $page_link = generateProductLink($pr_capofila);
                             <div class="social-info">
                                 <ul>
                                     <li>
-                                        <a href="#"><i class="ion-social-facebook"></i></a>
+                                        <a href="javascript:;"><i class="ion-social-facebook"></i></a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="ion-social-twitter"></i></a>
+                                        <a href="javascript:;"><i class="ion-social-twitter"></i></a>
                                     </li>
                                     <!--                                    <li>-->
                                     <!--                                        <a href="#"><i class="ion-social-google"></i></a>-->
                                     <!--                                    </li>-->
                                     <li>
-                                        <a href="#"><i class="ion-social-instagram"></i></a>
+                                        <a href="javascript:;"><i class="ion-social-instagram"></i></a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
-                        <?php //include $row_data['pr_ct_id'] == 4 ? "inc/tab-varianti-macchine.php" : "inc/tab-varianti.php"; ?>
+                        <?php include "inc/tab-varianti.php"; ?>
 
 
                         <!--                        <div class="pro-details-policy">-->

@@ -70,7 +70,7 @@ function getImg2Prodotto($pr_id)
 
     global $dbConn;
 
-    $querySql = "SELECT pi_immagine FROM pi_prodotti_immagini WHERE pi_pr_id = '$pr_id' LIMIT 0, 1";
+    $querySql = "SELECT pi_immagine FROM pi_prodotti_immagini WHERE pi_pr_id = '$pr_id' AND pi_stato > 0 LIMIT 0, 1";
     $result = $dbConn->query($querySql);
     $pi_immagine = $result->fetch_array()[0];
     $result->close();

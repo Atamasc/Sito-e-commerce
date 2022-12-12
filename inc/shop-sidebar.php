@@ -24,7 +24,7 @@
                             $ct_link = generateCatLink($ct_id);
                             ?>
                             <li>
-                                <a href="javascript:;"><?php echo "$ct_categoria <span>($pr_count)</span>"; ?></a><i class="ion-ios-arrow-forward open-submenu"></i>
+                                <a href="<?php echo $ct_link; ?>"><?php echo "$ct_categoria <span>($pr_count)</span>"; ?></a>
                             </li>
                             <?php
 
@@ -40,7 +40,7 @@
 
         <div class="sidebar-heading">
             <div class="main-heading">
-                <h2>Marchi</h2>
+                <h2>Marche</h2>
             </div>
             <!-- Sidebar single item -->
             <div class="sidebar-widget">

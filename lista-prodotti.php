@@ -11,42 +11,31 @@ switch ($get_page_type) {
 
     case 6:
     {
-
         $mr_titolo = getMarca($get_pr_mr_id);
-
-        $titolo_bread = "Prodotti $mr_titolo";
-
-        $page_title = "Prodotti $mr_titolo";
-        $page_desc = "I nostri prodotti $mr_titolo ";
+        $page_title = getMarca($get_pr_mr_id);
         $page_link = generateMarca2Link($get_pr_mr_id);
 
         $page_bread =
-            "<li>$mr_titolo</li>";
+            "<li><a href='lista-prodotti.php'>Prodotti</a></li>
+            <li>$mr_titolo</li>";
 
         break;
     }
 
     case 3:
     {
-
         $page_title = getCategoria($get_pr_ct_id, $dbConn);
-
-        $titolo_bread = getH1Categoria($get_pr_ct_id, $dbConn);
-
-        $page_desc = "I nostri prodotti per '$page_title' ";
         $page_link = generateCatLink($get_pr_ct_id);
 
         $page_bread =
-            "<li>$page_title</li>";
+            "<li><a href='lista-prodotti.php'>Prodotti</a></li>
+             <li>$page_title</li>";
         break;
     }
 
     case 2:
     {
-
         $page_title = "Ricerca";
-        $titolo_bread = "Ricerca";
-        $page_desc = "Ricerca tra i nostri prodotti";
         $page_link = "$rootBasePath_http/ricerca/" . getVarGet(array("page", "page_type"));
 
         $page_bread =
@@ -56,10 +45,7 @@ switch ($get_page_type) {
 
     default:
     {
-
         $page_title = "I nostri prodotti";
-        $titolo_bread = "I nostri prodotti";
-        $page_desc = "Tutti i nostri prodotti";
         $page_link = "$rootBasePath_http/prodotti";
 
         $page_bread =
@@ -74,8 +60,27 @@ switch ($get_page_type) {
 <head>
     <title><?php echo $page_title; ?></title>
 
-
     <?php include('inc/head.php'); ?>
+
+    <style>
+        .categories-menu li a {
+            margin-left: 0 !important;
+            font-size: 16px !important;
+        }
+
+        .categories-menu a span {
+            float: right;
+            margin-right: 30px;
+        }
+
+        .categories-menu {
+            margin-bottom: 20px;
+        }
+
+        .main-heading h2:before {
+            background: #0090f0;
+        }
+    </style>
 </head>
 
 <body class="home-5 home-6 home-8 home-9 home-electronic">
@@ -102,10 +107,10 @@ switch ($get_page_type) {
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumb-content">
-                        <h1 class="breadcrumb-hrading">Shop Page</h1>
+                        <h1 class="breadcrumb-hrading">Lista prodotti</h1>
                         <ul class="breadcrumb-links">
-                            <li><a href="index.html">Home</a></li>
-                            <li>Shop Left Sidebar</li>
+                            <li><a href="index.php">Home</a></li>
+                            <?php echo $page_bread; ?>
                         </ul>
                     </div>
                 </div>
@@ -250,7 +255,7 @@ switch ($get_page_type) {
                                         $pr_immagine = strlen($row_data['pr_immagine']) > 0 && is_file("upload/prodotti/" . $row_data['pr_immagine'])
                                             ? "$rootBasePath_http/upload/prodotti/" . $row_data['pr_immagine']
                                             : "assets/images/prodotto-dummy.jpg";
-                                        $pi_immagine = getImg2Prodotto($pr_id);
+                                        $pi_immagine = @getImg2Prodotto($pr_id);
                                         ?>
 
                                         <div class="col-xl-3 col-md-6 col-lg-4 col-sm-6 col-xs-12">
@@ -348,7 +353,7 @@ switch ($get_page_type) {
                                                         <li class="cart">
                                                             <?php if ($row_data['pr_giacenza'] > 1) { ?>
                                                                 <span class="cart carrello-add" data-codice="<?php echo $pr_codice; ?>"><a class="cart-btn" href="javascript:;">ACQUISTA </a></span>
-                                                            <?php } else if ($row_data['pr_giancenza'] == 1) { ?>
+                                                            <?php } else if ($row_data['pr_giacenza'] == 1) { ?>
                                                                 <span style="color: #FF7D27; font-weight: bold;">In esaurimento</span>
                                                             <?php } else { ?>
                                                                 <span style="color: #FE0000; font-weight: bold;">Non disponibile</span>

@@ -14,8 +14,8 @@ function pageGetVarianti($pr_capofila)
 
         ?>
         <hr>
-        <h5>Altri formati disponibili</h5>
-        <div class="product-details-table table-responsive pro-details-quality">
+        <h5>Altri modelli disponibili</h5>
+        <div class="product-details-table table-responsive pro-details-quality" style="padding-top: 10px;">
             <table class="table">
                 <tbody>
 
@@ -24,20 +24,16 @@ function pageGetVarianti($pr_capofila)
 
                     $pr_id = $row_data['pr_id'];
                     $pr_codice = $row_data['pr_codice'];
-                    $pr_esistenza = $row_data['pr_esistenza'];
-                    $pr_vetrina = $row_data['pr_vetrina'];
-                    $pr_novita = $row_data['pr_novita'];
-                    $pr_promo = $row_data['pr_promo'];
-                    $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
+
+                    $pr_prezzo = @$row_data['pr_prezzo_scontato'] > 0 ? formatPrice($row_data['pr_prezzo_scontato']) : formatPrice($row_data['pr_prezzo']);
                     $pr_link = generateProductLink($pr_id);
 
-                    $mr_marche = getMarca($row_data['pr_mr_id']);
-                    $si_sistema = getSistema($row_data['pr_si_id']);
+                    $mr_marche = @getMarca($row_data['pr_mr_id']);
                     ?>
 
                     <tr>
                         <td>
-                            <a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_formato']; ?></a>
+                            <a href="<?php echo $pr_link; ?>"><?php echo $row_data['pr_titolo']; ?></a>
                         </td>
                         <td>
                             <?php if ($row_data['pr_prezzo_scontato'] > 0) { ?>
@@ -61,7 +57,7 @@ function pageGetVarianti($pr_capofila)
                             </div>
                             -->
 
-                            <div class="pro-details-cart btn-hover">
+                            <div class="pro-details-cart btn-hover" style="display: flex; justify-content: center;">
 
                                 <?php if ($row_data['pr_giacenza'] > 5) { ?>
 
@@ -72,7 +68,7 @@ function pageGetVarianti($pr_capofila)
                                             <i class="fa fa-cart-plus"></i> </a>
                                     <?php }; ?>
 
-                                <?php } else if ($row_data['pr_giancenza'] > 1) { ?>
+                                <?php } else if ($row_data['pr_giacenza'] > 1) { ?>
                                     <span style="color: #FF7D27; font-weight: bold;">In esaurimento</span>
                                 <?php } else { ?>
                                     <span style="color: #FE0000; font-weight: bold;">Non disponibile</span>

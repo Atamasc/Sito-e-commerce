@@ -33,7 +33,7 @@ for ($i = 0; $i < $limit; $i++) {
             "INSERT INTO pi_prodotti_immagini(" .
             "pi_pr_id,  pi_descrizione, pi_immagine, pi_data, pi_stato" .
             ") VALUES (" .
-            "'$im_pr_id',  '$im_descrizione', '$im_immagine_serial_name', '$serial_date', '0')";
+            "'$im_pr_id',  '$im_descrizione', '$im_immagine_serial_name', '$serial_date', 1)";
         $result = $dbConn->query($querySql);
         $rows = $dbConn->affected_rows;
 

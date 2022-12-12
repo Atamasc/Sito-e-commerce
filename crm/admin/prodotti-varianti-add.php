@@ -126,19 +126,19 @@ $result->close();
                                         <div class="row">
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_prezzo">Prezzo &euro; (Es formato: 5.70 ) *</label>
-                                                <input type="text" class="form-control" id="pr_prezzo" name="pr_prezzo" value="<?php echo formatPrice($row_data['pr_prezzo']); ?>" required>
+                                                <input type="text" class="form-control" id="pr_prezzo" name="pr_prezzo" value="<?php echo strlen(@$row_data['pr_prezzo']) > 0 ? formatPrice(@$row_data['pr_prezzo']) : ""; ?>" required>
                                                 <span class="tooltips">Inserisci qui il prezzo del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Prezzo Prodotto" data-content="Indica qui la cifra necessaria per comprare il prodotto. ">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_prezzo_scontato">Prezzo scontato &euro; (Es formato: 5.70 )</label>
-                                                <input type="text" class="form-control" id="pr_prezzo_scontato" name="pr_prezzo_scontato" value="<?php echo formatPrice($row_data['pr_prezzo_scontato']); ?>">
+                                                <input type="text" class="form-control" id="pr_prezzo_scontato" name="pr_prezzo_scontato" value="<?php echo @$row_data['pr_prezzo_scontato'] > 0 ? formatPrice(@$row_data['pr_prezzo_scontato']) : ""; ?>">
                                                 <span class="tooltips">Inserisci qui il prezzo scontato del tuo prodotto <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Prezzo Scontato Prodotto" data-content="Indica qui la cifra necessaria per comprare il prodotto, in questo campo andrà inserito il prezzo già scontato">[aiuto]</a></span>
                                             </div>
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_sconto">Sconto (%)</label>
-                                                <input type="text" class="form-control" id="pr_sconto" name="pr_sconto" value="<?php echo $row_data['pr_sconto']; ?>">
+                                                <input type="text" class="form-control" id="pr_sconto" name="pr_sconto" value="<?php echo @$row_data['pr_sconto'] > 0 ? formatPrice(@$row_data['pr_sconto']) : ""; ?>">
                                                 <span class="tooltips">Inserisci qui la percentuale dello sconto che intendi applicare <a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Sconto sul Prodotto" data-content="Indica qui quanto sconto vuoi applicare al prodotto,">[aiuto]</a></span>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@ $result->close();
                                         <div class="row">
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_peso">Peso kg (Es formato: 5.70 ) </label>
-                                                <input type="text" class="form-control" id="pr_peso" name="pr_peso" value="<?php echo $row_data['pr_peso']; ?>">
+                                                <input type="text" class="form-control" id="pr_peso" name="pr_peso" placeholder="Solo numeri e punti (vedi formato)" value="<?php echo @$row_data['pr_peso'] > 0 ? formatPrice(@$row_data['pr_peso']) : ""; ?>">
                                                 <span class="tooltips">Inserisci qui il peso del tuo prodotto<a tabindex="0" style="color: blue; cursor: pointer;" role="button" data-toggle="popover" data-trigger="focus" title="Peso Prodotto" data-content="Indica qui il peso del tuo prodotto.">[aiuto]</a></span>
                                             </div>
 
