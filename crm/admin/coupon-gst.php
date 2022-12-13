@@ -180,7 +180,6 @@
                                                 echo "</td>";
                                                 echo "</tr>";
 
-                                                $i += 1;
                                             };
 
                                             if ($rows == 0) {

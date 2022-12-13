@@ -34,10 +34,10 @@ $result->close();
 if ($rows > 0) {
 
     session_start();
-    $_SESSION['ut_login'] = "1";
-    $_SESSION['ut_codice'] = $ut_codice;
+    $_SESSION['cl_login'] = "1";
+    $_SESSION['cl_codice'] = $ut_codice;
 
-    $querySql = "UPDATE cr_carrello SET cr_ut_codice = '$ut_codice' WHERE cr_ut_codice = '".session_id()."' ";
+    $querySql = "UPDATE cr_carrello SET cr_ut_codice = '$ut_codice' WHERE cr_ut_codice = '" . session_id() . "' ";
     $result = $dbConn->query($querySql);
     $rows = $dbConn->affected_rows;
 

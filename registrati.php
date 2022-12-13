@@ -18,7 +18,7 @@
             text-transform: uppercase;
             line-height: 1;
             padding: 15px 52px;
-            margin-top: 33px;
+            margin-top: 10px;
             outline: none;
             -webkit-transition: all .3s ease 0s;
             -o-transition: all .3s ease 0s;

@@ -102,6 +102,10 @@ $page_link = generateProductLink($pr_capofila);
             width: 134px !important;
         }
 
+        .reference a {
+            color: black;
+        }
+
     </style>
 
 </head>

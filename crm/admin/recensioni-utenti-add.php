@@ -11,8 +11,9 @@
     <body>
 
     <?php
-    $get_ba_id = isset($_GET['ba_id']) ? (int)$_GET['ba_id'] : 0;
-    $get_ba_numero = isset($_GET['ba_numero']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ba_numero']))) : "";
+    $get_ut_nome = isset($_GET['ut_nome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_nome']))) : "";
+    $get_ut_cognome = isset($_GET['ut_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_cognome']))) : "";
+    $get_ut_email = isset($_GET['ut_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_email']))) : "";
     ?>
 
     <div class="wrapper">
@@ -21,57 +22,54 @@
             <img src="../images/pre-loader/loader-01.svg" alt="">
         </div>
         <!--================================= preloader -->
-        <!--================================= header start-->
-
-        <?php include "inc/header.php"; ?>
-
-        <!--================================= header End-->
         <!--================================= Main content -->
 
         <div class="container-fluid">
             <div class="row">
-                <!-- Left Sidebar -->
-                <?php include "inc/sidebar.php"; ?>
-                <!-- Left Sidebar End-->
 
                 <!--================================= Main content -->
                 <!--================================= wrapper -->
                 <div class="content-wrapper">
                     <div class="page-title">
                         <div class="row">
-                            <div class="col-sm-6">
-                                <h4 class="mb-0"> Gestione beauty assistant </h4>
-                            </div>
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                                    <li class="breadcrumb-item"><a href="dashboard.php" class="default-color">Home</a></li>
-                                    <li class="breadcrumb-item active">Gestione numeri</li>
-                                </ol>
+                            <div class="col-sm-12">
+                                <h4 class="mb-2"> Associa cliente </h4>
                             </div>
                         </div>
                     </div>
                     <!-- main body -->
                     <div class="row">
 
-                        <div class="col-xl-12 mb-30">
+                        <div class="col-xl-12 mb-10">
 
-                            <div class="card card-statistics">
+                            <div class="card card-statistics mb-30">
                                 <div class="card-body">
 
                                     <form method="get" action="?" enctype="multipart/form-data">
 
-                                        <h5 class="card-title">Filtra numeri</h5>
+                                        <h5 class="card-title">Filtra clienti</h5>
 
                                         <div class="form-row">
 
-                                            <div class="col-md-3 mb-3">
-                                                <label>Numero</label>
-                                                <input type="text" name="ba_numero" class="form-control" value="<?php echo $get_ba_numero; ?>">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="ut_nome">Nome</label>
+                                                <input type="text" name="ut_nome" class="form-control" value="<?php echo $get_ut_nome; ?>">
                                             </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="ut_cognome">Cognome</label>
+                                                <input type="text" name="ut_cognome" class="form-control" value="<?php echo $get_ut_cognome; ?>">
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="ut_email">Email</label>
+                                                <input name="ut_email" id="ut_email" class="form-control" type="text" autocomplete="off"
+                                                        value="<?php echo $get_ut_email; ?>">
+                                            </div>
+
                                         </div>
 
                                         <button class="btn btn-primary" type="submit">Cerca</button>
-                                        <a href="beauty-add.php" class="btn btn-success">Aggiungi numero</a>
 
                                     </form>
 
@@ -84,10 +82,10 @@
                             <div class="card card-statistics h-100">
                                 <div class="card-body">
 
-                                    <h5 class="card-title border-0 pb-0">Lista numeri</h5>
+                                    <h5 class="card-title border-0 pb-0">Lista clienti</h5>
 
                                     <?php
-                                    if(@$_GET['delete'] == 'true') {
+                                    if (@$_GET['delete'] == 'true') {
 
                                         ?>
                                         <div class="alert alert-success" role="alert">
@@ -103,18 +101,19 @@
                                         <table class="table table-1 table-bordered table-striped mb-0">
                                             <thead>
                                             <tr>
-                                                <th width="40">ID</th>
-                                                <th>Numero</th>
-                                                <th>Orari</th>
-                                                <th style="text-align: center;" width="200">Stato</th>
-                                                <th style="text-align: center;" width="300">Gestione</th>
+                                                <th>Nome</th>
+                                                <th>Cognome</th>
+                                                <th>Email</th>
+                                                <th style="text-align: center; width: 100px;">Gestione</th>
                                             </tr>
                                             </thead>
                                             <tbody>
 
                                             <?php
-                                            $querySql = "SELECT COUNT(ba_id) FROM ba_beauty_assistant WHERE ba_id > 0 ";
-                                            if(strlen($get_ba_numero) > 0) $querySql .= " AND ba_numero LIKE '%$get_ba_numero%' ";
+                                            $querySql = "SELECT COUNT(ut_id) FROM ut_utenti WHERE ut_id > 0 ";
+                                            if (strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                            if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -129,53 +128,36 @@
                                             // primo parametro di LIMIT
                                             $primo = ($current_page - 1) * $per_page;
 
-                                            $querySql = "SELECT * FROM ba_beauty_assistant WHERE ba_id > 0 ";
-                                            if(strlen($get_ba_numero) > 0) $querySql .= " AND ba_numero LIKE '%$get_ba_numero%' ";
-                                            $querySql .= " ORDER BY ba_numero LIMIT $primo, $per_page";
+                                            $querySql = "SELECT * FROM ut_utenti WHERE ut_id > 0 ";
+                                            if (strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
+                                            if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
+                                            if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
+                                            $querySql .= " ORDER BY ut_id LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                            $ba_id = $row_data['ba_id'];
-                                            $ba_numero = $row_data['ba_numero'];
 
-                                            echo "<tr>";
-                                            echo "<td>$ba_id</td>";
-                                            echo "<td>" . $row_data['ba_numero'] . "</td>";
-                                            echo "<td>" . $row_data['ba_orari'] . "</td>";
+                                                $ut_codice = $row_data['ut_codice'];
+                                                $ut_id = $row_data['ut_id'];
+                                                $ut_nome = $row_data['ut_nome'];
+                                                $ut_cognome = $row_data['ut_cognome'];
 
-                                            //Stato
-                                            echo "<td align='center'>";
-                                            if ($row_data['ba_stato'] == 0) { ?>
-                                                <div class="checkbox checbox-switch switch-success">
-                                                    <label>
-                                                        <input type="checkbox" class="stato" title="beauty-stato-do.php?ba_id=<?php echo $ba_id; ?>"><span></span>
-                                                    </label>
-                                                </div>
-                                            <?php } else { ?>
-                                                <div class="checkbox checbox-switch switch-success">
-                                                    <label>
-                                                        <input type="checkbox" class="stato" title="beauty-stato-do.php?ba_id=<?php echo $ba_id; ?>" checked><span></span>
-                                                    </label>
-                                                </div>
-                                            <?php }
-
-                                            echo "</td>";
+                                                echo "<tr>";
+                                                echo "<td>$ut_nome</td>";
+                                                echo "<td>$ut_cognome</td>";
+                                                echo "<td>" . $row_data['ut_email'] . "</td>";
 
                                                 //Gestione
                                                 echo "<td align='center'>";
-                                                echo "<a class='btn btn-success btn-sm' href='beauty-mod.php?ba_id=$ba_id' title='Modifica'>modifica</a>&nbsp;";
-                                                echo "<button class='btn btn-danger btn-sm elimina' data-href='beauty-del-do.php?ba_id=$ba_id'>elimina</button>";
+                                                echo "<a class='btn btn-primary btn-sm' href='javascript:pageAddCliente($ut_codice, \"$ut_nome\");' title='Conferimento'>associa</a>&nbsp;";
                                                 echo "</td>";
                                                 echo "</tr>";
 
-                                                $i += 1;
                                             };
 
-                                            if ($rows == 0) {
-                                                echo "<tr><td colspan='99' align='center'>Non ci sono numeri presenti</td></tr>";
-                                            }
+                                            if ($rows == 0) echo "<tr><td colspan='99' align='center'>Non ci sono anagrafiche</td></tr>";
 
                                             $result->close();
 
@@ -183,11 +165,11 @@
 
                                             $varget = "?";
                                             foreach ($_GET as $k => $v)
-                                                if($k != 'page') $varget .= "&$k=$v";
+                                                if ($k != 'page') $varget .= "&$k=$v";
 
                                             for ($i = $current_page - 5; $i <= $current_page + 5; $i++) {
 
-                                                if($i < 1 || $i > $tot_pages) continue;
+                                                if ($i < 1 || $i > $tot_pages) continue;
 
                                                 if ($i == $current_page)
                                                     $paginazione .= "<a href='javascript:;' title='Vai alla pagina $i' class='btn btn-info'>$i</a>";
@@ -234,6 +216,17 @@
     footer -->
 
     <?php include "inc/javascript.php"; ?>
+
+    <script>
+        function pageAddCliente(ut_codice, ut_nome) {
+
+            window.opener.$("#ut_codice").val(ut_codice);
+            window.opener.$("#ut_nome").val(ut_nome);
+
+            window.close();
+
+        }
+    </script>
 
     </body>
 

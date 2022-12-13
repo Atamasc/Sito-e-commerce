@@ -472,14 +472,14 @@ function getImmagineBlog($bl_id)
 
 function mediaRecensioni($pr_codice, mysqli $dbConn)
 {
-    $querySqlCount = "SELECT COUNT(rc_id) FROM rc_recensioni WHERE rc_id > 0 AND rc_pr_codice = '$pr_codice' ";
+    $querySqlCount = "SELECT COUNT(rc_id) FROM rc_recensioni WHERE rc_id > 0 AND rc_pr_codice = '$pr_codice' AND rc_stato > 0 ";
     $result = $dbConn->query($querySqlCount);
     $row = $result->fetch_row();
     $row_cnt = $row[0];
 
     $media = 0;
     if ($row_cnt > 0) {
-        $querySql = "SELECT * FROM rc_recensioni WHERE rc_id > 0 AND rc_pr_codice = '$pr_codice' ";
+        $querySql = "SELECT * FROM rc_recensioni WHERE rc_id > 0 AND rc_pr_codice = '$pr_codice' AND rc_stato > 0 ";
         $result = $dbConn->query($querySql);
         $rows = $dbConn->affected_rows;
 
