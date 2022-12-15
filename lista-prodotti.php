@@ -77,9 +77,10 @@ switch ($get_page_type) {
             margin-bottom: 20px;
         }
 
-        .main-heading h2:before {
+        .main-heading h2:before, .pro-pagination-style a:hover, .pro-pagination-style .active {
             background: #0090f0;
         }
+
     </style>
 </head>
 
