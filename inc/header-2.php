@@ -104,41 +104,39 @@ function isMobile()
                                          </ul>
                                      </div>
                                  </div>-->
-                            <?php if ($session_cl_login > 0) { ?>
-                                <a href="wishlist.php" class="count-cart heart"></a>
-                            <?php } ?>
+                            <!--                                <a href="wishlist.php" class="count-cart heart"></a>-->
 
                             <div class="mini-cart-warp">
-                                <a href="#" class="count-cart"><span>$20.00</span></a>
+                                <a href="javascript:void(0)" class="count-cart"><span>&euro;0,00</span></a>
                                 <div class="mini-cart-content">
-                                    <ul>
-                                        <li class="single-shopping-cart">
-                                            <div class="shopping-cart-img">
-                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/1.jpg"/></a>
-                                                <span class="product-quantity">1x</span>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="single-product.php">Juicy Couture...</a></h4>
-                                                <span>$9.00</span>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="ion-android-cancel"></i></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="single-shopping-cart">
-                                            <div class="shopping-cart-img">
-                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/2.jpg"/></a>
-                                                <span class="product-quantity">1x</span>
-                                            </div>
-                                            <div class="shopping-cart-title">
-                                                <h4><a href="single-product.php">Water and Wind...</a></h4>
-                                                <span>$11.00</span>
-                                                <div class="shopping-cart-delete">
-                                                    <a href="#"><i class="ion-android-cancel"></i></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <!--                                    <ul>-->
+                                    <!--                                        <li class="single-shopping-cart">-->
+                                    <!--                                            <div class="shopping-cart-img">-->
+                                    <!--                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/1.jpg"/></a>-->
+                                    <!--                                                <span class="product-quantity">1x</span>-->
+                                    <!--                                            </div>-->
+                                    <!--                                            <div class="shopping-cart-title">-->
+                                    <!--                                                <h4><a href="single-product.php">Juicy Couture...</a></h4>-->
+                                    <!--                                                <span>$9.00</span>-->
+                                    <!--                                                <div class="shopping-cart-delete">-->
+                                    <!--                                                    <a href="#"><i class="ion-android-cancel"></i></a>-->
+                                    <!--                                                </div>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </li>-->
+                                    <!--                                        <li class="single-shopping-cart">-->
+                                    <!--                                            <div class="shopping-cart-img">-->
+                                    <!--                                                <a href="single-product.php"><img alt="" src="assets/images/product-image/mini-cart/2.jpg"/></a>-->
+                                    <!--                                                <span class="product-quantity">1x</span>-->
+                                    <!--                                            </div>-->
+                                    <!--                                            <div class="shopping-cart-title">-->
+                                    <!--                                                <h4><a href="single-product.php">Water and Wind...</a></h4>-->
+                                    <!--                                                <span>$11.00</span>-->
+                                    <!--                                                <div class="shopping-cart-delete">-->
+                                    <!--                                                    <a href="#"><i class="ion-android-cancel"></i></a>-->
+                                    <!--                                                </div>-->
+                                    <!--                                            </div>-->
+                                    <!--                                        </li>-->
+                                    <!--                                    </ul>-->
                                     <div class="shopping-cart-total">
                                         <h4>Subtotal : <span>$20.00</span></h4>
                                         <h4>Shipping : <span>$7.00</span></h4>

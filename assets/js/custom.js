@@ -1,6 +1,6 @@
-$(function() {
+$(function () {
 
-    String.prototype.replaceArray = function(find, replace) {
+    String.prototype.replaceArray = function (find, replace) {
         var replaceString = this;
         for (var i = 0; i < find.length; i++) {
             replaceString = replaceString.replace(find[i], replace[i]);
@@ -8,7 +8,7 @@ $(function() {
         return replaceString;
     };
 
-    $('.form-rewrite').parents('form').submit(function(e){
+    $('.form-rewrite').parents('form').submit(function (e) {
         e.preventDefault(e);
         return false;
     });
@@ -34,7 +34,7 @@ $(function() {
 });
 
 // === CARRELLO ===
-$(function() {
+$(function () {
 
     checkCart();
 
@@ -72,11 +72,12 @@ $('.carrello-add').click(function () {
 
     $('#lw-alert')
         .delay(100).fadeIn('slow')
-        .delay(1000).animate({bottom: '150px', opacity:0}, 700).css('translate', 'transform')
-        .css({'bottom':0, 'opacity':1});
+        .delay(1000).animate({bottom: '150px', opacity: 0}, 700).css('translate', 'transform')
+        .css({'bottom': 0, 'opacity': 1});
 
     let pr_codice = $(this).data('codice');
-    let pr_quantita = $('#pr_quantita').val();
+    let pr_quantita = $('#pr_quantita').val() > 0 ? $('#pr_quantita').val() : 1;
+    
     $.get('ajax/carrello-add-do?pr_quantita=' + pr_quantita + '&pr_codice=' + pr_codice, function (data) {
 
         checkCart();
@@ -114,8 +115,8 @@ $('.wishlist-add').click(function () {
 
     $('#lw-alert')
         .delay(100).fadeIn('slow')
-        .delay(1000).animate({bottom: '150px', opacity:0}, 700).css('translate', 'transform')
-        .css({'bottom':0, 'opacity':1});
+        .delay(1000).animate({bottom: '150px', opacity: 0}, 700).css('translate', 'transform')
+        .css({'bottom': 0, 'opacity': 1});
 
     let pr_codice = $(this).data('codice');
     $.get('ajax/wishlist-add-do?pr_codice=' + pr_codice, function (data) {
@@ -125,7 +126,7 @@ $('.wishlist-add').click(function () {
 });
 
 
-$(function() {
+$(function () {
 
     // ==== MODALI ====
     $('a[data-target="#modal_box"]').click(function () {
@@ -141,7 +142,7 @@ $(function() {
 
 });
 
-$(function() {
+$(function () {
     if (window.matchMedia("(max-width:800px)").matches) {
         $('.carrello-add').click(function () {
             $('#similapp').css('display', 'block');
@@ -152,22 +153,22 @@ $(function() {
                 .css({'bottom': 60});
 
             $('#scrollUp')
-                .css({'bottom':140, 'right':18});
+                .css({'bottom': 140, 'right': 18});
 
         });
-    }else{
+    } else {
         $('.carrello-add').click(function () {
             $('#lw-alert')
                 .delay(100).fadeIn('slow')
-                .delay(1000).animate({bottom: '150px', opacity:0}, 700).css('translate', 'transform')
-                .css({'bottom':0, 'opacity':1});
+                .delay(1000).animate({bottom: '150px', opacity: 0}, 700).css('translate', 'transform')
+                .css({'bottom': 0, 'opacity': 1});
         });
     }
 });
 
 
 /* LAZY LOADING todo: LUCA Commento la sezione per problemi nella gestione delle immagini allo scroll di ritorno in alto delle pagine con le immagini */
-function lw_isVisable(element){
+function lw_isVisable(element) {
 
     var top_of_element = $(element).offset().top;
     var bottom_of_element = $(element).offset().top + $(element).outerHeight();
@@ -180,16 +181,16 @@ function lw_isVisable(element){
 
 function lw_lazyLoading() {
 
-    $( "img[data-src]" ).each(function( index ) {
+    $("img[data-src]").each(function (index) {
 
-        if(lw_isVisable($(this))) {
+        if (lw_isVisable($(this))) {
             $(this).attr("src", $(this).data("src"));
         }
 
 
     });
 
-    $( "img[src]" ).each(function( index ) { //IMPOSTA DIMENSIONI FISSE RICHESTE DA LIGHTHOUSE
+    $("img[src]").each(function (index) { //IMPOSTA DIMENSIONI FISSE RICHESTE DA LIGHTHOUSE
 
         let width = Math.round($(this).width());
         let height = Math.round($(this).height());
@@ -198,9 +199,9 @@ function lw_lazyLoading() {
 
     });
 
-    $( "*[data-lw-bg]" ).each(function( index ) {
+    $("*[data-lw-bg]").each(function (index) {
 
-        if(lw_isVisable($(this))) $(this).css("background-image", "url(" + $(this).data("lw-bg") + ")");
+        if (lw_isVisable($(this))) $(this).css("background-image", "url(" + $(this).data("lw-bg") + ")");
 
     });
 
@@ -208,7 +209,7 @@ function lw_lazyLoading() {
 
 function lw_lazyLoadingJS() {
 
-    $( "script[data-src]" ).each(function( index ) {
+    $("script[data-src]").each(function (index) {
 
         $(this).attr("src", $(this).data("src"));
 
@@ -216,13 +217,13 @@ function lw_lazyLoadingJS() {
 
 }
 
-$(function() {
+$(function () {
 
     lw_lazyLoading();
 
 });
 
-$(window).scroll(function() {
+$(window).scroll(function () {
 
     lw_lazyLoading();
     lw_lazyLoadingJS();
