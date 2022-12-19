@@ -1305,14 +1305,14 @@ function is_base64_encoded($data)
 function formatPercent($number)
 {
 
-    return number_format($number, 0, ",", ".");
+    return @number_format($number, 0, ",", ".");
 
 }
 
 function formatPrice($number)
 {
 
-    return number_format($number, 2, ",", ".");
+    return @number_format($number, 2, ",", ".");
 
 }
 
@@ -1582,7 +1582,7 @@ function checkFatturazione($ut_codice)
 function getIndirizzoClienteByCodice($ut_codice, mysqli $dbConn)
 {
 
-    $querySql = "SELECT ut_indirizzo, ut_comune, ut_provincia, ut_cap FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
+    $querySql = "SELECT ut_indirizzo, ut_citta, ut_provincia, ut_cap FROM ut_utenti WHERE ut_codice = '$ut_codice' ";
     $result = $dbConn->query($querySql);
     $row_data = $result->fetch_array();
     $result->close();
@@ -1729,7 +1729,7 @@ function getPrezzoSpedizione($spedizione, $totale)
 
     }
 
-    return $prezzo;
+    return @$prezzo;
 
 }
 
@@ -1760,7 +1760,7 @@ function getCouponByCodice($get_or_codice, mysqli $dbConn)
     $row_data = $result->fetch_array();
     $result->close();
 
-    return $row_data[0];
+    return @$row_data[0];
 
 }
 

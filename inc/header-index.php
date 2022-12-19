@@ -104,7 +104,7 @@ function isMobile()
                                          </ul>
                                      </div>
                                  </div>-->
-                            <!--                                <a href="wishlist.php" class="count-cart heart"></a>-->
+                            <a href="wishlist.php" title="Preferiti" class="count-cart heart"></a>
 
                             <div class="mini-cart-warp">
                                 <a href="javascript:void(0)" class="count-cart"><span>&euro;0,00</span></a>

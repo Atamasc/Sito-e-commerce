@@ -283,12 +283,7 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default single-my-account">
-                                <div class="panel-heading my-account-title">
-                                    <h3 class="panel-title"><span>4 .</span>
-                                        <a href="wishlist.html">Modify your wish list </a></h3>
-                                </div>
-                            </div>
+                         
                         </div>
                     </div>
                 </div>

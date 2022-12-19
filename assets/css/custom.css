@@ -42,3 +42,20 @@
 
     color: #999 !important;
 }
+
+.shopping-cart-img a img {
+    height: 64px !important;
+}
+
+/*nascondo numeretto wishlist a cuore nell header*/
+.count-cart.sel.heart:after {
+    display: none;
+}
+
+.count-cart.heart:after {
+    display: none;
+}
+
+.cart-shiping-update-wrapper {
+    justify-content: flex-end;
+}
