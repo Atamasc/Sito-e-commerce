@@ -1576,7 +1576,7 @@ function selectTag($par1)
 
 }
 
-function selectBlogCategorie($bc_param = '', $dbConn)
+function selectBlogCategorie($bc_param = "", $dbConn)
 {
 
     $querySql = "SELECT * FROM bc_blog_categorie";

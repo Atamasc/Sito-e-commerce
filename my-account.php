@@ -231,11 +231,11 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
                                                                     $or_codice = $row_data['or_codice'];
                                                                     $or_spedizione = $row_data['or_spedizione'];
                                                                     $or_pagamento = $row_data['or_pagamento'];
-                                                                    $or_sconto = $row_data['or_sconto'];
                                                                     $or_coupon_valore = $row_data['or_coupon_valore'];
                                                                     $or_coupon_tipo = $row_data['or_coupon_tipo'];
                                                                     $or_coupon = $row_data['or_coupon'];
                                                                     $or_totale_importo = $row_data['or_totale_importo'];
+                                                                    $or_timestamp = $row_data['or_timestamp'];
 
                                                                     $or_pagamento_prezzo = getPrezzoPagamento($or_pagamento, $or_totale_importo);
 
@@ -248,7 +248,7 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
                                                                     $or_totale_importo = $or_totale_importo - $or_sconto_coupon + $or_pagamento_prezzo + $or_spedizione;
 
                                                                     echo "<tr>";
-                                                                    echo "<td>" . date('d/m/Y', substr($or_codice, 9)) . "</td>";
+                                                                    echo "<td>" . date('d/m/Y', $or_timestamp) . "</td>";
                                                                     echo "<td>$or_codice</td>";
                                                                     echo "<td>" . $row_data['or_count'] . "</td>";
                                                                     echo "<td>&euro;" . formatPrice($or_totale_importo) . "</td>";
@@ -283,7 +283,7 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
                                     </div>
                                 </div>
                             </div>
-                         
+
                         </div>
                     </div>
                 </div>

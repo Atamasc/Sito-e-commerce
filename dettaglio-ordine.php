@@ -156,7 +156,6 @@ $or_totale_ordine = '1';
                                 $or_id = $row_data['or_id'];
                                 $pr_id = $row_data['pr_id'];
                                 $pr_codice = $row_data['pr_codice'];
-                                $pr_quantita = $row_data['pr_quantita'];
                                 $or_pr_quantita = $row_data['or_pr_quantita'];
                                 $or_pagamento = $row_data['or_pagamento'];
                                 $or_tipo_spedizione = $row_data['or_tipo_spedizione'];
@@ -505,8 +504,8 @@ $or_totale_ordine = '1';
 
                                 </div>
 
-                                <div class="col-12 text-right" style="margin-top: 10px; <?php if (isMobile()) echo ''; else echo 'margin-left: 360px;'; ?>">
-                                    <a style="max-width: 200px;" class="btn btn-secondary btn-print" href="javascript:PrintElem()">Stampa</a>
+                                <div class="col-12 text-right" style="margin-top: 10px; <?php if (isMobile()) echo ''; else echo 'display: flex; justify-content: flex-end'; ?>">
+                                    <a style="width: 200px;" class="btn btn-secondary btn-print" href="javascript:PrintElem()">Stampa</a>
                                 </div>
 
                             </div>

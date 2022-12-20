@@ -490,12 +490,7 @@
                                                     </p>
                                                     <input type="text" name="cr_coupon" autocomplete="off" id="coupon" style="margin-bottom: 15px;"/>
                                                 </div>
-
                                                 <hr>
-                                                <?php if ($session_cl_login == 0) { ?>
-                                                    <p>Registrati o accedi o procedi con l'ordine rapido.</p>
-                                                <?php } ?>
-
                                                 <p class="mt-3" style="padding-top: 15px; margin-bottom: 10px;">Note ordine e biglietto regalo</p>
                                                 <textarea id="coupon" name="cr_note" rows="4" style="width: 100%; height: 100px; margin-bottom: 0px;" placeholder="Specifica qui eventuali note ordine oppure quale messaggio vuoi che sia scritto in caso di confezione regalo."><?php echo @$cr_note; ?></textarea>
 
@@ -508,7 +503,7 @@
                                 <div class="col-lg-4 col-md-6">
                                     <div class="discount-code-wrapper">
                                         <div class="title-wrap">
-                                            <h4 class="cart-bottom-title section-bg-gray">REGISTRAZIONE O ACQUISTO RAPIDO ?</h4>
+                                            <h4 class="cart-bottom-title section-bg-gray">REGISTRAZIONE</h4>
                                         </div>
                                         <div class="discount-code">
                                             <p>
@@ -526,25 +521,6 @@
                                             </p>
                                         </div>
 
-                                        <hr>
-                                        <div class="discount-code">
-                                            <p>
-                                                <strong>Acquisto rapido senza registrazione</strong>
-                                                <br> Se acquisti in modo rapido senza registrazione non puoi utilizzare i coupon sconto.<br> Inoltre non avrai una tua area riservata e non potrai visionare dettagli, riepilogo ordine e non avrai possibilità di modificare alcuna informazione.
-                                            </p>
-                                        </div>
-
-                                        <!--
-                                        <hr>
-                                        <div class="discount-code">
-                                            <div id="payment" class="row hid-ambaradan">
-                                            <div class="col-md-12">
-                                                <label class="active-payment" for="paypal"><i class="fa fa-credit-card" ></i><span>Carta di credito / Paypal</span></label>
-                                                <input style="display: none;" type="radio" id="paypal" name="cr_pagamento" title="Carta di credito / Paypal" value="Paypal" checked>
-                                            </div>
-                                            </div>
-                                        </div>
-                                        -->
                                     </div>
                                 </div>
 
@@ -605,12 +581,7 @@
                                             <a style="width: 290px; display: inline-block !important;" href="<?php echo "$rootBasePath_http/registrati"; ?>">Registrati subito</a>
                                             <br><br>
                                             <a style="width: 290px; display: inline-block !important;" href="<?php echo "$rootBasePath_http/login"; ?>">Accedi alla tua area</a>
-                                            <br>
-
-                                            <?php if ($cr_totale > 0) { ?>
-                                                <br><p>Acquista rapidamente senza registrazione</p><br>
-                                                <button class="btn-hover-rapido" type="submit" style="width: 290px;">Acquisto Rapido</button>
-                                            <?php } ?>
+                                            
                                         <?php } else {
 
                                             echo "<button class=\"btn-hover\" type=\"submit\" style=\"width: 100%;\">Conferma carrello</button>";

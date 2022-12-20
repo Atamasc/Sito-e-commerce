@@ -14,6 +14,7 @@ $value_coupon = "";
 
 while (($row_data = $result->fetch_assoc()) !== NULL) {
 
+
     $cr_id = $row_data['cr_id'];
     $cr_ut_codice = $row_data['cr_ut_codice'];
     $cr_pr_codice = $row_data['cr_pr_codice'];
@@ -32,7 +33,7 @@ while (($row_data = $result->fetch_assoc()) !== NULL) {
     $pr_ct_id_categoria = getCategoria($pr_ct_id, $dbConn);
 
     $pr_id = $row_data['pr_id'];
-    $pr_prezzo = strlen($row_data['pr_prezzo_scontato']) > 0 ? $row_data['pr_prezzo_scontato'] : $row_data['pr_prezzo'];
+    $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? $row_data['pr_prezzo_scontato'] : $row_data['pr_prezzo'];
     $pr_titolo = $row_data['pr_titolo'];
 
     $cr_note = $dbConn->real_escape_string(stripslashes(trim($cr_note)));
@@ -64,9 +65,9 @@ while (($row_data = $result->fetch_assoc()) !== NULL) {
     $result_insert = $dbConn->query($querySql_insert);
     $rows_insert = $dbConn->affected_rows;
 
-    $importo_prodotto = $pr_prezzo * $cr_pr_quantita;
+    echo $importo_prodotto = $pr_prezzo * $cr_pr_quantita;
 
-    $body_mail_pr .=
+    @$body_mail_pr .=
         "<tr>" .
         "<td align='center'>$cr_pr_codice</td>" .
         "<td>
@@ -275,12 +276,6 @@ if ($rows_insert > 0) {
 
         $importo_totale_ordine_paypal = number_format($importo_totale_ordine, 2, '.', '');
 
-        /*
-        $_SESSION['or_codice'] = $or_codice;
-        $_SESSION['importo_totale'] = $importo_totale_ordine_paypal;
-
-        echo "<meta http-equiv='refresh' content='0;url=pagamento-paypal' />";
-        */
 
         $return_link = "$rootBasePath_http/confirmPayPal.php?or_codice=$or_codice";
         $cancel_link = "$rootBasePath_http/dettaglio-ordine?or_codice=$or_codice&insert=false";

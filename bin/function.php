@@ -1907,11 +1907,14 @@ function getStatoCarrello($ut_codice)
 //INIZIO DATI PAGAMENTO PER IL FLUSSO
 function configGetDato($dp_nome)
 {
-
     global $dbConn;
 
+    $querySql = "SELECT dp_valore FROM dp_dati_pagamenti WHERE dp_nome = '$dp_nome' ";
+    $result = $dbConn->query($querySql);
+    $dp_valore = $result->fetch_array()[0];
+    $result->close();
 
-    return 2;
+    return $dp_valore;
 
 }
 
