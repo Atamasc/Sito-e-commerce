@@ -70,17 +70,10 @@
                                     $or_id = $row_data['or_id'];
                                     $or_codice = $row_data['or_codice'];
                                     $or_pagamento = $row_data['or_pagamento'];
-                                    $or_tracking = $row_data['or_tracking'];
-                                    $or_fattura = $row_data['or_fattura'];
                                     $or_ut_codice = $row_data['or_ut_codice'];
                                     $or_note = $row_data['or_note'];
                                     $or_note_admin = $row_data['or_note_admin'];
-
-                                    if ($or_fattura == '0') {
-                                        $or_fattura = 'No';
-                                    } else if ($or_fattura == '1') {
-                                        $or_fattura = 'SI';
-                                    }
+                                    $or_tracking = @$row_data['or_tracking'];
 
                                     if ($row_data['or_stato_conferma'] == '0')
                                         echo "<a style='margin-top: 7px;' class='btn btn-danger' href='ordini-stato-conferma-do.php?or_codice=$or_codice' title='Attiva'>Non confermato</a>&nbsp;";
@@ -104,21 +97,6 @@
                                     } else {
                                         echo "<a style='margin-top: 7px;' class='btn btn-success' href='ordini-stato-do.php?or_codice=$or_codice' title='Attiva'>Evasione</a>&nbsp;";
                                     }
-
-                                    if ($row_data['or_fattura'] == '0')
-                                        echo "<a style='margin-top: 7px;' class='btn btn-danger' href='ordini-fattura-do.php?or_codice=$or_codice' title='Attiva'>Fattura non richiesta</a>&nbsp;";
-                                    else
-                                        echo "<a style='margin-top: 7px;' class='btn btn-info' href='ordini-fattura-do.php?or_codice=$or_codice' title='Attiva'>Fattura richiesta</a>&nbsp;";
-
-                                    /*
-                                    if ($row_data['or_regalo']  == '0')
-                                        echo "<a class='btn btn-danger' href='javascript:;' title='Attiva'>Confezione regalo non richiesta</a>&nbsp;";
-                                    else
-                                        echo "<a class='btn btn-info' href='javascript:;' title='Attiva'>Confezione regalo richiesta</a>&nbsp;";
-                                    */
-                                    //if ($row_data['or_fattura'] == '0') echo "<button class='btn btn-danger' title='Fattura non richiesta'>Fattura non richiesta</button>&nbsp;";
-                                    //else echo "<button class='btn btn-info' title='Fattura richiesta'>Fattura richiesta</button>&nbsp;";
-
 
                                     $result->close();
                                     ?>
@@ -171,11 +149,6 @@
                                         </div>
 
                                         <div class="col-md-6 mb-2">
-                                            <b>Codice fiscale: </b>&nbsp;
-                                            <?php echo $row_data['ut_codice_fiscale']; ?>
-                                        </div>
-
-                                        <div class="col-md-6 mb-2">
                                             <b>Email: </b>&nbsp;
                                             <?php echo $row_data['ut_email']; ?>
                                         </div>
@@ -198,18 +171,18 @@
                                         <div class="form-row" style="width: 1250px;">
 
                                             <div class="col-md-6 input-group mb-3">
-                                                <input type="url" class="form-control" id="or_tracking" name="or_tracking" placeholder="Inserire qui il link completo" value="<?php echo $or_tracking; ?>">
+                                                <input type="url" class="form-control" id="or_tracking" name="or_tracking" placeholder="Inserire qui il link completo" value="<?php echo @$or_tracking; ?>">
                                                 <div class="input-group-append">
                                                     <button class="btn btn-primary" type="submit">Aggiorna</button>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <?php if (strlen($row_data['or_tracking']) > 0) { ?>
+                                        <?php if (@strlen($row_data['or_tracking']) > 0) { ?>
                                             <div class="form-row">
                                                 <div class="col-md-6 input-group mb-3">
                                                     Link completo: &nbsp;
-                                                    <a href="<?php echo $or_tracking; ?>"><?php echo $or_tracking; ?></a>
+                                                    <a href="<?php echo @$or_tracking; ?>"><?php echo @$or_tracking; ?></a>
                                                 </div>
                                             </div>
                                         <?php } ?>
@@ -345,7 +318,6 @@
                                                     $or_pr_quantita = $row_data['or_pr_quantita'];
                                                     $or_pr_codice = $row_data['or_pr_codice'];
                                                     $or_spedizione = $row_data['or_tipo_spedizione'];
-                                                    $or_sconto = $row_data['or_sconto'];
                                                     $or_coupon_valore = $row_data['or_coupon_valore'];
                                                     $or_coupon_tipo = $row_data['or_coupon_tipo'];
                                                     $or_coupon = $row_data['or_coupon'];
@@ -353,24 +325,20 @@
                                                     $or_importo_totale = $row_data['or_pr_quantita'] * $row_data['or_pr_prezzo'];
 
                                                     $pr_ct_id = $row_data['pr_ct_id'];
-                                                    $pr_st_id = $row_data['pr_st_id'];
                                                     $pr_mr_id = $row_data['pr_mr_id'];
-                                                    $pr_si_id = $row_data['pr_si_id'];
 
                                                     $pr_titolo = $row_data['pr_titolo'];
                                                     $pr_codice = $row_data['pr_codice'];
 
                                                     $pr_ct_id_categoria = getCategoria($pr_ct_id, $dbConn);
-                                                    $pr_st_id_sottocategoria = getSottocategoria($pr_st_id, $dbConn);
                                                     $pr_mr_id_marche = getMarca($pr_mr_id, $dbConn);
-                                                    $pr_si_id_sistema = getSistema($pr_si_id, $dbConn);
 
                                                     $totale_ordine += $or_importo_totale;
 
                                                     echo "<tr>";
 
                                                     echo "<td>";
-                                                    echo "<span style='font-size: 10px; font-style: italic;'>" . $pr_ct_id_categoria . " / " . $pr_st_id_sottocategoria . "</span><br>";
+                                                    echo "<span style='font-size: 10px; font-style: italic;'>" . $pr_ct_id_categoria . "</span><br>";
                                                     echo $pr_titolo . " / " . $pr_codice;
                                                     echo "</td>";
 
@@ -520,45 +488,6 @@
 
                                         <table class="table table-1 table-bordered table-striped mb-30">
                                             <tbody>
-
-                                            <tr>
-                                                <td width="200" class="text-right">
-                                                    <strong>Richiesta fattura:</strong> <?php echo $or_fattura; ?></td>
-
-                                                <td><?php if ($or_fattura == 'SI') { ?>
-                                                        <strong>Dati Fatturazione</strong><br/>
-                                                        <?php
-                                                        $querySql = "SELECT * FROM ut_utenti WHERE ut_codice = '$or_ut_codice' LIMIT 0, 1 ";
-                                                        $result = $dbConn->query($querySql);
-                                                        $rows = $dbConn->affected_rows;
-                                                        $row_data = $result->fetch_assoc();
-
-                                                        $ut_id = $row_data['ut_id'];
-                                                        $ut_nome = $row_data['ut_nome'];
-                                                        $ut_cognome = $row_data['ut_cognome'];
-                                                        $ut_ragione_sociale = $row_data['ut_ragione_sociale'];
-                                                        $ut_partita_iva = $row_data['ut_partita_iva'];
-                                                        $ut_codice_fiscale = $row_data['ut_codice_fiscale'];
-                                                        $ut_pec = $row_data['ut_pec'];
-                                                        $ut_sdi = $row_data['ut_sdi'];
-                                                        $ut_indirizzo_fatturazione = $row_data['ut_indirizzo_fatturazione'];
-                                                        $ut_cap_fatturazione = $row_data['ut_cap_fatturazione'];
-                                                        $ut_citta_fatturazione = $row_data['ut_citta_fatturazione'];
-                                                        $ut_provincia_fatturazione = $row_data['ut_provincia_fatturazione'];
-
-                                                        $result->close();
-                                                        ?>
-
-                                                        Nome e cognome: <?php echo $ut_nome . " " . $ut_cognome; ?><br/>
-                                                        Ragione Sociale: <?php echo $ut_ragione_sociale; ?><br/>
-                                                        Partita Iva: <?php echo $ut_partita_iva; ?><br/>
-                                                        Codice Fiscale: <?php echo $ut_codice_fiscale; ?><br/>
-                                                        Email PEC: <?php echo $ut_pec; ?><br/>
-                                                        SDI: <?php echo $ut_sdi; ?><br/>
-                                                        Indirizzo Fatturazione: <?php echo $ut_indirizzo_fatturazione . " - " . $ut_citta_fatturazione . " (" . $ut_provincia_fatturazione . ") " . $ut_cap_fatturazione . " "; ?>
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
 
                                             <tr>
                                                 <td width="200" class="text-right">

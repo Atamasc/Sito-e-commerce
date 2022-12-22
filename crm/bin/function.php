@@ -1741,7 +1741,7 @@ function getPrezzoSpedizione($spedizione, $totale)
 
     }
 
-    return $prezzo;
+    return @$prezzo;
 
 }
 

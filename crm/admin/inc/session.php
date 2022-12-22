@@ -6,9 +6,9 @@ $session_id = $_SESSION['id'];
 $session_username = $_SESSION['username'];
 $session_password = $_SESSION['password'];
 
-$cookie_login = $_COOKIE['login'];
-$cookie_username = $_COOKIE['username'];
-$cookie_password = $_COOKIE['password'];
+$cookie_login = @$_COOKIE['login'];
+$cookie_username = @$_COOKIE['username'];
+$cookie_password = @$_COOKIE['password'];
 
 $checkCookie = $cookie_login . "|" . $cookie_username . "|" . $cookie_password;
 $checkSession = $session_login . "|" . $session_username . "|" . $session_password;

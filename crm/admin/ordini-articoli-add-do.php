@@ -12,7 +12,7 @@ $result->close();
 $pr_prezzo = $row_data['pr_prezzo'];
 
 $rows = 0;
-if($pr_prezzo > 0) {
+if ($pr_prezzo > 0) {
 
     $querySql =
         "SELECT * FROM or_ordini WHERE or_codice = '$get_or_codice' LIMIT 0, 1";
@@ -34,7 +34,6 @@ if($pr_prezzo > 0) {
     $or_stato = $row_data["or_stato"];
     $or_archivio = $row_data["or_archivio"];
     $or_tracking = $row_data["or_tracking"];
-    $or_sconto = $row_data["or_sconto"];
     $or_fattura = $row_data["or_fattura"];
     $or_regalo = $row_data["or_regalo"];
     $or_rapido = $row_data["or_rapido"];
@@ -49,12 +48,12 @@ if($pr_prezzo > 0) {
     $result_up = $dbConn->query($querySql_up);
 
     $querySqlOrdini =
-        "INSERT INTO or_ordini (".
-        "or_pr_codice, or_codice, or_ut_codice, or_pr_prezzo, or_pr_quantita, or_pagamento, or_spedizione, or_tipo_spedizione, or_note, or_note_admin, or_stato_conferma, or_stato_pagamento, ".
-        "or_coupon_tipo, or_coupon_valore, or_coupon, or_stato_spedizione, or_stato, or_stato_reso, or_archivio, or_tracking, or_sconto, or_fattura, or_regalo , or_rapido, or_eliminato, or_stato_export, or_timestamp".
-        ") VALUES (".
-        " '$or_pr_codice', '$get_or_codice', '$or_ut_codice', '$pr_prezzo', 1, '$or_pagamento', '$or_spedizione', '$or_tipo_spedizione', '$or_note', '$or_note_admin', '$or_stato_conferma', '$or_stato_pagamento', ".
-        "'$or_coupon_tipo', '$or_coupon_valore', '$or_coupon', '$or_stato_spedizione', '$or_stato', '$or_stato_reso', '$or_archivio', '$or_tracking', '$or_sconto', '$or_fattura', '$or_regalo', '$or_rapido', '$or_eliminato', '$or_stato_export', '$or_timestamp'".
+        "INSERT INTO or_ordini (" .
+        "or_pr_codice, or_codice, or_ut_codice, or_pr_prezzo, or_pr_quantita, or_pagamento, or_spedizione, or_tipo_spedizione, or_note, or_note_admin, or_stato_conferma, or_stato_pagamento, " .
+        "or_coupon_tipo, or_coupon_valore, or_coupon, or_stato_spedizione, or_stato, or_stato_reso, or_archivio, or_tracking,  or_eliminato, or_timestamp" .
+        ") VALUES (" .
+        " '$or_pr_codice', '$get_or_codice', '$or_ut_codice', '$pr_prezzo', 1, '$or_pagamento', '$or_spedizione', '$or_tipo_spedizione', '$or_note', '$or_note_admin', '$or_stato_conferma', '$or_stato_pagamento', " .
+        "'$or_coupon_tipo', '$or_coupon_valore', '$or_coupon', '$or_stato_spedizione', '$or_stato', '$or_stato_reso', '$or_archivio', '$or_tracking',  '$or_eliminato', '$or_timestamp'" .
         ") ";
     $result = $dbConn->query($querySqlOrdini);
     $rows = $dbConn->affected_rows;

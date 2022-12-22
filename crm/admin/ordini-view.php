@@ -54,7 +54,6 @@ $result->close();
                                 <?php
                                 echo "<b>" . $row_data['ut_nome'] . " " . $row_data['ut_cognome'] . "</b><br>";
                                 echo $row_data["ut_indirizzo"] . " - " . $row_data["ut_citta"] . " (" . $row_data["ut_provincia"] . ") CAP: " . $row_data["ut_cap"] . " <br>";
-                                echo "Tel. " . $row_data["ut_telefono"] . " | Fax. " . $row_data["ut_fax"];
                                 ?>
 
                             </div>
@@ -62,8 +61,9 @@ $result->close();
                             <div class="col-md-6">
 
                                 <?php
-                                echo "<br>P.IVA: " . $row_data["ut_partita_iva"] . " | Cod. Fiscale: " . $row_data["ut_codice_fiscale"] . " <br>";
                                 echo "E-mail: <a href='mailto:" . $row_data["ut_email"] . "'>" . $row_data["ut_email"] . "</a> <br>";
+                                echo "Tel. " . $row_data["ut_telefono"];
+
                                 ?>
 
                             </div>
@@ -109,12 +109,10 @@ $result->close();
                                 $or_note = $row_data['or_note'];
                                 $or_note_admin = $row_data['or_note_admin'];
                                 $pr_ct_id = $row_data['pr_ct_id'];
-                                $pr_st_id = $row_data['pr_st_id'];
                                 $pr_titolo = $row_data['pr_titolo'];
                                 $pr_codice = $row_data['pr_codice'];
 
                                 $pr_ct_id_categoria = getCategoria($pr_ct_id, $dbConn);
-                                $pr_st_id_sottocategoria = getSottocategoria($pr_st_id, $dbConn);
 
                                 $or_importo_totale = $row_data['or_pr_quantita'] * $row_data['or_pr_prezzo'];
 
@@ -123,7 +121,7 @@ $result->close();
                                 echo "<tr>";
 
                                 echo "<td>";
-                                echo "<span style='font-size: 10px; font-style: italic;'>" . $pr_ct_id_categoria . " / " . $pr_st_id_sottocategoria . "</span><br>";
+                                echo "<span style='font-size: 10px; font-style: italic;'>" . $pr_ct_id_categoria . "</span><br>";
                                 echo $pr_titolo . " / " . $pr_codice;
                                 echo "</td>";
 
@@ -162,7 +160,7 @@ $result->close();
                             <tbody>
 
                             <?php
-                            $querySql = "SELECT COUNT(or_id) AS or_count, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale, or_pagamento, or_tipo_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon, or_sconto, or_regalo FROM or_ordini INNER JOIN pr_prodotti ON pr_codice = or_pr_codice WHERE or_codice = '$get_or_codice' ";
+                            $querySql = "SELECT COUNT(or_id) AS or_count, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale, or_pagamento, or_tipo_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon FROM or_ordini INNER JOIN pr_prodotti ON pr_codice = or_pr_codice WHERE or_codice = '$get_or_codice' ";
                             $result = $dbConn->query($querySql);
                             $row_data = $result->fetch_assoc();
 
@@ -171,11 +169,9 @@ $result->close();
 
                             $or_pagamento = $row_data['or_pagamento'];
                             $or_spedizione = $row_data['or_tipo_spedizione'];
-                            $or_sconto = $row_data['or_sconto'];
                             $or_coupon_valore = $row_data['or_coupon_valore'];
                             $or_coupon_tipo = $row_data['or_coupon_tipo'];
                             $or_coupon = $row_data['or_coupon'];
-                            $or_regalo = $row_data['or_regalo'];
 
                             $or_pagamento_prezzo = getPrezzoPagamento($or_pagamento, $or_totale);
                             $or_spedizione_prezzo = getPrezzoSpedizione($or_spedizione, $or_totale);
@@ -231,19 +227,7 @@ $result->close();
                                 <td>Totale</td>
                                 <td><strong>&euro; <?php echo formatPrice($or_totale); ?></strong></td>
                             </tr>
-
-                            <?php
-                            if ($or_regalo > 0) {
-
-                                ?>
-                                <tr>
-                                    <td colspan="2"><strong>Richiesta confezione regalo</strong></td>
-                                </tr>
-                                <?php
-
-                            }
-                            ?>
-
+                            
                             <tr>
                                 <td colspan="2"><strong>Note cliente:</strong> <?php echo $or_note; ?></td>
                             </tr>
