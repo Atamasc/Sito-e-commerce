@@ -9,8 +9,8 @@ list($or_ut_codice, $or_pagamento, $or_spedizione, $or_coupon, $or_coupon_tipo, 
 $result->close();
 
 $querySql =
-    "SELECT * FROM pr_prodotti ".
-    "INNER JOIN or_ordini ON or_pr_codice = pr_codice ".
+    "SELECT * FROM pr_prodotti " .
+    "INNER JOIN or_ordini ON or_pr_codice = pr_codice " .
     "WHERE or_codice = '$or_codice' ";
 $result = $dbConn->query($querySql);
 $rows = $result->num_rows;
@@ -56,22 +56,22 @@ while ($row_data = $result->fetch_assoc()) {
             : ($or_totale / 100) * $or_coupon_valore;*/
 
     $body_mail_pr .=
-        "<tr>".
-        "<td align='center'>$or_pr_codice</td>".
+        "<tr>" .
+        "<td align='center'>$or_pr_codice</td>" .
         "<td>
-                <span style='font-size: 12px; font-style: italic;'>".$pr_ct_id_categoria." / ".$pr_st_id_sottocategoria."</span><br>
+                <span style='font-size: 12px; font-style: italic;'>" . $pr_ct_id_categoria . " / " . $pr_st_id_sottocategoria . "</span><br>
                 $pr_titolo
-            </td>".
-        "<td align='center'>$or_pr_quantita</td>".
-        "<td align='right'>".formatPrice($pr_prezzo)."</td>".
-        "<td align='right'>$pr_totale</td>".
+            </td>" .
+        "<td align='center'>$or_pr_quantita</td>" .
+        "<td align='right'>" . formatPrice($pr_prezzo) . "</td>" .
+        "<td align='right'>$pr_totale</td>" .
         "</tr>";
 
 }
 
 $result->close();
 
-if(strlen($or_coupon) > 0)
+if (strlen($or_coupon) > 0)
     $or_sconto_coupon = $or_coupon_tipo == "importo"
         ? (float)$or_coupon_valore
         : ($or_totale / 100) * $or_coupon_valore;
@@ -89,7 +89,7 @@ $or_totale = $or_totale - $or_sconto_coupon + $or_pagamento_prezzo + $or_spedizi
 
 if ($or_pagamento == 'Paypal') {
 
-    $importo_totale_ordine_paypal = number_format($or_totale , 2 , '.' , '');
+    $importo_totale_ordine_paypal = number_format($or_totale, 2, '.', '');
 
     //$return_link = "$rootBasePath_http/confirmPayPal.php?or_codice=$or_codice";
     $cancel_link = "$rootBasePath_http/dettaglio-ordine?or_codice=$or_codice&insert=false";
@@ -123,9 +123,9 @@ $email_testo =
             </p>
 
             <p><strong>Di seguito i dettagli del tuo ordine:</strong></p>
-            <p>Codice ordine: <strong>$or_codice del ".date('d/m/Y - H:i', substr($or_codice,9))."</strong></p>
-            <p>Email: <strong>".getNominativoClienteByCodice($or_ut_codice, $dbConn)."&nbsp;(".$or_ut_codice.")</strong></p>
-            <p>Indirizzo di spedizione: <strong>".getIndirizzoClienteByCodice($or_ut_codice, $dbConn)."</strong></p>
+            <p>Codice ordine: <strong>$or_codice del " . date('d/m/Y - H:i', substr($or_codice, 9)) . "</strong></p>
+            <p>Email: <strong>" . getNominativoClienteByCodice($or_ut_codice, $dbConn) . "&nbsp;(" . $or_ut_codice . ")</strong></p>
+            <p>Indirizzo di spedizione: <strong>" . getIndirizzoClienteByCodice($or_ut_codice, $dbConn) . "</strong></p>
             <p>Tipo di spedizione: <strong>Spedizione con corriere</strong></p>
             <p>Metodo di pagamento: <strong>$or_pagamento</strong></p>
 
@@ -154,28 +154,28 @@ if (strlen($link_pagamento) > 0) {
 
 if ($or_pagamento == 'Contrassegno') {
 
-    $email_testo   .=
+    $email_testo .=
         "<br><p style='font-weight: bold;'>Hai scelto di pagare in contrassegno al momento della consegna.</p><br>";
 
 } else if ($or_pagamento == 'Bonifico') {
 
-    $email_testo   .=
+    $email_testo .=
         "<table>
              <tr>
                     <td>Intestatario bonifico:</td> 
-                       <td colspan='6'><strong>".$bonifico["int_conto"]."</strong></td>
+                       <td colspan='6'><strong>" . $bonifico["int_conto"] . "</strong></td>
                 </tr>
                 <tr>
                     <td>Banca:</td> 
-                    <td colspan='6'><strong>".$bonifico["banca_bonifico"]."</strong></td>
+                    <td colspan='6'><strong>" . $bonifico["banca_bonifico"] . "</strong></td>
                 </tr>
                 <tr>
                     <td>IBAN:</td> 
-                    <td colspan='6'><strong>".$bonifico["iban_bonifico"]."</strong></td>
+                    <td colspan='6'><strong>" . $bonifico["iban_bonifico"] . "</strong></td>
                 </tr>
                 <tr>
                     <td>Bic/swift:</td> 
-                    <td colspan='6'><strong>".$bonifico["bic_bonifico"]."</strong></td>
+                    <td colspan='6'><strong>" . $bonifico["bic_bonifico"] . "</strong></td>
                 </tr>
                 <tr>
                     <td>Causale:</td> 
@@ -186,11 +186,11 @@ if ($or_pagamento == 'Contrassegno') {
 }
 
 
-if(strlen($or_coupon) > 0){
+if (strlen($or_coupon) > 0) {
     $sconto_email = " <tr>
                     <td  colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Sconto (&euro;)</td>
-                    <td >-".formatPrice($or_sconto_coupon)." &euro;</td>
+                    <td >-" . formatPrice($or_sconto_coupon) . " &euro;</td>
                 </tr>";
 }
 
@@ -216,28 +216,28 @@ $email_testo .=
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Imponibile (&euro;)</td>
-                    <td >".formatPrice($or_imponibile)." &euro;</td>
+                    <td >" . formatPrice($or_imponibile) . " &euro;</td>
                 </tr>
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">IVA (&euro;)</td>
-                    <td >".formatPrice($or_iva)." &euro;</td>
+                    <td >" . formatPrice($or_iva) . " &euro;</td>
                 </tr>
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Commissioni (&euro;)</td>
-                    <td >".formatPrice($or_pagamento_prezzo)." &euro;</td>
+                    <td >" . formatPrice($or_pagamento_prezzo) . " &euro;</td>
                 </tr>	
                 <tr>
                     <td  colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Costi di spedizione (&euro;)</td>
-                    <td >".formatPrice($or_spedizione_prezzo)." &euro;</td>
+                    <td >" . formatPrice($or_spedizione_prezzo) . " &euro;</td>
                 </tr>	
                     $sconto_email	
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Totale (&euro;)</td>
-                    <td >".formatPrice($or_totale)." &euro;</td>
+                    <td >" . formatPrice($or_totale) . " &euro;</td>
                 </tr>									
             </tfoot>
         </table>
@@ -256,30 +256,28 @@ $dataFullNow = strftime("%A %d %B %Y", time());
 $mail = new PHPMailer;
 // utilizza la classe SMTP invece del comando mail() di php
 $mail->IsSMTP();
-$mail->SMTPAuth   = true;
+$mail->SMTPAuth = true;
 $mail->SMTPKeepAlive = "true";
 
 // autenticazione server SMTP di invio mail
-$mail->Host  = $SMTP['host'];
-$mail->Username   = $SMTP['user'];      // utente server SMTP autenticato
-$mail->Password   = $SMTP['pass'];    // password server SMTP autenticato
+$mail->Host = $SMTP['host'];
+$mail->Username = $SMTP['user'];      // utente server SMTP autenticato
+$mail->Password = $SMTP['pass'];    // password server SMTP autenticato
 
 // abilito il messaggio in HTML
 $mail->IsHTML(true);
 
 //intestazioni e corpo dell'email
-$mail->From   = $mittente;
+$mail->From = $mittente;
 $mail->FromName = $nomemittente;
 $mail->AddAddress($ut_email);
 $mail->AddBCC($rootBaseEmail);
-$mail->AddBCC("notifica@lucasweb.it");
-$mail->AddBCC("francesco.tammaro@lucasweb.it");
-$mail->Subject = "Moncaffe.it - Paga il tuo ordine - ".date("d/m/Y", time());
+$mail->Subject = "Moncaffe.it - Paga il tuo ordine - " . date("d/m/Y", time());
 
 $time = time();
 $tracker = "<img src='$rootBasePath_http/crm/tracker-ordini.php?cod=$time&email=$ut_email' width='1' height='1'>";
 
-$mail->Body = convertLinkOrdini($messaggio, $rootBasePath_http, $time, $ut_email).$tracker;
+$mail->Body = convertLinkOrdini($messaggio, $rootBasePath_http, $time, $ut_email) . $tracker;
 
 //$mail->Body = $messaggio;
 $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
@@ -287,7 +285,7 @@ $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HT
 //percorso all'allegato
 //$mail->AddAttachment('pdf/file.pdf');
 
-if($mail->Send()) {
+if ($mail->Send()) {
     $get_send = true;
     $ol_stato_invio = "Successo";
 } else {
@@ -297,7 +295,7 @@ if($mail->Send()) {
 }
 
 $querySql_ol =
-    "INSERT INTO ol_ordini_log(ol_cr_id, ol_or_codice, ol_timestamp, ol_stato, ol_email, ol_stato_invio, ol_stato_lettura, ol_click) ".
+    "INSERT INTO ol_ordini_log(ol_cr_id, ol_or_codice, ol_timestamp, ol_stato, ol_email, ol_stato_invio, ol_stato_lettura, ol_click) " .
     "VALUES (0, '$or_codice', '$time', 1, '$ut_email', '$ol_stato_invio', 0, 0) ";
 $result_ol = $dbConn->query($querySql_ol);
 

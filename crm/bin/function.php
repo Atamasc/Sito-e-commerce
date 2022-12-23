@@ -1371,7 +1371,7 @@ function isValidUrl($url)
 function formatPrice($number)
 {
 
-    return number_format($number, 2, ",", ".");
+    return @number_format($number, 2, ",", ".");
 
 }
 
@@ -1381,7 +1381,7 @@ function formatPriceForDB($number)
     $number = str_replace(".", "", $number);
     $number = str_replace(",", ".", $number);
 
-    return $number;
+    return @$number;
 
 }
 

@@ -199,7 +199,7 @@
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql =
-                                                "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo FROM or_ordini " .
+                                                "SELECT * FROM or_ordini " .
                                                 "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_archivio = 0 ";
                                             if (strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
                                             if (strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
@@ -221,7 +221,7 @@
                                                 $or_pagamento = $row_data['or_pagamento'];
                                                 $or_tipo_spedizione = $row_data['or_tipo_spedizione'];
 
-                                                $or_totale_importo = $row_data['or_totale_importo'];
+                                                $or_totale_importo = $row_data['or_pr_prezzo'] * $row_data['or_pr_quantita'];
 
                                                 $or_pagamento_prezzo = getPrezzoPagamento($or_pagamento, $or_totale_importo);
                                                 $or_spedizione_prezzo = getPrezzoSpedizione($or_tipo_spedizione, $or_totale_importo);
@@ -276,12 +276,12 @@
                                                 echo "<td align='center'>";
                                                 echo "<a class='btn btn-success btn-sm' href='ordini-mod.php?or_codice=$or_codice' title='Modifica'><i class='fa fa-edit'></i></a>&nbsp;";
                                                 echo "<button class='btn btn-info btn-sm modale' data-href='ordini-view.php?or_codice=$or_codice' title='Dettaglio'><i class='fa fa-print'></i></button>&nbsp;";
-                                                echo "<button class='btn btn-warning btn-sm alert-link-ordini-archivio' style='font-weight: normal;' data-href='ordini-archivio-do.php?or_codice=$or_codice' title='archivio'>archivia</button>&nbsp;";
+                                                //echo "<button class='btn btn-warning btn-sm alert-link-ordini-archivio' style='font-weight: normal;' data-href='ordini-archivio-do.php?or_codice=$or_codice' title='archivio'>archivia</button>&nbsp;";
                                                 //echo "<button class='btn btn-danger btn-sm elimina' data-href='ordini-del-do.php?or_codice=$or_codice' title='Elimina'><i class='fa fa-trash-alt'></i></button>";
                                                 echo "</td>";
                                                 echo "</tr>";
 
-                                            };
+                                            }
 
                                             if ($rows == '0') {
                                                 echo "<tr><td colspan='99' align='center'>Non ci sono ordini presenti</td></tr>";

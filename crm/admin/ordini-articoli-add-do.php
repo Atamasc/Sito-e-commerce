@@ -34,11 +34,7 @@ if ($pr_prezzo > 0) {
     $or_stato = $row_data["or_stato"];
     $or_archivio = $row_data["or_archivio"];
     $or_tracking = $row_data["or_tracking"];
-    $or_fattura = $row_data["or_fattura"];
-    $or_regalo = $row_data["or_regalo"];
-    $or_rapido = $row_data["or_rapido"];
     $or_eliminato = $row_data["or_eliminato"];
-    $or_stato_export = $row_data["or_stato_export"];
     $or_timestamp = $row_data["or_timestamp"];
     $or_coupon_tipo = $row_data['or_coupon_tipo'];
     $or_coupon_valore = $row_data['or_coupon_valore'];

@@ -1710,13 +1710,14 @@ function getPrezzoSpedizione($spedizione, $totale)
         "WHERE ci_titolo = '$spedizione' ";
     $result = $dbConn->query($querySql);
     $rows = $result->num_rows;
+    
+    $prezzo = 0;
 
     while ($row_data = $result->fetch_assoc()) {
         $ci_costo_standard = $row_data['ci_costo_standard'];
         $ci_ordine_minimo = $row_data['ci_ordine_minimo'];
         $ci_titolo = $row_data['ci_titolo'];
 
-        $prezzo = 0;
         /*if ($totale == 0) $prezzo = 0;
         else if ($totale < $ci_ordine_minimo) $prezzo = $ci_costo_standard;
         else $prezzo = 0;*/

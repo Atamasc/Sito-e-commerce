@@ -1,7 +1,7 @@
 <?php include('inc/autoloader.php');
-$SMTP['host'] = "mail.moncaffe.it";
-$SMTP['user'] = "noreply@moncaffe.it";
-$SMTP['pass'] = "Vin@7888!";
+$SMTP['host'] = "mail.register.it";
+$SMTP['user'] = "lucilonk97@gmail.com";
+$SMTP['pass'] = "Axistheway01@";
 ?>
 <?php
 $or_codice = $_GET["or_codice"];
@@ -57,10 +57,8 @@ if ($or_stato_spedizione == 1) {
         $or_pr_prezzo = $row_data['or_pr_prezzo'];
 
         $pr_ct_id = $row_data['pr_ct_id'];
-        $pr_st_id = $row_data['pr_st_id'];
 
         $pr_ct_id_categoria = getCategoria($pr_ct_id, $dbConn);
-        $pr_st_id_sottocategoria = getSottocategoria($pr_st_id, $dbConn);
 
         //$pr_prezzo = strlen($row_data['pr_prezzo_scontato']) > 0 ? $row_data['pr_prezzo_scontato'] : $row_data['pr_prezzo'];
         $pr_titolo = $row_data['pr_titolo'];
@@ -68,15 +66,15 @@ if ($or_stato_spedizione == 1) {
         $importo_prodotto = $or_pr_prezzo * $or_pr_quantita;
 
         $body_mail_pr .=
-            "<tr>".
-            "<td align='center'>$or_pr_codice</td>".
+            "<tr>" .
+            "<td align='center'>$or_pr_codice</td>" .
             "<td>
-                <span style='font-size: 12px; font-style: italic;'>".$pr_ct_id_categoria." / ".$pr_st_id_sottocategoria."</span><br>
+                <span style='font-size: 12px; font-style: italic;'>" . $pr_ct_id_categoria . "</span><br>
                 $pr_titolo
-            </td>".
-            "<td align='center'>$or_pr_quantita</td>".
-            "<td align='right'>".formatPrice($or_pr_prezzo)."</td>".
-            "<td align='right'>".formatPrice($importo_prodotto)."</td>".
+            </td>" .
+            "<td align='center'>$or_pr_quantita</td>" .
+            "<td align='right'>" . formatPrice($or_pr_prezzo) . "</td>" .
+            "<td align='right'>" . formatPrice($importo_prodotto) . "</td>" .
             "</tr>";
 
         $importo_totale_ordine += $importo_prodotto;
@@ -100,7 +98,7 @@ if ($or_stato_spedizione == 1) {
     $importo_parziale_ordine = $importo_totale_ordine - $iva_ordine;
 
     $importo_totale_ordine = $importo_totale_ordine - $or_sconto_coupon + $or_tipo_spedizione_prezzo + $or_pagamento_prezzo;
-    
+
     $ut_cliente_nominativo = getNominativoClienteByCodice($or_ut_codice, $dbConn);
     $ut_email = getEmailClienteByCodice($or_ut_codice, $dbConn);
 
@@ -108,11 +106,11 @@ if ($or_stato_spedizione == 1) {
 
     $or_tracking = strlen($or_tracking) > 0 ? "Clicca sul link di seguito per seguire la spedizione: <a href='$or_tracking'>$or_tracking</a>" : "Il tuo ordine è stato affidato al corriere, a breve riceverai una mail con il codice tracking per monitorare la spedizione";
 
-    if(strlen($or_coupon)>0){
+    if (strlen($or_coupon) > 0) {
         $sconto_email = "<tr>
                     <td  colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Sconto (&euro;)</td>
-                    <td >-".formatPrice($or_sconto_coupon)." &euro;</td>
+                    <td >-" . formatPrice($or_sconto_coupon) . " &euro;</td>
                 </tr>";
     }
 
@@ -126,9 +124,9 @@ if ($or_stato_spedizione == 1) {
         
         <p>$or_tracking</p><br>
         
-        <p>Codice ordine: $or_codice del ".date('d/m/Y - H:i', substr($or_codice,9))."</p>
-        <p>Email: <strong>".getNominativoClienteByCodice($or_ut_codice, $dbConn)."&nbsp;(".$or_ut_codice.")</strong></p>
-        <p>Indirizzo di spedizione: <strong>".getIndirizzoClienteByCodice($or_ut_codice, $dbConn)."</strong></p>
+        <p>Codice ordine: $or_codice del " . date('d/m/Y - H:i', substr($or_codice, 9)) . "</p>
+        <p>Email: <strong>" . getNominativoClienteByCodice($or_ut_codice, $dbConn) . "&nbsp;(" . $or_ut_codice . ")</strong></p>
+        <p>Indirizzo di spedizione: <strong>" . getIndirizzoClienteByCodice($or_ut_codice, $dbConn) . "</strong></p>
         <p>Tipo di spedizione: <strong>$or_tipo_spedizione</strong></p>
         <p>Metodo di pagamento: <strong>$or_pagamento</strong></p>
         $value_coupon
@@ -137,7 +135,7 @@ if ($or_stato_spedizione == 1) {
             <thead>
             <tr>
                 <td>Codice prodotto</td>
-                <td>Categoria / Sottocategoria <br>
+                <td>Categoria <br>
                 Prodotto</td>
                 <td>Quantità</td>
                 <td>Prezzo per unità (&euro;)</td>
@@ -153,28 +151,28 @@ if ($or_stato_spedizione == 1) {
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Imponibile (&euro;)</td>
-                    <td >".formatPrice($importo_parziale_ordine)." &euro;</td>
+                    <td >" . formatPrice($importo_parziale_ordine) . " &euro;</td>
                 </tr>
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">IVA (&euro;)</td>
-                    <td >".formatPrice($iva_ordine)." &euro;</td>
+                    <td >" . formatPrice($iva_ordine) . " &euro;</td>
                 </tr>
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Commissioni (&euro;)</td>
-                    <td >".formatPrice($or_pagamento_prezzo)." &euro;</td>
+                    <td >" . formatPrice($or_pagamento_prezzo) . " &euro;</td>
                 </tr>	
                 <tr>
                     <td  colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Costi di spedizione (&euro;)</td>
-                    <td >".formatPrice($or_tipo_spedizione_prezzo)." &euro;</td>
+                    <td >" . formatPrice($or_tipo_spedizione_prezzo) . " &euro;</td>
                 </tr>	
             	$sconto_email
                 <tr>
                     <td colspan=\"2\"> &nbsp; </td>
                     <td colspan=\"2\">Totale (&euro;)</td>
-                    <td >".formatPrice($importo_totale_ordine)." &euro;</td>
+                    <td >" . formatPrice($importo_totale_ordine) . " &euro;</td>
                 </tr>									
             </tfoot>
         </table>
@@ -193,25 +191,22 @@ if ($or_stato_spedizione == 1) {
     $mail = new PHPMailer;
     // utilizza la classe SMTP invece del comando mail() di php
     $mail->IsSMTP();
-    $mail->SMTPAuth   = true;
+    $mail->SMTPAuth = true;
     $mail->SMTPKeepAlive = "true";
 
     // autenticazione server SMTP di invio mail
-    $mail->Host  = $SMTP['host'];
-    $mail->Username   = $SMTP['user'];      // utente server SMTP autenticato
-    $mail->Password   = $SMTP['pass'];    // password server SMTP autenticato
+    $mail->Host = $SMTP['host'];
+    $mail->Username = $SMTP['user'];      // utente server SMTP autenticato
+    $mail->Password = $SMTP['pass'];    // password server SMTP autenticato
 
     // abilito il messaggio in HTML
     $mail->IsHTML(true);
 
     //intestazioni e corpo dell'email
-    $mail->From   = $mittente;
+    $mail->From = $mittente;
     $mail->FromName = $nomemittente;
     $mail->AddAddress($ut_email);
-    $mail->AddBCC("info@moncaffe.it");
-    $mail->AddBCC("notifica@lucasweb.it");
-    $mail->AddBCC("moncaffe.it+0e2538ac9a@invite.trustpilot.com");
-    $mail->Subject = "Spedizione ordine | ".$or_codice." | ".$ut_cliente_nominativo."" ;
+    $mail->Subject = "Spedizione ordine | " . $or_codice . " | " . $ut_cliente_nominativo . "";
 
     $mail->Body = $messaggio;
     $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
@@ -219,7 +214,7 @@ if ($or_stato_spedizione == 1) {
     //percorso all'allegato
     //$mail->AddAttachment('pdf/file.pdf');
 
-    if($mail->Send()) {
+    if ($mail->Send()) {
         $get_send = true;
     } else {
         $get_send = false;

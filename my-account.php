@@ -219,7 +219,7 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
 
                                                                 <?php
                                                                 $querySql =
-                                                                    "SELECT *, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale_importo, COUNT(or_id) AS or_count FROM or_ordini " .
+                                                                    "SELECT *, COUNT(or_id) AS or_count FROM or_ordini " .
                                                                     "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE ut_codice = '$session_cl_codice' " .
                                                                     "GROUP BY or_codice ORDER BY or_codice DESC ";
                                                                 $result = $dbConn->query($querySql);
@@ -234,7 +234,7 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
                                                                     $or_coupon_valore = $row_data['or_coupon_valore'];
                                                                     $or_coupon_tipo = $row_data['or_coupon_tipo'];
                                                                     $or_coupon = $row_data['or_coupon'];
-                                                                    $or_totale_importo = $row_data['or_totale_importo'];
+                                                                    $or_totale_importo = $row_data['or_pr_prezzo'] * $row_data['or_pr_quantita'];
                                                                     $or_timestamp = $row_data['or_timestamp'];
 
                                                                     $or_pagamento_prezzo = getPrezzoPagamento($or_pagamento, $or_totale_importo);

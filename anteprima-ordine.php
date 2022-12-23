@@ -319,7 +319,7 @@
                                     </h4><br>
 
                                 </div>
-                                <a style="margin-right: 5px; display: inline-block !important;" href="<?php echo "$rootBasePath_http"; ?>"> Continua gli acquisti </a> o
+                                <a style="margin-right: 5px; display: inline-block !important; margin-bottom: 5px;" href="<?php echo "$rootBasePath_http"; ?>"> Continua gli acquisti </a> o
                                 <a style="margin-left: 5px; display: inline-block !important;" href="<?php echo "$rootBasePath_http/carrello-confirm-do"; ?>">Conferma l'ordine</a>
 
                                 <br><br>

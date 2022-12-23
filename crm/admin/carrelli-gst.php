@@ -16,7 +16,6 @@
 
     $get_cr_timestamp_da = isset($_GET['cr_timestamp_da']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cr_timestamp_da']))) : "";
     $get_cr_timestamp_a = isset($_GET['cr_timestamp_a']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cr_timestamp_a']))) : "";
-    $get_cr_ottimizzazione = isset($_GET['cr_ottimizzazione']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['cr_ottimizzazione']))) : "";
 
     if (strlen($get_cr_timestamp_da) > 0) {
 
@@ -106,16 +105,6 @@
                                                 <span class="tooltips">Data Carrello <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Data Carrello" data-content="Inserisci qui l'intervallo di tempo in cui è stato creato il carrello che stai cercando">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-2 mb-3">
-                                                <label for="cr_ottimizzazione">Ottimizzazione</label>
-                                                <select class="form-control" id="cr_ottimizzazione" name="cr_ottimizzazione">
-                                                    <option value="">Filtra per ottimizzazione</option>
-                                                    <option value=""></option>
-                                                    <option value="clienti" <?php if ($get_cr_ottimizzazione == 'clienti') echo "selected"; ?>>Clienti registrati</option>
-                                                </select>
-                                                <span class="tooltips">Filtro carrello <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Filtro carrello" data-content="Inserisci qui un filtro per la ricerca specifica dei carrelli">[aiuto]</a></span>
-                                            </div>
-
                                         </div>
 
                                         <button class="btn btn-primary" type="submit">Cerca</button>
@@ -176,7 +165,6 @@
                                             if (strlen($get_cr_email) > 0) $querySql .= " AND ut_email LIKE '%$get_cr_email%' ";
                                             if (strlen($get_cr_timestamp_da) > 0) $querySql .= " AND cr_timestamp >= '$get_cr_timestamp_da' ";
                                             if (strlen($get_cr_timestamp_a) > 0) $querySql .= " AND cr_timestamp <= '$get_cr_timestamp_a' ";
-                                            if ($get_cr_ottimizzazione == 'clienti') $querySql .= " AND LENGTH(ut_codice) > 0 ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -200,7 +188,6 @@
                                             if (strlen($get_cr_email) > 0) $querySql .= " AND ut_email LIKE '%$get_cr_email%' ";
                                             if (strlen($get_cr_timestamp_da) > 0) $querySql .= " AND cr_timestamp >= '$get_cr_timestamp_da' ";
                                             if (strlen($get_cr_timestamp_a) > 0) $querySql .= " AND cr_timestamp <= '$get_cr_timestamp_a' ";
-                                            if ($get_cr_ottimizzazione == 'clienti') $querySql .= " AND LENGTH(ut_codice) > 0 ";
                                             $querySql .= " GROUP BY cr_timestamp ORDER BY cr_timestamp DESC LIMIT $primo, $per_page ";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -231,10 +218,10 @@
                                                 //Gestione
                                                 echo "<td align='center'>";
                                                 echo "<button class='btn btn-info btn-sm modale' data-href='carrelli-view.php?cr_id=$cr_id' title='Dettaglio'>dettaglio</button>&nbsp;";
-                                                echo $ut_id > 0
-                                                    ? "<a class='btn btn-orange btn-sm btn-cart-mail' href='javascript:;' data-href='carrello-mail-do.php?ut_codice=$ut_codice&cr_id=$cr_id' title='Mail'>mail <i></i></a>&nbsp;"
-                                                    : "<a class='btn btn-orange btn-sm disabled' href='javascript:;' title='Mail'>mail</a>&nbsp;";
-                                                echo "<button class='btn btn-purple btn-sm detail-show'>log <i></i></button>&nbsp;";
+//                                                echo $ut_id > 0
+//                                                    ? "<a class='btn btn-orange btn-sm btn-cart-mail' href='javascript:;' data-href='carrello-mail-do.php?ut_codice=$ut_codice&cr_id=$cr_id' title='Mail'>mail <i></i></a>&nbsp;"
+//                                                    : "<a class='btn btn-orange btn-sm disabled' href='javascript:;' title='Mail'>mail</a>&nbsp;";
+//                                                echo "<button class='btn btn-purple btn-sm detail-show'>log <i></i></button>&nbsp;";
                                                 echo "<button class='btn btn-danger btn-sm elimina' data-href='carrelli-del-do.php?cr_timestamp=$cr_timestamp' title='Elimina'><i class='fa fa-trash-alt'></i></button>";
                                                 echo "</td>";
                                                 echo "</tr>";
@@ -250,36 +237,11 @@
                                                 echo "<th colspan='3' style='background-color: #c6c8ca;'>Data e ora invio</th>";
                                                 echo "</tr>";
 
-                                                $querySql_log = "SELECT * FROM ol_ordini_log WHERE ol_cr_id = '" . $cr_id . "' ORDER BY ol_timestamp DESC ";
-                                                $result_log = $dbConn->query($querySql_log);
-                                                $rows_log = $dbConn->affected_rows;
-
-                                                while (($row_data = $result_log->fetch_assoc()) !== NULL) {
-
-                                                    $ol_id = $row_data['ol_id'];
-                                                    $ol_cr_id = $row_data['ol_cr_id'];
-                                                    $ol_timestamp = $row_data['ol_timestamp'];
-                                                    $ol_email = $row_data['ol_email'];
-                                                    $ol_stato_invio = $row_data['ol_stato_invio'];
-                                                    $ol_stato_lettura = $row_data['ol_stato_lettura'];
-                                                    $ol_click = $row_data['ol_click'];
-
-                                                    echo "<tr>";
-                                                    echo "<td colspan='1'>" . $ol_email . " </td>";
-                                                    echo "<td colspan='1'>" . $ol_stato_invio . "</td>";
-                                                    if ($ol_stato_lettura == 1) echo "<td colspan='1' style='color: green;'>Letta</td>";
-                                                    else echo "<td colspan='1'>Non letta</td>";
-                                                    echo "<td colspan='1'>" . $ol_click . "</td>";
-                                                    if ($ol_timestamp > 0) echo "<td colspan='1' style='color: green;'>" . date("H:i d/m/Y", $ol_timestamp) . "</td>";
-                                                    else echo "<td colspan='1'>N/D</td>";
-                                                    echo "</tr>";
-                                                }
 
                                                 echo "</table>";
                                                 echo "</td>";
                                                 echo "</tr>";
 
-                                                $result_log->close();
 
                                                 $i++;
 

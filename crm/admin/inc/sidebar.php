@@ -95,7 +95,7 @@
                 </a>
                 <ul id="carrelli" class="collapse" data-parent="#sidebarnav">
                     <li><a href="carrelli-gst.php">Gestione carrelli</a></li>
-                    <li><a href="carrelli-log-gst.php">Log e report email</a></li>
+                    <!--                    <li><a href="carrelli-log-gst.php">Log e report email</a></li>-->
                 </ul>
             </li>
 
@@ -107,8 +107,8 @@
                 </a>
                 <ul id="ordini" class="collapse" data-parent="#sidebarnav">
                     <li><a href="ordini-gst.php">Gestione ordini</a></li>
-                    <li><a href="ordini-eliminati-gst.php">Ordini eliminati</a></li>
-                    <li><a href="ordini-storico-gst.php">Storico ordini</a></li>
+                    <!--                    <li><a href="ordini-eliminati-gst.php">Ordini eliminati</a></li>-->
+                    <!--                    <li><a href="ordini-storico-gst.php">Storico ordini</a></li>-->
                 </ul>
             </li>
 

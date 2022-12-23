@@ -52,7 +52,6 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
                                     <?php
                                     echo "<b>" . $row_data['ut_nome'] . " " . $row_data['ut_cognome'] . "</b><br>";
                                     echo $row_data["ut_indirizzo"] . " - " . $row_data["ut_citta"] . " (" . $row_data["ut_provincia"] . ") CAP: " . $row_data["ut_cap"] . " <br>";
-                                    echo "Tel. " . $row_data["ut_telefono"] . " | Fax. " . $row_data["ut_fax"];
                                     ?>
 
                                 </div>
@@ -60,8 +59,9 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
                                 <div class="col-md-6">
 
                                     <?php
-                                    echo "<br>P.IVA: " . $row_data["ut_partita_iva"] . " | Cod. Fiscale: " . $row_data["ut_codice_fiscale"] . " <br>";
                                     echo "E-mail: <a href='mailto:" . $row_data["ut_email"] . "'>" . $row_data["ut_email"] . "</a> <br>";
+                                    echo "Tel. " . $row_data["ut_telefono"];
+
                                     ?>
 
                                 </div>
