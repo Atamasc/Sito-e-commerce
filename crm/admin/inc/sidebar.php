@@ -23,17 +23,6 @@
             </li>
 
             <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#notifiche">
-                    <div class="pull-left"><i class="ti-bell"></i><span class="right-nav-text">Notifiche</span></div>
-                    <div class="pull-right"><i class="ti-plus"></i></div>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="notifiche" class="collapse" data-parent="#sidebarnav">
-                    <li><a href="notifiche-gst.php">Gestione notifiche</a></li>
-                </ul>
-            </li>
-
-            <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#marche">
                     <div class="pull-left"><i class="ti-tag"></i><span class="right-nav-text">Marche</span></div>
                     <div class="pull-right"><i class="ti-plus"></i></div>

@@ -62,7 +62,7 @@
 
                     <!-- Orders Status widgets-->
 
-                    <?php include "inc/dashboard-ordini.php"; ?>
+                    <?php //include "inc/dashboard-ordini.php"; ?>
 
                     <?php include "inc/dashboard-clienti.php"; ?>
 

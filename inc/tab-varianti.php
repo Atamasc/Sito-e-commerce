@@ -14,7 +14,7 @@ function pageGetVarianti($pr_capofila)
 
         ?>
         <hr>
-        <h5>Altri modelli disponibili</h5>
+        <h5>Altri modelli </h5>
         <div class="product-details-table table-responsive pro-details-quality" style="padding-top: 10px;">
             <table class="table">
                 <tbody>

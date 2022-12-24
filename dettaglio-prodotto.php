@@ -56,6 +56,7 @@ $page_link = generateProductLink($pr_capofila);
         .current-price {
             font-size: 36px;
             font-weight: bold;
+            color: unset !important;
         }
 
         .pro-details-social-info {
@@ -280,45 +281,26 @@ $page_link = generateProductLink($pr_capofila);
                                     <?php }; ?>
 
                                 <?php } else { ?>
-                                    <div style="border: 2px solid #0090f0; padding: 20px;">
 
-                                        <?php if (substr($_SERVER['REQUEST_URI'], -13) == 'notifica=true') { ?>
-                                            <div class="alert alert-success">
-                                                Richiesta di notifica inviata con successo!
-                                            </div>
-                                        <?php } elseif (substr($_SERVER['REQUEST_URI'], -14) == 'notifica=false') { ?>
-                                            <div class="alert alert-danger">
-                                                Si &egrave; verificato un errore oppure hai gi&agrave; inviato una richiesta di notifica!
-                                            </div>
-                                        <?php } ?>
-
-                                        <b>Avvisami quando torna disponibile</b>
-
-                                        <div id="mc_embed_signup" class="subscribe-form box">
-                                            <form action="notification-add-do" method="post">
-                                                <div id="mc_embed_signup_scroll" class="mc-form">
-                                                    <input class="email" type="email" required="" placeholder="Inserisci la tua email" name="email" value="<?php echo $cl_email; ?>"/>
-                                                    <div class="clear">
-                                                        <input id="mc-embedded-subscribe" class="button" type="submit" value="Avvisami"/>
-                                                    </div>
-                                                </div>
-                                                <input type="hidden" name="np_link" value="<?php echo "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']; ?>">
-                                                <input type="hidden" name="pr_codice" value="<?php echo $pr_codice; ?>">
-                                            </form>
-                                        </div>
-                                    </div>
+                                    <b style="color: #ff1818; font-size: initial">Non disponibile</b>
 
                                 <?php }; ?>
 
                             </div>
                         </div>
 
-                        <div class="pro-details-wish-com">
-                            <div class="pro-details-wishlist">
-                                <a href="#"><i class="ion-android-favorite-outline"></i>Add to wishlist</a>
+
+                        <?php if ($session_cl_login > 0) { ?>
+
+                            <div class="pro-details-wish-com" style="margin-bottom: 7px;">
+                                <div class="pro-details-wishlist wishlist-add" data-codice="<?php echo $pr_codice; ?>">
+                                    <a href="javascript:;"><i class="ion-android-favorite-outline"></i>Aggiungi alla wishlist</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="pro-details-social-info">
+
+                        <?php } ?>
+
+                        <div class="pro-details-social-info" style="margin-top: 5px">
                             <span>Seguici sui social</span>
                             <div class="social-info">
                                 <ul>
@@ -385,7 +367,7 @@ $page_link = generateProductLink($pr_capofila);
                         </div>
                     </div>
                     <div id="des-details3" class="tab-pane">
-                        <div class="row">
+                        <div class="row" style="flex-wrap: wrap">
 
                             <?php
                             $exist_recensioni = existRecensioniCliente($pr_codice, $session_cl_codice, $dbConn);
@@ -393,19 +375,18 @@ $page_link = generateProductLink($pr_capofila);
                             } else {
                                 ?>
 
-                                <div class="col-lg-7">
+                                <div class="col-lg-7" style="max-width: 100%; flex: unset;">
                                     <div class="review-wrapper">
 
                                         <?php
                                         $pr_cod = getCodRecensioni($get_pr_capofila);
 
-                                        $querySql = "SELECT * FROM rc_recensioni WHERE rc_id > 0 AND (rc_pr_codice = '$get_pr_codice' OR rc_pr_codice = '$pr_cod') ORDER BY rc_timestamp DESC ";
+                                        $querySql = "SELECT * FROM rc_recensioni WHERE rc_id > 0 AND (rc_pr_codice = '$pr_codice' OR rc_pr_codice = '$pr_cod') ORDER BY rc_timestamp DESC ";
                                         $result = $dbConn->query($querySql);
                                         $rows = $dbConn->affected_rows;
 
                                         while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                            $rc_cl_id = $row_data["rc_cl_id"];
                                             $rc_pr_codice = $row_data["rc_pr_codice"];
                                             $rc_nominativo = $row_data['rc_nominativo'];
                                             $rc_testo = $row_data["rc_testo"];
@@ -415,7 +396,7 @@ $page_link = generateProductLink($pr_capofila);
 
                                             <div class="single-review">
                                                 <div class="review-img">
-                                                    <img data-src="assets/images/user.png"/>
+                                                    <img style="width: 65%" src="assets/images/user.png"/>
                                                 </div>
                                                 <div class="review-content">
                                                     <div class="review-top-wrap">
@@ -451,33 +432,6 @@ $page_link = generateProductLink($pr_capofila);
                                         $result->close();
                                         ?>
 
-                                        <!--<div class="single-review child-review">
-                                            <div class="review-img">
-                                                <img src="assets/images/testimonial-image/2.png" alt="" />
-                                            </div>
-                                            <div class="review-content">
-                                                <div class="review-top-wrap">
-                                                    <div class="review-left">
-                                                        <div class="review-name">
-                                                            <h4>White Lewis</h4>
-                                                        </div>
-                                                        <div class="rating-product">
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                            <i class="ion-android-star"></i>
-                                                        </div>
-                                                    </div>
-                                                    <div class="review-left">
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                                <div class="review-bottom">
-                                                    <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula.</p>
-                                                </div>
-                                            </div>
-                                        </div>-->
                                     </div>
                                 </div>
 
@@ -530,7 +484,7 @@ $page_link = generateProductLink($pr_capofila);
                                                             <div class="rating-form-style form-submit">
                                                                 <textarea name="rc_testo" placeholder="Messaggio"></textarea>
                                                                 <input type="hidden" name="rc_pr_codice" value="<?php echo $pr_codice; ?>">
-                                                                <input type="hidden" name="rc_cl_codice" value="<?php echo $session_cl_codice; ?>">
+                                                                <input type="hidden" name="rc_ut_codice" value="<?php echo $session_cl_codice; ?>">
                                                                 <input type="hidden" name="refer" value="<?php echo $_SERVER['REQUEST_URI']; ?>">
                                                                 <input type="submit" value="Invia"/>
                                                             </div>
@@ -543,7 +497,7 @@ $page_link = generateProductLink($pr_capofila);
 
                                 <?php } else { ?>
                                     <div class="comment_title">
-                                        <p>Hai già lasciato una recensione per questo prodotto. </p>
+                                        <p>Hai gi&agrave; lasciato una recensione per questo prodotto. </p>
                                     </div>
                                 <?php } ?>
 
@@ -1195,6 +1149,31 @@ $page_link = generateProductLink($pr_capofila);
 </div>
 
 <?php include('inc/javascript.php'); ?>
+
+<script>
+
+    $(document).ready(function () {
+
+
+        $('.ion-android-star-outline').addClass('notyet');
+
+        $('.notyet.ion-android-star-outline').mouseover(function () {
+            $(this).removeClass('ion-android-star-outline').addClass('ion-android-star');
+            $(this).parent().prevAll().children().removeClass('ion-android-star-outline').addClass('ion-android-star');
+        });
+
+        $('.notyet.ion-android-star-outline').mouseleave(function () {
+            $('.notyet.ion-android-star').removeClass('ion-android-star').addClass('ion-android-star-outline');
+        });
+
+        $('.ion-android-star-outline').click(function () {
+            $('.ion-android-star').removeClass('notyet');
+            $(this).parent().nextAll().children().off('mouseover');
+        });
+
+    });
+
+</script>
 
 </body>
 </html>
