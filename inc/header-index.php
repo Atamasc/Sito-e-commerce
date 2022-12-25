@@ -164,84 +164,36 @@ function isMobile()
                     <div class="d-flex align-items-start justify-content-start">
                         <!-- Beauty Category -->
                         <div class="beauty-category vertical-menu home-9 home-10">
-                            <h3 class="vertical-menu-heading vertical-menu-toggle">All Categories</h3>
+                            <h3 class="vertical-menu-heading vertical-menu-toggle">Categorie</h3>
                             <ul class="vertical-menu-wrap open-menu-toggle">
-                                <li class="menu-dropdown">
-                                    <a href="#">Electronics<i class="ion-ios-arrow-down"></i></a>
-                                    <ul class="mega-menu-wrap">
-                                        <li>
-                                            <ul class="mb-20px">
-                                                <li class="mega-menu-title"><a href="#">Accessories & Parts</a></li>
-                                                <li><a href="#">Cables & Adapters</a></li>
-                                                <li><a href="#">Batteries</a></li>
-                                                <li><a href="#">Chargers</a></li>
-                                                <li><a href="#">Bags & Cases</a></li>
-                                                <li><a href="#">Electronic Cigarettes</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul class="mb-20px">
-                                                <li class="mega-menu-title"><a href="#">Camera & Photo</a></li>
-                                                <li><a href="#">Digital Cameras</a></li>
-                                                <li><a href="#">Camcorders</a></li>
-                                                <li><a href="#">Camera Drones</a></li>
-                                                <li><a href="#">Action Cameras</a></li>
-                                                <li><a href="#">Photo Studio Supplies</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul class="mb-20px">
-                                                <li class="mega-menu-title"><a href="#">Smart Electronics</a></li>
-                                                <li><a href="#">Wearable Devices</a></li>
-                                                <li><a href="#">Smart Home Appliances</a></li>
-                                                <li><a href="#">Smart Remote Controls</a></li>
-                                                <li><a href="#">Smart Watches</a></li>
-                                                <li><a href="#">Smart Wristbands</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul>
-                                                <li class="mega-menu-title"><a href="#">Audio & Video</a></li>
-                                                <li><a href="#">Televisions</a></li>
-                                                <li><a href="#">TV Receivers</a></li>
-                                                <li><a href="#">Projectors</a></li>
-                                                <li><a href="#">Audio Amplifier Boards</a></li>
-                                                <li><a href="#">TV Sticks</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <ul>
-                                                <li class="mega-menu-title"><a href="#">Portable Audio & Video</a>
-                                                </li>
-                                                <li><a href="#">Headphones</a></li>
-                                                <li><a href="#">Speakers</a></li>
-                                                <li><a href="#">MP3 Players</a></li>
-                                                <li><a href="#">VR/AR Devices</a></li>
-                                                <li><a href="#">Microphones</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="menu-dropdown">
-                                    <a href="#">Video Game<i class="ion-ios-arrow-down"></i></a>
-                                    <ul class="sub-menu">
-                                        <li><a href="#">Handheld Game Players</a></li>
-                                        <li><a href="#">Game Controllers</a></li>
-                                        <li><a href="#">Joysticks</a></li>
-                                        <li><a href="#">Stickers</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Televisions</a></li>
-                                <li><a href="#">Digital Cameras</a></li>
-                                <li><a href="#">Headphones</a></li>
-                                <li><a href="#">Wearable Devices</a></li>
-                                <li><a href="#">Smart Watches</a></li>
-                                <li><a href="#">Game Controllers</a></li>
-                                <li><a href="#"> Smart Home Appliances</a></li>
-                                <li class="hidden"><a href="#">Projectors</a></li>
-                                <li>
-                                    <a href="#" id="more-btn"><i class="ion-ios-plus-empty" aria-hidden="true"></i> More Categories</a>
-                                </li>
+
+
+                                <?php
+                                $querySql = "SELECT ct_id, ct_categoria FROM ct_categorie WHERE ct_stato > 0 ";
+                                $result = $dbConn->query($querySql);
+                                $rows = $dbConn->affected_rows;
+
+                                while (($row_data = $result->fetch_assoc()) !== NULL) {
+
+                                    $ct_id = $row_data['ct_id'];
+                                    $ct_categoria = $row_data['ct_categoria'];
+
+                                    $ct_link = generateCatLink($ct_id);
+                                    ?>
+                                    <li>
+                                        <a href="<?php echo $ct_link; ?>"><?php echo $ct_categoria; ?></a>
+                                    </li>
+                                    <?php
+
+                                }
+
+                                $result->close();
+                                ?>
+
+                                <!--                                <li class="hidden"><a href="#">Projectors</a></li>-->
+                                <!--                                <li>-->
+                                <!--                                    <a href="#" id="more-btn"><i class="ion-ios-plus-empty" aria-hidden="true"></i> More Categories</a>-->
+                                <!--                                </li>-->
                             </ul>
                         </div>
                         <!-- Beauty Category -->
@@ -249,9 +201,10 @@ function isMobile()
                         <div class="header_account_list search_list">
                             <a href="javascript:void(0)"><i class="ion-ios-search-strong"></i></a>
                             <div class="dropdown_search">
-                                <form action="#">
-                                    <input placeholder="Search entire store here ..." type="text"/>
-                                    <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                <form method="post" action="<?php echo "$rootBasePath_http/ricerca"; ?>">
+                                    <input placeholder="Cerca nello shop..." type="text" name="pr_search"/>
+                                    <button type="submit">
+                                        <i class="ion-ios-search-strong"></i></button>
                                 </form>
                             </div>
                         </div>
@@ -260,8 +213,8 @@ function isMobile()
                         <div class="contact-link-wrap">
                             <div class="contact-link">
                                 <div class="phone">
-                                    <p>Call us:</p>
-                                    <a href="tel:(+800)345678">(+800)345678</a>
+                                    <p>Chiamaci:</p>
+                                    <a href="tel:(+800)345678">(+800)1234</a>
                                 </div>
                             </div>
                             <!--Contact info End -->

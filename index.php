@@ -27,29 +27,29 @@
     <div class="slider-area">
         <div class="slider-active-3 owl-carousel slider-hm8 owl-dot-style">
             <!-- Slider Single Item Start -->
-            <div class="slider-height-10 d-flex align-items-start justify-content-start bg-img" style="background-image: url(assets/images/slider-image/sample-18.jpg);">
+            <div class="slider-height-10 d-flex align-items-start justify-content-start bg-img" style="background-image: url(assets/images/slider-image/1.jpg); background-position: unset !important;">
                 <div class="container">
                     <div class="slider-content-5 slider-animated-1 text-left">
-                        <span class="animated">OFFICIAL Nedmi NOTE 5</span>
+                        <!--                        <span class="animated">Apple</span>-->
                         <h1 class="animated">
-                            <strong> Nedmi NOTE 5 PRO </strong><br/> India’s Camera Beast
+                            <strong> NUOVI IPHONE </strong><br/> Sono arrivati i nuovi modelli
                         </h1>
-                        <p class="animated">The New Super Powerful Note Pre-Oder Starts From 2PM</p>
-                        <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
+                        <p class="animated">Verifica nello shop</p>
+                        <a href="<?php echo generateMarca2Link(3); ?>" class="shop-btn animated">VAI ORA</a>
                     </div>
                 </div>
             </div>
             <!-- Slider Single Item End -->
             <!-- Slider Single Item Start -->
-            <div class="slider-height-10 d-flex align-items-start justify-content-start bg-img" style="background-image: url(assets/images/slider-image/sample-19.jpg);">
+            <div class="slider-height-10 d-flex align-items-start justify-content-start bg-img" style="background-image: url(assets/images/slider-image/2.png);">
                 <div class="container">
                     <div class="slider-content-5 slider-animated-1 text-left">
-                        <span class="animated">EXPLORE MORE</span>
+                        <!--                        <span class="animated">EXPLORE MORE</span>-->
                         <h1 class="animated">
-                            <strong>THE BIG OFFER</strong><br/> Extra 30% Off
+                            <strong>SAMSUNG</strong><br/> Scopri tutti i modelli
                         </h1>
-                        <p class="animated">On Select Electronics</p>
-                        <a href="shop-4-column.html" class="shop-btn animated">SHOP NOW</a>
+                        <!--                        <p class="animated">Scopri tutti i modelli</p>-->
+                        <a href="<?php echo generateMarca2Link(2); ?>" class="shop-btn animated">VAI ORA</a>
                     </div>
                 </div>
             </div>
@@ -67,8 +67,8 @@
                         <div class="single-static pb-res-md-0 pb-res-sm-0 pb-res-xs-0">
                             <img src="assets/images/icons/static-icons-1.png" alt="" class="img-responsive"/>
                             <div class="single-static-meta">
-                                <h4>Free Shipping</h4>
-                                <p>On all orders over $75.00</p>
+                                <h4>Spedizione Gratuita</h4>
+                                <p>Per gli ordini superiori a &euro;29,90</p>
                             </div>
                         </div>
                     </div>
@@ -78,8 +78,8 @@
                         <div class="single-static pb-res-md-0 pb-res-sm-0 pb-res-xs-0 pt-res-xs-20">
                             <img src="assets/images/icons/static-icons-2.png" alt="" class="img-responsive"/>
                             <div class="single-static-meta">
-                                <h4>Free Returns</h4>
-                                <p>Returns are free within 9 days</p>
+                                <h4>Possibilit&agrave; di reso</h4>
+                                <p>Entro 14 giorni dall'acquisto</p>
                             </div>
                         </div>
                     </div>
@@ -89,8 +89,8 @@
                         <div class="single-static pt-res-md-30 pb-res-sm-30 pb-res-xs-0 pt-res-xs-20">
                             <img src="assets/images/icons/static-icons-3.png" alt="" class="img-responsive"/>
                             <div class="single-static-meta">
-                                <h4>100% Payment Secure</h4>
-                                <p>Your payment are safe with us.</p>
+                                <h4>Pagamenti sicuri al 100%</h4>
+                                <p>Non corri rischi con noi.</p>
                             </div>
                         </div>
                     </div>
@@ -100,12 +100,12 @@
                         <div class="single-static pt-res-md-30 pb-res-sm-30 pt-res-xs-20">
                             <img src="assets/images/icons/static-icons-4.png" alt="" class="img-responsive"/>
                             <div class="single-static-meta">
-                                <h4>Support 24/7</h4>
-                                <p>Contact us 24 hours a day</p>
+                                <h4>Supporto 24/7</h4>
+                                <p>Contatta la nostra assistenza</p>
                             </div>
                         </div>
                     </div>
-                    <!-- Static Single Item End -->
+
                 </div>
             </div>
         </div>
@@ -117,10 +117,10 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="banner-wrapper mb-30px">
-                        <a href="shop-4-column.html"><img src="assets/images/banner-image/24.jpg" alt=""/></a>
+                        <a href="<?php echo generateMarca2Link(3); ?>"><img src="assets/images/banner-1.jpg" style="height: 260px; object-fit: cover" alt=""/></a>
                     </div>
                     <div class="banner-wrapper mb-res-sm-30">
-                        <a href="shop-4-column.html"><img src="assets/images/banner-image/25.jpg" alt=""/></a>
+                        <a href="<?php echo generateMarca2Link(2); ?>"><img src="assets/images/banner-2.jpg" style="height: 260px; object-fit: cover" alt=""/></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-res-xs-30">
@@ -2329,35 +2329,8 @@
         </div>
     </section>
     <!-- Category Product  Area end-->
-    <!-- Brand area start -->
-    <div class="brand-area">
-        <div class="container">
-            <div class="brand-slider owl-carousel owl-nav-style owl-nav-style-2">
-                <div class="brand-slider-item">
-                    <a href="#"><img src="assets/images/brand-logo/1.jpg" alt=""/></a>
-                </div>
-                <div class="brand-slider-item">
-                    <a href="#"><img src="assets/images/brand-logo/2.jpg" alt=""/></a>
-                </div>
-                <div class="brand-slider-item">
-                    <a href="#"><img src="assets/images/brand-logo/3.jpg" alt=""/></a>
-                </div>
-                <div class="brand-slider-item">
-                    <a href="#"><img src="assets/images/brand-logo/4.jpg" alt=""/></a>
-                </div>
-                <div class="brand-slider-item">
-                    <a href="#"><img src="assets/images/brand-logo/5.jpg" alt=""/></a>
-                </div>
-                <div class="brand-slider-item">
-                    <a href="#"><img src="assets/images/brand-logo/1.jpg" alt=""/></a>
-                </div>
-                <div class="brand-slider-item">
-                    <a href="#"><img src="assets/images/brand-logo/2.jpg" alt=""/></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Brand area end -->
+
+    <?php include('inc/brand.php'); ?>
 
     <?php include('inc/footer.php'); ?>
 
