@@ -264,7 +264,7 @@ switch ($get_page_type) {
                                                 <div class="img-block">
                                                     <a href="<?php echo $pr_link; ?>" class="thumbnail">
                                                         <img class="first-img" src="<?php echo $pr_immagine; ?>" alt=""/>
-                                                        <img class="second-img" src="<?php echo $pi_immagine; ?>" alt=""/>
+                                                        <img style="background: white" class="second-img" src="<?php echo $pi_immagine; ?>" alt=""/>
                                                     </a>
                                                     <div class="quick-view">
                                                         <!--<a class="quick_view" href="#" data-link-action="quickview" title="Quick view" data-toggle="modal" data-target="#exampleModal">

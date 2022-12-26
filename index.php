@@ -117,15 +117,15 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="banner-wrapper mb-30px">
-                        <a href="<?php echo generateMarca2Link(3); ?>"><img src="assets/images/banner-1.jpg" style="height: 260px; object-fit: cover" alt=""/></a>
+                        <a href="<?php echo generateMarca2Link(3); ?>"><img src="assets/images/banner-1.jpg" style="height: 260px;" alt=""/></a>
                     </div>
                     <div class="banner-wrapper mb-res-sm-30">
-                        <a href="<?php echo generateMarca2Link(2); ?>"><img src="assets/images/banner-2.jpg" style="height: 260px; object-fit: cover" alt=""/></a>
+                        <a href="<?php echo generateMarca2Link(2); ?>"><img src="assets/images/banner-2.jpg" style="height: 260px;" alt=""/></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-res-xs-30">
                     <div class="banner-wrapper">
-                        <a href="shop-4-column.html"><img src="assets/images/banner-image/23.jpg" alt=""/></a>
+                        <a href="shop-4-column.html"><img src="assets/images/banner-3.jpg" style="height: 550px; object-fit: cover" alt=""/></a>
                     </div>
                 </div>
             </div>

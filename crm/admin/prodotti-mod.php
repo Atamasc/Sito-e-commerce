@@ -162,7 +162,7 @@
 
                                             <div class="col-md-3 mb-3">
                                                 <label for="pr_sconto">Sconto (%)</label>
-                                                <input type="text" class="form-control" id="pr_sconto" name="pr_sconto" value="<?php echo @$row_data['pr_sconto'] > 0 ? formatPrice(@$row_data['pr_sconto']) : ""; ?>">
+                                                <input type="text" class="form-control" id="pr_sconto" name="pr_sconto" value="<?php echo @$row_data['pr_sconto']; ?>">
                                                 <span class="tooltips">Sconto Prodotto <a tabindex="0" class="popup-a" role="button" data-toggle="popover" data-trigger="focus" title="Sconto Prodotto" data-content="Inserisci qui la percentuale di sconto visibile online che vuoi applicare sul prodotto">[aiuto]</a></span>
                                             </div>
                                         </div>
