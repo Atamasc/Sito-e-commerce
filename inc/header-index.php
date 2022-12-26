@@ -70,7 +70,7 @@ function isMobile()
                 <!-- Logo Start -->
                 <div class="col-md-2 col-sm-2">
                     <div class="logo">
-                        <a href="index.php"><img src="assets/images/logo/logo-electronic-2.jpg" alt=""/></a>
+                        <a href="index.php"><img src="assets/images/logo/logo.jpg" alt=""/></a>
                     </div>
                 </div>
                 <!-- Logo End -->

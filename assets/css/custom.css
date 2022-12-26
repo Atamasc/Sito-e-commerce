@@ -59,3 +59,15 @@
 .cart-shiping-update-wrapper {
     justify-content: flex-end;
 }
+
+.home-electronic .home-10 .header-navigation {
+    padding: 15px 0 !important;
+}
+
+.home-6 .header_account_area {
+    margin-top: 15px !important;
+}
+
+.home-10 .main-navigation {
+    flex: 0 0 71% !important;
+}
