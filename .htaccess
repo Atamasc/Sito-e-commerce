@@ -10,19 +10,6 @@ RewriteRule ^([^\.]+)$ $1.html [L]
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^\.]+)$ $1.php [L]
 
-
-RewriteRule ^fast-login/([^\.]+)$ fast-login-do.php?code=$1 [L]
-
-RewriteRule ^unscribe/([^\.]+)$ newsletter-unscribe.php?email=$1 [L]
-
-RewriteRule ^blog/tag/([A-Za-z0-9-]+)-([0-9]+)$ blog-lista.php?tg_id=$2&page_type=2[L]
-RewriteRule ^blog/tag/([A-Za-z0-9-]+)-([0-9]+)/([0-9]+)$ blog-lista.php?tg_id=$2&page=$3&page_type=2 [L]
-RewriteRule ^blog/([A-Za-z0-9-]+)-([0-9]+)$ blog-lista.php?bc_id=$2&page_type=1 [L]
-RewriteRule ^blog/([A-Za-z0-9-]+)-([0-9]+)/([0-9]+)$ blog-lista.php?bc_id=$2&page=$3&page_type=1 [L]
-RewriteRule ^blog/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)-([0-9]+)$ blog-dettaglio.php?bl_id=$3 [L]
-RewriteRule ^blog/([0-9]+)$ blog-lista.php?page=$1 [L]
-RewriteRule ^blog$ blog-lista.php [L]
-
 RewriteRule ^([^\.]+)-([0-9-]+)$ dettaglio-prodotto.php?pr_id=$2 [L]
 
 RewriteRule ^ricerca/([^\.]+)/([0-9]+)$ lista-prodotti.php?$1&page=$2&page_type=2 [L]
@@ -36,11 +23,3 @@ RewriteRule ^([a-z0-9-]+)-mr([0-9-]+)/([0-9]+)$ lista-prodotti.php?pr_mr_id=$2&p
 
 RewriteRule ^([a-z0-9-]+)-ct([0-9-]+)$ lista-prodotti.php?pr_ct_id=$2&page_type=3 [L]
 RewriteRule ^([a-z0-9-]+)-ct([0-9-]+)/([0-9]+)$ lista-prodotti.php?pr_ct_id=$2&page=$3&page_type=3 [L]
-
-RewriteRule ^in-offerta$ lista-prodotti.php?pr_type=promo&page_type=4 [L]
-RewriteRule ^in-offerta/([0-9]+)$ lista-prodotti.php?pr_type=promo&page_type=4&page=$1 [L]
-RewriteRule ^novita$ lista-prodotti.php?pr_type=novita&page_type=4 [L]
-RewriteRule ^novita/([0-9]+)$ lista-prodotti.php?pr_type=novita&page_type=4&page=$1 [L]
-RewriteRule ^vetrina$ lista-prodotti.php?pr_type=vetrina&page_type=4 [L]
-RewriteRule ^vetrina/([0-9]+)$ lista-prodotti.php?pr_type=vetrina&page_type=4&page=$1 [L]
-

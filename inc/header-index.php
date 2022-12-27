@@ -82,7 +82,37 @@ function isMobile()
                             <ul>
                                 <li><a href="index.php">Home</a></li>
                                 <li><a href="lista-prodotti.php">Prodotti</a></li>
-                                <li><a href="blog.php">Blog</a></li>
+
+                                <li class="menu-dropdown">
+                                    <a href="javascript:;">Marche <i class="ion-ios-arrow-down"></i></a>
+                                    <ul class="sub-menu">
+
+                                        <?php
+                                        headerGetMarca();
+                                        function headerGetMarca()
+                                        {
+                                            global $dbConn;
+
+                                            $querySql = "SELECT mr_id, mr_titolo FROM mr_marche WHERE mr_stato > 0 ";
+                                            $result = $dbConn->query($querySql);
+                                            while (($row_data = $result->fetch_assoc()) !== NULL) {
+
+                                                $mr_id = $row_data['mr_id'];
+                                                $mr_titolo = $row_data['mr_titolo'];
+
+                                                $mr_link = generateMarca2Link($mr_id);
+                                                ?>
+                                                <li><a href="<?php echo $mr_link; ?>"><?php echo $mr_titolo; ?></a></li>
+                                                <?php
+                                            }
+                                            $result->close();
+                                        }
+
+                                        ?>
+
+                                    </ul>
+                                </li>
+
                             </ul>
                         </div>
                         <!--Main Navigation End -->

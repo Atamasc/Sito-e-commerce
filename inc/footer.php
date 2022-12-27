@@ -6,28 +6,28 @@
                 <div class="col-md-6 col-lg-4">
                     <!-- footer logo -->
                     <div class="footer-logo">
-                        <a href="index"><img data-src="assets/images/logo/logo.png" alt="logo" style="max-width: 250px"/></a>
+                        <a href="index"><img data-src="assets/images/logo/logo.jpg" alt="logo" style="max-width: 250px"/></a>
                     </div>
                     <!-- footer logo -->
                     <div class="about-footer">
                         <p class="text-info">
-                            Il marketplace italiano per la vendita di caffè, macchine da caffè e prodotti collegati direttamente online.
+                            Vendita di prodotti elettronici e informatici online, con spedizione e pagamenti sicuri.
                         </p>
 
-                        <div class="need-help">
-                            <p class="phone-info">
-                                Bisogno di aiuto?
-                                <a href="https://chatting.page/6t3qciy9d43q0pswmqjhu12poxh4gosb" target="_blank" style="color: #44ad2b;"><span style="color: #44ad2b;">Chatta con noi</span></a>
-                            </p>
-                        </div>
+                        <!--                        <div class="need-help">-->
+                        <!--                            <p class="phone-info">-->
+                        <!--                                Bisogno di aiuto?-->
+                        <!--                                <a href="" target="_blank" style="color: #44ad2b;"><span style="color: #44ad2b;">Chatta con noi</span></a>-->
+                        <!--                            </p>-->
+                        <!--                        </div>-->
 
                         <div class="social-info">
                             <ul>
                                 <li>
-                                    <a href="https://www.facebook.com/moncaffe.it"><i class="ion-social-facebook"></i></a>
+                                    <a href="https://www.facebook.com/#"><i class="ion-social-facebook"></i></a>
                                 </li>
                                 <li>
-                                    <a href="https://www.instagram.com/moncaffe.it/"><i class="ion-social-instagram"></i></a>
+                                    <a href="https://www.instagram.com/#"><i class="ion-social-instagram"></i></a>
                                 </li>
                             </ul>
                         </div>
