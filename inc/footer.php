@@ -6,7 +6,7 @@
                 <div class="col-md-6 col-lg-4">
                     <!-- footer logo -->
                     <div class="footer-logo">
-                        <a href="index"><img data-src="assets/images/logo/logo.jpg" alt="logo" style="max-width: 250px"/></a>
+                        <a href="index"><img data-src="assets/images/logo/logo-removed.png" alt="logo" style="max-width: 250px"/></a>
                     </div>
                     <!-- footer logo -->
                     <div class="about-footer">
@@ -40,10 +40,7 @@
                         <div class="footer-links">
                             <ul>
                                 <li><a href="index">Home</a></li>
-                                <li><a href="azienda">Azienda</a></li>
                                 <li><a href="prodotti">Prodotti</a></li>
-                                <li><a href="blog">Blog</a></li>
-                                <li><a href="contatti">Contatti</a></li>
                             </ul>
                         </div>
                     </div>
@@ -56,8 +53,8 @@
                             <ul>
                                 <li><a href="privacy-policy">Privacy Policy</a></li>
                                 <li><a href="cookie-policy">Cookie Policy</a></li>
-                                <li><a href="pagamenti">Pagamenti</a></li>
-                                <li><a href="spedizioni">Spedizioni</a></li>
+                                <!--                                <li><a href="pagamenti">Pagamenti</a></li>-->
+                                <!--                                <li><a href="spedizioni">Spedizioni</a></li>-->
                                 <li><a href="termini-condizioni">Termini & Condizioni</a></li>
                             </ul>
                         </div>

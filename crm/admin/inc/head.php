@@ -7,7 +7,7 @@
 
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="../images/favicon.png"/>
+<link rel="shortcut icon" href="../images/favicon.jpg"/>
 
 <!-- Font -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">

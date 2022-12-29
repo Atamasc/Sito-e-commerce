@@ -115,20 +115,20 @@
 
             <!-- menu title -->
             <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Marketing</li>
-            <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#blog">
-                    <div class="pull-left"><i class="ti-agenda"></i><span class="right-nav-text">Blog</span></div>
-                    <div class="pull-right"><i class="ti-plus"></i></div>
-                    <div class="clearfix"></div>
-                </a>
-                <ul id="blog" class="collapse" data-parent="#sidebarnav">
-                    <li><a href="blog-add.php">Crea post blog</a></li>
-                    <li><a href="blog-gst.php">Gestione post blog</a></li>
-                    <li><a href="blog-categorie-gst.php">Gestione categorie blog</a></li>
-                    <li><a href="tag-gst.php">Gestione tag</a></li>
-
-                </ul>
-            </li>
+            <!--            <li>-->
+            <!--                <a href="javascript:void(0);" data-toggle="collapse" data-target="#blog">-->
+            <!--                    <div class="pull-left"><i class="ti-agenda"></i><span class="right-nav-text">Blog</span></div>-->
+            <!--                    <div class="pull-right"><i class="ti-plus"></i></div>-->
+            <!--                    <div class="clearfix"></div>-->
+            <!--                </a>-->
+            <!--                <ul id="blog" class="collapse" data-parent="#sidebarnav">-->
+            <!--                    <li><a href="blog-add.php">Crea post blog</a></li>-->
+            <!--                    <li><a href="blog-gst.php">Gestione post blog</a></li>-->
+            <!--                    <li><a href="blog-categorie-gst.php">Gestione categorie blog</a></li>-->
+            <!--                    <li><a href="tag-gst.php">Gestione tag</a></li>-->
+            <!---->
+            <!--                </ul>-->
+            <!--            </li>-->
             <li>
                 <a href="javascript:void(0);" data-toggle="collapse" data-target="#newsletter">
                     <div class="pull-left"><i class="ti-email"></i><span class="right-nav-text">Newsletter</span></div>
@@ -137,9 +137,9 @@
                 </a>
                 <ul id="newsletter" class="collapse" data-parent="#sidebarnav">
                     <li><a href="newsletter-immagine-add.php">Crea campagna mail</a></li>
-                    <li><a href="newsletter-blog-add.php">Crea campagna blog</a></li>
+                    <!--                    <li><a href="newsletter-blog-add.php">Crea campagna blog</a></li>-->
                     <li><a href="newsletter-gst.php">Gestione campagne mail</a></li>
-                    <li><a href="newsletter-blog-gst.php">Gestione campagne blog</a></li>
+                    <!--                    <li><a href="newsletter-blog-gst.php">Gestione campagne blog</a></li>-->
                     <li><a href="newsletter-liste-gst.php">Gestione liste email</a></li>
                     <li><a href="newsletter-log-gst.php">Log e report campagne</a></li>
                 </ul>

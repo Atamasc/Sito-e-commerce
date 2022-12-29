@@ -1,8 +1,8 @@
 <nav class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <!-- logo -->
     <div class="text-left navbar-brand-wrapper">
-        <a class="navbar-brand brand-logo w-100" href="javascript:;" style="background-image: url('../images/logo.png'); background-size: contain; background-repeat: no-repeat; height: 52px; margin-left: 0px;margin-top: 8px;"> </a>
-        <a class="navbar-brand brand-logo-mini w-100" href="javascript:;"  style="background-image: url('../images/mini-logo.png'); background-size: contain; background-repeat: no-repeat; height: 51px;"><!--<img src="../images/mini-logo.png" alt="">--></a>
+        <a class="navbar-brand brand-logo w-100" href="javascript:;" style="background-image: url('../images/logo.jpg'); background-size: contain; background-repeat: no-repeat; height: 52px; margin-left: 29px;margin-top: 8px;"> </a>
+        <a class="navbar-brand brand-logo-mini w-100" href="javascript:;" style="background-image: url('../images/mini-logo.jpg'); background-size: contain; background-repeat: no-repeat; height: 51px;"><!--<img src="../images/mini-logo.png" alt="">--></a>
     </div>
     <!-- Top bar left -->
     <ul class="nav navbar-nav mr-auto">
@@ -29,7 +29,7 @@
     <!-- top bar right -->
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item fullscreen">
-            <a id="btnFullscreen" href="#" class="nav-link" ><i class="ti-fullscreen"></i></a>
+            <a id="btnFullscreen" href="#" class="nav-link"><i class="ti-fullscreen"></i></a>
         </li>
 
         <!--
@@ -76,8 +76,7 @@
         <li class="nav-item dropdown mr-30">
             <a class="nav-link top-nav" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <!--<img src="../images/profile-avatar.jpg" alt="avatar">-->
-                <i class="ti-user"></i>
-            </a>
+                <i class="ti-user"></i> </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header">
                     <div class="media">
