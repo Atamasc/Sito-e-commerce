@@ -1,8 +1,8 @@
 <?php include_once "autoloader.php"; ?>
 <?php
-if (isset($ne_email) && strlen($ne_email) > 0) $mail_email = "$rootBasePath_http/unscribe/".base64_encode($ne_email);
-else if (isset($cl_email) && strlen($cl_email) > 0) $mail_email = "$rootBasePath_http/unscribe/".base64_encode($cl_email);
-else $mail_email = "mailto:info@moncaffe.it?subject=Non%20voglio%20piu%20ricevere%20aggiornamenti";
+if (isset($ne_email) && strlen($ne_email) > 0) $mail_email = "$rootBasePath_http/unscribe/" . base64_encode($ne_email);
+else if (isset($cl_email) && strlen($cl_email) > 0) $mail_email = "$rootBasePath_http/unscribe/" . base64_encode($cl_email);
+else $mail_email = "mailto:info@cybek.it?subject=Non%20voglio%20piu%20ricevere%20aggiornamenti";
 
 $messaggio =
     "
@@ -189,7 +189,7 @@ $messaggio =
 
 <!-- Visually Hidden Preheader Text : BEGIN -->
 <div style='display:none;font - size:1px;line - height:1px;max - height:0px;max - width:0px;opacity:0;overflow:hidden;mso - hide:all;font - family: sans - serif;'>
-Benvenuto su MonCaffe.it
+Benvenuto su Cybek.it
 </div>
 <!-- Visually Hidden Preheader Text : END -->
 
@@ -287,14 +287,14 @@ Benvenuto su MonCaffe.it
                                                 <td width='102' align='center'>
                                                     <div class='contentEditableContainer contentFacebookEditable'>
                                                         <div class='contentEditable'>
-                                                            <a href='https://www.facebook.com/moncaffe.it' target='_blank'><img src='$rootBasePath_http/assets/images/facebook.png' alt='Facebook' data-default='placeholder' width='50' height='50'  data-max-width='50' data-customIcon='true' ></a>
+                                                            <a href='https://www.facebook.com/cybek.it' target='_blank'><img src='$rootBasePath_http/assets/images/facebook.png' alt='Facebook' data-default='placeholder' width='50' height='50'  data-max-width='50' data-customIcon='true' ></a>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td width='102' align='center'>
                                                     <div class='contentEditableContainer contentTwitterEditable'>
                                                         <div class='contentEditable'>
-                                                            <a href='https://www.instagram.com/moncaffe.it/' target='_blank'><img src='$rootBasePath_http/assets/images/instagram.png' alt='Instagram' data-default='placeholder' width='50' height='50' data-max-width='50' data-customIcon='true' ></a>
+                                                            <a href='https://www.instagram.com/cybek.it/' target='_blank'><img src='$rootBasePath_http/assets/images/instagram.png' alt='Instagram' data-default='placeholder' width='50' height='50' data-max-width='50' data-customIcon='true' ></a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -326,7 +326,7 @@ Benvenuto su MonCaffe.it
                                                     <img src='$rootBasePath_http/assets/images/logo/logo.png' alt='Logo' width='300' height='60' data-default='placeholder' data-max-width='326' data-max-height='60' style='margin: 30px 0px;'>
                                                     <br>
                                                     <!--Indirizzo : Via S. Francesco D'Assisi, 5 - 80034 Marigliano (NA)<br>-->
-                                                    Email : <a href='mailto:info@moncaffe.it'>info@moncaffe.it</a>
+                                                    Email : <a href='mailto:info@cybek.it'>info@cybek.it</a>
                                                 </p>
                                                     <hr>
                                                 <p style=\"color:#a5a5a5;text-align:center; font-size:11px; line-height:19px; margin:0 30px; padding: 0 10px;\">

@@ -117,8 +117,8 @@ if ($or_stato_spedizione == 1) {
     $email_testo =
         "
         <p>
-            Il tuo ordine è stato spedito. Riceverai la merce secondo <a href='https://www.moncaffe.it/spedizioni'>i tempi di spedizione</a> che trovi sul nostro sito.
-            Per i dettagli dell'ordine <a href='https://www.moncaffe.it/login'>accedi alla tua area riservata</a> sul sito<br />
+            Il tuo ordine è stato spedito. Riceverai la merce secondo <a href='https://www.cybek.it/spedizioni'>i tempi di spedizione</a> che trovi sul nostro sito.
+            Per i dettagli dell'ordine <a href='https://www.cybek.it/login'>accedi alla tua area riservata</a> sul sito<br />
         </p>
         <br>
         

@@ -1,7 +1,7 @@
 <?php include "inc/autoloader.php"; ?>
 <?php
 $get_page_type = @(int)$_GET['page_type'];
-echo $get_pr_search = isset($_GET['pr_search']) ? $dbConn->real_escape_string(stripslashes(trim($_GET["pr_search"]))) : "";
+$get_pr_search = isset($_REQUEST['pr_search']) ? $dbConn->real_escape_string(stripslashes(trim($_REQUEST["pr_search"]))) : "";
 $get_pr_ct_id = isset($_GET['pr_ct_id']) ? $dbConn->real_escape_string(stripslashes(trim($_GET["pr_ct_id"]))) : "";
 $get_pr_mr_id = isset($_GET['pr_mr_id']) ? $dbConn->real_escape_string(stripslashes(trim($_GET["pr_mr_id"]))) : "";
 
@@ -36,7 +36,7 @@ switch ($get_page_type) {
     case 2:
     {
         $page_title = "Ricerca";
-        $page_link = "$rootBasePath_http/ricerca/" . getVarGet(array("page", "page_type"));
+        $page_link = "$rootBasePath_http/ricerca/pr_search=" . $get_pr_search;
 
         $page_bread =
             "<li>Ricerca</li>";
@@ -99,7 +99,7 @@ switch ($get_page_type) {
 <div id="main">
 
     <!-- Header Start -->
-    <?php include('inc/header-2.php'); ?>
+    <?php include('inc/header.php'); ?>
     <!-- Header End -->
 
     <!-- Breadcrumb Area start -->

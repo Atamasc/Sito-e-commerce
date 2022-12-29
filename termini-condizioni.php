@@ -37,7 +37,7 @@
 <!--====== PRELOADER PART ENDS ======-->
 <div id="main">
     <!-- Header Start -->
-    <?php include('inc/header-2.php'); ?>
+    <?php include('inc/header.php'); ?>
     <!-- Header End -->
     <!-- Breadcrumb Area start -->
     <section class="breadcrumb-area" style="background: url(assets/images/breadcrumb-bg/breadcrumb.jpg); background-position: center center; background-repeat: no-repeat; background-size: cover;">

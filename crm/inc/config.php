@@ -7,25 +7,22 @@ setlocale(LC_TIME, 'ita', 'it_IT');
 
 //setlocale(LC_TIME, 'it_IT@euro');
 
-//Path location root off-line
-//Path location root off-line
-$rootBasePath_http = "http://localhost/Tesi";
-$rootBasePath_https = "";
-$rootBaseEmail = "info@lucasweb.it";
-$emailPaypal = "info@lucasweb.it";
+$rootBasePath_http = "https://localhost/Tesi";
+$rootBasePath_https = "https://localhost/Tesi";
+$rootBaseEmail = "lucilonk97@gmail.com";
+$emailPaypal = "lucilonk97@gmail.com";
 
 //Dati SMTP
-$SMTP['host'] = "mail.moncaffe.it";
-$SMTP['user'] = "noreply@moncaffe.it";
-$SMTP['pass'] = "Vin@7888!";
-//$SMTP['pass'] = "Befe@7986@";
+$SMTP['host'] = "mail.register.it";
+$SMTP['user'] = "lucilonk97@gmail.com";
+$SMTP['pass'] = "Axistheway01@";
 
 
 //Path location root on-line
 $root_path = "http://localhost/Tesi";
 $root_base_path = "http://localhost/Tesi";
 $root_site_path = "http://localhost/Tesi";
-$root_base_email = "info@lucasweb.it";
+$root_base_email = "lucilonk97@gmail.com";
 $title_admin_header = "Cybek.it / Software CRM";
 
 //Location path di upload file cartella generica

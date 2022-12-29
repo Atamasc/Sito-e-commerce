@@ -190,7 +190,7 @@
 <!--====== PRELOADER PART ENDS ======-->
 <div id="main">
     <!-- Header Start -->
-    <?php include('inc/header-2.php'); ?>
+    <?php include('inc/header.php'); ?>
     <!-- Header End -->
     <!-- Breadcrumb Area start -->
     <section class="breadcrumb-area" style="background: url(assets/images/breadcrumb-bg/breadcrumb.jpg) no-repeat;">
@@ -581,7 +581,7 @@
                                             <a style="width: 290px; display: inline-block !important;" href="<?php echo "$rootBasePath_http/registrati"; ?>">Registrati subito</a>
                                             <br><br>
                                             <a style="width: 290px; display: inline-block !important;" href="<?php echo "$rootBasePath_http/login"; ?>">Accedi alla tua area</a>
-                                            
+
                                         <?php } else {
 
                                             echo "<button class=\"btn-hover\" type=\"submit\" style=\"width: 100%;\">Conferma carrello</button>";

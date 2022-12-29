@@ -179,7 +179,7 @@ if ($or_pagamento == 'Contrassegno') {
                 </tr>
                 <tr>
                     <td>Causale:</td> 
-                    <td colspan='6'><strong>Acquisto moncaffe.it N° ordine $or_codice</strong></td>
+                    <td colspan='6'><strong>Acquisto cybek.it N° ordine $or_codice</strong></td>
                 </tr>
             </table>";
 
@@ -248,8 +248,8 @@ $email_testo .=
 include "../../inc/mail.php";
 
 include("../class/class.phpmailer.php");
-$mittente = "noreply@moncaffe.it";
-$nomemittente = "Moncaffe.it";
+$mittente = "noreply@cybek.it";
+$nomemittente = "cybek.it";
 $destinatario = $ut_email;
 $dataFullNow = strftime("%A %d %B %Y", time());
 
@@ -272,7 +272,7 @@ $mail->From = $mittente;
 $mail->FromName = $nomemittente;
 $mail->AddAddress($ut_email);
 $mail->AddBCC($rootBaseEmail);
-$mail->Subject = "Moncaffe.it - Paga il tuo ordine - " . date("d/m/Y", time());
+$mail->Subject = "Cybek.it - Paga il tuo ordine - " . date("d/m/Y", time());
 
 $time = time();
 $tracker = "<img src='$rootBasePath_http/crm/tracker-ordini.php?cod=$time&email=$ut_email' width='1' height='1'>";

@@ -115,13 +115,13 @@ if ($rows_insert > 0) {
     $ut_cliente_nominativo = getNominativoClienteByCodice($cr_ut_codice, $dbConn);
     $ut_indirizzo_spedizione = getIndirizzoClienteByCodice($cr_ut_codice, $dbConn);
 
-    $email_titolo = "Grazie per aver acquistato su Moncaffe.it";
+    $email_titolo = "Grazie per aver acquistato su Cybek.it";
 
     $email_testo = "
                     <p>
                         Abbiamo acquisito il tuo ordine che sarà lavorato secondo i tempi indicati e successivamente spedito.
                         Riceverai una mail automatica con il codice tracking del corriere appena il tuo ordine sarà spedito. <br>
-                        Per dettagli sui tempi di evasione puoi visitare la sezione <a href='https://www.moncaffe.it/spedizioni'>https://www.moncaffe.it/spedizioni</a> <br>
+                        Per dettagli sui tempi di evasione puoi visitare la sezione <a href='https://www.cybek.it/spedizioni'>https://www.cybek.it/spedizioni</a> <br>
                     </p>
                     <br>
                     <p>Codice ordine: $or_codice del " . date('d/m/Y - H:i', substr($or_codice, 9)) . "</p>
@@ -156,7 +156,7 @@ if ($rows_insert > 0) {
                     </tr>
                     <tr>
                         <td>Causale:</td>
-                        <td colspan='6'><strong>Acquisto moncaffe.it Ordine $or_codice</strong></td>
+                        <td colspan='6'><strong>Acquisto cybek.it Ordine $or_codice</strong></td>
                     </tr>
                 </table>";
 

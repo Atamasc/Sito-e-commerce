@@ -71,3 +71,23 @@
 .home-10 .main-navigation {
     flex: 0 0 71% !important;
 }
+
+.hero-side-category nav.category-menu {
+    height: 258px
+}
+
+@media only screen and (max-width: 479px) {
+    .home-6 .home-10 .dropdown_search {
+        left: -193px;
+    }
+}
+
+.home-6 .header_account_area {
+    margin-top: 5px !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .home-5 .home-10 .mean-container a.meanmenu-reveal {
+        top: -26px !important;
+    }
+}

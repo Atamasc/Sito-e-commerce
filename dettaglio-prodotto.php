@@ -125,7 +125,7 @@ $page_link = generateProductLink($pr_capofila);
 <div id="main">
 
     <!-- Header Start -->
-    <?php include('inc/header-2.php'); ?>
+    <?php include('inc/header.php'); ?>
     <!-- Header End -->
 
     <!-- Breadcrumb Area start -->

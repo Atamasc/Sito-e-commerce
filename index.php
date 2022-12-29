@@ -21,13 +21,13 @@
 <!--====== PRELOADER PART ENDS ======-->
 <div id="main">
 
-    <?php include('inc/header-index.php'); ?>
+    <?php include('inc/header.php'); ?>
 
     <!-- Slider Arae Start -->
     <div class="slider-area">
         <div class="slider-active-3 owl-carousel slider-hm8 owl-dot-style">
             <!-- Slider Single Item Start -->
-            <div class="slider-height-10 d-flex align-items-start justify-content-start bg-img" style="background-image: url(assets/images/slider-image/1.jpg); background-position: unset !important;">
+            <div class="slider-height-10 d-flex align-items-start justify-content-start bg-img" style="background-image: url(assets/images/slider-image/1.jpg); <?php if (!isMobile()) echo "background-position: unset !important;" ?>">
                 <div class="container">
                     <div class="slider-content-5 slider-animated-1 text-left">
                         <!--                        <span class="animated">Apple</span>-->
@@ -272,10 +272,10 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="banner-wrapper mb-30px">
-                        <a href="<?php echo generateMarca2Link(3); ?>"><img src="assets/images/banner-1.jpg" style="height: 260px;" alt=""/></a>
+                        <a href="<?php echo generateMarca2Link(3); ?>"><img src="assets/images/banner-1.jpg" style="height: 260px; <?php if (isMobile()) echo "object-fit: cover;" ?>" alt=""/></a>
                     </div>
                     <div class="banner-wrapper mb-res-sm-30">
-                        <a href="<?php echo generateMarca2Link(2); ?>"><img src="assets/images/banner-2.jpg" style="height: 260px;" alt=""/></a>
+                        <a href="<?php echo generateMarca2Link(2); ?>"><img src="assets/images/banner-2.jpg" style="height: 260px; <?php if (isMobile()) echo "object-fit: cover;" ?>"" alt=""/></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-res-xs-30">
@@ -447,7 +447,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="banner-inner">
-                        <a href="<?php echo generateMarca2Link(6); ?>"><img style="object-fit: cover; height: 296px; object-position: 0px -120px;" src="assets/images/sony.jpg" alt=""/></a>
+                        <a href="<?php echo generateMarca2Link(6); ?>"><img style="object-fit: cover; height: 296px; object-position:<?php if (isMobile()) echo "-74px -28px"; else echo "0px -120px;"; ?>" src="assets/images/sony.jpg" alt=""/></a>
                     </div>
                 </div>
             </div>

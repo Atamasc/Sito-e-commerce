@@ -91,7 +91,7 @@ $or_totale_ordine = '1';
 <!--====== PRELOADER PART ENDS ======-->
 <div id="main">
     <!-- Header Start -->
-    <?php include('inc/header-2.php'); ?>
+    <?php include('inc/header.php'); ?>
     <!-- Header End -->
     <!-- Breadcrumb Area start -->
     <section class="breadcrumb-area" style="background: url(assets/images/breadcrumb-bg/breadcrumb.jpg) no-repeat;">
@@ -302,7 +302,7 @@ $or_totale_ordine = '1';
                                         <tr>
                                             <td>Causale:</td>
                                             <td>
-                                                <strong>Acquisto moncaffe.it N° ordine <?php echo $get_or_codice; ?></strong>
+                                                <strong>Acquisto cybek.it N° ordine <?php echo $get_or_codice; ?></strong>
                                             </td>
                                         </tr>
                                     </table>
