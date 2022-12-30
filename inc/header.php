@@ -276,17 +276,21 @@ function isMobile()
                         </div>
                         <!--Seach Area End -->
                         <!--Contact info Start -->
-                        <div class="contact-link">
-                            <div class="phone">
-                                <p>Call us:</p>
-                                <a href="tel:(+800)345678">(+800)345678</a>
-                            </div>
-                        </div>
+                        <!--                        <div class="contact-link">-->
+                        <!--                            <div class="phone">-->
+                        <!--                                <p>Call us:</p>-->
+                        <!--                                <a href="tel:(+800)345678">(+800)345678</a>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
                         <!--Contact info End -->
                         <!--Cart info Start -->
                         <div class="cart-info d-flex">
-                            <a href="compare.php" class="count-cart random d-xs-none"></a>
-                            <a href="wishlist.php" class="count-cart heart d-xs-none"></a>
+                            <!--                            <a href="compare.php" class="count-cart random d-xs-none"></a>-->
+                            
+                            <?php if ($session_cl_login > 0) { ?>
+                                <a href="wishlist.php" title="Preferiti" class="count-cart heart"></a>
+                            <?php } ?>
+
                             <div class="mini-cart-warp">
                                 <a href="#" class="count-cart"><span>$20.00</span></a>
                                 <div class="mini-cart-content">

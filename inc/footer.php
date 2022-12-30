@@ -1,7 +1,7 @@
 <footer class="footer-area">
     <div class="footer-top">
         <div class="container" style="/* max-width: 1700px */">
-            <div class="row" style="justify-content: space-between;">
+            <div class="row" style="/*justify-content: space-between; */">
                 <!-- footer single wedget -->
                 <div class="col-md-6 col-lg-4">
                     <!-- footer logo -->
@@ -90,25 +90,27 @@
                 </div>
 
                 <!-- footer single wedget -->
-                <div class="col-md-6 col-lg-4 mt-res-md-50px mt-res-sx-30px mt-res-md-30px">
-                    <div class="single-wedge">
-                        <h4 class="footer-herading">Newsletter</h4>
-                        <div class="subscrib-text">
-                            <p>Iscriviti e rimani aggiornato sulle ultime ed imperdibili offerte.</p>
-                        </div>
-                        <div id="mc_embed_signup" class="subscribe-form">
-                            <form action="newsletter" method="get">
-                                <div id="mc_embed_signup_scroll" class="mc-form">
-                                    <input class="email" type="email" required="" placeholder="Inserisci la tua email..." name="email"/>
-                                    <div class="clear">
-                                        <input id="mc-embedded-subscribe" class="button" type="submit" value="Iscriviti"/>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
 
-                    </div>
-                </div>
+                <!--                <div class="col-md-6 col-lg-4 mt-res-md-50px mt-res-sx-30px mt-res-md-30px">-->
+                <!--                    <div class="single-wedge">-->
+                <!--                        <h4 class="footer-herading">Newsletter</h4>-->
+                <!--                        <div class="subscrib-text">-->
+                <!--                            <p>Iscriviti e rimani aggiornato sulle ultime ed imperdibili offerte.</p>-->
+                <!--                        </div>-->
+                <!--                        <div id="mc_embed_signup" class="subscribe-form">-->
+                <!--                            <form action="newsletter" method="get">-->
+                <!--                                <div id="mc_embed_signup_scroll" class="mc-form">-->
+                <!--                                    <input class="email" type="email" required="" placeholder="Inserisci la tua email..." name="email"/>-->
+                <!--                                    <div class="clear">-->
+                <!--                                        <input id="mc-embedded-subscribe" class="button" type="submit" value="Iscriviti"/>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </form>-->
+                <!--                        </div>-->
+                <!---->
+                <!--                    </div>-->
+                <!--                </div>-->
+
                 <!-- footer single wedget -->
             </div>
         </div>

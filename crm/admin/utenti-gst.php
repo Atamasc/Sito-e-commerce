@@ -15,7 +15,6 @@
     $get_ut_cognome = isset($_GET['ut_cognome']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_cognome']))) : "";
     $get_ut_email = isset($_GET['ut_email']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_email']))) : "";
     $get_ut_telefono = isset($_GET['ut_telefono']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_telefono']))) : "";
-    $get_ut_rapido = isset($_GET['ut_rapido']) ? $dbConn->real_escape_string(stripslashes(trim($_GET['ut_rapido']))) : "";
     ?>
 
     <div class="wrapper">
@@ -43,7 +42,7 @@
                     <div class="page-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h4 class="mb-0"> Gestione clienti <?php echo $get_ut_rapido; ?> </h4>
+                                <h4 class="mb-0"> Gestione clienti</h4>
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
@@ -92,18 +91,6 @@
                                                         value="<?php echo $get_ut_email; ?>"> <span class="tooltips">E-mail Utente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="E-mail Utente" data-content="Inserisci qui l'indirizzo e-mail dell'utente che stai cercando">[aiuto]</a></span>
                                             </div>
 
-                                            <div class="col-md-2 mb-3">
-                                                <label for="ut_rapido">Tipo</label>
-                                                <select class="form-control" id="ut_rapido" name="ut_rapido">
-                                                    <option value="">Seleziona un tipo</option>
-                                                    <option value=""></option>
-                                                    <option value="Standard" <?php if ($get_ut_rapido == 'Standard') echo 'selected'; ?>>Standard</option>
-                                                    <option value="Rapido" <?php if ($get_ut_rapido == 'Rapido') echo 'selected'; ?>>Rapido</option>
-                                                </select>
-                                                <span class="tooltips">Tipo Utente <a class="popup-a" tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="Tipo Utente" data-content="Seleziona qui la tipologia dell'utente che stai cercando">[aiuto]</a></span>
-                                            </div>
-
-
                                         </div>
 
                                         <button class="btn btn-primary" type="submit">Cerca</button>
@@ -142,7 +129,6 @@
                                                 <th>Nome</th>
                                                 <th>Cognome</th>
                                                 <th>Email</th>
-                                                <th style="text-align: center;">Tipo</th>
                                                 <th style="text-align: center; width: 150px;">Stato</th>
                                                 <th style="text-align: center; width: 300px;">Gestione</th>
                                             </tr>
@@ -155,8 +141,6 @@
                                             if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
                                             if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                             if (strlen($get_ut_telefono) > 0) $querySql .= " AND ut_telefono LIKE '%$get_ut_telefono%' ";
-                                            if ($get_ut_rapido == 'Rapido') $querySql .= " AND ut_rapido = '1' ";
-                                            if ($get_ut_rapido == 'Standard') $querySql .= " AND ut_rapido = '0' ";
                                             $result = $dbConn->query($querySql);
                                             $row = $result->fetch_row();
 
@@ -176,8 +160,6 @@
                                             if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
                                             if (strlen($get_ut_email) > 0) $querySql .= " AND ut_email LIKE '%$get_ut_email%' ";
                                             if (strlen($get_ut_telefono) > 0) $querySql .= " AND ut_telefono LIKE '%$get_ut_telefono%' ";
-                                            if ($get_ut_rapido == 'Rapido') $querySql .= " AND ut_rapido = '1' ";
-                                            if ($get_ut_rapido == 'Standard') $querySql .= " AND ut_rapido = '0' ";
                                             $querySql .= " ORDER BY ut_id LIMIT $primo, $per_page";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
@@ -191,16 +173,6 @@
                                                 echo "<td>" . $row_data['ut_nome'] . "</td>";
                                                 echo "<td>" . $row_data['ut_cognome'] . "</td>";
                                                 echo "<td>" . $row_data['ut_email'] . "</td>";
-
-                                                //Tipo
-                                                echo "<td align='center'>";
-
-                                                if ($row_data['ut_rapido'] == 0) {
-                                                    echo "<div class='btn btn-primary btn-sm'>Standard</div>";
-                                                } else {
-                                                    echo "<div class='btn btn-dark btn-sm'>Rapido</div>";
-                                                }
-                                                echo "</td>";
 
                                                 //Stato
                                                 $checked = $row_data['ut_stato'] > 0 ? "checked" : "";

@@ -73,7 +73,9 @@
                             <p>
                                 Se sei già registrato accedi alla tua area riservata. Se hai smarrito la password chiedi il recupero, ti arriverà una mail con in dati di accesso sulla casella utilizzata come account.
                             </p>
-                            <p><img style="width: 230px; margin: 10px 0;" src="assets/images/assistenza.jpg"></p>
+                            <p>
+                                <img style="width: 230px; margin: 10px 0; max-width: -webkit-fill-available; object-fit: contain;" src="assets/images/assistenza.jpg">
+                            </p>
                         </div>
                     </div>
                 </div>

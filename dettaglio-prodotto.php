@@ -22,7 +22,7 @@ $pr_giacenza = $row_data['pr_giacenza'];
 $pr_peso = $row_data['pr_peso'];
 $pr_stato = $row_data['pr_stato'];
 $cl_email = @getEmailClienteByCodice($session_cl_codice, $dbConn);
-
+$pr_descrizione = $row_data['pr_descrizione'];
 $ct_categoria = $row_data['ct_categoria'];
 $ct_titolo = $ct_categoria;
 
@@ -236,27 +236,27 @@ $page_link = generateProductLink($pr_capofila);
                         </div>
                         <div class="pricing-meta" style="margin: 10px 0;">
                             <ul>
-                                <?php if ($row_data['pr_prezzo_scontato'] > 0) { ?>
-                                    <?php if ($row_data['pr_prezzo_scontato'] == $row_data['pr_prezzo']) { ?>
-                                        <li class="current-price">&euro;<?php echo formatPrice($row_data['pr_prezzo_scontato']); ?></li>
+                                <?php if ($pr_prezzo_scontato > 0) { ?>
+                                    <?php if ($pr_prezzo_scontato == $pr_prezzo) { ?>
+                                        <li class="current-price">&euro;<?php echo formatPrice($pr_prezzo_scontato); ?></li>
                                     <?php } else { ?>
-                                        <li class="old-price">&euro;<?php echo formatPrice($row_data['pr_prezzo']); ?></li>
-                                        <li class="current-price">&euro;<?php echo formatPrice($row_data['pr_prezzo_scontato']); ?></li>
-                                        <li class="discount-price">- <?php echo $row_data['pr_sconto']; ?>%</li>
+                                        <li class="old-price">&euro;<?php echo formatPrice($pr_prezzo); ?></li>
+                                        <li class="current-price">&euro;<?php echo formatPrice($pr_prezzo_scontato); ?></li>
+                                        <li class="discount-price">- <?php echo $pr_sconto; ?>%</li>
                                     <?php } ?>
                                 <?php } else { ?>
-                                    <li class="current-price">&euro;<?php echo formatPrice($row_data['pr_prezzo']); ?></li>
+                                    <li class="current-price">&euro;<?php echo formatPrice($pr_prezzo); ?></li>
                                 <?php } ?>
                             </ul>
                         </div>
 
-                        <?php if ($row_data['pr_giacenza'] > 5) { ?>
+                        <?php if ($pr_giacenza > 5) { ?>
                             <b>Disponibilit&agrave;:</b>
                             <span style="color: #198f35; font-weight: bold;">Disponibile</span>
-                        <?php } else if ($row_data['pr_giacenza'] > 0 && $row_data['pr_giacenza'] <= 5) { ?>
+                        <?php } else if ($pr_giacenza > 0 && $pr_giacenza <= 5) { ?>
                             <b>Disponibilit&agrave;:</b>
                             <span style="color: orange; font-weight: bold;">In esaurimento</span>
-                        <?php } else if ($row_data['pr_giacenza'] == 0) { ?>
+                        <?php } else if ($pr_giacenza == 0) { ?>
                             <b>Disponibilit&agrave;:</b> <span style="color: red; font-weight: bold;">Esaurito</span>
                         <?php } ?>
 
@@ -363,7 +363,7 @@ $page_link = generateProductLink($pr_capofila);
                     </div>
                     <div id="des-details1" class="tab-pane active">
                         <div class="product-description-wrapper">
-                            <?php echo $row_data['pr_descrizione']; ?>
+                            <?php echo $pr_descrizione; ?>
                         </div>
                     </div>
                     <div id="des-details3" class="tab-pane">

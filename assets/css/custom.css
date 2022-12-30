@@ -82,12 +82,23 @@
     }
 }
 
-.home-6 .header_account_area {
-    margin-top: 5px !important;
-}
 
 @media only screen and (max-width: 767px) {
     .home-5 .home-10 .mean-container a.meanmenu-reveal {
         top: -26px !important;
+    }
+}
+
+.stato h5 span.danger {
+    white-space: nowrap;
+}
+
+.nice-select .list {
+    z-index: 999;
+}
+
+@media only screen and (max-width: 1024px) {
+    .home-5.home-6 .main-navigation ul li a {
+        padding: 19px 29px 2px 45px;
     }
 }

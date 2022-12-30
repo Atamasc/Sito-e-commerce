@@ -5,7 +5,7 @@
             <div class="card-body">
                 <div class="d-block d-md-flexx justify-content-between">
                     <div class="d-block">
-                        <h5 class="card-title">Ultimi clienti registrati</h5>
+                        <h5 class="card-title">Ultimi utenti registrati</h5>
                     </div>
                 </div>
 
@@ -93,11 +93,9 @@
             <!-- action group -->
             <div class="card-body">
                 <h5 class="card-title">Link rapidi</h5>
-                <!--<h4><a href="#"><i class="fa fa-facebook-official"></i></a>&nbsp;<a href="#"><i class="fa fa-instagram"></i></a></h4>-->
-                <!--<h4><a class='btn btn-primary w-100' href='contatti-gst.php'>Elenco contatti</a></h4>-->
-                <h4><a class='btn btn-primary w-100' href='blog-gst.php'>Gestione blog</a></h4>
-                <h4><a class='btn btn-primary w-100' href='newsletter-gst.php'>Gestione campagne immagine</a></h4>
-                <h4><a class='btn btn-primary w-100' href='newsletter-blog-gst.php'>Gestione campagne blog</a></h4>
+                <h4><a class='btn btn-primary w-100' href='utenti-add.php'>Aggiungi utente</a></h4>
+                <h4><a class='btn btn-primary w-100' href='utenti-gst.php'>Gestione utenti</a></h4>
+
             </div>
         </div>
     </div>

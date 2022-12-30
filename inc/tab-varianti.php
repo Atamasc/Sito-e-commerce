@@ -1,5 +1,5 @@
 <?php
-pageGetVarianti($row_data['pr_capofila']);
+pageGetVarianti($pr_capofila);
 function pageGetVarianti($pr_capofila)
 {
 
