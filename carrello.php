@@ -554,17 +554,21 @@
                                         </div>
 
                                         <h5>Riepilogo importi della merce in carrello senza spedizione</h5>
-                                        <div class="total-shipping">
-                                            <h5>Importi carrello</h5>
-                                            <ul>
-                                                <li>Imponibile
-                                                    <span>&euro;<?php echo formatPrice($cr_imponibile); ?></span></li>
-                                                <li>Iva <span>&euro;<?php echo formatPrice($cr_iva); ?></span></li>
-                                            </ul>
+
+                                        <div class="carrello-total">
+                                            <div class="total-shipping">
+                                                <h5>Importi carrello</h5>
+                                                <ul>
+                                                    <li>Imponibile
+                                                        <span>&euro;<?php echo formatPrice($cr_imponibile); ?></span>
+                                                    </li>
+                                                    <li>Iva <span>&euro;<?php echo formatPrice($cr_iva); ?></span></li>
+                                                </ul>
+                                            </div>
+                                            <h4 class="grand-totall-title">Totale carrello
+                                                <span>&euro;<?php echo formatPrice($cr_totale); ?></span>
+                                            </h4>
                                         </div>
-                                        <h4 class="grand-totall-title">Totale carrello
-                                            <span>&euro;<?php echo formatPrice($cr_totale); ?></span></h4>
-                                        <!-- <a href="#">Proceed to Checkout</a> -->
 
                                         <!--
                                 <div class="carrello-total">

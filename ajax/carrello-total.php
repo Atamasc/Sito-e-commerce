@@ -7,9 +7,9 @@
 
 <?php
 $querySql =
-    "SELECT * FROM pr_prodotti ".
-    "INNER JOIN cr_carrello ON cr_pr_codice = pr_codice ".
-    "WHERE cr_cl_codice = '$session_cl_codice' ";
+    "SELECT * FROM pr_prodotti " .
+    "INNER JOIN cr_carrello ON cr_pr_codice = pr_codice " .
+    "WHERE cr_ut_codice = '$session_cl_codice' ";
 $result = $dbConn->query($querySql);
 $rows = $result->num_rows;
 
@@ -28,7 +28,14 @@ $result->close();
 $cr_imponibile = $cr_totale / 1.22;
 $cr_iva = $cr_totale - $cr_imponibile;
 ?>
-    <h5>Imponibile <span>&euro;<?php echo formatPrice($cr_imponibile); ?></span></h5>
-    <h5>IVA <span>&euro;<?php echo formatPrice($cr_iva); ?></span></h5>
-    <h4 class="grand-totall-title">Totale<span>&euro;<?php echo formatPrice($cr_totale); ?></span></h4><br>
+    <div class="total-shipping">
+        <h5>Importi carrello</h5>
+        <ul>
+            <li>Imponibile <span>&euro;<?php echo formatPrice($cr_imponibile); ?></span></li>
+            <li>Iva <span>&euro;<?php echo formatPrice($cr_iva); ?></span></li>
+        </ul>
+    </div>
+
+
+    <h4 class="grand-totall-title">Totale carrello<span>&euro;<?php echo formatPrice($cr_totale); ?></span></h4>
 <?php include "../inc/db-close.php"; ?>

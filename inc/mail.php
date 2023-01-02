@@ -11,7 +11,7 @@ $messaggio =
 
 <head>
     <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-    <title>MonCaffè</title>
+    <title>Cybek</title>
     <style type='text/css'>
 
         body {
@@ -207,7 +207,7 @@ Benvenuto su Cybek.it
                         <td width='400' align='left'>
                             <div class='contentEditableContainer contentImageEditable'>
                                 <div class='contentEditable'>
-                                    <img src='$rootBasePath_http/assets/images/logo/logo.png' alt='Logo' width='300' height='60' data-default='placeholder' data-max-width='326' data-max-height='60'>
+                                    <img src='$rootBasePath_http/assets/images/logo/logo.jpg' alt='Logo' width='300' height='60' data-default='placeholder' data-max-width='326' data-max-height='60'>
                                 </div>
                             </div>
                         </td>
@@ -223,21 +223,7 @@ Benvenuto su Cybek.it
                 </table>
             </div>
 
-            <div class='movableContent'>
-                <table width='600' border='0' cellspacing='0' cellpadding='0' align='center'>
-                    <tr><td height='20'></td></tr>
-                    <tr>
-                        <td>
-                            <div class='contentEditableContainer contentImageEditable'>
-                                <div class='contentEditable'>
-                                    <img src='$rootBasePath_http/assets/images/breadcrumb-bg/copertina-mail.png' alt='Header Image' width='600' height='314' data-default='placeholder' data-max-width='600'>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr><td height='10' bgcolor='253237'></td></tr><!-- ? -->
-                </table>
-            </div>
+
 
             <!-- =============== END HEADER =============== -->
             <!-- =============== START BODY =============== -->
@@ -323,7 +309,7 @@ Benvenuto su Cybek.it
 
                                                     Per qualunque dubbio, necessit&aacute; o richiesta, non esitare a contattarci. <br> Riceverai una risposta nel minor tempo possibile.
                                                     <br>
-                                                    <img src='$rootBasePath_http/assets/images/logo/logo.png' alt='Logo' width='300' height='60' data-default='placeholder' data-max-width='326' data-max-height='60' style='margin: 30px 0px;'>
+                                                    <img src='$rootBasePath_http/assets/images/logo/logo.jpg' alt='Logo' width='300' height='60' data-default='placeholder' data-max-width='326' data-max-height='60' style='margin: 30px 0px;'>
                                                     <br>
                                                     <!--Indirizzo : Via S. Francesco D'Assisi, 5 - 80034 Marigliano (NA)<br>-->
                                                     Email : <a href='mailto:info@cybek.it'>info@cybek.it</a>

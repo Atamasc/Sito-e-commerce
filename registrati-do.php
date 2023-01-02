@@ -43,17 +43,22 @@ if ($checkEmail > 0) {
         "Data e ora: $datetime\n" .
         "Codice numerico: " . $_POST['codice_num'];
 
-    //addLogPrivacy("$ut_nominativo", "$ut_email", "$py_dati", "registrati", "Inserimento", "Registrazione", "$py_checkbox_privacy", "$py_checkbox_marketing", "$py_checkbox_cessione", $dbConn);
+//addLogPrivacy("$ut_nominativo", "$ut_email", "$py_dati", "registrati", "Inserimento", "Registrazione", "$py_checkbox_privacy", "$py_checkbox_marketing", "$py_checkbox_cessione", $dbConn);
 
     $querySql =
         "INSERT INTO ut_utenti(ut_codice, ut_nome, ut_cognome, ut_email, ut_provincia, ut_citta, ut_cap, " .
-        "ut_indirizzo, ut_telefono, ut_password, ut_data, ut_stato, ut_rapido" .
+        "ut_indirizzo, ut_telefono, ut_password, ut_data, ut_stato" .
         ") VALUES (" .
         "'$serial_date', '$ut_nome','$ut_cognome','$ut_email','$ut_provincia','$ut_citta','$ut_cap', '$ut_indirizzo','$ut_telefono', " .
-        "'$ut_password', '$serial_date', 1, 0)";
+        "'$ut_password', '$serial_date', 1)";
 
+    $result = $dbConn->query($querySql);
+    $rows = $dbConn->affected_rows;
 
-    if (0 == 0) {
+    $dbConn->close();
+
+    if ($rows > 0) {
+
 
         $email_titolo = "Benvenuto su Cybek.it";
 
@@ -79,42 +84,31 @@ if ($checkEmail > 0) {
         include("crm/class/class.phpmailer.php");
         $mittente = "info@cybek.it";
         $nomemittente = "Cybek.it";
-        $destinatario = $ut_email;
+        $destinatario = "$ut_email";
 
         $mail = new PHPMailer;
-        // utilizza la classe SMTP invece del comando mail() di php
-        $mail->IsSMTP();
-        $mail->SMTPKeepAlive = "true";
 
-        // autenticazione server SMTP di invio mail
-        $mail->Host = "webmailsmtp.register.it";
-        $mail->Port = 25;
-        $mail->Username = "info@cybek.it";      // utente server SMTP autenticato
-        $mail->Password = "emaildominio";    // password server SMTP autenticato
-        // abilito il messaggio in HTML
-        $mail->IsHTML(true);
-        $mail->SMTPSecure = false;
-        $mail->SMTPAuth = true;
-
-        //intestazioni e corpo dell'email
+//intestazioni e corpo dell'email
         $mail->From = $mittente;
         $mail->FromName = $nomemittente;
         $mail->AddAddress($destinatario);
-        //$mail->AddBCC($rootBaseEmail);
-        $mail->Subject = "Cybek.it - Conferma registrazione " . $datetime;
+//$mail->AddBCC($rootBaseEmail);
+        $mail->Subject = "Conferma registrazione " . $datetime;
 
-        $mail->Body = "sss";
+        $mail->Body = $messaggio;
         $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
 
         $mail->SMTPDebug = 1;
-        $mail->Send();
 
-        echo "si";
-
-        //header("Location:login-do?ut_email=$ut_email&ut_password=$ut_password");
+        if ($mail->Send()) {
+            header("Location:login-do?ut_email=$ut_email&ut_password=$ut_password");
+        } else {
+            header("Location:registrati?insert=false");
+        }
 
     } else
         //echo "<meta http-equiv='refresh' content='0;url=registrati?insert=false' />";
         header("Location:registrati?insert=false");
 }
+
 ?>

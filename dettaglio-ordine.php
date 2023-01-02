@@ -15,12 +15,13 @@ $or_totale_ordine = '1';
 
     <?php
     if (@$_GET['insert'] == 'true') {
-        $querySql = "SELECT COUNT(or_id) AS or_count, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale, or_pagamento, or_spedizione, or_tipo_spedizione, or_coupon, or_coupon_valore, or_coupon_tipo FROM or_ordini WHERE or_codice = '$get_or_codice' ";
+        $querySql = "SELECT or_pr_quantita, or_pr_prezzo, or_pagamento, or_spedizione, or_tipo_spedizione, or_coupon, or_coupon_valore, or_coupon_tipo FROM or_ordini WHERE or_codice = '$get_or_codice' ";
         $result = $dbConn->query($querySql);
         $row_data = $result->fetch_assoc();
 
-        $or_count = $row_data['or_count'];
-        $or_totale = $row_data['or_totale'];
+        $or_pr_quantitatale = $row_data['or_pr_quantita'];
+        $or_pr_prezzo = $row_data['or_pr_prezzo'];
+        $or_totale = $or_pr_prezzo * $or_pr_quantita;
 
         $or_pagamento = $row_data['or_pagamento'];
         $or_spedizione = $row_data['or_spedizione'];
@@ -342,13 +343,6 @@ $or_totale_ordine = '1';
 
                                     $importo_totale_ordine_paypal = number_format($or_totale_ordine, 2, '.', '');
 
-                                    /*
-                                    $_SESSION['or_codice'] = $get_or_codice;
-                                    $_SESSION['importo_totale'] = $importo_totale_ordine_paypal;
-
-                                    $gestpay_link = "$rootBasePath_http/pagamento-paypal";
-                                    */
-
                                     $return_link = "$rootBasePath_http/confirmPayPal.php?or_codice=$get_or_codice";
                                     $cancel_link = "$rootBasePath_http/dettaglio-ordine?or_codice=$get_or_codice&insert=false";
 
@@ -357,7 +351,7 @@ $or_totale_ordine = '1';
                                     ?>
 
                                     <div style="margin-top: 45px;">
-                                        <a style="max-width: 200px; text-align: center;" class="btn btn-primary" href="<?php echo $paypal_link; ?>">Paga adesso</a>
+                                        <a style="max-width: 200px; text-align: center;" class="btn btn-primary" href="javascript:;">Paga adesso</a>
                                     </div>
 
                                     <!-- //TODO LUCA: Fix su errore stripe ho uploadato pagina e ho notato un doppio bottone paypal, forse la nuova procedura di paypal che non è completa ?
@@ -406,7 +400,7 @@ $or_totale_ordine = '1';
                                     ?>
 
                                     <div style="margin-top: 45px;">
-                                        <a style="max-width: 200px; text-align: center;" class="btn btn-primary" href="<?php echo $stripe_redirect; ?>">Paga adesso</a>
+                                        <a style="max-width: 200px; text-align: center;" class="btn btn-primary" href="javascript:;">Paga adesso</a>
                                     </div>
                                     <?php
 
@@ -444,13 +438,12 @@ $or_totale_ordine = '1';
                         $punti_ordine = $or_totale / 2;
                         $punti_ordine = ceil($punti_ordine);*/
 
-                        $querySql = "SELECT or_pr_quantita, or_pr_prezzo, or_pagamento, or_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon, or_tipo_spedizione FROM or_ordini WHERE or_codice = '$get_or_codice' ";
+                        $subQuery = "SELECT SUM(or_pr_prezzo * or_pr_quantita) FROM or_ordini WHERE or_codice = '$get_or_codice' ";
+                        $querySql = "SELECT ($subQuery) AS or_totale, or_pagamento, or_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon, or_tipo_spedizione FROM or_ordini WHERE or_codice = '$get_or_codice' ";
                         $result = $dbConn->query($querySql);
                         $row_data = $result->fetch_assoc();
 
-                        $or_pr_quantitatale = $row_data['or_pr_quantita'];
-                        $or_pr_prezzo = $row_data['or_pr_prezzo'];
-                        $or_totale = $or_pr_prezzo * $or_pr_quantita;
+                        $or_totale = $row_data['or_totale'];
 
                         $or_pagamento = $row_data['or_pagamento'];
                         $or_spedizione = $row_data['or_spedizione'];

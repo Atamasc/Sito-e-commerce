@@ -19,38 +19,28 @@ if ($rows > 0) {
         "
         <p>
             <br>Hai richiesto il recupero password. Ecco i tuoi dati di accesso:<br>
-            <br><strong>Email: </strong>".$ut_email."
-            <br><strong>Password: </strong>".$ut_password."
+            <br><strong>Email: </strong>" . $ut_email . "
+            <br><strong>Password: </strong>" . $ut_password . "
         </p>
         ";
 
     include "inc/mail.php";
 
     include("crm/class/class.phpmailer.php");
-    $mittente = $SMTP['user'];
+    $mittente = "info@cybek.it";
     $nomemittente = "Cybek.it";
     $destinatario = $ut_email;
 
-    $dataFullNow = strftime("%A %d %B %Y", time());
 
     $mail = new PHPMailer;
     // utilizza la classe SMTP invece del comando mail() di php
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
-    $mail->SMTPKeepAlive = "true";
 
-    $mail->Host = $SMTP['host'];
-    $mail->Username = $SMTP['user'];
-    $mail->Password = $SMTP['pass'];
-
-    // abilito il messaggio in HTML
-    $mail->IsHTML(true);
 
     //intestazioni e corpo dell'email
     $mail->From = $mittente;
     $mail->FromName = $nomemittente;
     $mail->AddAddress($destinatario);
-    $mail->Subject = "Richiesta recupero password - ".date("d/m/Y", time());
+    $mail->Subject = "Richiesta recupero password - " . date("d/m/Y", time());
 
     $mail->Body = $messaggio;
 

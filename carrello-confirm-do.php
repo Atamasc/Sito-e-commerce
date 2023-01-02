@@ -121,10 +121,9 @@ if ($rows_insert > 0) {
                     <p>
                         Abbiamo acquisito il tuo ordine che sarà lavorato secondo i tempi indicati e successivamente spedito.
                         Riceverai una mail automatica con il codice tracking del corriere appena il tuo ordine sarà spedito. <br>
-                        Per dettagli sui tempi di evasione puoi visitare la sezione <a href='https://www.cybek.it/spedizioni'>https://www.cybek.it/spedizioni</a> <br>
                     </p>
                     <br>
-                    <p>Codice ordine: $or_codice del " . date('d/m/Y - H:i', substr($or_codice, 9)) . "</p>
+                    <p>Codice ordine: $or_codice del " . date('d/m/Y - H:i', substr($or_timestamp, 9)) . "</p>
                     <p>Cliente: <strong>" . $ut_cliente_nominativo . "&nbsp;(" . $cr_ut_codice . ")</strong></p>
                     <p>Email: $ut_email</p>
                     <p>Indirizzo di spedizione: <strong>" . $ut_indirizzo_spedizione . "</strong></p>
@@ -224,70 +223,38 @@ if ($rows_insert > 0) {
     include "inc/mail.php";
 
     include("crm/class/class.phpmailer.php");
-    $mittente = $SMTP['user'];
+    $mittente = "info@cybek.it";
     $nomemittente = "Cybek.it";
     $destinatario = $ut_email;
-    //$ServerSMTP = "mail.myservercloud.it";  //server SMTP autenticato Hosting Solutions
-    $dataFullNow = strftime("%A %d %B %Y", time());
 
     $mail = new PHPMailer;
-    // utilizza la classe SMTP invece del comando mail() di php
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
-    $mail->SMTPKeepAlive = "true";
-
-    // autenticazione server SMTP di invio mail
-    $mail->Host = $SMTP['host'];
-    $mail->Username = $SMTP['user'];      // utente server SMTP autenticato
-    $mail->Password = $SMTP['pass'];    // password server SMTP autenticato
-
-    // abilito il messaggio in HTML
-    $mail->IsHTML(true);
 
     //intestazioni e corpo dell'email
     $mail->From = $mittente;
     $mail->FromName = $nomemittente;
     $mail->AddAddress($ut_email);
     $mail->AddBCC($rootBaseEmail);
-    $mail->Subject = "Ordine standard | " . $or_codice . " | " . $ut_cliente_nominativo . "";
+    $mail->Subject = "Ordine | " . $or_codice . " | " . $ut_cliente_nominativo . "";
 
     $mail->Body = $messaggio;
     $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
 
     if ($mail->Send()) {
         $get_send = true;
+
+        $querySql_delete = "DELETE FROM cr_carrello WHERE cr_ut_codice = '$session_cl_codice'";
+        $result_delete = $dbConn->query($querySql_delete);
+        $delete_cart = $dbConn->affected_rows;
+
+        echo "<meta http-equiv='refresh' content='0;url=$rootBasePath_http/dettaglio-ordine?or_codice=$or_codice&insert=true' />";
+
     } else {
         $get_send = false;
         $get_error_info = $mail->ErrorInfo;
     };
 
-    $querySql_delete = "DELETE FROM cr_carrello WHERE cr_ut_codice = '$session_cl_codice'";
-    $result_delete = $dbConn->query($querySql_delete);
-    $delete_cart = $dbConn->affected_rows;
-
-    if ($cr_pagamento == 'Stripe') {
-
-        //$importo_totale_ordine = number_format($importo_totale_ordine , 2 , '.' , '');
-        $stripe_redirect = generateStripeFastOrder($or_codice, $importo_totale_ordine);
-
-        header("Location: $stripe_redirect");
-
-    } else if ($cr_pagamento == 'Paypal') {
-
-        $importo_totale_ordine_paypal = number_format($importo_totale_ordine, 2, '.', '');
-
-
-        $return_link = "$rootBasePath_http/confirmPayPal.php?or_codice=$or_codice";
-        $cancel_link = "$rootBasePath_http/dettaglio-ordine?or_codice=$or_codice&insert=false";
-
-        echo "<meta http-equiv='refresh' content='0;url=https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=$emailPaypal&item_name=Order Code&item_number=$or_codice&amount=$importo_totale_ordine_paypal&invoice=$or_codice&currency_code=EUR&return=$return_link&cancel_return=$cancel_link'>";
-
-    } else {
-        echo "<meta http-equiv='refresh' content='0;url=$rootBasePath_http/dettaglio-ordine?or_codice=$or_codice&insert=true' />";
-    }
 } else {
 
     echo "<meta http-equiv='refresh' content='0;url=$rootBasePath_http/anteprima-ordine?insert=false' />";
-
 }
 ?>
