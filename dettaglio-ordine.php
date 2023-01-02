@@ -112,7 +112,7 @@ $or_totale_ordine = '1';
     <!-- Breadcrumb Area End -->
 
     <div id="logo_stampa" style="display: none">
-        <img src="<?php echo "$rootBasePath_http/assets/images/logo/logo.png"; ?>" style="margin-left: 150px;">
+        <img src="<?php echo "$rootBasePath_http/assets/images/logo/logo.jpg"; ?>" style="margin-left: 150px;">
     </div>
 
     <!-- cart area start -->
@@ -310,12 +310,13 @@ $or_totale_ordine = '1';
 
                                 } else if ($row_data['or_stato_pagamento'] == 0 && $or_pagamento == 'Paypal') {
 
-                                    $querySql = "SELECT COUNT(or_id) AS or_count, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale, or_pagamento, or_spedizione, or_tipo_spedizione, or_coupon, or_coupon_valore, or_coupon_tipo FROM or_ordini WHERE or_codice = '$get_or_codice' ";
+                                    $querySql = "SELECT or_pr_quantita, or_pr_prezzo, or_pagamento, or_spedizione, or_tipo_spedizione, or_coupon, or_coupon_valore, or_coupon_tipo FROM or_ordini WHERE or_codice = '$get_or_codice' ";
                                     $result = $dbConn->query($querySql);
                                     $row_data = $result->fetch_assoc();
 
-                                    $or_count = $row_data['or_count'];
-                                    $or_totale = $row_data['or_totale'];
+                                    $or_pr_quantitatale = $row_data['or_pr_quantita'];
+                                    $or_pr_prezzo = $row_data['or_pr_prezzo'];
+                                    $or_totale = $or_pr_prezzo * $or_pr_quantita;
 
                                     $or_pagamento = $row_data['or_pagamento'];
                                     $or_spedizione = $row_data['or_spedizione'];
@@ -370,12 +371,13 @@ $or_totale_ordine = '1';
 
                                 } else if ($row_data['or_stato_pagamento'] == 0 && $or_pagamento == 'Stripe') {
 
-                                    $querySql = "SELECT COUNT(or_id) AS or_count, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale, or_pagamento, or_spedizione, or_tipo_spedizione, or_coupon, or_coupon_valore, or_coupon_tipo FROM or_ordini WHERE or_codice = '$get_or_codice' ";
+                                    $querySql = "SELECT or_pr_quantita, or_pr_prezzo, or_pagamento, or_spedizione, or_tipo_spedizione, or_coupon, or_coupon_valore, or_coupon_tipo FROM or_ordini WHERE or_codice = '$get_or_codice' ";
                                     $result = $dbConn->query($querySql);
                                     $row_data = $result->fetch_assoc();
 
-                                    $or_count = $row_data['or_count'];
-                                    $or_totale = $row_data['or_totale'];
+                                    $or_pr_quantitatale = $row_data['or_pr_quantita'];
+                                    $or_pr_prezzo = $row_data['or_pr_prezzo'];
+                                    $or_totale = $or_pr_prezzo * $or_pr_quantita;
 
                                     $or_pagamento = $row_data['or_pagamento'];
                                     $or_spedizione = $row_data['or_spedizione'];
@@ -442,12 +444,13 @@ $or_totale_ordine = '1';
                         $punti_ordine = $or_totale / 2;
                         $punti_ordine = ceil($punti_ordine);*/
 
-                        $querySql = "SELECT COUNT(or_id) AS or_count, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale, or_pagamento, or_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon, or_tipo_spedizione FROM or_ordini WHERE or_codice = '$get_or_codice' ";
+                        $querySql = "SELECT or_pr_quantita, or_pr_prezzo, or_pagamento, or_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon, or_tipo_spedizione FROM or_ordini WHERE or_codice = '$get_or_codice' ";
                         $result = $dbConn->query($querySql);
                         $row_data = $result->fetch_assoc();
 
-                        $or_count = $row_data['or_count'];
-                        $or_totale = $row_data['or_totale'];
+                        $or_pr_quantitatale = $row_data['or_pr_quantita'];
+                        $or_pr_prezzo = $row_data['or_pr_prezzo'];
+                        $or_totale = $or_pr_prezzo * $or_pr_quantita;
 
                         $or_pagamento = $row_data['or_pagamento'];
                         $or_spedizione = $row_data['or_spedizione'];

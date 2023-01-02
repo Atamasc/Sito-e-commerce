@@ -218,10 +218,12 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
 
 
                                                                 <?php
+                                                                $subQuery = "SELECT COUNT(or_id) FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE ut_codice = '$session_cl_codice' ";
                                                                 $querySql =
-                                                                    "SELECT *, COUNT(or_id) AS or_count FROM or_ordini " .
+                                                                    "SELECT *, ($subQuery) AS or_count FROM or_ordini " .
                                                                     "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE ut_codice = '$session_cl_codice' " .
-                                                                    "GROUP BY or_codice ORDER BY or_codice DESC ";
+//                                                                  "GROUP BY or_codice ORDER BY or_codice DESC ";
+                                                                    "ORDER BY or_codice DESC ";
                                                                 $result = $dbConn->query($querySql);
                                                                 $rows = $dbConn->affected_rows;
 

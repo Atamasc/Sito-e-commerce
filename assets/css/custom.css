@@ -24,7 +24,7 @@
 }
 
 .breadcrumb-content {
-    background-color: #000000ba;
+    background-color: #00000082;
     display: inline-block;
     border-radius: 20px;
     padding: 20px;
@@ -101,4 +101,13 @@
     .home-5.home-6 .main-navigation ul li a {
         padding: 19px 29px 2px 45px;
     }
+}
+
+.current-price {
+    color: #cf2929 !important;
+    font-weight: bold !important;
+}
+
+.discount-price {
+    padding: 0 3px !important;
 }

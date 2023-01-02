@@ -72,41 +72,36 @@
         </div>
     </div>
 
-    <div class="col-xl-3 col-lg-6 col-md-6 mb-30">
-        <div class="card card-statistics h-100">
-            <div class="card-body">
-                <div class="clearfix">
-                    <div class="float-left">
-                  <span class="text-primary">
-                    <i class="fas fa-calculator-alt highlight-icon" aria-hidden="true"></i>
-                  </span>
-                    </div>
-                    <div class="float-right text-right">
-                        <p class="card-text text-dark">Totale Ordini</p>
-                        <?php
-                        $totale_ordini = countTotaleOrdini($dbConn);
-                        $totale_ordini_pagati = countTotaleOrdiniPagati($dbConn);
-                        $totale_ordini_sospesi = countTotaleOrdiniSospesi($dbConn);
-                        $totale_ordini_non_spediti = countTotaleOrdiniNonSpediti($dbConn);
-                        ?>
-                        <h4><?php echo formatPrice($totale_ordini); ?> &euro;</h4>
-                    </div>
-                </div>
-                <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                    <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i>
-                    <b><?php echo formatPrice($totale_ordini_pagati); ?></b> &euro; Pagati |
-                    <b><?php echo formatPrice($totale_ordini_sospesi); ?></b> &euro; Sospesi (Non pagati) |
-                    <b><?php echo formatPrice($totale_ordini_non_spediti); ?></b> &euro; Non spediti
-                </p>
-
-                <!--
-                <p class="text-muted pt-3 mb-0 mt-2 border-top">
-                    <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i> <a href="blog-gst.php">Gestisci il blog</a>
-                </p>
-                -->
-            </div>
-        </div>
-    </div>
+    <!--    <div class="col-xl-3 col-lg-6 col-md-6 mb-30">-->
+    <!--        <div class="card card-statistics h-100">-->
+    <!--            <div class="card-body">-->
+    <!--                <div class="clearfix">-->
+    <!--                    <div class="float-left">-->
+    <!--                  <span class="text-primary">-->
+    <!--                    <i class="fas fa-calculator-alt highlight-icon" aria-hidden="true"></i>-->
+    <!--                  </span>-->
+    <!--                    </div>-->
+    <!--                    <div class="float-right text-right">-->
+    <!--                        <p class="card-text text-dark">Totale Ordini</p>-->
+    <!--                        --><?php
+    //                        $totale_ordini = countTotaleOrdini($dbConn);
+    //                        $totale_ordini_pagati = countTotaleOrdiniPagati($dbConn);
+    //                        $totale_ordini_sospesi = countTotaleOrdiniSospesi($dbConn);
+    //                        $totale_ordini_non_spediti = countTotaleOrdiniNonSpediti($dbConn);
+    //                        ?>
+    <!--                        <h4>--><?php //echo formatPrice($totale_ordini); ?><!-- &euro;</h4>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--                <p class="text-muted pt-3 mb-0 mt-2 border-top">-->
+    <!--                    <i class="fa fa-exclamation-circle mr-1" aria-hidden="true"></i>-->
+    <!--                    <b>--><?php //echo formatPrice($totale_ordini_pagati); ?><!--</b> &euro; Pagati |-->
+    <!--                    <b>--><?php //echo formatPrice($totale_ordini_sospesi); ?><!--</b> &euro; Sospesi (Non pagati) |-->
+    <!--                    <b>--><?php //echo formatPrice($totale_ordini_non_spediti); ?><!--</b> &euro; Non spediti-->
+    <!--                </p>-->
+    <!---->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
 
 
 </div>

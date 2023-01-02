@@ -10,6 +10,7 @@ RewriteRule ^([^\.]+)$ $1.html [L]
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^\.]+)$ $1.php [L]
 
+
 RewriteRule ^([^\.]+)-([0-9-]+)$ dettaglio-prodotto.php?pr_id=$2 [L]
 
 RewriteRule ^ricerca/([^\.]+)/([0-9]+)$ lista-prodotti.php?$1&page=$2&page_type=2 [L]

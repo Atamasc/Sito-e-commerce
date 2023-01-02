@@ -105,7 +105,7 @@ $result->close();
                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
                                 $or_id = $row_data['or_id'];
-                                $or_pagamento = $row_data['or_pagamento'];
+                                $or_pagamento = @$row_data['or_pagamento'];
                                 $or_note = $row_data['or_note'];
                                 $or_note_admin = $row_data['or_note_admin'];
                                 $pr_ct_id = $row_data['pr_ct_id'];
@@ -160,14 +160,15 @@ $result->close();
                             <tbody>
 
                             <?php
-                            $querySql = "SELECT COUNT(or_id) AS or_count, SUM(or_pr_prezzo * or_pr_quantita) AS or_totale, or_pagamento, or_tipo_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon FROM or_ordini INNER JOIN pr_prodotti ON pr_codice = or_pr_codice WHERE or_codice = '$get_or_codice' ";
+                            $querySql = "SELECT or_pr_quantita, or_pr_prezzo, or_pagamento, or_tipo_spedizione, or_coupon_valore, or_coupon_tipo, or_coupon FROM or_ordini INNER JOIN pr_prodotti ON pr_codice = or_pr_codice WHERE or_codice = '$get_or_codice' ";
                             $result = $dbConn->query($querySql);
                             $row_data = $result->fetch_assoc();
 
-                            $or_count = $row_data['or_count'];
-                            $or_totale = $row_data['or_totale'];
+                            $or_pr_quantita = $row_data['or_pr_quantita'];
+                            $or_pr_prezzo = $row_data['or_pr_prezzo'];
+                            $or_totale = $or_pr_prezzo * $or_pr_quantita;
 
-                            $or_pagamento = $row_data['or_pagamento'];
+                            $or_pagamento = @$row_data['or_pagamento'];
                             $or_spedizione = $row_data['or_tipo_spedizione'];
                             $or_coupon_valore = $row_data['or_coupon_valore'];
                             $or_coupon_tipo = $row_data['or_coupon_tipo'];
@@ -227,7 +228,7 @@ $result->close();
                                 <td>Totale</td>
                                 <td><strong>&euro; <?php echo formatPrice($or_totale); ?></strong></td>
                             </tr>
-                            
+
                             <tr>
                                 <td colspan="2"><strong>Note cliente:</strong> <?php echo $or_note; ?></td>
                             </tr>

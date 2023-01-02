@@ -153,13 +153,11 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
                             <tbody>
 
                             <?php
-                            $querySql = "SELECT COUNT(pr_id) AS cr_count, 
-                                         cr_pagamento, cr_spedizione, pr_prezzo_scontato, pr_prezzo, cr_pr_quantita FROM pr_prodotti 
+                            $querySql = "SELECT cr_pagamento, cr_spedizione, pr_prezzo_scontato, pr_prezzo, cr_pr_quantita FROM pr_prodotti 
                                          INNER JOIN cr_carrello ON pr_codice = cr_pr_codice WHERE cr_id = '$get_cr_id' ";
                             $result = $dbConn->query($querySql);
                             $row_data = $result->fetch_assoc();
 
-                            $cr_count = $row_data['cr_count'];
                             $pr_prezzo = $row_data['pr_prezzo_scontato'] > 0 ? $row_data['pr_prezzo_scontato'] : $row_data['pr_prezzo'];
                             $cr_pr_quantita = $row_data['cr_pr_quantita'];
 

@@ -62,7 +62,7 @@
                                     <p>Clicca sugli stati per modificarli</p>
 
                                     <?php
-                                    $querySql = "SELECT * FROM or_ordini WHERE or_codice = '$get_or_codice' GROUP BY or_codice LIMIT 0, 1 ";
+                                    $querySql = "SELECT * FROM or_ordini WHERE or_codice = '$get_or_codice' ";
                                     $result = $dbConn->query($querySql);
                                     $rows = $dbConn->affected_rows;
                                     $row_data = $result->fetch_assoc();

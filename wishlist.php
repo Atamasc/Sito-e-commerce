@@ -65,6 +65,7 @@
                                 $ws_id = $row_data['ws_id'];
                                 $pr_id = $row_data['pr_id'];
                                 $pr_codice = $row_data['pr_codice'];
+                                $pr_giacenza = $row_data['pr_giacenza'];
 
                                 $pr_immagine = getImmagineProdotto($pr_id);
 
@@ -83,10 +84,14 @@
                                     <td class="product_name">
                                         <a href="<?php echo $pr_link; ?>"><b><?php echo $pr_titolo; ?></b></a><br></td>
                                     <td class="product-price">&euro;<?php echo formatPrice($pr_prezzo); ?></td>
-                                    <td class="product_total carrello-add" data-codice="<?php echo $pr_codice; ?>">
+                                    <td class="product_total">
                                         <div class="pro-details-quality" style="justify-content: center;">
                                             <div class="pro-details-cart btn-hover">
-                                                <a href="javascript:;" class="button carrello-add" data-codice="<?php echo $pr_codice; ?>">Aggiungi al carrello</a>
+                                                <?php if ($pr_giacenza > 0) { ?>
+                                                    <a href="javascript:;" class="button carrello-add" data-codice="<?php echo $pr_codice; ?>">Aggiungi al carrello</a>
+                                                <?php } else { ?>
+                                                    <a href="javascript:;" class="button">Non disponibile</a>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </td>

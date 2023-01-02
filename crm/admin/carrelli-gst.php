@@ -188,7 +188,7 @@
                                             if (strlen($get_cr_email) > 0) $querySql .= " AND ut_email LIKE '%$get_cr_email%' ";
                                             if (strlen($get_cr_timestamp_da) > 0) $querySql .= " AND cr_timestamp >= '$get_cr_timestamp_da' ";
                                             if (strlen($get_cr_timestamp_a) > 0) $querySql .= " AND cr_timestamp <= '$get_cr_timestamp_a' ";
-                                            $querySql .= " GROUP BY cr_timestamp ORDER BY cr_timestamp DESC LIMIT $primo, $per_page ";
+                                            $querySql .= " ORDER BY cr_timestamp DESC LIMIT $primo, $per_page ";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
