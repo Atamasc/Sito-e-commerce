@@ -1,9 +1,5 @@
 <?php include('inc/autoloader.php');
-$SMTP['host'] = "mail.register.it";
-$SMTP['user'] = "lucilonk97@gmail.com";
-$SMTP['pass'] = "Axistheway01@";
-?>
-<?php
+
 $or_codice = $_GET["or_codice"];
 
 $querySql = "SELECT or_stato FROM or_ordini WHERE or_codice = '$or_codice' ";
@@ -166,30 +162,16 @@ if ($or_stato == 1) {
     include "../../inc/mail.php";
 
     include("../class/class.phpmailer.php");
-    $mittente = $SMTP['user'];
+    $mittente = "info@cybek.it";
     $nomemittente = "Evasione ordine";
     $destinatario = $ut_email;
-    $dataFullNow = strftime("%A %d %B %Y", time());
 
     $mail = new PHPMailer;
-    // utilizza la classe SMTP invece del comando mail() di php
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
-    $mail->SMTPKeepAlive = "true";
-
-    // autenticazione server SMTP di invio mail
-    $mail->Host = $SMTP['host'];
-    $mail->Username = $SMTP['user'];      // utente server SMTP autenticato
-    $mail->Password = $SMTP['pass'];    // password server SMTP autenticato
-
-    // abilito il messaggio in HTML
-    $mail->IsHTML(true);
 
     //intestazioni e corpo dell'email
     $mail->From = $mittente;
     $mail->FromName = $nomemittente;
     $mail->AddAddress($ut_email);
-    $mail->AddBCC($rootBaseEmail);
     $mail->Subject = "Cybek.it - Evasione ordine - " . date("d/m/Y", time());
 
     $mail->Body = $messaggio;

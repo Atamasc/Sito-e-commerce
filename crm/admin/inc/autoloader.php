@@ -1,8 +1,8 @@
 <?php
 header('Content-Type: text/html; charset=ISO-8859-1');
 
-error_reporting(0);
-ini_set('display_errors', 0);
+error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 ?>
 <?php include('../inc/db-conn.php'); ?>
 <?php include('../bin/function.php'); ?>

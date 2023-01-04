@@ -45,7 +45,7 @@ $get_cr_id = isset($_GET['cr_id']) ? $dbConn->real_escape_string(stripslashes(tr
 
                         <div class="row w-100">
 
-                            <?php if ((int)$row_data['ut_id'] > 0) { ?>
+                            <?php if (@$row_data['ut_id'] > 0) { ?>
 
                                 <div class="col-md-6">
 

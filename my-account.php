@@ -209,8 +209,6 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
                                                                 <tr>
                                                                     <th>Data</th>
                                                                     <th>Codice</th>
-                                                                    <th>Totale Prodotti</th>
-                                                                    <th>Totale</th>
                                                                     <th>Azioni</th>
                                                                 </tr>
                                                                 </thead>
@@ -218,42 +216,21 @@ if ($session_cl_login == 0) header("Location: $rootBasePath_http");
 
 
                                                                 <?php
-                                                                $subQuery = "SELECT COUNT(or_id) FROM or_ordini INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE ut_codice = '$session_cl_codice' ";
                                                                 $querySql =
-                                                                    "SELECT *, ($subQuery) AS or_count FROM or_ordini " .
+                                                                    "SELECT or_codice, MAX(or_timestamp) as or_timestamp FROM or_ordini " .
                                                                     "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE ut_codice = '$session_cl_codice' " .
-//                                                                  "GROUP BY or_codice ORDER BY or_codice DESC ";
-                                                                    "ORDER BY or_codice DESC ";
+                                                                    "GROUP BY or_codice ORDER BY or_codice DESC ";
                                                                 $result = $dbConn->query($querySql);
                                                                 $rows = $dbConn->affected_rows;
 
                                                                 while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                                                    $or_id = $row_data['or_id'];
                                                                     $or_codice = $row_data['or_codice'];
-                                                                    $or_spedizione = $row_data['or_spedizione'];
-                                                                    $or_pagamento = $row_data['or_pagamento'];
-                                                                    $or_coupon_valore = $row_data['or_coupon_valore'];
-                                                                    $or_coupon_tipo = $row_data['or_coupon_tipo'];
-                                                                    $or_coupon = $row_data['or_coupon'];
-                                                                    $or_totale_importo = $row_data['or_pr_prezzo'] * $row_data['or_pr_quantita'];
                                                                     $or_timestamp = $row_data['or_timestamp'];
-
-                                                                    $or_pagamento_prezzo = getPrezzoPagamento($or_pagamento, $or_totale_importo);
-
-                                                                    if (strlen($or_coupon) > 0) {
-                                                                        $or_sconto_coupon = $or_coupon_tipo == "importo" ? (float)$or_coupon_valore : ($or_totale_importo / 100) * $or_coupon_valore;
-                                                                    } else {
-                                                                        $or_sconto_coupon = 0;
-                                                                    }
-
-                                                                    $or_totale_importo = $or_totale_importo - $or_sconto_coupon + $or_pagamento_prezzo + $or_spedizione;
 
                                                                     echo "<tr>";
                                                                     echo "<td>" . date('d/m/Y', $or_timestamp) . "</td>";
                                                                     echo "<td>$or_codice</td>";
-                                                                    echo "<td>" . $row_data['or_count'] . "</td>";
-                                                                    echo "<td>&euro;" . formatPrice($or_totale_importo) . "</td>";
 
                                                                     //Gestione
                                                                     echo "<td>";

@@ -123,7 +123,7 @@ if ($rows_insert > 0) {
                         Riceverai una mail automatica con il codice tracking del corriere appena il tuo ordine sarà spedito. <br>
                     </p>
                     <br>
-                    <p>Codice ordine: $or_codice del " . date('d/m/Y - H:i', substr($or_timestamp, 9)) . "</p>
+                    <p>Codice ordine: $or_codice del " . date('d/m/Y - H:i', $or_timestamp) . "</p>
                     <p>Cliente: <strong>" . $ut_cliente_nominativo . "&nbsp;(" . $cr_ut_codice . ")</strong></p>
                     <p>Email: $ut_email</p>
                     <p>Indirizzo di spedizione: <strong>" . $ut_indirizzo_spedizione . "</strong></p>

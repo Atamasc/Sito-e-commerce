@@ -167,7 +167,6 @@
                                                 <!--<th width="10">Tipo</th>-->
                                                 <th>Denominazione</th>
                                                 <th width="150">Pagamento</th>
-                                                <th width="150">Importo</th>
                                                 <th class="text-center" width="500">Stato di lavorazione</th>
                                                 <th class="text-center" width="100">Reso</th>
                                                 <th class="text-center" width="200">Gestione</th>
@@ -199,7 +198,7 @@
                                             $primo = ($current_page - 1) * $per_page;
 
                                             $querySql =
-                                                "SELECT * FROM or_ordini " .
+                                                "SELECT or_codice, MAX(ut_nome) as ut_nome, MAX(ut_cognome) as ut_cognome, MAX(or_timestamp) as or_timestamp, MAX(or_stato_conferma) as or_stato_conferma, MAX(or_stato_pagamento) as or_stato_pagamento, MAX(or_stato_spedizione) as or_stato_spedizione, MAX(or_stato_reso) as or_stato_reso, MAX(or_stato) as or_stato, MAX(or_pagamento) as or_pagamento   FROM or_ordini " .
                                                 "INNER JOIN ut_utenti ON or_ut_codice = ut_codice WHERE or_archivio = 0 ";
                                             if (strlen($get_or_stato_conferma) > 0) $querySql .= " AND or_stato_conferma = '$get_or_stato_conferma' ";
                                             if (strlen($get_or_stato_pagamento) > 0) $querySql .= " AND or_stato_pagamento = '$get_or_stato_pagamento' ";
@@ -208,33 +207,19 @@
                                             if (strlen($get_or_codice) > 0) $querySql .= " AND or_codice LIKE '%$get_or_codice%' ";
                                             if (strlen($get_ut_nome) > 0) $querySql .= " AND ut_nome LIKE '%$get_ut_nome%' ";
                                             if (strlen($get_ut_cognome) > 0) $querySql .= " AND ut_cognome LIKE '%$get_ut_cognome%' ";
-                                            $querySql .= "  ORDER BY or_codice DESC LIMIT $primo, $per_page ";
+                                            $querySql .= " GROUP BY or_codice ORDER BY or_codice DESC LIMIT $primo, $per_page ";
                                             $result = $dbConn->query($querySql);
                                             $rows = $dbConn->affected_rows;
 
                                             while (($row_data = $result->fetch_assoc()) !== NULL) {
 
-                                                $or_id = $row_data['or_id'];
                                                 $or_codice = $row_data['or_codice'];
                                                 $or_timestamp = $row_data['or_timestamp'];
 
-                                                $or_pagamento = $row_data['or_pagamento'];
-                                                $or_tipo_spedizione = $row_data['or_tipo_spedizione'];
-
-                                                $or_totale_importo = $row_data['or_pr_prezzo'] * $row_data['or_pr_quantita'];
-
-                                                $or_pagamento_prezzo = getPrezzoPagamento($or_pagamento, $or_totale_importo);
-                                                $or_spedizione_prezzo = getPrezzoSpedizione($or_tipo_spedizione, $or_totale_importo);
-
-                                                $or_totale = $or_totale_importo + $or_pagamento_prezzo + $or_spedizione_prezzo;
-
                                                 echo "<tr>";
                                                 echo "<td>$or_codice del " . date('d/m/Y - H:i', $or_timestamp) . "</td>";
-                                                //if($row_data['ut_business']) echo "<td class='text-center'>B</td>";
-                                                //else echo "<td class='text-center'>S</td>";
                                                 echo "<td>" . $row_data['ut_nome'] . " " . $row_data['ut_cognome'] . "</td>";
                                                 echo "<td>" . $row_data['or_pagamento'] . "</td>";
-                                                echo "<td>&euro; " . formatPrice($or_totale) . "</td>";
 
                                                 //Stato di evasione
                                                 echo "<td align='center'>";

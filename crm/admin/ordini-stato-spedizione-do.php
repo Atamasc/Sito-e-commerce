@@ -1,9 +1,6 @@
-<?php include('inc/autoloader.php');
-$SMTP['host'] = "mail.register.it";
-$SMTP['user'] = "lucilonk97@gmail.com";
-$SMTP['pass'] = "Axistheway01@";
-?>
 <?php
+include('inc/autoloader.php');
+
 $or_codice = $_GET["or_codice"];
 
 // Gestione Stato Spedizione
@@ -180,47 +177,34 @@ if ($or_stato_spedizione == 1) {
         
         ";
 
-    include "../../inc/mail.php";
+    /* include "../../inc/mail.php";
 
-    include("../class/class.phpmailer.php");
-    $mittente = $SMTP['user'];
-    $nomemittente = "Spedizione ordine";
-    $destinatario = $ut_email;
-    $dataFullNow = strftime("%A %d %B %Y", time());
+     include("../class/class.phpmailer.php");
+     $mittente = "info@cybek.it";
+     $nomemittente = "Spedizione ordine";
+     $destinatario = $ut_email;
 
-    $mail = new PHPMailer;
-    // utilizza la classe SMTP invece del comando mail() di php
-    $mail->IsSMTP();
-    $mail->SMTPAuth = true;
-    $mail->SMTPKeepAlive = "true";
+     $mail = new PHPMailer;
 
-    // autenticazione server SMTP di invio mail
-    $mail->Host = $SMTP['host'];
-    $mail->Username = $SMTP['user'];      // utente server SMTP autenticato
-    $mail->Password = $SMTP['pass'];    // password server SMTP autenticato
+     //intestazioni e corpo dell'email
+     $mail->From = $mittente;
+     $mail->FromName = $nomemittente;
+     $mail->AddAddress($ut_email);
+     $mail->Subject = "Spedizione ordine | " . $or_codice . " | " . $ut_cliente_nominativo . "";
 
-    // abilito il messaggio in HTML
-    $mail->IsHTML(true);
+     $mail->Body = $messaggio;
+     $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
 
-    //intestazioni e corpo dell'email
-    $mail->From = $mittente;
-    $mail->FromName = $nomemittente;
-    $mail->AddAddress($ut_email);
-    $mail->Subject = "Spedizione ordine | " . $or_codice . " | " . $ut_cliente_nominativo . "";
+     //percorso all'allegato
+     //$mail->AddAttachment('pdf/file.pdf');
 
-    $mail->Body = $messaggio;
-    $mail->AltBody = 'Messaggio visibile solo con client di posta compatibili con HTML';
-
-    //percorso all'allegato
-    //$mail->AddAttachment('pdf/file.pdf');
-
-    if ($mail->Send()) {
-        $get_send = true;
-    } else {
-        $get_send = false;
-        $get_error_info = $mail->ErrorInfo;
-    }
-
+     if ($mail->Send()) {
+         $get_send = true;
+     } else {
+         $get_send = false;
+         $get_error_info = $mail->ErrorInfo;
+     }
+ */
 }
 
 
