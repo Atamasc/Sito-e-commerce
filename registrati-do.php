@@ -43,7 +43,7 @@ if ($checkEmail > 0) {
         "Data e ora: $datetime\n" .
         "Codice numerico: " . $_POST['codice_num'];
 
-//addLogPrivacy("$ut_nominativo", "$ut_email", "$py_dati", "registrati", "Inserimento", "Registrazione", "$py_checkbox_privacy", "$py_checkbox_marketing", "$py_checkbox_cessione", $dbConn);
+    addLogPrivacy("$ut_nominativo", "$ut_email", "$py_dati", "registrati", "Inserimento", "Registrazione", "$py_checkbox_privacy", "$py_checkbox_marketing", "$py_checkbox_cessione", $dbConn);
 
     $querySql =
         "INSERT INTO ut_utenti(ut_codice, ut_nome, ut_cognome, ut_email, ut_provincia, ut_citta, ut_cap, " .

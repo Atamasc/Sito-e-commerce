@@ -255,7 +255,7 @@ function isMobile()
                 <!-- Logo Start -->
                 <div class="col-md-2 col-sm-2">
                     <div class="logo">
-                        <a href="index.php"><img src="assets/images/logo/logo-electronic.jpg" alt=""/></a>
+                        <a href="index.php"><img style="width: 120px; height: 30px;" src="assets/images/logo/logo-removed.png" alt=""/></a>
                     </div>
                 </div>
                 <!-- Logo End -->
@@ -286,7 +286,7 @@ function isMobile()
                         <!--Cart info Start -->
                         <div class="cart-info d-flex">
                             <!--                            <a href="compare.php" class="count-cart random d-xs-none"></a>-->
-                            
+
                             <?php if ($session_cl_login > 0) { ?>
                                 <a href="wishlist.php" title="Preferiti" class="count-cart heart"></a>
                             <?php } ?>

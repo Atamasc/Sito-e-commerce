@@ -65,7 +65,7 @@ while (($row_data = $result->fetch_assoc()) !== NULL) {
     $result_insert = $dbConn->query($querySql_insert);
     $rows_insert = $dbConn->affected_rows;
 
-    echo $importo_prodotto = $pr_prezzo * $cr_pr_quantita;
+    $importo_prodotto = $pr_prezzo * $cr_pr_quantita;
 
     @$body_mail_pr .=
         "<tr>" .

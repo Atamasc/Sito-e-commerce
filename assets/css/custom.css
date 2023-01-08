@@ -65,7 +65,7 @@
 }
 
 .home-6 .header_account_area {
-    margin-top: 15px !important;
+    margin-top: 4px !important;
 }
 
 .home-10 .main-navigation {
@@ -85,7 +85,7 @@
 
 @media only screen and (max-width: 767px) {
     .home-5 .home-10 .mean-container a.meanmenu-reveal {
-        top: -26px !important;
+        top: -29px !important;
     }
 }
 
